@@ -3,15 +3,18 @@
  */
 package edu.austral.ingsis;
 
-import edu.austral.ingsis.Library;
 
 public class App {
-    public static void main(String[] args) {
-        final Library library = new Library();
-
-        if (library.someLibraryMethod())
-            System.out.println("Hello World!");
-        else
-            System.out.println("Noo!");
-    }
+  public static void main(String[] args) {
+    final FileGenerator fileGenerator = new FileGenerator();
+    final Lexer lexer = new Lexer();
+    final Parser parser = new Parser();
+    final State state = new State();
+    final Token token = new Token();
+    
+    boolean everythingWorks = fileGenerator.method() &&
+            lexer.method() && parser.method() &&
+            state.method() && token.method();
+    System.out.println(everythingWorks ? "Everything works" : "oh no");
+  }
 }

@@ -7,7 +7,12 @@ group = 'edu.austral.ingsis'
 version = '1.0.1'
 
 dependencies {
-    implementation project(':lib')
+    implementation project(':parser')
+    implementation project(':fileGenerator')
+    implementation project(':token')
+    implementation project(':lexer')
+    implementation project(':state')
+    implementation project(':printer')
 }
 
 application {
