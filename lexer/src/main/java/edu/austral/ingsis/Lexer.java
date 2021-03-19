@@ -3,8 +3,6 @@
  */
 package edu.austral.ingsis;
 
-public class Lexer {
-  public boolean method() {
-    return true;
-  }
+public interface Lexer {
+
 }

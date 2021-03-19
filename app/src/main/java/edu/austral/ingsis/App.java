@@ -4,17 +4,18 @@
 package edu.austral.ingsis;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class App {
   public static void main(String[] args) {
-    final FileGenerator fileGenerator = new FileGenerator();
-    final Lexer lexer = new Lexer();
-    final Parser parser = new Parser();
-    final State state = new State();
-    final Token token = new Token();
-    
-    boolean everythingWorks = fileGenerator.method() &&
-            lexer.method() && parser.method() &&
-            state.method() && token.method();
-    System.out.println(everythingWorks ? "Everything works" : "oh no");
+    // Ejemplo de como funciona el java pattern para expresiones regulares.
+    Pattern p = Pattern.compile("=");
+    System.out.println(p.matcher("as").matches());
+    System.out.println(p.matcher("2").matches());
+    System.out.println(p.matcher("=").matches());
   }
 }
