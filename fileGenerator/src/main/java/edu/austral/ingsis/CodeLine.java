@@ -1,5 +1,6 @@
 package edu.austral.ingsis;
 
 public interface CodeLine {
-    String getCodeLine();
+    String toString();
+    int getRow();
 }

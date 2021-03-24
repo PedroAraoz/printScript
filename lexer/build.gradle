@@ -5,6 +5,7 @@ plugins {
 
 dependencies {
     implementation project(':token')
+    implementation project(':fileGenerator')
 }
 
 group = 'edu.austral.ingsis'
