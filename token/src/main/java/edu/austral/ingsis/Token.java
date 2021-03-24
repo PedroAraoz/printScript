@@ -38,7 +38,22 @@ public class Token {
     public static List<Token> getAllTokens() {
         List<Token> tokens = new ArrayList<>();
 
-        tokens.add(new Token(TokenName.LET, TokenGroup.NOGROUP, null));
+        //TODO cosas para despues: a los espacios en las regex agregar tabs o intros
+
+        tokens.add(new Token(TokenName.LET, TokenGroup.NOGROUP, Pattern.compile("let ")));
+        tokens.add(new Token(TokenName.TYPE_ASSIGNATION, TokenGroup.NOGROUP, Pattern.compile("( *)+:")));
+        tokens.add(new Token(TokenName.SEMICOLON, TokenGroup.NOGROUP, Pattern.compile("( *)+;")));
+        tokens.add(new Token(TokenName.VALUE_ASSIGNATION, TokenGroup.NOGROUP, Pattern.compile("( *)+=")));
+        tokens.add(new Token(TokenName.SIMPLE_QUOTE, TokenGroup.STRING_LIMITATOR, Pattern.compile("'")));
+        tokens.add(new Token(TokenName.DOUBLE_QUOTE, TokenGroup.STRING_LIMITATOR, Pattern.compile("\"")));
+        tokens.add(new Token(TokenName.SUM, TokenGroup.OPERATION, Pattern.compile("( *)+\\+")));
+        tokens.add(new Token(TokenName.SUB, TokenGroup.OPERATION, Pattern.compile("( *)+-")));
+        tokens.add(new Token(TokenName.MULT, TokenGroup.OPERATION, Pattern.compile("( *)+\\*")));
+        tokens.add(new Token(TokenName.DIV, TokenGroup.OPERATION, Pattern.compile("( *)+/")));
+        tokens.add(new Token(TokenName.NUMBER_TYPE, TokenGroup.TYPE, Pattern.compile("( +)+number")));
+        tokens.add(new Token(TokenName.STRING_TYPE, TokenGroup.TYPE, Pattern.compile("( +)+string")));
+
+        //Variable y literal no tengo idea yet
 
         return tokens;
     }
