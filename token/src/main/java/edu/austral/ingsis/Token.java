@@ -1,5 +1,7 @@
 package edu.austral.ingsis;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Token {
@@ -31,5 +33,13 @@ public class Token {
 
     public boolean verify(String s) {
         return regex.matcher(s).matches();
+    }
+
+    public static List<Token> getAllTokens() {
+        List<Token> tokens = new ArrayList<>();
+
+        tokens.add(new Token(TokenName.LET, TokenGroup.NOGROUP, null));
+
+        return tokens;
     }
 }

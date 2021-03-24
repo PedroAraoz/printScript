@@ -20,7 +20,7 @@ public class LexerImpl implements Lexer{
             endPos++;
             if (tokenOptional.isPresent()) {
                 // Create TokenWrapper. Add extra information needed
-                result.add(new TokenWrapper(tokenOptional.get(), line.getRow(), startPos, endPos, Optional.empty()));
+                result.add(new TokenWrapper(tokenOptional.get(), line.getRow(), startPos, endPos, Optional.empty())); //TODO cuando tengan values ese ultimo optional tiene q ser el value
                 startPos = endPos;
             }
         }

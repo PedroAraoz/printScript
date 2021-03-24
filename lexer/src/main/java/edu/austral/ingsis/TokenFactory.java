@@ -1,13 +1,16 @@
 package edu.austral.ingsis;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class TokenFactory {
 
-  private final List<Token> tokenList = new ArrayList<>();// TODO que traiga esta lista de algun lado
+  private final List<Token> tokenList;
   private StringBuilder stringBuilder = new StringBuilder();
+
+  public TokenFactory() {
+    this.tokenList = Token.getAllTokens();
+  }
 
   public Optional<Token> put(String c) {
     stringBuilder.append(c);
