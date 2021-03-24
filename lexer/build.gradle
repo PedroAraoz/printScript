@@ -3,9 +3,20 @@ plugins {
     id 'my-library.java-common-conventions'
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     implementation project(':token')
     implementation project(':fileGenerator')
+    implementation 'junit:junit:4.12'
+}
+
+test {
+    useJUnit()
+
+    maxHeapSize = '1G'
 }
 
 group = 'edu.austral.ingsis'
