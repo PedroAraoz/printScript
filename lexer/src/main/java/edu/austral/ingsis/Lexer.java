@@ -3,6 +3,8 @@
  */
 package edu.austral.ingsis;
 
-public interface Lexer {
+import java.util.List;
 
+public interface Lexer {
+    List<TokenWrapper> analyseLexically(String line);
 }

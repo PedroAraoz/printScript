@@ -1,22 +1,21 @@
 package edu.austral.ingsis;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class TokenFactory {
-  private final Stack<Character> stack = new Stack<>();
-  private final List<TokenWrapper> list = new ArrayList<>();
-  
-  public Optional<Token> put(String string) {
-    final List<String> list = Arrays.asList(string.split("(?!^)"));
-    list.forEach(this::analyzeCharacter);
-    return null;
-  }
-  
-  private void analyzeCharacter(String c) {
-    final Optional<TokenWrapper> first = list.stream().filter(t -> t.getRegex().matcher(c).matches()).findFirst();
-    if (first.isPresent()) {
-//      return first.get().getType();
+
+  private final List<Token> tokenList = new ArrayList<>();// TODO que traiga esta lista de algun lado
+  private StringBuilder stringBuilder = new StringBuilder();
+
+  public Optional<Token> put(String c) {
+    stringBuilder.append(c);
+    Optional<Token> tokenOptional = tokenList.stream().filter(t -> t.getRegex().matcher(stringBuilder.toString()).matches()).findFirst();
+    if (tokenOptional.isPresent()) {
+      stringBuilder = new StringBuilder();
+      return tokenOptional;
     }
+    return tokenOptional;
   }
 }
