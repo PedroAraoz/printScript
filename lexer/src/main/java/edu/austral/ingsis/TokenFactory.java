@@ -12,6 +12,7 @@ public class TokenFactory {
     this.tokenList = Token.getAllTokens();
   }
 
+  // This method receives characters one by one from the lexer
   public Optional<Token> put(String c) {
     stringBuilder.append(c);
     Optional<Token> tokenOptional = tokenList.stream().filter(t -> t.getRegex().matcher(stringBuilder.toString()).matches()).findFirst();
