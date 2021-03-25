@@ -1,17 +1,11 @@
 package edu.austral.ingsis;
 
 public class VariableSyntaxLeaf implements DeclaVariable, Operand{
-  
-  private final String name;
+
   private final TokenWrapper value;
   
-  public VariableSyntaxLeaf(String name, TokenWrapper value) {
-    this.name = name;
+  public VariableSyntaxLeaf(TokenWrapper value) {
     this.value = value;
-  }
-  
-  public String getName() {
-    return name;
   }
   
   public TokenWrapper getValue() {
