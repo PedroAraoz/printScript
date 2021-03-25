@@ -3,8 +3,6 @@
  */
 package edu.austral.ingsis;
 
-public class FileGenerator {
-  public boolean method() {
-    return true;
-  }
+public interface FileGenerator {
+  File open(String path);
 }
