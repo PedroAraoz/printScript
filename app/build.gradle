@@ -13,6 +13,8 @@ dependencies {
     implementation project(':lexer')
     implementation project(':state')
     implementation project(':printer')
+    implementation project(':abstractSyntaxTree')
+    implementation project(':interpreter')
 }
 
 application {
