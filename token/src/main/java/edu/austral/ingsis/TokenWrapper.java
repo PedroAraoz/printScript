@@ -53,4 +53,8 @@ public class TokenWrapper {
     public Optional<String> getValue() {
         return value;
     }
+
+    public Token getToken() {
+        return token;
+    }
 }
