@@ -1,5 +1,4 @@
 package edu.austral.ingsis;
 
-public interface AbstractSyntaxTree extends Visitable{
-  Token getToken();
+public interface AbstractSyntaxTree extends Visitable {
 }

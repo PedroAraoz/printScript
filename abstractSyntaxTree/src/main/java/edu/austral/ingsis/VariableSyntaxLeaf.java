@@ -3,9 +3,9 @@ package edu.austral.ingsis;
 public class VariableSyntaxLeaf implements DeclaVariable, Operand{
   
   private final String name;
-  private final Literal value;
+  private final TokenWrapper value;
   
-  public VariableSyntaxLeaf(String name, Literal value) {
+  public VariableSyntaxLeaf(String name, TokenWrapper value) {
     this.name = name;
     this.value = value;
   }
@@ -14,18 +14,8 @@ public class VariableSyntaxLeaf implements DeclaVariable, Operand{
     return name;
   }
   
-  public Literal getValue() {
+  public TokenWrapper getValue() {
     return value;
-  }
-  
-  @Override
-  public Token getToken() {
-    //todo implement
-  }
-  
-  @Override
-  public Literal calculate() {
-    //todo implement
   }
   
   @Override

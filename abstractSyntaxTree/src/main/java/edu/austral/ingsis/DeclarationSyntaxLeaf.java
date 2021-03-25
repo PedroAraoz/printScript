@@ -2,25 +2,19 @@ package edu.austral.ingsis;
 
 public class DeclarationSyntaxLeaf implements DeclaVariable{
   
-  private final TypeToken type;
-  private final VariableToken variable;
+  private final TokenWrapper type, variable;
   
-  public DeclarationSyntaxLeaf(TypeToken type, VariableToken variable) {
+  public DeclarationSyntaxLeaf(TokenWrapper type, TokenWrapper variable) {
     this.type = type;
     this.variable = variable;
   }
   
-  public VariableToken getVariable() {
+  public TokenWrapper getVariable() {
     return variable;
   }
   
-  public TypeToken getType() {
+  public TokenWrapper getType() {
     return type;
-  }
-  
-  @Override
-  public Token getToken() {
-    return null;//todo implement
   }
   
   @Override

@@ -2,21 +2,10 @@ package edu.austral.ingsis;
 
 public class LiteralSyntaxLeaf implements Operand {
   
-  private final LiteralToken literal;
+  private final TokenWrapper literal;
   
-  public LiteralSyntaxLeaf(LiteralToken literal) {
+  public LiteralSyntaxLeaf(TokenWrapper literal) {
     this.literal = literal;
-  }
-  
-  @Override
-  public Token getToken() {
-    //todo implement
-    return null;
-  }
-  
-  @Override
-  public Literal calculate() {
-    return literal?;
   }
   
   @Override
