@@ -20,11 +20,11 @@ public class LexerTests {
 //      }
 //    }
 //  }
-//  
+//
   @Test
   public void asdasdasd() {
     List<CodeLine> codeLineList = new ArrayList<>();
-    codeLineList.add(new CodeLine("let asd : string = 3 ", 0));
+    codeLineList.add(new CodeLine("let x: number = 2 + 3", 0));
     File file = new File(codeLineList);
     LexerImpl lexer = new LexerImpl();
     final List<TokenWrapper> tokenWrappers = lexer.analyseLexically(file.getCodeLines().get(0));

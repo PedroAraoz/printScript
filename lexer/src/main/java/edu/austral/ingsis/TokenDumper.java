@@ -1,24 +1,25 @@
 package edu.austral.ingsis;
 
-import java.util.Optional;
-import java.util.Stack;
+import java.util.*;
 
 public class TokenDumper {
-  private final Stack<Tuple> stack = new Stack<>();
+  private final List<Tuple> list = new ArrayList<>();
   
   public void dump(Token token) {
-    stack.push(new Tuple(token));
+    list.add(new Tuple(token));
   }
   
   public void dumpVariable(Token token, String value) {
-    stack.push(new Tuple(token, Optional.of(value)));
+    list.add(new Tuple(token, Optional.of(value)));
   }
   
   public boolean hasNext() {
-    return stack.size() > 0;
+    return list.size() > 0;
   }
   
   public Tuple pop() {
-    return stack.pop();
+    final Tuple tuple = list.get(0);
+    list.remove(0);
+    return tuple;
   }
 }

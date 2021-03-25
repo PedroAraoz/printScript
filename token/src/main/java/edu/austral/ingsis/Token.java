@@ -37,7 +37,7 @@ public class Token {
 
     //STATIC
 
-    public static Token LET_TOKEN = new Token(TokenName.LET, TokenGroup.NOGROUP, Pattern.compile("let "));
+    public static Token LET_TOKEN = new Token(TokenName.LET, TokenGroup.NOGROUP, Pattern.compile("let"));
     public static Token TYPE_ASSIGNATION_TOKEN = new Token(TokenName.TYPE_ASSIGNATION, TokenGroup.NOGROUP, Pattern.compile("( *)+:"));
     public static Token SEMICOLON_TOKEN = new Token(TokenName.SEMICOLON, TokenGroup.NOGROUP, Pattern.compile("( *)+;"));
     public static Token VALUE_ASSIGNATION_TOKEN = new Token(TokenName.VALUE_ASSIGNATION, TokenGroup.NOGROUP, Pattern.compile("( *)+="));
@@ -45,10 +45,10 @@ public class Token {
     public static Token SUB_OPERATION_TOKEN = new Token(TokenName.SUB, TokenGroup.OPERATION, Pattern.compile("( *)+-"));
     public static Token MULT_OPERATION_TOKEN = new Token(TokenName.MULT, TokenGroup.OPERATION, Pattern.compile("( *)+\\*"));
     public static Token DIV_OPERATION_TOKEN = new Token(TokenName.DIV, TokenGroup.OPERATION, Pattern.compile("( *)+/"));
-    public static Token NUMBER_TYPE_TOKEN = new Token(TokenName.NUMBER_TYPE, TokenGroup.TYPE, Pattern.compile("( +)+number"));
-    public static Token STRING_TYPE_TOKEN = new Token(TokenName.STRING_TYPE, TokenGroup.TYPE, Pattern.compile("( +)+string"));
-    public static Token LITERAL_TOKEN = new Token(TokenName.LITERAL, TokenGroup.NOGROUP, Pattern.compile("( *)(('[a-zA-Z]+')|(\"[a-zA-Z]+\")|[0-9]+( )|[0-9]+.+[0-9]+( ))"));
-    public static Token VARIABLE_TOKEN = new Token(TokenName.VARIABLE, TokenGroup.NOGROUP, Pattern.compile("[a-zA-Z]+( +)"));
+    public static Token NUMBER_TYPE_TOKEN = new Token(TokenName.NUMBER_TYPE, TokenGroup.TYPE, Pattern.compile("number"));
+    public static Token STRING_TYPE_TOKEN = new Token(TokenName.STRING_TYPE, TokenGroup.TYPE, Pattern.compile("string"));
+    public static Token LITERAL_TOKEN = new Token(TokenName.LITERAL, TokenGroup.NOGROUP, Pattern.compile("(('[a-zA-Z]+')|(\"[a-zA-Z]+\")|[0-9]+|[0-9]+.+[0-9]+)"));
+    public static Token VARIABLE_TOKEN = new Token(TokenName.VARIABLE, TokenGroup.NOGROUP, Pattern.compile(""));
 
     public static List<Token> getAllTokens() {
         List<Token> tokens = new ArrayList<>();
@@ -66,7 +66,7 @@ public class Token {
         tokens.add(NUMBER_TYPE_TOKEN);
         tokens.add(STRING_TYPE_TOKEN);
         tokens.add(LITERAL_TOKEN);
-        tokens.add(VARIABLE_TOKEN);
+//        tokens.add(VARIABLE_TOKEN);
 
         //Variable y literal no tengo idea yet
 
