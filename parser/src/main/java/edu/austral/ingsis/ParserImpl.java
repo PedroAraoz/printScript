@@ -8,12 +8,11 @@ import java.util.List;
 public class ParserImpl implements Parser {
 
   private final ASTFactory astFactory = new ASTFactory();
-  private final ASTVerifier astChecker = new ASTVerifier();
+  private final ASTVerifier astVerifier = new ASTVerifier();
   
   @Override
   public AbstractSyntaxTree analyseSintactically(List<TokenWrapper> tokenWrapperList) {
-    AbstractSyntaxTree ast = astFactory.build(tokenWrapperList);
-    return null;
+    return astFactory.build(tokenWrapperList);
   }
 
   @Override
