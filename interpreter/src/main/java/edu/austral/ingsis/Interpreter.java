@@ -3,8 +3,8 @@
  */
 package edu.austral.ingsis;
 
-public class Interpreter {
-  public boolean method() {
-    return true;
-  }
+import java.util.List;
+
+public interface Interpreter {
+  List<String> interpret(AbstractSyntaxTree ast);
 }
