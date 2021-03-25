@@ -5,8 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class LexerImpl implements Lexer{
-    private final TokenFactory tokenFactory = new TokenFactory();
+public class LexerImpl implements Lexer {
+    private final TokenDumper dumper = new TokenDumper();
+    private final TokenFactory tokenFactory = new TokenFactory(dumper);
 
     @Override
     public List<TokenWrapper> analyseLexically(CodeLine line) {
@@ -16,11 +17,12 @@ public class LexerImpl implements Lexer{
         int endPos = 0;
 
         for (String c: list) {
-            Optional<Token> tokenOptional = tokenFactory.put(c);
+            tokenFactory.put(c);
             endPos++;
-            if (tokenOptional.isPresent()) {
+            while (dumper.hasNext()) {
                 // Create TokenWrapper. Add extra information needed
-                result.add(new TokenWrapper(tokenOptional.get(), line.getRow(), startPos, endPos, Optional.empty())); //TODO cuando tengan values ese ultimo optional tiene q ser el value
+                final Tuple t = dumper.pop();
+                result.add(new TokenWrapper(t.getToken(), line.getRow(), startPos, endPos, t.getOptional()));
                 startPos = endPos;
             }
         }
