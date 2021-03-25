@@ -34,7 +34,7 @@ public class LexerImpl implements Lexer {
   }
   
   private void put(String c) {
-    //single
+    //Firstly we validate if the character is a token in and of itself
     Optional<Token> single = tokenList.stream().filter(t -> t.getRegex().matcher(c).matches()).findFirst();
     if (single.isPresent()) {
       String s = stringBuilder.toString();
@@ -44,12 +44,20 @@ public class LexerImpl implements Lexer {
         stringBuilder = new StringBuilder();
       }
       dumper.dump(single.get());
-    } else {
+    }
+
+    //If the character is not a token, we must add it to the StringBuilder and check as a whole
+    else {
+
       stringBuilder.append(c);
       String s = stringBuilder.toString();
+
+      // We separate the contents of the StringBuilder into different words separated by spaces. This is becase if a word has not been identified as a token, it is a variable name
       List<String> list = Arrays.asList(s.split(" "));
+
+      // We need to filter the empty strings out of the list, because of how split() method works
       list = list.stream().filter(e -> !e.equals("")).collect(Collectors.toList());
-      System.out.println("asd");
+
       for (int i = 0; i < list.size(); i ++) {
         final String s1 = list.get(i);
         Optional<Token> tokenOptional = tokenList.stream().filter(t -> t.getRegex().matcher(s1).matches()).findFirst();
