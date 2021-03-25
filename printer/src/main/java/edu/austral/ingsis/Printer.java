@@ -3,8 +3,6 @@
  */
 package edu.austral.ingsis;
 
-public class Printer {
-  public boolean method() {
-    return true;
-  }
+public interface Printer {
+  void print(String string);
 }
