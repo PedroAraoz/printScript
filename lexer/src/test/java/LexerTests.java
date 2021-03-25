@@ -10,9 +10,19 @@ import java.util.List;
 public class LexerTests {
 
   @Test
-  public void asdasdasd() {
+  public void DeclarationAsignationOperationTest() {
     List<CodeLine> codeLineList = new ArrayList<>();
     codeLineList.add(new CodeLine("let x: number = 2 + 3", 0));
+    File file = new File(codeLineList);
+    LexerImpl lexer = new LexerImpl();
+    final List<TokenWrapper> tokenWrappers = lexer.analyseLexically(file.getCodeLines().get(0));
+    System.out.println("asd");
+  }
+
+  @Test
+  public void NumberLiteralTest() {
+    List<CodeLine> codeLineList = new ArrayList<>();
+    codeLineList.add(new CodeLine("let x: number = 2222;", 0));
     File file = new File(codeLineList);
     LexerImpl lexer = new LexerImpl();
     final List<TokenWrapper> tokenWrappers = lexer.analyseLexically(file.getCodeLines().get(0));
