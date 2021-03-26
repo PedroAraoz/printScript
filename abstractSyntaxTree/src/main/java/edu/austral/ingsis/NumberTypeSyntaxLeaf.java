@@ -48,7 +48,7 @@ public class NumberTypeSyntaxLeaf extends AbstractSyntaxLeaf{
 
     @Override
     public void addEmptySyntaxLeaf(EmptySyntaxLeaf leaf) {
-
+        // idc
     }
 
     @Override
