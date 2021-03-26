@@ -3,46 +3,51 @@ package edu.austral.ingsis;
 public class StringTypeSyntaxLeaf extends AbstractSyntaxLeaf{
     @Override
     public void add(AbstractSyntaxTree tree) {
+        tree.addStringTypeSyntaxLeaf(this);
+    }
+
+    @Override
+    public void addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) {
 
     }
 
     @Override
-    public void add(ValueAssignationSyntaxBranch branch) {
+    public void addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) {
+        branch.addStringTypeSyntaxLeaf(this);
+    }
+
+    @Override
+    public void addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) {
 
     }
 
     @Override
-    public void add(TypeAssignationSyntaxBranch branch) {
+    public void addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
 
     }
 
     @Override
-    public void add(SumSubOperationSyntaxBranch branch) {
+    public void addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) {
 
     }
 
     @Override
-    public void add(MultDivOperationSyntaxBranch branch) {
+    public void addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) {
 
     }
 
     @Override
-    public void add(NumberTypeSyntaxLeaf leaf) {
+    public void addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
 
     }
 
     @Override
-    public void add(StringTypeSyntaxLeaf leaf) {
+    public void addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) {
 
     }
 
     @Override
-    public void add(VariableSyntaxLeaf leaf) {
-
-    }
-
-    @Override
-    public void add(LiteralSyntaxLeaf leaf) {
+    public void addEmptySyntaxLeaf(EmptySyntaxLeaf leaf) {
 
     }
 

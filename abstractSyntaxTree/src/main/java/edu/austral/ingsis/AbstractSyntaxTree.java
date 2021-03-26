@@ -6,19 +6,23 @@ public interface AbstractSyntaxTree extends Visitable {
 
     void add(AbstractSyntaxTree tree);
 
-    void add(ValueAssignationSyntaxBranch branch);
+    void addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch);
 
-    void add(TypeAssignationSyntaxBranch branch);
+    void addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch);
 
-    void add(SumSubOperationSyntaxBranch branch);
+    void addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch);
 
-    void add(MultDivOperationSyntaxBranch branch);
+    void addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch);
 
-    void add(NumberTypeSyntaxLeaf leaf);
+    void addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf);
 
-    void add(StringTypeSyntaxLeaf leaf);
+    void addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf);
 
-    void add(VariableSyntaxLeaf leaf);
+    void addVariableSyntaxLeaf(VariableSyntaxLeaf leaf);
 
-    void add(LiteralSyntaxLeaf leaf);
+    void addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf);
+
+    void addEmptySyntaxLeaf(EmptySyntaxLeaf leaf);
+
+    boolean isEmpty();
 }

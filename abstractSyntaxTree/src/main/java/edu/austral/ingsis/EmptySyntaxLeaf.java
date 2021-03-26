@@ -1,58 +1,63 @@
 package edu.austral.ingsis;
 
-public class EmptySyntaxLeaf implements AbstractSyntaxTree{
-    @Override
-    public void setTokenWrapper(TokenWrapper tokenWrapper) {
-
-    }
-
+public class EmptySyntaxLeaf extends AbstractSyntaxLeaf{
     @Override
     public void add(AbstractSyntaxTree tree) {
+        tree.addEmptySyntaxLeaf(this);
+    }
+
+    @Override
+    public void addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) {
 
     }
 
     @Override
-    public void add(ValueAssignationSyntaxBranch branch) {
+    public void addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) {
 
     }
 
     @Override
-    public void add(TypeAssignationSyntaxBranch branch) {
+    public void addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) {
 
     }
 
     @Override
-    public void add(SumSubOperationSyntaxBranch branch) {
+    public void addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
 
     }
 
     @Override
-    public void add(MultDivOperationSyntaxBranch branch) {
+    public void addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) {
 
     }
 
     @Override
-    public void add(NumberTypeSyntaxLeaf leaf) {
+    public void addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) {
 
     }
 
     @Override
-    public void add(StringTypeSyntaxLeaf leaf) {
+    public void addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
 
     }
 
     @Override
-    public void add(VariableSyntaxLeaf leaf) {
+    public void addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) {
 
     }
 
     @Override
-    public void add(LiteralSyntaxLeaf leaf) {
+    public void addEmptySyntaxLeaf(EmptySyntaxLeaf leaf) {
 
     }
 
     @Override
     public void accept(Visitor visitor) {
 
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return true;
     }
 }

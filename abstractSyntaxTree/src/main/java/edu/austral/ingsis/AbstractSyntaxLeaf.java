@@ -11,4 +11,8 @@ public abstract class AbstractSyntaxLeaf implements AbstractSyntaxTree {
     public TokenWrapper getTokenWrapper() {
         return tokenWrapper;
     }
+
+    public boolean isEmpty() {
+        return false;
+    }
 }
