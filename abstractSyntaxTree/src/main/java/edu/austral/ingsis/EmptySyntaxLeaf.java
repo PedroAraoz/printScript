@@ -1,6 +1,6 @@
 package edu.austral.ingsis;
 
-public class VariableSyntaxLeaf extends AbstractSyntaxLeaf{
+public class EmptySyntaxLeaf implements AbstractSyntaxTree{
     @Override
     public void add(AbstractSyntaxTree tree) {
 

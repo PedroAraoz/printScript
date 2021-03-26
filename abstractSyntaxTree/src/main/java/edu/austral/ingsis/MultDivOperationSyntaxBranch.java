@@ -1,6 +1,6 @@
 package edu.austral.ingsis;
 
-public class VariableSyntaxLeaf extends AbstractSyntaxLeaf{
+public class MultDivOperationSyntaxBranch extends AbstractSyntaxBranch {
     @Override
     public void add(AbstractSyntaxTree tree) {
 
