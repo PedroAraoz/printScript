@@ -41,22 +41,16 @@ public class LexerImpl implements Lexer {
       String s = stringBuilder.toString();
       s = s.replace(" ", "");
       if (s.length() > 0) {
-        // sientras aca es porque hubo un cambio de token y habia info apilada.
-        dumper.dumpVariable(Token.VARIABLE_TOKEN, s);
+        // Aca podemos tener en s o un token o una variable.
+        if (matches(Token.LITERAL_TOKEN, s)) {
+          dumper.dumpVariable(Token.LITERAL_TOKEN, s);
+        } else {
+          dumper.dumpVariable(Token.VARIABLE_TOKEN, s);
+        }
         stringBuilder = new StringBuilder();
       }
       dumper.dump(single.get());
     }
-    else if (single.isPresent() && single.get().equals(Token.VARIABLE_TOKEN)) {
-      String s = stringBuilder.toString();
-      s = s.replace(" ", "");
-      if (s.length() > 0) {
-        dumper.dumpVariable(Token.LITERAL_TOKEN, s);
-        stringBuilder = new StringBuilder();
-      }
-      dumper.dump(single.get());
-    }
-
     //If the character is not a token, we must add it to the StringBuilder and check as a whole
     else {
 
@@ -71,7 +65,8 @@ public class LexerImpl implements Lexer {
 
       for (int i = 0; i < list.size(); i ++) {
         final String s1 = list.get(i);
-        Optional<Token> tokenOptional = tokenList.stream().filter(t -> t.getRegex().matcher(s1).matches()).findFirst();
+        Optional<Token> tokenOptional = tokenList.stream().filter(
+                t -> matches(t, s1)).findFirst();
         if (tokenOptional.isPresent()) {
           for (int j = i - 1; j >= 0; j--) {
             dumper.dumpVariable(Token.VARIABLE_TOKEN, list.get(j));
@@ -83,5 +78,8 @@ public class LexerImpl implements Lexer {
     }
     
   }
+  
+  private boolean matches(Token t, String s) {
+    return t.getRegex().matcher(s).matches();
+  }
 }
-//TODO los literal no estamos contemplando ponerles valores

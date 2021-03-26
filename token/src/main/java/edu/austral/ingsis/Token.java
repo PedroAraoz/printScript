@@ -65,7 +65,7 @@ public class Token {
         tokens.add(DIV_OPERATION_TOKEN);
         tokens.add(NUMBER_TYPE_TOKEN);
         tokens.add(STRING_TYPE_TOKEN);
-        tokens.add(LITERAL_TOKEN);
+//        tokens.add(LITERAL_TOKEN);
 //        tokens.add(VARIABLE_TOKEN);
 
         //Variable y literal no tengo idea yet
