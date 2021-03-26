@@ -36,7 +36,7 @@ public class ParserTests {
     list.add(new TokenWrapper(Token.NUMBER_TYPE_TOKEN, 0, 0, 0, "number"));
     list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
     list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "11"));
-    list.add(new TokenWrapper(Token.MULT_OPERATION_TOKEN, 0, 0, 0, "+"));
+    list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
     list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "11"));
     list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
     final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);

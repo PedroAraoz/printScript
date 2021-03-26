@@ -8,7 +8,7 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch{
 
     @Override
     public AbstractSyntaxTree addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) {
-        return null;
+        return branch.addSumSubOperationSyntaxTree(this);
     }
 
     @Override
