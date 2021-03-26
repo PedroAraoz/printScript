@@ -28,17 +28,29 @@ public class TypeAssignationSyntaxBranch extends AbstractSyntaxBranch{
 
     @Override
     public void addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) {
-
+        if (!right.isEmpty()) {
+            right = leaf;
+        } else {
+            //EXplode
+        }
     }
 
     @Override
     public void addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) {
-        addRight(leaf);
+        if (!right.isEmpty()) {
+            right = leaf;
+        } else {
+            //EXplode
+        }
     }
 
     @Override
     public void addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
-        addLeft(leaf);
+        if (!left.isEmpty()) {
+            left = leaf;
+        } else {
+            //EXplode
+        }
     }
 
     @Override
