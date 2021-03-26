@@ -43,7 +43,6 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch{
 
     @Override
     public void addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) {
-
     }
 
     @Override

@@ -18,7 +18,6 @@ public class LiteralSyntaxLeaf extends AbstractSyntaxLeaf {
 
     @Override
     public void addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) {
-
     }
 
     @Override
