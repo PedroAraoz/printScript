@@ -13,7 +13,6 @@ public class ValueAssignationSyntaxBranch extends AbstractSyntaxBranch{
 
     @Override
     public AbstractSyntaxTree addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) {
-
         addLeft(branch);
         return this;
     }
@@ -48,7 +47,6 @@ public class ValueAssignationSyntaxBranch extends AbstractSyntaxBranch{
 
     @Override
     public AbstractSyntaxTree addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
-
         addLeft(leaf);
         return this;
     }

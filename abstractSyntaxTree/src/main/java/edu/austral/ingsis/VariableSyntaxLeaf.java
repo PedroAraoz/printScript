@@ -13,7 +13,7 @@ public class VariableSyntaxLeaf extends AbstractSyntaxLeaf{
 
     @Override
     public AbstractSyntaxTree addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) {
-        return null;
+        return branch.addVariableSyntaxLeaf(this);
     }
 
     @Override

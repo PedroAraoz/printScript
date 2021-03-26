@@ -30,7 +30,7 @@ public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
         if (this.right.isEmpty()) {
             this.right = tree;
         } else {
-            right.add(tree);
+            right = right.add(tree);
         }
     }
 
@@ -38,7 +38,7 @@ public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
         if (this.left.isEmpty()) {
             this.left = tree;
         } else {
-            left.add(tree);
+            this.left = left.add(tree);
         }
     }
 }

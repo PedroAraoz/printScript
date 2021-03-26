@@ -28,7 +28,7 @@ public class TypeAssignationSyntaxBranch extends AbstractSyntaxBranch{
 
     @Override
     public AbstractSyntaxTree addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) {
-        if (!right.isEmpty()) {
+        if (right.isEmpty()) {
             right = leaf;
         } else {
             //EXplode
@@ -38,7 +38,7 @@ public class TypeAssignationSyntaxBranch extends AbstractSyntaxBranch{
 
     @Override
     public AbstractSyntaxTree addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) {
-        if (!right.isEmpty()) {
+        if (right.isEmpty()) {
             right = leaf;
         } else {
             //EXplode
@@ -48,7 +48,7 @@ public class TypeAssignationSyntaxBranch extends AbstractSyntaxBranch{
 
     @Override
     public AbstractSyntaxTree addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
-        if (!left.isEmpty()) {
+        if (left.isEmpty()) {
             left = leaf;
         } else {
             //EXplode
