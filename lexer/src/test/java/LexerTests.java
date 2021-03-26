@@ -64,7 +64,7 @@ public class LexerTests {
   }
 
   @Test
-  public void StringLiteralTest() {
+  public void StringDoubleQuoteLiteralTest() {
     List<CodeLine> codeLineList = new ArrayList<>();
     codeLineList.add(new CodeLine("let x: string = \"hola\";", 0));
     final List<TokenWrapper> expected = new ArrayList<>();
@@ -74,6 +74,30 @@ public class LexerTests {
     expected.add(new TokenWrapper(Token.STRING_TYPE_TOKEN, 0, 0, 0, "string"));
     expected.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
     expected.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "\"hola\""));
+    expected.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
+    LexerImpl lexer = new LexerImpl();
+    final List<TokenWrapper> tokenWrappers = lexer.analyseLexically(codeLineList.get(0));
+
+    for (int i = 0; i < expected.size(); i++) {
+      final TokenWrapper e = expected.get(i);
+      final TokenWrapper a = tokenWrappers.get(i);
+      assertEquals(e.toString(), a.toString());
+      assertEquals(e.getLine(), a.getLine());
+      assertEquals(e.getValue(), a.getValue());
+    }
+  }
+
+  @Test
+  public void StringSimpleQuoteLiteralTest() {
+    List<CodeLine> codeLineList = new ArrayList<>();
+    codeLineList.add(new CodeLine("let x: string = 'hola';", 0));
+    final List<TokenWrapper> expected = new ArrayList<>();
+    expected.add(new TokenWrapper(Token.LET_TOKEN, 0, 0, 0, "let"));
+    expected.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
+    expected.add(new TokenWrapper(Token.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
+    expected.add(new TokenWrapper(Token.STRING_TYPE_TOKEN, 0, 0, 0, "string"));
+    expected.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
+    expected.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "'hola'"));
     expected.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
     LexerImpl lexer = new LexerImpl();
     final List<TokenWrapper> tokenWrappers = lexer.analyseLexically(codeLineList.get(0));
