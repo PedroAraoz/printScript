@@ -18,11 +18,12 @@ public class LiteralSyntaxLeaf extends AbstractSyntaxLeaf {
 
     @Override
     public void addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) {
+        branch.addLiteralSyntaxLeaf(this);
     }
 
     @Override
     public void addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
-
+        branch.addLiteralSyntaxLeaf(this);
     }
 
     @Override

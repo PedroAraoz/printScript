@@ -23,7 +23,6 @@ public class EmptySyntaxLeaf extends AbstractSyntaxLeaf{
 
     @Override
     public void addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
-
     }
 
     @Override

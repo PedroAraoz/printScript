@@ -18,12 +18,14 @@ public class MultDivOperationSyntaxBranch extends AbstractSyntaxBranch {
 
     @Override
     public void addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) {
-
+        branch.addMultDivOperationSyntaxTree(this);
     }
 
     @Override
     public void addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
-
+        if (!right.isEmpty() && !left.isEmpty()) {
+            branch.addMultDivOperationSyntaxTree(this);
+        }
     }
 
     @Override
@@ -43,7 +45,13 @@ public class MultDivOperationSyntaxBranch extends AbstractSyntaxBranch {
 
     @Override
     public void addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) {
-
+        if (right.isEmpty()) {
+            right = leaf;
+        } else if (left.isEmpty()) {
+            left = leaf;
+        } else {
+            //Explode
+        }
     }
 
     @Override
