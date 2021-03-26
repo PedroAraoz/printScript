@@ -7,7 +7,7 @@ import java.util.List;
 public class App {
   public static void main(String[] args) throws FileNotFoundException {
 
-    final String path = "src/test/resources/myCode.txt";
+    final String path = "app/src/test/resources/myCode.txt";
     final FileGenerator fileGenerator = new NormalFileGenerator();
     final File file = fileGenerator.open(path);
 
