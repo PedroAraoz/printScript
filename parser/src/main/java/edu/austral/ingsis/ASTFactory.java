@@ -17,13 +17,23 @@ public class ASTFactory {
 
     }
 
-    return abstractSyntaxTree;
+    return null;
   }
-
-  private AbstractSyntaxTree findRoot(List<TokenWrapper> tokenWrapperList) {
-
-    HashMap<Token, Integer> priorityMap = TokenPriorities.getPriorityMap();
-
-    tokenWrapperList.stream().map(e -> priorityMap.get(e.getToken()));
+  
+  public AbstractSyntaxTree rec(List<TokenWrapper> tokens) {
+    if (tokens.stream().anyMatch(e -> e.getToken().equals(Token.VALUE_ASSIGNATION_TOKEN))) {
+      for (int i = 0; i < tokens.size(); i++) {
+        TokenWrapper t = tokens.get(i);
+        if (t.equals(Token.VALUE_ASSIGNATION_TOKEN)) {
+          return new AssignationSyntaxBranch(
+                  (DeclaVariable) rec(tokens.subList(0, i)),
+                  (Operand) rec(tokens.subList(i, tokens.size() - 1)), t);
+        }
+      }
+//    } else if (tokens.stream().anyMatch(e -> e.getToken().equals(Token.Type))) {
+//
+//    }
+    }
+    return null;
   }
 }

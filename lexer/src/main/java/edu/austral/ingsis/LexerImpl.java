@@ -36,18 +36,25 @@ public class LexerImpl implements Lexer {
   private void put(String c) {
     //Firstly we validate if the character is a token in and of itself
     Optional<Token> single = tokenList.stream().filter(t -> t.getRegex().matcher(c).matches()).findFirst();
+    
     if (single.isPresent() && !single.get().equals(Token.LITERAL_TOKEN)) {
       String s = stringBuilder.toString();
       s = s.replace(" ", "");
       if (s.length() > 0) {
+        // sientras aca es porque hubo un cambio de token y habia info apilada.
         dumper.dumpVariable(Token.VARIABLE_TOKEN, s);
         stringBuilder = new StringBuilder();
       }
       dumper.dump(single.get());
     }
-
-    else if(single.isPresent() && single.get().equals(Token.LITERAL_TOKEN)) {
-
+    else if (single.isPresent() && single.get().equals(Token.VARIABLE_TOKEN)) {
+      String s = stringBuilder.toString();
+      s = s.replace(" ", "");
+      if (s.length() > 0) {
+        dumper.dumpVariable(Token.LITERAL_TOKEN, s);
+        stringBuilder = new StringBuilder();
+      }
+      dumper.dump(single.get());
     }
 
     //If the character is not a token, we must add it to the StringBuilder and check as a whole
