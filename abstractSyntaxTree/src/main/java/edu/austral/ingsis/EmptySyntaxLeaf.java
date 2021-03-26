@@ -2,6 +2,11 @@ package edu.austral.ingsis;
 
 public class EmptySyntaxLeaf implements AbstractSyntaxTree{
     @Override
+    public void setTokenWrapper(TokenWrapper tokenWrapper) {
+
+    }
+
+    @Override
     public void add(AbstractSyntaxTree tree) {
 
     }

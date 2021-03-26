@@ -2,6 +2,8 @@ package edu.austral.ingsis;
 
 public interface AbstractSyntaxTree extends Visitable {
 
+    void setTokenWrapper(TokenWrapper tokenWrapper);
+
     void add(AbstractSyntaxTree tree);
 
     void add(ValueAssignationSyntaxBranch branch);

@@ -2,9 +2,13 @@ package edu.austral.ingsis;
 
 public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
 
-    private AbstractSyntaxTree left;
-    private TokenWrapper tokenWrapper;
-    private AbstractSyntaxTree right;
+    protected AbstractSyntaxTree left = new EmptySyntaxLeaf();
+    protected TokenWrapper tokenWrapper;
+    protected AbstractSyntaxTree right = new EmptySyntaxLeaf();
+
+    public void setTokenWrapper(TokenWrapper tokenWrapper) {
+        this.tokenWrapper = tokenWrapper;
+    }
 
     public AbstractSyntaxTree getLeft() {
         return left;
