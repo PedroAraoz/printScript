@@ -4,25 +4,25 @@ public interface AbstractSyntaxTree extends Visitable {
 
     void setTokenWrapper(TokenWrapper tokenWrapper);
 
-    void add(AbstractSyntaxTree tree);
+    AbstractSyntaxTree add(AbstractSyntaxTree tree);
 
-    void addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch);
+    AbstractSyntaxTree addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch);
 
-    void addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch);
+    AbstractSyntaxTree addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch);
 
-    void addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch);
+    AbstractSyntaxTree addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch);
 
-    void addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch);
+    AbstractSyntaxTree addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch);
 
-    void addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf);
+    AbstractSyntaxTree addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf);
 
-    void addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf);
+    AbstractSyntaxTree addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf);
 
-    void addVariableSyntaxLeaf(VariableSyntaxLeaf leaf);
+    AbstractSyntaxTree addVariableSyntaxLeaf(VariableSyntaxLeaf leaf);
 
-    void addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf);
+    AbstractSyntaxTree addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf);
 
-    void addLetSyntaxLeaf(LetSyntaxLeaf leaf);
+    AbstractSyntaxTree addEmptySyntaxLeaf(EmptySyntaxLeaf leaf);
 
     boolean isEmpty();
 }

@@ -2,29 +2,30 @@ package edu.austral.ingsis;
 
 public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch{
     @Override
-    public void add(AbstractSyntaxTree tree) {
-        tree.addSumSubOperationSyntaxTree(this);
+    public AbstractSyntaxTree add(AbstractSyntaxTree tree) {
+        return tree.addSumSubOperationSyntaxTree(this);
     }
 
     @Override
-    public void addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) {
-
+    public AbstractSyntaxTree addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) {
+        return null;
     }
 
     @Override
-    public void addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) {
-
+    public AbstractSyntaxTree addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) {
+        return null;
     }
 
     @Override
-    public void addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) {
+    public AbstractSyntaxTree addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) {
         if (!right.isEmpty() && !left.isEmpty()) {
             branch.addSumSubOperationSyntaxTree(this);
         }
+        return this;
     }
 
     @Override
-    public void addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
+    public AbstractSyntaxTree addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
         if (right.isEmpty()) {
             right = branch;
         } else if (left.isEmpty()) {
@@ -32,25 +33,26 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch{
         } else {
             //Explode
         }
+        return this;
     }
 
     @Override
-    public void addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) {
-
+    public AbstractSyntaxTree addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) {
+        return null;
     }
 
     @Override
-    public void addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) {
-
+    public AbstractSyntaxTree addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) {
+        return null;
     }
 
     @Override
-    public void addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
-
+    public AbstractSyntaxTree addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
+        return null;
     }
 
     @Override
-    public void addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) {
+    public AbstractSyntaxTree addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) {
         if (right.isEmpty()) {
             right = leaf;
         } else if (left.isEmpty()) {
@@ -58,11 +60,12 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch{
         } else {
             //Explode
         }
+        return this;
     }
 
     @Override
-    public void addLetSyntaxLeaf(LetSyntaxLeaf leaf) {
-
+    public AbstractSyntaxTree addEmptySyntaxLeaf(EmptySyntaxLeaf leaf) {
+        return null;
     }
 
     @Override

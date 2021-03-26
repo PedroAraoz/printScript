@@ -2,53 +2,53 @@ package edu.austral.ingsis;
 
 public class StringTypeSyntaxLeaf extends AbstractSyntaxLeaf{
     @Override
-    public void add(AbstractSyntaxTree tree) {
-        tree.addStringTypeSyntaxLeaf(this);
+    public AbstractSyntaxTree add(AbstractSyntaxTree tree) {
+        return tree.addStringTypeSyntaxLeaf(this);
     }
 
     @Override
-    public void addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) {
-
+    public AbstractSyntaxTree addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) {
+        return null;
     }
 
     @Override
-    public void addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) {
-        branch.addStringTypeSyntaxLeaf(this);
+    public AbstractSyntaxTree addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) {
+        return branch.addStringTypeSyntaxLeaf(this);
     }
 
     @Override
-    public void addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) {
-
+    public AbstractSyntaxTree addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) {
+        return null;
     }
 
     @Override
-    public void addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
-
+    public AbstractSyntaxTree addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
+        return null;
     }
 
     @Override
-    public void addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) {
-
+    public AbstractSyntaxTree addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) {
+        return null;
     }
 
     @Override
-    public void addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) {
-
+    public AbstractSyntaxTree addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) {
+        return null;
     }
 
     @Override
-    public void addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
-
+    public AbstractSyntaxTree addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
+        return null;
     }
 
     @Override
-    public void addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) {
-
+    public AbstractSyntaxTree addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) {
+        return null;
     }
 
     @Override
-    public void addLetSyntaxLeaf(LetSyntaxLeaf leaf) {
-
+    public AbstractSyntaxTree addEmptySyntaxLeaf(EmptySyntaxLeaf leaf) {
+        return null;
     }
 
     @Override

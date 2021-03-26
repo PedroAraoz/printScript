@@ -2,65 +2,68 @@ package edu.austral.ingsis;
 
 public class TypeAssignationSyntaxBranch extends AbstractSyntaxBranch{
     @Override
-    public void add(AbstractSyntaxTree tree) {
-        tree.addTypeAsignationSyntaxTree(this);
+    public AbstractSyntaxTree add(AbstractSyntaxTree tree) {
+        return tree.addTypeAsignationSyntaxTree(this);
     }
 
     @Override
-    public void addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) {
-
+    public AbstractSyntaxTree addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) {
+        return null;
     }
 
     @Override
-    public void addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) {
-
+    public AbstractSyntaxTree addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) {
+        return null;
     }
 
     @Override
-    public void addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) {
-
+    public AbstractSyntaxTree addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) {
+        return null;
     }
 
     @Override
-    public void addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
-
+    public AbstractSyntaxTree addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
+        return null;
     }
 
     @Override
-    public void addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) {
+    public AbstractSyntaxTree addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) {
         if (!right.isEmpty()) {
             right = leaf;
         } else {
             //EXplode
         }
+        return this;
     }
 
     @Override
-    public void addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) {
+    public AbstractSyntaxTree addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) {
         if (!right.isEmpty()) {
             right = leaf;
         } else {
             //EXplode
         }
+        return this;
     }
 
     @Override
-    public void addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
+    public AbstractSyntaxTree addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
         if (!left.isEmpty()) {
             left = leaf;
         } else {
             //EXplode
         }
+        return this;
     }
 
     @Override
-    public void addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) {
-
+    public AbstractSyntaxTree addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) {
+        return null;
     }
 
     @Override
-    public void addLetSyntaxLeaf(LetSyntaxLeaf leaf) {
-
+    public AbstractSyntaxTree addEmptySyntaxLeaf(EmptySyntaxLeaf leaf) {
+        return null;
     }
 
     @Override

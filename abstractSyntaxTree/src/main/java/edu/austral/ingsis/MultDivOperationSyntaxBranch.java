@@ -2,49 +2,50 @@ package edu.austral.ingsis;
 
 public class MultDivOperationSyntaxBranch extends AbstractSyntaxBranch {
     @Override
-    public void add(AbstractSyntaxTree tree) {
-        tree.addMultDivOperationSyntaxTree(this);
+    public AbstractSyntaxTree add(AbstractSyntaxTree tree) {
+        return tree.addMultDivOperationSyntaxTree(this);
     }
 
     @Override
-    public void addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) {
-        branch.addMultDivOperationSyntaxTree(this);
+    public AbstractSyntaxTree addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) {
+        return branch.addMultDivOperationSyntaxTree(this);
     }
 
     @Override
-    public void addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) {
-        //ERROR
+    public AbstractSyntaxTree addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) {
+        return null;
     }
 
     @Override
-    public void addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) {
-        branch.addMultDivOperationSyntaxTree(this);
+    public AbstractSyntaxTree addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) {
+        return branch.addMultDivOperationSyntaxTree(this);
     }
 
     @Override
-    public void addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
+    public AbstractSyntaxTree addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
         if (!right.isEmpty() && !left.isEmpty()) {
             branch.addMultDivOperationSyntaxTree(this);
         }
+        return this;
     }
 
     @Override
-    public void addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) {
-
+    public AbstractSyntaxTree addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) {
+        return null;
     }
 
     @Override
-    public void addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) {
-
+    public AbstractSyntaxTree addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) {
+        return null;
     }
 
     @Override
-    public void addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
-
+    public AbstractSyntaxTree addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
+        return null;
     }
 
     @Override
-    public void addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) {
+    public AbstractSyntaxTree addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) {
         if (right.isEmpty()) {
             right = leaf;
         } else if (left.isEmpty()) {
@@ -52,11 +53,12 @@ public class MultDivOperationSyntaxBranch extends AbstractSyntaxBranch {
         } else {
             //Explode
         }
+        return this;
     }
 
     @Override
-    public void addLetSyntaxLeaf(LetSyntaxLeaf leaf) {
-
+    public AbstractSyntaxTree addEmptySyntaxLeaf(EmptySyntaxLeaf leaf) {
+        return null;
     }
 
     @Override
