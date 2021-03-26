@@ -11,10 +11,11 @@ public class LexerImpl implements Lexer {
 //  private final TokenFactory tokenFactory = new TokenFactory(dumper);
   private final List<Token> tokenList = Token.getAllTokens();
   private StringBuilder stringBuilder = new StringBuilder();
-  private int startPos = 0;
-  private int endPos = 0;
+  
   @Override
   public List<TokenWrapper> analyseLexically(CodeLine line) {
+    int startPos = 0;
+    int endPos;
     final List<TokenWrapper> result = new ArrayList<>();
     final List<String> list = Arrays.asList(line.toString().split("(?!^)"));
     

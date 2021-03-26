@@ -1,12 +1,9 @@
 package edu.austral.ingsis;
 
-import java.awt.*;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicReferenceArray;
 
 public class File {
   final private List<CodeLine> codeLines = new ArrayList<>();

@@ -34,4 +34,15 @@ public class FileTests {
     }
   }
   
+  @Test
+  public void NormalFileGeneratorShouldReturnFile() throws FileNotFoundException {
+    final String path = "src/test/resources/test.txt";
+    final NormalFileGenerator normalFileGenerator = new NormalFileGenerator();
+    final File generatedFile = normalFileGenerator.open(path);
+    final File file = new File(path);
+    while (file.hasNext()) {
+      assertEquals(file.next().toString(), generatedFile.next().toString());
+      assertEquals(file.next().getRow(), generatedFile.next().getRow());
+    }
+  }
 }
