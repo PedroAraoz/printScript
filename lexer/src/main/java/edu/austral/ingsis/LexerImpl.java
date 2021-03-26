@@ -11,25 +11,25 @@ public class LexerImpl implements Lexer {
 //  private final TokenFactory tokenFactory = new TokenFactory(dumper);
   private final List<Token> tokenList = Token.getAllTokens();
   private StringBuilder stringBuilder = new StringBuilder();
-  
+  private int startPos = 0;
+  private int endPos = 0;
   @Override
   public List<TokenWrapper> analyseLexically(CodeLine line) {
     final List<TokenWrapper> result = new ArrayList<>();
     final List<String> list = Arrays.asList(line.toString().split("(?!^)"));
-    int startPos = 0;
-    int endPos = 0;
     
-    for (String c : list) {
-      put(c);
-      while (dumper.hasNext()) {
-        // Create TokenWrapper. Add extra information needed
-        final Tuple t = dumper.pop();
-        endPos += stringBuilder.toString().length();
-        result.add(new TokenWrapper(t.getToken(), line.getRow(), startPos, endPos, t.getOptional()));
-        startPos = endPos;
-      }
+    list.forEach(this::put);
+    final String s = stringBuilder.toString().replace(" ", "");
+    if (s.length() > 0) dumpVarOrLit(s);
+  
+    while (dumper.hasNext()) {
+      // Create TokenWrapper. Add extra information needed
+      final Tuple t = dumper.pop();
+      endPos = startPos + t.getString().length();
+      result.add(new TokenWrapper(t.getToken(), line.getRow(), startPos, endPos, t.getString()));
+      startPos = endPos;
     }
-    
+    //todo el manejo de pos podria ser mejor
     return result;
   }
   
@@ -42,14 +42,9 @@ public class LexerImpl implements Lexer {
       s = s.replace(" ", "");
       if (s.length() > 0) {
         // Aca podemos tener en s o un token o una variable.
-        if (matches(Token.LITERAL_TOKEN, s)) {
-          dumper.dumpVariable(Token.LITERAL_TOKEN, s);
-        } else {
-          dumper.dumpVariable(Token.VARIABLE_TOKEN, s);
-        }
-        stringBuilder = new StringBuilder();
+        dumpVarOrLit(s);
       }
-      dumper.dump(single.get());
+      dumper.dump(single.get(), c);
     }
     //If the character is not a token, we must add it to the StringBuilder and check as a whole
     else {
@@ -68,10 +63,9 @@ public class LexerImpl implements Lexer {
         Optional<Token> tokenOptional = tokenList.stream().filter(
                 t -> matches(t, s1)).findFirst();
         if (tokenOptional.isPresent()) {
-          for (int j = i - 1; j >= 0; j--) {
-            dumper.dumpVariable(Token.VARIABLE_TOKEN, list.get(j));
-          }
-          dumper.dump(tokenOptional.get());
+          for (int j = i - 1; j >= 0; j--)
+            dumpVarOrLit(list.get(j));
+          dumper.dump(tokenOptional.get(), s1);
           stringBuilder = new StringBuilder();
         }
       }
@@ -81,5 +75,11 @@ public class LexerImpl implements Lexer {
   
   private boolean matches(Token t, String s) {
     return t.getRegex().matcher(s).matches();
+  }
+  
+  private void dumpVarOrLit(String s) {
+    dumper.dump(
+            matches(Token.LITERAL_TOKEN, s) ? Token.LITERAL_TOKEN : Token.VARIABLE_TOKEN, s);
+    stringBuilder = new StringBuilder();
   }
 }

@@ -26,6 +26,5 @@ public class LexerTests {
     File file = new File(codeLineList);
     LexerImpl lexer = new LexerImpl();
     final List<TokenWrapper> tokenWrappers = lexer.analyseLexically(file.getCodeLines().get(0));
-    System.out.println("asd");
   }
 }

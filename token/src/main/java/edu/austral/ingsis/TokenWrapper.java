@@ -8,9 +8,9 @@ public class TokenWrapper {
     private final int line;
     private final int startPos;
     private final int endPos;
-    private final Optional<String> value;
+    private final String value;
 
-    public TokenWrapper(Token token, int line, int startPos, int endPos, Optional<String> value) {
+    public TokenWrapper(Token token, int line, int startPos, int endPos, String value) {
         this.token = token;
         this.line = line;
         this.startPos = startPos;
@@ -50,7 +50,7 @@ public class TokenWrapper {
         return token.getGroup();
     }
 
-    public Optional<String> getValue() {
+    public String getValue() {
         return value;
     }
 
