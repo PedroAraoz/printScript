@@ -22,7 +22,7 @@ public interface AbstractSyntaxTree extends Visitable {
 
     void addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf);
 
-    void addEmptySyntaxLeaf(EmptySyntaxLeaf leaf);
+    void addLetSyntaxLeaf(LetSyntaxLeaf leaf);
 
     boolean isEmpty();
 }

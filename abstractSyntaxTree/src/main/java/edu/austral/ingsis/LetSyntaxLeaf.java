@@ -1,9 +1,9 @@
 package edu.austral.ingsis;
 
-public class TypeAssignationSyntaxBranch extends AbstractSyntaxBranch{
+public class LetSyntaxLeaf extends AbstractSyntaxLeaf{
     @Override
     public void add(AbstractSyntaxTree tree) {
-        tree.addTypeAsignationSyntaxTree(this);
+        tree.addLetSyntaxLeaf(this);
     }
 
     @Override
@@ -23,34 +23,21 @@ public class TypeAssignationSyntaxBranch extends AbstractSyntaxBranch{
 
     @Override
     public void addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
-
     }
 
     @Override
     public void addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) {
-        if (!right.isEmpty()) {
-            right = leaf;
-        } else {
-            //EXplode
-        }
+
     }
 
     @Override
     public void addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) {
-        if (!right.isEmpty()) {
-            right = leaf;
-        } else {
-            //EXplode
-        }
+
     }
 
     @Override
     public void addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
-        if (!left.isEmpty()) {
-            left = leaf;
-        } else {
-            //EXplode
-        }
+
     }
 
     @Override
@@ -66,5 +53,10 @@ public class TypeAssignationSyntaxBranch extends AbstractSyntaxBranch{
     @Override
     public void accept(Visitor visitor) {
 
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return true;
     }
 }

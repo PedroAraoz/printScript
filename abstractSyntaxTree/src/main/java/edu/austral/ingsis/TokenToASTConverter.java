@@ -10,9 +10,9 @@ public class TokenToASTConverter {
 
         this.map = new HashMap<>();
 
-        this.map.put(Token.LET_TOKEN, new EmptySyntaxLeaf());
+        this.map.put(Token.LET_TOKEN, new LetSyntaxLeaf());
         this.map.put(Token.TYPE_ASSIGNATION_TOKEN, new TypeAssignationSyntaxBranch());
-        this.map.put(Token.SEMICOLON_TOKEN, new EmptySyntaxLeaf());
+        this.map.put(Token.SEMICOLON_TOKEN, new SemicolonSyntaxLeaf());
         this.map.put(Token.VALUE_ASSIGNATION_TOKEN, new ValueAssignationSyntaxBranch());
         this.map.put(Token.SUM_OPERATION_TOKEN, new SumSubOperationSyntaxBranch());
         this.map.put(Token.SUB_OPERATION_TOKEN, new SumSubOperationSyntaxBranch());

@@ -47,7 +47,7 @@ public class ValueAssignationSyntaxBranch extends AbstractSyntaxBranch{
     }
 
     @Override
-    public void addEmptySyntaxLeaf(EmptySyntaxLeaf leaf) {
+    public void addLetSyntaxLeaf(LetSyntaxLeaf leaf) {
 
     }
 

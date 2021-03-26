@@ -55,7 +55,7 @@ public class MultDivOperationSyntaxBranch extends AbstractSyntaxBranch {
     }
 
     @Override
-    public void addEmptySyntaxLeaf(EmptySyntaxLeaf leaf) {
+    public void addLetSyntaxLeaf(LetSyntaxLeaf leaf) {
 
     }
 

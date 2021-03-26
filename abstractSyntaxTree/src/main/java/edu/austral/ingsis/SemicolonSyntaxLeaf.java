@@ -1,9 +1,9 @@
 package edu.austral.ingsis;
 
-public class EmptySyntaxLeaf extends AbstractSyntaxLeaf{
+public class SemicolonSyntaxLeaf extends AbstractSyntaxLeaf{
     @Override
     public void add(AbstractSyntaxTree tree) {
-        tree.addEmptySyntaxLeaf(this);
+
     }
 
     @Override
@@ -23,6 +23,7 @@ public class EmptySyntaxLeaf extends AbstractSyntaxLeaf{
 
     @Override
     public void addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
+
     }
 
     @Override
@@ -46,17 +47,12 @@ public class EmptySyntaxLeaf extends AbstractSyntaxLeaf{
     }
 
     @Override
-    public void addEmptySyntaxLeaf(EmptySyntaxLeaf leaf) {
+    public void addLetSyntaxLeaf(LetSyntaxLeaf leaf) {
 
     }
 
     @Override
     public void accept(Visitor visitor) {
 
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return true;
     }
 }
