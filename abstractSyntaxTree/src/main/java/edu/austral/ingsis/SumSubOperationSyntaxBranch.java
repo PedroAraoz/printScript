@@ -1,9 +1,9 @@
 package edu.austral.ingsis;
 
-public class VariableSyntaxLeaf extends AbstractSyntaxLeaf{
+public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch{
     @Override
     public void add(AbstractSyntaxTree tree) {
-        tree.addVariableSyntaxLeaf(this);
+        tree.addSumSubOperationSyntaxTree(this);
     }
 
     @Override
@@ -43,7 +43,6 @@ public class VariableSyntaxLeaf extends AbstractSyntaxLeaf{
 
     @Override
     public void addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) {
-
     }
 
     @Override

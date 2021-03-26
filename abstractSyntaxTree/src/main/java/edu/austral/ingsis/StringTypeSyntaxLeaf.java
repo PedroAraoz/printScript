@@ -1,9 +1,9 @@
 package edu.austral.ingsis;
 
-public class VariableSyntaxLeaf extends AbstractSyntaxLeaf{
+public class StringTypeSyntaxLeaf extends AbstractSyntaxLeaf{
     @Override
     public void add(AbstractSyntaxTree tree) {
-        tree.addVariableSyntaxLeaf(this);
+        tree.addStringTypeSyntaxLeaf(this);
     }
 
     @Override
@@ -13,7 +13,7 @@ public class VariableSyntaxLeaf extends AbstractSyntaxLeaf{
 
     @Override
     public void addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) {
-
+        branch.addStringTypeSyntaxLeaf(this);
     }
 
     @Override

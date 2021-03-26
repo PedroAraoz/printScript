@@ -1,9 +1,9 @@
 package edu.austral.ingsis;
 
-public class VariableSyntaxLeaf extends AbstractSyntaxLeaf{
+public class EmptySyntaxLeaf extends AbstractSyntaxLeaf{
     @Override
     public void add(AbstractSyntaxTree tree) {
-        tree.addVariableSyntaxLeaf(this);
+        tree.addEmptySyntaxLeaf(this);
     }
 
     @Override
@@ -54,5 +54,10 @@ public class VariableSyntaxLeaf extends AbstractSyntaxLeaf{
     @Override
     public void accept(Visitor visitor) {
 
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return true;
     }
 }
