@@ -53,7 +53,6 @@ public class ValueAssignationSyntaxBranch extends AbstractSyntaxBranch{
 
     @Override
     public AbstractSyntaxTree addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) {
-
         addRight(leaf);
         return this;
     }

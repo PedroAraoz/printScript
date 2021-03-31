@@ -7,3 +7,4 @@ let x: string;
 let x : number ;
 let x : string ;
 let x: string = 'AAA';
+let x: string = "AAA";

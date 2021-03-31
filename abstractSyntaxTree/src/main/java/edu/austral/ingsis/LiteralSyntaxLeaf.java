@@ -8,7 +8,7 @@ public class LiteralSyntaxLeaf extends AbstractSyntaxLeaf {
 
     @Override
     public AbstractSyntaxTree addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) {
-        return null;
+        return branch.addLiteralSyntaxLeaf(this);
     }
 
     @Override
