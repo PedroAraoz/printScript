@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 public class LexerImpl implements Lexer {
   private final TokenDumper dumper = new TokenDumper();
-//  private final TokenFactory tokenFactory = new TokenFactory(dumper);
   private final List<Token> tokenList = Token.getAllTokens();
   private StringBuilder stringBuilder = new StringBuilder();
   
@@ -53,7 +52,7 @@ public class LexerImpl implements Lexer {
       stringBuilder.append(c);
       String s = stringBuilder.toString();
 
-      // We separate the contents of the StringBuilder into different words separated by spaces. This is becase if a word has not been identified as a token, it is a variable name
+      // We separate the contents of the StringBuilder into different words separated by spaces. This is because if a word has not been identified as a token, it is a variable name
       List<String> list = Arrays.asList(s.split(" "));
 
       // We need to filter the empty strings out of the list, because of how split() method works

@@ -67,7 +67,7 @@ public class ParserTests {
     list.add(new TokenWrapper(Token.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
     list.add(new TokenWrapper(Token.STRING_TYPE_TOKEN, 0, 0, 0, "string"));
     list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "'hola''"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "hola"));
     list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
     final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
     System.out.println("ASD");

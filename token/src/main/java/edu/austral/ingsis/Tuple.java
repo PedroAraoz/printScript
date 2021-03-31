@@ -1,7 +1,5 @@
 package edu.austral.ingsis;
 
-import java.util.Optional;
-
 public class Tuple {
   private final Token token;
   private final String optional;
@@ -16,6 +14,6 @@ public class Tuple {
   }
   
   public String getString() {
-    return optional;
+    return optional.replaceAll("^[\"']+|[\"']+$", "");// This is in order to remove the quotes from the value
   }
 }

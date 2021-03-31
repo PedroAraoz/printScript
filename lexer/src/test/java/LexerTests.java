@@ -73,7 +73,7 @@ public class LexerTests {
     expected.add(new TokenWrapper(Token.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
     expected.add(new TokenWrapper(Token.STRING_TYPE_TOKEN, 0, 0, 0, "string"));
     expected.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    expected.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "\"hola\""));
+    expected.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "hola"));
     expected.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
     LexerImpl lexer = new LexerImpl();
     final List<TokenWrapper> tokenWrappers = lexer.analyseLexically(codeLineList.get(0));
@@ -97,7 +97,7 @@ public class LexerTests {
     expected.add(new TokenWrapper(Token.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
     expected.add(new TokenWrapper(Token.STRING_TYPE_TOKEN, 0, 0, 0, "string"));
     expected.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    expected.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "'hola'"));
+    expected.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "hola"));
     expected.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
     LexerImpl lexer = new LexerImpl();
     final List<TokenWrapper> tokenWrappers = lexer.analyseLexically(codeLineList.get(0));
