@@ -18,8 +18,14 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch{
 
     @Override
     public AbstractSyntaxTree addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) {
-        if (!right.isEmpty() && !left.isEmpty()) {
-            branch.addSumSubOperationSyntaxTree(this);
+        if (right.isEmpty()) {
+            right = branch;
+        }
+        else if (left.isEmpty()) {
+            left = branch;
+        }
+        else {
+            branch.addSumSubOperationSyntaxTree(branch);
         }
         return this;
     }

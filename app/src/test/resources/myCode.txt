@@ -2,6 +2,7 @@ let x: number = 5 * 5;
 let x: number = 5 + 5;
 let x: number = 5 / 5;
 let x: number = 5 - 5;
+let x: number = 5 + 5 + 5;
 let x: number;
 let x: string;
 let x : number ;
