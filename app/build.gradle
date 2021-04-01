@@ -2,6 +2,7 @@ plugins {
     id 'application'
     id 'my-library.java-common-conventions'
     id 'jacoco'
+    id "io.beekeeper.gradle.plugins.formatter" version "0.9.16"
 }
 
 group = 'edu.austral.ingsis'
