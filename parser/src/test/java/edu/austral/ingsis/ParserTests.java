@@ -1,15 +1,14 @@
 package edu.austral.ingsis;
 
-import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.Test;
 
 public class ParserTests {
-  
+
   @Test
   public void testDeclaAsignMult() {
-  
+
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.LET_TOKEN, 0, 0, 0, "let"));
@@ -64,7 +63,7 @@ public class ParserTests {
   }
 
   @Test
-  public void testDeclaString () {
+  public void testDeclaString() {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
@@ -78,7 +77,7 @@ public class ParserTests {
   }
 
   @Test
-  public void testDeclaAsignString () {
+  public void testDeclaAsignString() {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
@@ -94,7 +93,7 @@ public class ParserTests {
   }
 
   @Test
-  public void asigVarMult () {
+  public void asigVarMult() {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();

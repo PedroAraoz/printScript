@@ -23,7 +23,7 @@ public class App {
 
     final List<AbstractSyntaxTree> abstractSyntaxTreeList = new ArrayList<>();
 
-    for (List<TokenWrapper> tokenWrapperList : lists){
+    for (List<TokenWrapper> tokenWrapperList : lists) {
       abstractSyntaxTreeList.add(parser.analyseSintactically(tokenWrapperList));
     }
 

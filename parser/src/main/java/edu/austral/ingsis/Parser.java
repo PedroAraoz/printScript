@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Parser {
 
-    AbstractSyntaxTree analyseSintactically(List<TokenWrapper> tokenWrapperList);
+  AbstractSyntaxTree analyseSintactically(List<TokenWrapper> tokenWrapperList);
 
-    boolean analyseSemantically(AbstractSyntaxTree ast);
+  boolean analyseSemantically(AbstractSyntaxTree ast);
 }

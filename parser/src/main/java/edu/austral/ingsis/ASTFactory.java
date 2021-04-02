@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class ASTFactory {
-  
+
   public AbstractSyntaxTree build(List<TokenWrapper> tokenWrapperList) {
 
     final Stack<AbstractSyntaxTree> abstractSyntaxTreeStack = new Stack<>();

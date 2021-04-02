@@ -1,5 +1,3 @@
 package edu.austral.ingsis;
 
-public class ASTVerifier {
-
-}
+public class ASTVerifier {}

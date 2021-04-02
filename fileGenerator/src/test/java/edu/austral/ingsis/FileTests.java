@@ -1,21 +1,20 @@
 package edu.austral.ingsis;
 
-import org.junit.Test;
+import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class FileTests {
-  
+
   @Test
   public void FileConstructor_WithValidPath_HasNoExceptions() throws IOException {
     File f = new File("src/test/resources/test.txt");
   }
-  
+
   @Test
   public void File_ShouldReturnContentInCodeLines() throws FileNotFoundException {
     File f = new File("src/test/resources/test.txt");
@@ -33,7 +32,7 @@ public class FileTests {
       assertEquals(result.get(i).getRow(), expected.get(i).getRow());
     }
   }
-  
+
   @Test
   public void NormalFileGeneratorShouldReturnFile() throws FileNotFoundException {
     final String path = "src/test/resources/test.txt";

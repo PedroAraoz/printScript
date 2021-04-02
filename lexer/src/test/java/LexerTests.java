@@ -1,16 +1,15 @@
+import static org.junit.Assert.assertEquals;
+
 import edu.austral.ingsis.CodeLine;
 import edu.austral.ingsis.LexerImpl;
 import edu.austral.ingsis.Token;
 import edu.austral.ingsis.TokenWrapper;
-import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 public class LexerTests {
-  
+
   @Test
   public void DeclarationAsignationOperationTest() {
     final List<CodeLine> codeLineList = new ArrayList<>();
@@ -26,7 +25,7 @@ public class LexerTests {
     expected.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 14, 15, "3"));
     LexerImpl lexer = new LexerImpl();
     final List<TokenWrapper> tokenWrappers = lexer.analyseLexically(codeLineList.get(0));
-    
+
     for (int i = 0; i < expected.size(); i++) {
       final TokenWrapper e = expected.get(i);
       final TokenWrapper a = tokenWrappers.get(i);
@@ -36,7 +35,6 @@ public class LexerTests {
       assertEquals(e.getStartPos(), a.getStartPos());
       assertEquals(e.getEndPos(), a.getEndPos());
     }
-    
   }
 
   @Test
@@ -53,7 +51,7 @@ public class LexerTests {
     expected.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
     LexerImpl lexer = new LexerImpl();
     final List<TokenWrapper> tokenWrappers = lexer.analyseLexically(codeLineList.get(0));
-    
+
     for (int i = 0; i < expected.size(); i++) {
       final TokenWrapper e = expected.get(i);
       final TokenWrapper a = tokenWrappers.get(i);
@@ -110,7 +108,7 @@ public class LexerTests {
       assertEquals(e.getValue(), a.getValue());
     }
   }
-  
+
   @Test
   public void aWeirdCase() {
     List<CodeLine> codeLineList = new ArrayList<>();
@@ -124,7 +122,7 @@ public class LexerTests {
     expected.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
     LexerImpl lexer = new LexerImpl();
     final List<TokenWrapper> tokenWrappers = lexer.analyseLexically(codeLineList.get(0));
-    
+
     for (int i = 0; i < expected.size(); i++) {
       final TokenWrapper e = expected.get(i);
       final TokenWrapper a = tokenWrappers.get(i);
