@@ -31,6 +31,3 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build
-
-      - name: Publish package
-        run: gradle publish
