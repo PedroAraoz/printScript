@@ -37,21 +37,21 @@ java {
     withSourcesJar()
 }
 
+jacoco {
+    applyTo run
+}
+
+task applicationCodeCoverageReport(type:JacocoReport) {
+    executionData run
+    sourceSets sourceSets.main
+}
+
 jacocoTestCoverageVerification {
     violationRules {
         rule {
             limit {
-                minimum = 0.1
+                minimum = 0.8
             }
         }
-
-//        rule {
-//            element = 'CLASS'
-//            limit {
-//                counter = 'LINE'
-//                value = 'COVEREDRATIO'
-//                minimum = 0.2
-//            }
-//        }
     }
 }
