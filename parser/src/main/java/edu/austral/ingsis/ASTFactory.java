@@ -27,7 +27,10 @@ public class ASTFactory {
     abstractSyntaxTreeStack.peek().accept(visitor);
 
     if (visitor.foundEmpty()) {
+
+      // Aca hay que poner un error
       System.out.println("Empty found");
+      return null;
     }
 
     return abstractSyntaxTreeStack.pop();
