@@ -1,7 +1,9 @@
 package edu.austral.ingsis;
 
-public class State {
-  public boolean method() {
-    return true;
-  }
+import java.io.FileNotFoundException;
+import java.util.List;
+
+public interface State {
+  void setContext(CLI cli);
+  List<String> run(String[] args) throws FileNotFoundException;
 }
