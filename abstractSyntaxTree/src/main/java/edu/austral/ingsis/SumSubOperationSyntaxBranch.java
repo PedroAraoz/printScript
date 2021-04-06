@@ -1,5 +1,7 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.visitor.Visitor;
+
 public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch {
   @Override
   public AbstractSyntaxTree add(AbstractSyntaxTree tree) {
@@ -74,5 +76,7 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch {
   }
 
   @Override
-  public void accept(Visitor visitor) {}
+  public void accept(Visitor visitor) {
+    visitor.visitSumSub(this);
+  }
 }

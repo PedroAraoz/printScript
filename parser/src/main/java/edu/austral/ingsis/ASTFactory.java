@@ -1,5 +1,7 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.visitor.EmptyValidatorVisitor;
+
 import java.util.List;
 import java.util.Stack;
 
@@ -18,6 +20,14 @@ public class ASTFactory {
       AbstractSyntaxTree one = abstractSyntaxTreeStack.pop();
       AbstractSyntaxTree combined = abstractSyntaxTreeStack.pop().add(one);
       abstractSyntaxTreeStack.push(combined);
+    }
+
+    final EmptyValidatorVisitor visitor = new EmptyValidatorVisitor();
+
+    abstractSyntaxTreeStack.peek().accept(visitor);
+
+    if (visitor.foundEmpty()) {
+      System.out.println("Empty found");
     }
 
     return abstractSyntaxTreeStack.pop();

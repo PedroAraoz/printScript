@@ -1,5 +1,7 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.visitor.Visitor;
+
 public class EmptySyntaxLeaf extends AbstractSyntaxLeaf {
   @Override
   public AbstractSyntaxTree add(AbstractSyntaxTree tree) {
@@ -52,7 +54,9 @@ public class EmptySyntaxLeaf extends AbstractSyntaxLeaf {
   }
 
   @Override
-  public void accept(Visitor visitor) {}
+  public void accept(Visitor visitor) {
+    visitor.visitEmpty(this);
+  }
 
   @Override
   public boolean isEmpty() {

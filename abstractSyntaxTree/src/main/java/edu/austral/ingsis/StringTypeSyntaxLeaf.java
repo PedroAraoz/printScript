@@ -1,5 +1,7 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.visitor.Visitor;
+
 public class StringTypeSyntaxLeaf extends AbstractSyntaxLeaf {
   @Override
   public AbstractSyntaxTree add(AbstractSyntaxTree tree) {
@@ -52,5 +54,7 @@ public class StringTypeSyntaxLeaf extends AbstractSyntaxLeaf {
   }
 
   @Override
-  public void accept(Visitor visitor) {}
+  public void accept(Visitor visitor) {
+    visitor.visitStringType(this);
+  }
 }
