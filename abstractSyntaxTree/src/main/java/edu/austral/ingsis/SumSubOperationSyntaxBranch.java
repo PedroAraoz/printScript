@@ -38,7 +38,8 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch {
     } else if (left.isEmpty()) {
       left = branch;
     } else {
-      // Explode
+      branch.addLiteralSyntaxLeaf((LiteralSyntaxLeaf) left);
+      this.left = branch;
     }
     return this;
   }
@@ -65,7 +66,7 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch {
     } else if (left.isEmpty()) {
       left = leaf;
     } else {
-      // Explode
+      // Agregar por si left o right son MULTDIVs
     }
     return this;
   }

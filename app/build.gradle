@@ -23,6 +23,14 @@ application {
     mainClass = 'edu.austral.ingsis.App'
 }
 
+test {
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+}
+
 jar {
     manifest {
         attributes(
@@ -32,14 +40,6 @@ jar {
                 'Main-Class': 'edu.austral.ingsis.App'
         )
     }
-}
-
-java {
-    withSourcesJar()
-}
-
-jacoco {
-    applyTo run
 }
 
 task applicationCodeCoverageReport(type:JacocoReport) {
@@ -56,3 +56,7 @@ jacocoTestCoverageVerification {
         }
     }
 }
+
+check.dependsOn jacocoTestCoverageVerification
+
+tasks.build.dependsOn(check)

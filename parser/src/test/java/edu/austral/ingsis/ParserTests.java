@@ -26,7 +26,7 @@ public class ParserTests {
   }
 
   @Test
-  public void multipleOperationsSum() {
+  public void TwoOperationsSum() {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
@@ -109,6 +109,23 @@ public class ParserTests {
   }
 
   @Test
+  public void SumMult() {
+
+    final Parser parser = new ParserImpl();
+    final List<TokenWrapper> list = new ArrayList<>();
+    list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
+    list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "1"));
+    list.add(new TokenWrapper(Token.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "2"));
+    list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "3"));
+    list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
+    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
+    System.out.println("ASD");
+  }
+
+  @Test
   public void emptyWithSum() {
 
     final Parser parser = new ParserImpl();
@@ -157,6 +174,58 @@ public class ParserTests {
     list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
     final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
     assert abstractSyntaxTree == null;
+    System.out.println("ASD");
+  }
+
+  @Test
+  public void multipleOperationsSum() {
+
+    final Parser parser = new ParserImpl();
+    final List<TokenWrapper> list = new ArrayList<>();
+    list.add(new TokenWrapper(Token.LET_TOKEN, 0, 0, 0, "let"));
+    list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
+    list.add(new TokenWrapper(Token.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
+    list.add(new TokenWrapper(Token.NUMBER_TYPE_TOKEN, 0, 0, 0, "number"));
+    list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "11"));
+    list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "12"));
+    list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "13"));
+    list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "14"));
+    list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "15"));
+    list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "16"));
+    list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
+    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
+    System.out.println("ASD");
+  }
+
+  @Test
+  public void multipleOperationsMult() {
+
+    final Parser parser = new ParserImpl();
+    final List<TokenWrapper> list = new ArrayList<>();
+    list.add(new TokenWrapper(Token.LET_TOKEN, 0, 0, 0, "let"));
+    list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
+    list.add(new TokenWrapper(Token.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
+    list.add(new TokenWrapper(Token.NUMBER_TYPE_TOKEN, 0, 0, 0, "number"));
+    list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "11"));
+    list.add(new TokenWrapper(Token.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "12"));
+    list.add(new TokenWrapper(Token.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "13"));
+    list.add(new TokenWrapper(Token.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "14"));
+    list.add(new TokenWrapper(Token.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "15"));
+    list.add(new TokenWrapper(Token.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "16"));
+    list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
+    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
     System.out.println("ASD");
   }
 }
