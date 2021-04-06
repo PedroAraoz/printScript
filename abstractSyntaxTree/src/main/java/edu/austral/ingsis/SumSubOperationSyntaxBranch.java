@@ -56,7 +56,14 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch {
 
   @Override
   public AbstractSyntaxTree addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
-    return null;
+    if (right.isEmpty()) {
+      right = leaf;
+    } else if (left.isEmpty()) {
+      left = leaf;
+    } else {
+      // Agregar por si left o right son MULTDIVs
+    }
+    return this;
   }
 
   @Override

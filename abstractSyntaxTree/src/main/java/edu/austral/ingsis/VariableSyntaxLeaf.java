@@ -20,7 +20,7 @@ public class VariableSyntaxLeaf extends AbstractSyntaxLeaf {
 
   @Override
   public AbstractSyntaxTree addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) {
-    return null;
+    return branch.addVariableSyntaxLeaf(this);
   }
 
   @Override
