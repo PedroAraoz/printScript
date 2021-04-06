@@ -4,5 +4,5 @@ import edu.austral.ingsis.AbstractSyntaxTree;
 
 public interface ASTCommand {
 
-    AbstractSyntaxTree build();
+  AbstractSyntaxTree build();
 }

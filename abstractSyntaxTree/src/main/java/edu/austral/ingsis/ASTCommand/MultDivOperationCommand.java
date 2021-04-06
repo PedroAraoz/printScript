@@ -4,8 +4,8 @@ import edu.austral.ingsis.AbstractSyntaxTree;
 import edu.austral.ingsis.MultDivOperationSyntaxBranch;
 
 public class MultDivOperationCommand implements ASTCommand {
-    @Override
-    public AbstractSyntaxTree build() {
-        return new MultDivOperationSyntaxBranch();
-    }
+  @Override
+  public AbstractSyntaxTree build() {
+    return new MultDivOperationSyntaxBranch();
+  }
 }

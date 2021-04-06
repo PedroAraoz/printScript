@@ -4,8 +4,8 @@ import edu.austral.ingsis.AbstractSyntaxTree;
 import edu.austral.ingsis.VariableSyntaxLeaf;
 
 public class VariableCommand implements ASTCommand {
-    @Override
-    public AbstractSyntaxTree build() {
-        return new VariableSyntaxLeaf();
-    }
+  @Override
+  public AbstractSyntaxTree build() {
+    return new VariableSyntaxLeaf();
+  }
 }

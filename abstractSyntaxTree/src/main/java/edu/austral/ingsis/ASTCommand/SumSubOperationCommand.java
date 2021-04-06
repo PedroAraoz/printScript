@@ -4,8 +4,8 @@ import edu.austral.ingsis.AbstractSyntaxTree;
 import edu.austral.ingsis.SumSubOperationSyntaxBranch;
 
 public class SumSubOperationCommand implements ASTCommand {
-    @Override
-    public AbstractSyntaxTree build() {
-        return new SumSubOperationSyntaxBranch();
-    }
+  @Override
+  public AbstractSyntaxTree build() {
+    return new SumSubOperationSyntaxBranch();
+  }
 }

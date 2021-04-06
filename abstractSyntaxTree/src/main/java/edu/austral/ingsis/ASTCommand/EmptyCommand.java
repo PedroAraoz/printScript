@@ -4,8 +4,8 @@ import edu.austral.ingsis.AbstractSyntaxTree;
 import edu.austral.ingsis.EmptySyntaxLeaf;
 
 public class EmptyCommand implements ASTCommand {
-    @Override
-    public AbstractSyntaxTree build() {
-        return new EmptySyntaxLeaf();
-    }
+  @Override
+  public AbstractSyntaxTree build() {
+    return new EmptySyntaxLeaf();
+  }
 }
