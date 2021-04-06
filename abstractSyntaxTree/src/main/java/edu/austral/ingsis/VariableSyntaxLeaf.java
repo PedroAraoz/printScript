@@ -25,7 +25,7 @@ public class VariableSyntaxLeaf extends AbstractSyntaxLeaf {
 
   @Override
   public AbstractSyntaxTree addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
-    return null;
+    return branch.addVariableSyntaxLeaf(this);
   }
 
   @Override

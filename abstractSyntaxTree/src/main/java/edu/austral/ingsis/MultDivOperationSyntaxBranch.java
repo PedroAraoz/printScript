@@ -48,7 +48,14 @@ public class MultDivOperationSyntaxBranch extends AbstractSyntaxBranch {
 
   @Override
   public AbstractSyntaxTree addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
-    return null;
+    if (right.isEmpty()) {
+      right = leaf;
+    } else if (left.isEmpty()) {
+      left = leaf;
+    } else {
+      // Explode
+    }
+    return this;
   }
 
   @Override
