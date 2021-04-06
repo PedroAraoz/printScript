@@ -1,8 +1,9 @@
 package edu.austral.ingsis;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.Test;
 
 public class ParserTests {
 
@@ -38,7 +39,7 @@ public class ParserTests {
     list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
     list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "12"));
     list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "15"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "13"));
     list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
     final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
     System.out.println("ASD");

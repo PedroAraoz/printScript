@@ -23,7 +23,8 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch {
     } else if (left.isEmpty()) {
       left = branch;
     } else {
-      branch.addSumSubOperationSyntaxTree(branch);
+      branch.addSumSubOperationSyntaxTree(this);
+      return branch;
     }
     return this;
   }

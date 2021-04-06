@@ -9,3 +9,8 @@ let x : string ;
 let x: string = 'AAA';
 let x: string = "AAA";
 x = 1 + 1;
+x = 'hola';
+x = "hola";
+x = 1 + 2 + 3;
+x = 1 * 2 * 3;
+x = 1 + 2 / 3;

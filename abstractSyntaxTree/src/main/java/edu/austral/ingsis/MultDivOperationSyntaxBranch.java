@@ -23,8 +23,13 @@ public class MultDivOperationSyntaxBranch extends AbstractSyntaxBranch {
 
   @Override
   public AbstractSyntaxTree addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
-    if (!right.isEmpty() && !left.isEmpty()) {
+    if (right.isEmpty()) {
+      right = branch;
+    } else if (left.isEmpty()) {
+      left = branch;
+    } else {
       branch.addMultDivOperationSyntaxTree(this);
+      return branch;
     }
     return this;
   }
