@@ -67,5 +67,7 @@ public class ValueAssignationSyntaxBranch extends AbstractSyntaxBranch {
   @Override
   public void accept(Visitor visitor) {
     visitor.visitValueAssignation(this);
+    left.accept(visitor);
+    right.accept(visitor);
   }
 }

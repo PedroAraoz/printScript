@@ -71,5 +71,7 @@ public class TypeAssignationSyntaxBranch extends AbstractSyntaxBranch {
   @Override
   public void accept(Visitor visitor) {
     visitor.visitTypeAssingation(this);
+    left.accept(visitor);
+    right.accept(visitor);
   }
 }

@@ -71,5 +71,7 @@ public class MultDivOperationSyntaxBranch extends AbstractSyntaxBranch {
   @Override
   public void accept(Visitor visitor) {
     visitor.visitMultDiv(this);
+    left.accept(visitor);
+    right.accept(visitor);
   }
 }
