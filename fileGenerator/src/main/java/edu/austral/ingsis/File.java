@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class File {
+  
+  //todo cambiar file para que levante de a 1 linea a la vez en vez de que levante
+  //todo a memoria. Tambien hacer que sean sentencias en vez de lineas.
   private final List<CodeLine> codeLines = new ArrayList<>();
 
   public File(String path) throws FileNotFoundException {

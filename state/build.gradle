@@ -5,3 +5,20 @@ plugins {
 
 group = 'edu.austral.ingsis'
 version = '1.0.1'
+
+dependencies {
+    implementation project(':lexer')
+    implementation project(':parser')
+    implementation project(':token')
+    implementation project(':abstractSyntaxTree')
+    implementation project(':fileGenerator')
+    implementation project(':interpreter')
+    implementation project(':printer')
+    implementation 'junit:junit:4.12'
+}
+
+test {
+    useJUnit()
+
+    maxHeapSize = '1G'
+}
