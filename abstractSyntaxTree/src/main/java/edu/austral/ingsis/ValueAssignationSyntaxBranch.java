@@ -59,7 +59,7 @@ public class ValueAssignationSyntaxBranch extends AbstractSyntaxBranch {
 
   @Override
   public AbstractSyntaxTree addEmptySyntaxLeaf(EmptySyntaxLeaf leaf) {
-    return null;
+    return this;
   }
 
   @Override

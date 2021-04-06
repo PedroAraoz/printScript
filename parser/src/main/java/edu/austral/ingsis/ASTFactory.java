@@ -14,7 +14,7 @@ public class ASTFactory {
       abstractSyntaxTreeStack.add(tokenToASTConverter.convert(t));
     }
 
-    while (abstractSyntaxTreeStack.size() > 2) {
+    while (abstractSyntaxTreeStack.size() > 1) {
       AbstractSyntaxTree one = abstractSyntaxTreeStack.pop();
       AbstractSyntaxTree combined = abstractSyntaxTreeStack.pop().add(one);
       abstractSyntaxTreeStack.push(combined);

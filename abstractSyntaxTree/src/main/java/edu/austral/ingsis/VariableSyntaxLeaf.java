@@ -48,7 +48,7 @@ public class VariableSyntaxLeaf extends AbstractSyntaxLeaf {
 
   @Override
   public AbstractSyntaxTree addEmptySyntaxLeaf(EmptySyntaxLeaf leaf) {
-    return null;
+    return this;
   }
 
   @Override
