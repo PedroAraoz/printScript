@@ -53,7 +53,7 @@ public class MultDivOperationSyntaxBranch extends AbstractSyntaxBranch {
     } else if (left.isEmpty()) {
       left = leaf;
     } else {
-      // Explode
+      left.addVariableSyntaxLeaf(leaf);
     }
     return this;
   }
@@ -65,7 +65,7 @@ public class MultDivOperationSyntaxBranch extends AbstractSyntaxBranch {
     } else if (left.isEmpty()) {
       left = leaf;
     } else {
-      // Explode
+      left.addLiteralSyntaxLeaf(leaf);
     }
     return this;
   }

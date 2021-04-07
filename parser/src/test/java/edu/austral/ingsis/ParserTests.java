@@ -258,4 +258,42 @@ public class ParserTests {
     final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
     System.out.println("ASD");
   }
+
+  @Test
+  public void multSumMix() {
+
+    final Parser parser = new ParserImpl();
+    final List<TokenWrapper> list = new ArrayList<>();
+    list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
+    list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "1"));
+    list.add(new TokenWrapper(Token.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
+    list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
+    list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
+    list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "y"));
+    list.add(new TokenWrapper(Token.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "2"));
+    list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
+    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
+    System.out.println("ASD");
+  }
+
+  @Test
+  public void sumMultMix() {
+
+    final Parser parser = new ParserImpl();
+    final List<TokenWrapper> list = new ArrayList<>();
+    list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
+    list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "1"));
+    list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
+    list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
+    list.add(new TokenWrapper(Token.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
+    list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "y"));
+    list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "2"));
+    list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
+    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
+    System.out.println("ASD");
+  }
 }
