@@ -5,18 +5,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Executer implements State {
+public class SyntaxValidator implements State {
   
   private CLI cli;
   private final Lexer lexer;
-  private final Parser parser;
-  private final Interpreter interpreter;
-  private final FileGenerator fileGenerator;
+  private final Parser parser;private final FileGenerator fileGenerator;
   private final StateFactory stateFactory;
-  public Executer(Lexer lexer, Parser parser, Interpreter interpreter, FileGenerator fileGenerator, StateFactory stateFactory) {
+  public SyntaxValidator(Lexer lexer, Parser parser, FileGenerator fileGenerator, StateFactory stateFactory) {
     this.lexer = lexer;
     this.parser = parser;
-    this.interpreter = interpreter;
     this.fileGenerator = fileGenerator;
     this.stateFactory = stateFactory;
   }
@@ -28,10 +25,10 @@ public class Executer implements State {
   
   @Override
   public List<String> run(String[] args) throws FileNotFoundException {
-    return execute(args);
+    return analyzeSintactically(args);
   }
   
-  private List<String> execute(String[] args) throws FileNotFoundException {
+  private List<String> analyzeSintactically(String[] args) throws FileNotFoundException {
     // todo capaz a este nivel conviene tener un error handler o algo. tipo
     // que le pasas los errores y ese se comunica con el cli/print y los escupe
     // en vez de tener ese throws Error feo
@@ -44,12 +41,12 @@ public class Executer implements State {
     List<AbstractSyntaxTree> list = new ArrayList<>();
     for (List<TokenWrapper> l : cambiarEsto)
       list.add(parser.analyseSintactically(l));
-    //todo seguir implementando
+    //todo done?
     return null;
   }
   
   private boolean checkMode(String mode) {
-    if (mode.equals("execute")) return true;
+    if (mode.equals("syntax")) return true;
     cli.changeState(stateFactory.get(mode));
     return false;
   }

@@ -7,7 +7,15 @@ public class CLI {
   private State state;
   private Printer printer;
   
-  
+  public CLI() {
+    //todo probablemente cambiar esto
+    Lexer lexer = new LexerImpl();
+    Parser parser = new ParserImpl();
+    Interpreter interpreter = null; //todo implement
+    FileGenerator fileGenerator = new NormalFileGenerator();
+    final StateFactory stateFactory = new StateFactory(this, lexer, parser, interpreter, fileGenerator);
+    state = stateFactory.get("execute"); //default
+  }
   public void changeState(State state) {
     this.state = state;
     state.setContext(this);
@@ -17,7 +25,7 @@ public class CLI {
     final Scanner scanner = new Scanner(System.in);
     String message = "";
     String welcomeMessage = "please type\n" +
-            "<mode> <filePath>";
+            "<mode> <filePath>\n>";
     print(welcomeMessage);
     while (!message.equals("exit")) {
       message = scanner.nextLine().trim().toLowerCase();
