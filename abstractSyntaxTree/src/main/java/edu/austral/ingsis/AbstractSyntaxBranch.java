@@ -1,5 +1,7 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.exception.CompilationTimeException;
+
 public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
 
   protected AbstractSyntaxTree left = new EmptySyntaxLeaf();
@@ -26,7 +28,7 @@ public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
     return false;
   }
 
-  protected void addRight(AbstractSyntaxTree tree) {
+  protected void addRight(AbstractSyntaxTree tree) throws CompilationTimeException {
     if (this.right.isEmpty()) {
       this.right = tree;
     } else {
@@ -34,7 +36,7 @@ public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
     }
   }
 
-  protected void addLeft(AbstractSyntaxTree tree) {
+  protected void addLeft(AbstractSyntaxTree tree) throws CompilationTimeException {
     if (this.left.isEmpty()) {
       this.left = tree;
     } else {

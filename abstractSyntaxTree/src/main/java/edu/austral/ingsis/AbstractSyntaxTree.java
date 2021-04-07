@@ -1,26 +1,28 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.exception.CompilationTimeException;
+
 public interface AbstractSyntaxTree extends Visitable {
 
   void setTokenWrapper(TokenWrapper tokenWrapper);
 
-  AbstractSyntaxTree add(AbstractSyntaxTree tree);
+  AbstractSyntaxTree add(AbstractSyntaxTree tree) throws CompilationTimeException;
 
-  AbstractSyntaxTree addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch);
+  AbstractSyntaxTree addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) throws CompilationTimeException;
 
-  AbstractSyntaxTree addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch);
+  AbstractSyntaxTree addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) throws CompilationTimeException;
 
-  AbstractSyntaxTree addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch);
+  AbstractSyntaxTree addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) throws CompilationTimeException;
 
-  AbstractSyntaxTree addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch);
+  AbstractSyntaxTree addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) throws CompilationTimeException;
 
-  AbstractSyntaxTree addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf);
+  AbstractSyntaxTree addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) throws CompilationTimeException;
 
-  AbstractSyntaxTree addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf);
+  AbstractSyntaxTree addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) throws CompilationTimeException;
 
-  AbstractSyntaxTree addVariableSyntaxLeaf(VariableSyntaxLeaf leaf);
+  AbstractSyntaxTree addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) throws CompilationTimeException;
 
-  AbstractSyntaxTree addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf);
+  AbstractSyntaxTree addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) throws CompilationTimeException;
 
   AbstractSyntaxTree addEmptySyntaxLeaf(EmptySyntaxLeaf leaf);
 

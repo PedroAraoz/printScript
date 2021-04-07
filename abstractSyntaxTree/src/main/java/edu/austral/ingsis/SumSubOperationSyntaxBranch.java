@@ -1,21 +1,22 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.exception.CompilationTimeException;
 import edu.austral.ingsis.visitor.Visitor;
 
 public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch {
   @Override
-  public AbstractSyntaxTree add(AbstractSyntaxTree tree) {
+  public AbstractSyntaxTree add(AbstractSyntaxTree tree) throws CompilationTimeException {
     return tree.addSumSubOperationSyntaxTree(this);
   }
 
   @Override
-  public AbstractSyntaxTree addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) {
+  public AbstractSyntaxTree addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) throws CompilationTimeException {
     return branch.addSumSubOperationSyntaxTree(this);
   }
 
   @Override
-  public AbstractSyntaxTree addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) {
-    return null;
+  public AbstractSyntaxTree addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) throws CompilationTimeException {
+    throw new CompilationTimeException("Parser Exception when building AST in line " + this.tokenWrapper.getLine() + " column " + this.tokenWrapper.getStartPos());
   }
 
   @Override
@@ -32,7 +33,7 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch {
   }
 
   @Override
-  public AbstractSyntaxTree addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) {
+  public AbstractSyntaxTree addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) throws CompilationTimeException {
     if (right.isEmpty()) {
       right = branch;
     } else if (left.isEmpty()) {
@@ -45,17 +46,17 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch {
   }
 
   @Override
-  public AbstractSyntaxTree addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) {
-    return null;
+  public AbstractSyntaxTree addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) throws CompilationTimeException {
+    throw new CompilationTimeException("Parser Exception when building AST in line " + this.tokenWrapper.getLine() + " column " + this.tokenWrapper.getStartPos());
   }
 
   @Override
-  public AbstractSyntaxTree addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) {
-    return null;
+  public AbstractSyntaxTree addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) throws CompilationTimeException {
+    throw new CompilationTimeException("Parser Exception when building AST in line " + this.tokenWrapper.getLine() + " column " + this.tokenWrapper.getStartPos());
   }
 
   @Override
-  public AbstractSyntaxTree addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) {
+  public AbstractSyntaxTree addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) throws CompilationTimeException {
     if (right.isEmpty()) {
       right = leaf;
     } else if (left.isEmpty()) {
@@ -63,14 +64,14 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch {
     } else {
       AbstractSyntaxTree a = left.addVariableSyntaxLeaf(leaf);
       if (a==null) {
-        return null;
+        throw new CompilationTimeException("Parser Exception when building AST in line " + this.tokenWrapper.getLine() + " column " + this.tokenWrapper.getStartPos());
       }
     }
     return this;
   }
 
   @Override
-  public AbstractSyntaxTree addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) {
+  public AbstractSyntaxTree addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) throws CompilationTimeException {
     if (right.isEmpty()) {
       right = leaf;
     } else if (left.isEmpty()) {
@@ -78,7 +79,7 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch {
     } else {
       AbstractSyntaxTree a = left.addLiteralSyntaxLeaf(leaf);
       if (a==null) {
-        return null;
+        throw new CompilationTimeException("Parser Exception when building AST in line " + this.tokenWrapper.getLine() + " column " + this.tokenWrapper.getStartPos());
       }
     }
     return this;

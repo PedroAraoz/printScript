@@ -1,5 +1,7 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.exception.CompilationTimeException;
+
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -21,7 +23,7 @@ public class CLI {
     state.setContext(this);
   }
   
-  public void run() throws FileNotFoundException {
+  public void run() throws FileNotFoundException, CompilationTimeException {
     final Scanner scanner = new Scanner(System.in);
     String message = "";
     String welcomeMessage = "please type\n" +

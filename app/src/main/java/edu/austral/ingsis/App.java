@@ -1,5 +1,7 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.exception.CompilationTimeException;
+
 import java.io.FileNotFoundException;
 
 public class App {
@@ -32,7 +34,7 @@ public class App {
     CLI cli = new CLI();
     try {
       cli.run();
-    } catch (FileNotFoundException e) {
+    } catch (FileNotFoundException | CompilationTimeException e) {
       e.printStackTrace();
     }
   }

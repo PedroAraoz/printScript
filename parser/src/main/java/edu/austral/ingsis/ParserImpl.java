@@ -1,5 +1,7 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.exception.CompilationTimeException;
+
 import java.util.List;
 
 public class ParserImpl implements Parser {
@@ -8,7 +10,7 @@ public class ParserImpl implements Parser {
   private final ASTVerifier astVerifier = new ASTVerifier();
 
   @Override
-  public AbstractSyntaxTree analyseSintactically(List<TokenWrapper> tokenWrapperList) {
+  public AbstractSyntaxTree analyseSintactically(List<TokenWrapper> tokenWrapperList) throws CompilationTimeException {
     return astFactory.build(tokenWrapperList);
   }
 

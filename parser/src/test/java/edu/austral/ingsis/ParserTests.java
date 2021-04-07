@@ -1,5 +1,6 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.exception.CompilationTimeException;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.List;
 public class ParserTests {
 
   @Test
-  public void testDeclaAsignMult() {
+  public void testDeclaAsignMult() throws CompilationTimeException {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
@@ -26,7 +27,7 @@ public class ParserTests {
   }
 
   @Test
-  public void TwoOperationsSum() {
+  public void TwoOperationsSum() throws CompilationTimeException {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
@@ -46,7 +47,7 @@ public class ParserTests {
   }
 
   @Test
-  public void testDeclaAsignSum() {
+  public void testDeclaAsignSum() throws CompilationTimeException {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
@@ -64,7 +65,7 @@ public class ParserTests {
   }
 
   @Test
-  public void testDeclaString() {
+  public void testDeclaString() throws CompilationTimeException {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
@@ -78,7 +79,7 @@ public class ParserTests {
   }
 
   @Test
-  public void testDeclaAsignString() {
+  public void testDeclaAsignString() throws CompilationTimeException {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
@@ -94,7 +95,7 @@ public class ParserTests {
   }
 
   @Test
-  public void asigVarMult() {
+  public void asigVarMult() throws CompilationTimeException {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
@@ -109,7 +110,7 @@ public class ParserTests {
   }
 
   @Test
-  public void SumMult() {
+  public void SumMult() throws CompilationTimeException {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
@@ -130,12 +131,16 @@ public class ParserTests {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
-    list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "12"));
-    list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    assert abstractSyntaxTree == null;
-    System.out.println("ASD");
+    list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 22, 0, 0, "+"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 22, 0, 0, "12"));
+    list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 22, 0, 0, ";"));
+    final AbstractSyntaxTree abstractSyntaxTree;
+    try {
+      abstractSyntaxTree = parser.analyseSintactically(list);
+    } catch (CompilationTimeException e) {
+      System.out.println(e.getMessage());
+      assert true;
+    }
   }
 
   @Test
@@ -143,11 +148,15 @@ public class ParserTests {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
-    list.add(new TokenWrapper(Token.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
-    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "12"));
-    list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    assert abstractSyntaxTree == null;
+    list.add(new TokenWrapper(Token.MULT_OPERATION_TOKEN, 22, 0, 0, "*"));
+    list.add(new TokenWrapper(Token.LITERAL_TOKEN, 22, 0, 0, "12"));
+    list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 22, 0, 0, ";"));
+    final AbstractSyntaxTree abstractSyntaxTree;
+    try {
+      abstractSyntaxTree = parser.analyseSintactically(list);
+    } catch (CompilationTimeException e) {
+      assert true;
+    }
     System.out.println("ASD");
   }
 
@@ -159,8 +168,12 @@ public class ParserTests {
     list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
     list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "12"));
     list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    assert abstractSyntaxTree == null;
+    final AbstractSyntaxTree abstractSyntaxTree;
+    try {
+      abstractSyntaxTree = parser.analyseSintactically(list);
+    } catch (CompilationTimeException e) {
+      assert true;
+    }
     System.out.println("ASD");
   }
 
@@ -172,13 +185,17 @@ public class ParserTests {
     list.add(new TokenWrapper(Token.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
     list.add(new TokenWrapper(Token.STRING_TYPE_TOKEN, 0, 0, 0, "string"));
     list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    assert abstractSyntaxTree == null;
+    final AbstractSyntaxTree abstractSyntaxTree;
+    try {
+      abstractSyntaxTree = parser.analyseSintactically(list);
+    } catch (CompilationTimeException e) {
+      assert true;
+    }
     System.out.println("ASD");
   }
 
   @Test
-  public void multipleOperationsSum() {
+  public void multipleOperationsSum() throws CompilationTimeException {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
@@ -204,7 +221,7 @@ public class ParserTests {
   }
 
   @Test
-  public void multipleOperationsMult() {
+  public void multipleOperationsMult() throws CompilationTimeException {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
@@ -230,7 +247,7 @@ public class ParserTests {
   }
 
   @Test
-  public void sumWithVariables() {
+  public void sumWithVariables() throws CompilationTimeException {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
@@ -245,7 +262,7 @@ public class ParserTests {
   }
 
   @Test
-  public void multWithVariables() {
+  public void multWithVariables() throws CompilationTimeException {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
@@ -260,7 +277,7 @@ public class ParserTests {
   }
 
   @Test
-  public void multSumMix() {
+  public void multSumMix() throws CompilationTimeException {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();
@@ -279,7 +296,7 @@ public class ParserTests {
   }
 
   @Test
-  public void sumMultMix() {
+  public void sumMultMix() throws CompilationTimeException {
 
     final Parser parser = new ParserImpl();
     final List<TokenWrapper> list = new ArrayList<>();

@@ -1,5 +1,7 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.exception.CompilationTimeException;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,11 +27,11 @@ public class SemanticValidator implements State {
   }
   
   @Override
-  public List<String> run(String[] args) throws FileNotFoundException {
+  public List<String> run(String[] args) throws FileNotFoundException, CompilationTimeException {
     return validateSemantically(args);
   }
   
-  private List<String> validateSemantically(String[] args) throws FileNotFoundException {
+  private List<String> validateSemantically(String[] args) throws FileNotFoundException, CompilationTimeException {
     // todo capaz a este nivel conviene tener un error handler o algo. tipo
     // que le pasas los errores y ese se comunica con el cli/print y los escupe
     // en vez de tener ese throws Error feo
