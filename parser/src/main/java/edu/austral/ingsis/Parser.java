@@ -8,5 +8,5 @@ public interface Parser {
 
   AbstractSyntaxTree analyseSintactically(List<TokenWrapper> tokenWrapperList) throws CompilationTimeException;
 
-  boolean analyseSemantically(AbstractSyntaxTree ast);
+  void analyseSemantically(AbstractSyntaxTree ast) throws CompilationTimeException;
 }
