@@ -10,4 +10,8 @@ public class VariableRegister {
     public boolean contains(String variableName) {
         return variables.stream().anyMatch(v -> v.getVariableName().equals(variableName));
     }
+
+    public void addNewVariable(VariableInfo newVariable) {
+        variables.add(newVariable);
+    }
 }

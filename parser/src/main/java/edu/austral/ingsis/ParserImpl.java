@@ -6,14 +6,17 @@ import java.util.List;
 
 public class ParserImpl implements Parser {
 
-  private final ASTFactory astFactory = new ASTFactory();
-  private final ASTVerifier astVerifier = new ASTVerifier(new VariableRegister());
+  public ParserImpl(VariableRegister variableRegister) {
+    this.astFactory = new ASTFactory();
+    this.astVerifier = new ASTVerifier(variableRegister);
+  }
+
+  private final ASTFactory astFactory;
+  private final ASTVerifier astVerifier;
 
   @Override
   public AbstractSyntaxTree analyseSintactically(List<TokenWrapper> tokenWrapperList) throws CompilationTimeException {
-    AbstractSyntaxTree ast = astFactory.build(tokenWrapperList);
-    astVerifier.verify(ast);
-    return ast;
+    return astFactory.build(tokenWrapperList);
   }
 
   @Override

@@ -37,7 +37,7 @@ public class DeclarationValidator implements Validator {
             TokenWrapper variable = variableFinderVisitor.getVariable().get();
 
             if (register.contains(variable.getValue())) {
-                throw new CompilationTimeException("Variable " + variable.getName() + " in line " + variable.getLine() + " column " + variable.getStartPos() + " is already initialized");
+                throw new CompilationTimeException("Variable " + variable.getValue() + " in line " + variable.getLine() + " column " + variable.getStartPos() + " is already initialized");
             } else {
                 // OK
             }

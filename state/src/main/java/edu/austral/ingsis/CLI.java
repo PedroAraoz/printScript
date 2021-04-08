@@ -12,8 +12,9 @@ public class CLI {
   public CLI() {
     //todo probablemente cambiar esto
     Lexer lexer = new LexerImpl();
-    Parser parser = new ParserImpl();
-    Interpreter interpreter = null; //todo implement
+    VariableRegister variableRegister = new VariableRegister();
+    Parser parser = new ParserImpl(variableRegister);
+    Interpreter interpreter = null; //todo implement and add Variableregister
     FileGenerator fileGenerator = new NormalFileGenerator();
     final StateFactory stateFactory = new StateFactory(this, lexer, parser, interpreter, fileGenerator);
     state = stateFactory.get("execute"); //default

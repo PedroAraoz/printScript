@@ -11,7 +11,7 @@ public class ParserTests {
   @Test
   public void testDeclaAsignMult() throws CompilationTimeException {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.LET_TOKEN, 0, 0, 0, "let"));
     list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
@@ -29,7 +29,7 @@ public class ParserTests {
   @Test
   public void TwoOperationsSum() throws CompilationTimeException {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.LET_TOKEN, 0, 0, 0, "let"));
     list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
@@ -49,7 +49,7 @@ public class ParserTests {
   @Test
   public void testDeclaAsignSum() throws CompilationTimeException {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.LET_TOKEN, 0, 0, 0, "let"));
     list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
@@ -67,7 +67,7 @@ public class ParserTests {
   @Test
   public void testDeclaString() throws CompilationTimeException {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.LET_TOKEN, 0, 0, 0, "let"));
     list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
@@ -81,7 +81,7 @@ public class ParserTests {
   @Test
   public void testDeclaAsignString() throws CompilationTimeException {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.LET_TOKEN, 0, 0, 0, "let"));
     list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
@@ -97,7 +97,7 @@ public class ParserTests {
   @Test
   public void asigVarMult() throws CompilationTimeException {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
     list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
@@ -112,7 +112,7 @@ public class ParserTests {
   @Test
   public void SumMult() throws CompilationTimeException {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
     list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
@@ -129,7 +129,7 @@ public class ParserTests {
   @Test
   public void emptyWithSum() {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 22, 0, 0, "+"));
     list.add(new TokenWrapper(Token.LITERAL_TOKEN, 22, 0, 0, "12"));
@@ -146,7 +146,7 @@ public class ParserTests {
   @Test
   public void emptyWithMult() {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.MULT_OPERATION_TOKEN, 22, 0, 0, "*"));
     list.add(new TokenWrapper(Token.LITERAL_TOKEN, 22, 0, 0, "12"));
@@ -163,7 +163,7 @@ public class ParserTests {
   @Test
   public void emptyWithValueAsign() {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
     list.add(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "12"));
@@ -180,7 +180,7 @@ public class ParserTests {
   @Test
   public void emptyWithTypeAsign() {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
     list.add(new TokenWrapper(Token.STRING_TYPE_TOKEN, 0, 0, 0, "string"));
@@ -197,7 +197,7 @@ public class ParserTests {
   @Test
   public void multipleOperationsSum() throws CompilationTimeException {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.LET_TOKEN, 0, 0, 0, "let"));
     list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
@@ -223,7 +223,7 @@ public class ParserTests {
   @Test
   public void multipleOperationsMult() throws CompilationTimeException {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.LET_TOKEN, 0, 0, 0, "let"));
     list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
@@ -249,7 +249,7 @@ public class ParserTests {
   @Test
   public void sumWithVariables() throws CompilationTimeException {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
     list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
@@ -264,7 +264,7 @@ public class ParserTests {
   @Test
   public void multWithVariables() throws CompilationTimeException {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
     list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
@@ -279,7 +279,7 @@ public class ParserTests {
   @Test
   public void multSumMix() throws CompilationTimeException {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
     list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
@@ -298,7 +298,7 @@ public class ParserTests {
   @Test
   public void sumMultMix() throws CompilationTimeException {
 
-    final Parser parser = new ParserImpl();
+    final Parser parser = new ParserImpl(new VariableRegister());
     final List<TokenWrapper> list = new ArrayList<>();
     list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
     list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
@@ -312,5 +312,32 @@ public class ParserTests {
     list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
     final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
     System.out.println("ASD");
+  }
+
+  @Test(expected = CompilationTimeException.class)
+  public void validationVariablesShouldNotBeInitializedTwice() throws CompilationTimeException {
+
+    final VariableRegister variableRegister = new VariableRegister();
+    final Parser parser = new ParserImpl(variableRegister);
+
+    final VariableInfo var1 = new VariableInfo();
+    var1.setVariableName("x");
+    var1.setValue("0");
+    var1.setType(Token.NUMBER_TYPE_TOKEN);
+
+    variableRegister.addNewVariable(var1);
+
+    final AbstractSyntaxTree tree = new TypeAssignationSyntaxBranch();
+    tree.setTokenWrapper(new TokenWrapper(Token.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
+
+    final NumberTypeSyntaxLeaf numberTypeSyntaxLeaf = new NumberTypeSyntaxLeaf();
+    numberTypeSyntaxLeaf.setTokenWrapper(new TokenWrapper(Token.NUMBER_TYPE_TOKEN, 0, 0, 0, "number"));
+    tree.addNumberTypeSyntaxLeaf(numberTypeSyntaxLeaf);
+
+    final VariableSyntaxLeaf variableSyntaxLeaf = new VariableSyntaxLeaf();
+    variableSyntaxLeaf.setTokenWrapper(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
+    tree.addVariableSyntaxLeaf(variableSyntaxLeaf);
+
+    parser.analyseSemantically(tree);
   }
 }
