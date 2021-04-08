@@ -340,4 +340,24 @@ public class ParserTests {
 
     parser.analyseSemantically(tree);
   }
+
+  @Test(expected = CompilationTimeException.class)
+  public void validationVariablesShouldNotBeAssignedToAnUnexistingVariable() throws CompilationTimeException {
+
+    final VariableRegister variableRegister = new VariableRegister();
+    final Parser parser = new ParserImpl(variableRegister);
+
+    final AbstractSyntaxTree tree = new ValueAssignationSyntaxBranch();
+    tree.setTokenWrapper(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
+
+    final VariableSyntaxLeaf variableSyntaxLeaf = new VariableSyntaxLeaf();
+    variableSyntaxLeaf.setTokenWrapper(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
+    tree.addVariableSyntaxLeaf(variableSyntaxLeaf);
+
+    final LiteralSyntaxLeaf literalSyntaxLeaf = new LiteralSyntaxLeaf();
+    literalSyntaxLeaf.setTokenWrapper(new TokenWrapper(Token.LITERAL_TOKEN, 0, 0, 0, "1"));
+    tree.addLiteralSyntaxLeaf(literalSyntaxLeaf);
+
+    parser.analyseSemantically(tree);
+  }
 }
