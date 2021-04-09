@@ -24,11 +24,14 @@ application {
 }
 
 test {
-    finalizedBy jacocoTestReport
+    finalizedBy(jacocoTestReport)
 }
 
 jacocoTestReport {
-    dependsOn test
+    dependsOn(test)
+    reports {
+        html.destination(file("${buildDir}/jacocoReport"))
+    }
 }
 
 jar {
@@ -47,20 +50,9 @@ task applicationCodeCoverageReport(type:JacocoReport) {
     sourceSets sourceSets.main
 }
 
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                minimum = 0.0 //todo this is 0 for testing reasons change
-            }
-        }
-    }
-}
-
 task ourGoogleJavaFormat {
     googleJavaFormat
 }
+tasks.build.dependsOn(check)
 
 check.dependsOn ourGoogleJavaFormat
-check.dependsOn jacocoTestCoverageVerification
-tasks.build.dependsOn(check)

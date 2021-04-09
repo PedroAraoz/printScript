@@ -45,10 +45,6 @@ public class TokenWrapper {
     return endPos;
   }
 
-  public TokenGroup getGroup() {
-    return token.getGroup();
-  }
-
   public String getValue() {
     return value;
   }

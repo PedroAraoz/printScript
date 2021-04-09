@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'my-library.java-common-conventions'
+    id 'jacoco'
 }
 
 dependencies {
@@ -12,3 +13,27 @@ dependencies {
 
 group = 'edu.austral.ingsis'
 version = '1.0.1'
+
+
+test {
+    finalizedBy(jacocoTestReport)
+}
+
+jacocoTestReport {
+    dependsOn(test)
+    reports {
+        html.destination(file("${buildDir}/jacocoReport"))
+    }
+}
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.0 //todo this is 0 for testing reasons change
+            }
+        }
+    }
+}
+
+check.dependsOn jacocoTestCoverageVerification
+tasks.build.dependsOn(check)
