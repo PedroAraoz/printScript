@@ -38,7 +38,7 @@ public class LexerImpl implements Lexer {
     Optional<Token> single =
         tokenList.stream().filter(t -> t.getRegex().matcher(c).matches()).findFirst();
 
-    if (single.isPresent() && !single.get().equals(Token.LITERAL_TOKEN)) {
+    if (single.isPresent() && (!single.get().equals(Token.NUMBER_LITERAL_TOKEN) || !single.get().equals(Token.STRING_LITERAL_TOKEN))) {
       String s = stringBuilder.toString();
       s = s.replace(" ", "");
       if (s.length() > 0) {
@@ -77,7 +77,13 @@ public class LexerImpl implements Lexer {
   }
 
   private void dumpVarOrLit(String s) {
-    dumper.dump(matches(Token.LITERAL_TOKEN, s) ? Token.LITERAL_TOKEN : Token.VARIABLE_TOKEN, s);
+    if (matches(Token.NUMBER_LITERAL_TOKEN, s)) {
+      dumper.dump(Token.NUMBER_LITERAL_TOKEN, s);
+    } else if(matches(Token.STRING_LITERAL_TOKEN, s)) {
+      dumper.dump(Token.STRING_LITERAL_TOKEN, s);
+    } else {
+      dumper.dump(Token.VARIABLE_TOKEN, s);
+    }
     stringBuilder = new StringBuilder();
   }
 }

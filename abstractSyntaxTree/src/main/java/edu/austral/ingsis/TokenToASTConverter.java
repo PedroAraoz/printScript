@@ -21,7 +21,8 @@ public class TokenToASTConverter {
     this.map.put(Token.DIV_OPERATION_TOKEN, new MultDivOperationCommand());
     this.map.put(Token.NUMBER_TYPE_TOKEN, new NumberTypeCommand());
     this.map.put(Token.STRING_TYPE_TOKEN, new StringTypeCommand());
-    this.map.put(Token.LITERAL_TOKEN, new LiteralCommand());
+    this.map.put(Token.NUMBER_LITERAL_TOKEN, new LiteralCommand());
+    this.map.put(Token.STRING_LITERAL_TOKEN, new LiteralCommand());
     this.map.put(Token.VARIABLE_TOKEN, new VariableCommand());
   }
 

@@ -57,11 +57,16 @@ public class Token {
             new Token(TokenName.NUMBER_TYPE, TokenGroup.TYPE, Pattern.compile("number"));
     public static Token STRING_TYPE_TOKEN =
             new Token(TokenName.STRING_TYPE, TokenGroup.TYPE, Pattern.compile("string"));
-    public static Token LITERAL_TOKEN =
+    public static Token NUMBER_LITERAL_TOKEN =
             new Token(
-                    TokenName.LITERAL,
+                    TokenName.NUMBER_LITERAL,
                     TokenGroup.NOGROUP,
-                    Pattern.compile("('[a-zA-Z]+')|(\"[a-zA-Z]+\")|[0-9]+|([0-9]+.[0-9]+)"));
+                    Pattern.compile("[0-9]+|([0-9]+.[0-9]+)"));
+    public static Token STRING_LITERAL_TOKEN =
+            new Token(
+                    TokenName.STRING_LITERAL,
+                    TokenGroup.NOGROUP,
+                    Pattern.compile("('[a-zA-Z]+')|(\"[a-zA-Z]+\")"));
     public static Token VARIABLE_TOKEN =
             new Token(TokenName.VARIABLE, TokenGroup.NOGROUP, Pattern.compile(""));
 
