@@ -2,6 +2,7 @@ package edu.austral.ingsis;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class VariableRegister {
 
@@ -13,5 +14,9 @@ public class VariableRegister {
 
     public void addNewVariable(VariableInfo newVariable) {
         variables.add(newVariable);
+    }
+
+    public Optional<VariableInfo> get(String variable) {
+        return variables.stream().filter(v -> v.getVariableName().equals(variable)).findFirst();
     }
 }

@@ -17,8 +17,7 @@ public class ASTVerifier {
 
         validators.add(new DeclarationValidator(register));
         validators.add(new AssignationVariableExistsValidator(register));
-        //validators.add(new AssignationTypeValidator(register));
-        //validators.add(new OperationMatchValidator());
+        validators.add(new AssignationTypeValidator(register));
     }
 
     public void verify(AbstractSyntaxTree abstractSyntaxTree) throws CompilationTimeException {
@@ -36,8 +35,5 @@ public class ASTVerifier {
      *  - QUe a las variables solo les puedas asignar datos del tipo que pusiste
      *  - Que las variables que uses esten declaradas previamente
      *
-     *  # Para esto no necesitamos ninguna estructura que guarde ningun estado, podemos hacerlo con un MUY buen visitor
-     *
-     *  - Si hay una operacion con strings adentro solo puede haber signos + en esa operacion
      */
 }

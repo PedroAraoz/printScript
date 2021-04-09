@@ -2,11 +2,16 @@ package edu.austral.ingsis.visitor;
 
 import edu.austral.ingsis.*;
 
-public class OperationMatchVisitor implements Visitor {
+public class AssignationLiteralTypeVisitor implements Visitor {
 
+    private Token type = null;
     private boolean match = true;
 
-    public boolean match() {
+    public Token getType() {
+        return type;
+    }
+
+    public boolean matches() {
         return match;
     }
 
@@ -47,12 +52,15 @@ public class OperationMatchVisitor implements Visitor {
 
     @Override
     public void visitVariable(VariableSyntaxLeaf leaf) {
-
     }
 
     @Override
     public void visitLiteral(LiteralSyntaxLeaf leaf) {
-        //leaf.getTokenWrapper().gettype();
+        if (type == null)
+            type = leaf.getTokenWrapper().getToken();
+        else if (!leaf.getTokenWrapper().getToken().equals(type)) {
+            match = false;
+        }
     }
 
     @Override
