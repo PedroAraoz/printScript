@@ -1,9 +1,9 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
-import edu.austral.ingsis.visitor.Visitor;
 
 public class ValueAssignationSyntaxBranch extends AbstractSyntaxBranch {
+
     @Override
     public AbstractSyntaxTree add(AbstractSyntaxTree tree) throws CompilationTimeException {
         return tree.addValueAsignationSyntaxTree(this);
@@ -67,8 +67,8 @@ public class ValueAssignationSyntaxBranch extends AbstractSyntaxBranch {
 
     @Override
     public void accept(Visitor visitor) {
-        visitor.visitValueAssignation(this);
         left.accept(visitor);
         right.accept(visitor);
+        visitor.visitValueAssignation(this);
     }
 }

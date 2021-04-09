@@ -4,7 +4,7 @@ public class VariableInfo {
 
     private String variableName;
     private Token type;
-    private String value;
+    private String value = "";
 
     public String getVariableName() {
         return variableName;

@@ -6,6 +6,8 @@ public interface AbstractSyntaxTree extends Visitable {
 
   void setTokenWrapper(TokenWrapper tokenWrapper);
 
+  TokenWrapper getTokenWrapper();
+
   AbstractSyntaxTree add(AbstractSyntaxTree tree) throws CompilationTimeException;
 
   AbstractSyntaxTree addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) throws CompilationTimeException;

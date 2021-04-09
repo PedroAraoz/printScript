@@ -1,7 +1,5 @@
 package edu.austral.ingsis;
 
-import edu.austral.ingsis.visitor.Visitor;
-
 public class EmptySyntaxLeaf extends AbstractSyntaxLeaf {
   @Override
   public AbstractSyntaxTree add(AbstractSyntaxTree tree) {

@@ -1,23 +1,14 @@
-package edu.austral.ingsis.visitor;
+package edu.austral.ingsis;
 
 import edu.austral.ingsis.*;
 
-public class AssignationLiteralTypeVisitor implements Visitor {
+public class EmptyValidatorVisitor implements Visitor{
 
-    private Token type = null;
-    private boolean match = true;
-
-    public Token getType() {
-        return type;
-    }
-
-    public boolean matches() {
-        return match;
-    }
+    private boolean foundEmpty = false;
 
     @Override
     public void visit(AbstractSyntaxTree abstractSyntaxTree) {
-
+        abstractSyntaxTree.accept(this);
     }
 
     @Override
@@ -52,19 +43,20 @@ public class AssignationLiteralTypeVisitor implements Visitor {
 
     @Override
     public void visitVariable(VariableSyntaxLeaf leaf) {
+
     }
 
     @Override
     public void visitLiteral(LiteralSyntaxLeaf leaf) {
-        if (type == null)
-            type = leaf.getTokenWrapper().getToken();
-        else if (!leaf.getTokenWrapper().getToken().equals(type)) {
-            match = false;
-        }
+
     }
 
     @Override
     public void visitEmpty(EmptySyntaxLeaf leaf) {
+        foundEmpty = true;
+    }
 
+    public boolean foundEmpty() {
+        return foundEmpty;
     }
 }

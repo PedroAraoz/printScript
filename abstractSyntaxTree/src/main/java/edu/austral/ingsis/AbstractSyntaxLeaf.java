@@ -8,6 +8,7 @@ public abstract class AbstractSyntaxLeaf implements AbstractSyntaxTree {
     this.tokenWrapper = tokenWrapper;
   }
 
+  @Override
   public TokenWrapper getTokenWrapper() {
     return tokenWrapper;
   }

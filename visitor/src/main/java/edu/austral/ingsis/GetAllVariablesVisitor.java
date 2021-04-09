@@ -1,0 +1,65 @@
+package edu.austral.ingsis;
+
+import edu.austral.ingsis.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GetAllVariablesVisitor implements Visitor {
+
+    List<TokenWrapper> variables = new ArrayList<>();
+
+    public List<TokenWrapper> getAllVariables() {
+        return variables;
+    }
+
+    @Override
+    public void visit(AbstractSyntaxTree abstractSyntaxTree) {
+
+    }
+
+    @Override
+    public void visitValueAssignation(ValueAssignationSyntaxBranch branch) {
+
+    }
+
+    @Override
+    public void visitTypeAssingation(TypeAssignationSyntaxBranch branch) {
+
+    }
+
+    @Override
+    public void visitSumSub(SumSubOperationSyntaxBranch branch) {
+
+    }
+
+    @Override
+    public void visitMultDiv(MultDivOperationSyntaxBranch branch) {
+
+    }
+
+    @Override
+    public void visitNumberType(NumberTypeSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitStringType(StringTypeSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitVariable(VariableSyntaxLeaf leaf) {
+        variables.add(leaf.getTokenWrapper());
+    }
+
+    @Override
+    public void visitLiteral(LiteralSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitEmpty(EmptySyntaxLeaf leaf) {
+
+    }
+}

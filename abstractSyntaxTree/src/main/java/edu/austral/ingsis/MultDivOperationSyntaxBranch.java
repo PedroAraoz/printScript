@@ -1,7 +1,6 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
-import edu.austral.ingsis.visitor.Visitor;
 
 public class MultDivOperationSyntaxBranch extends AbstractSyntaxBranch {
   @Override
@@ -78,8 +77,8 @@ public class MultDivOperationSyntaxBranch extends AbstractSyntaxBranch {
 
   @Override
   public void accept(Visitor visitor) {
-    visitor.visitMultDiv(this);
     left.accept(visitor);
     right.accept(visitor);
+    visitor.visitMultDiv(this);
   }
 }

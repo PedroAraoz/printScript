@@ -1,7 +1,6 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
-import edu.austral.ingsis.visitor.Visitor;
 
 public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch {
   @Override
@@ -92,8 +91,8 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch {
 
   @Override
   public void accept(Visitor visitor) {
-    visitor.visitSumSub(this);
     left.accept(visitor);
     right.accept(visitor);
+    visitor.visitSumSub(this);
   }
 }

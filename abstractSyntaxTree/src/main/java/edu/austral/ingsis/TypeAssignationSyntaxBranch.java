@@ -1,7 +1,6 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
-import edu.austral.ingsis.visitor.Visitor;
 
 public class TypeAssignationSyntaxBranch extends AbstractSyntaxBranch {
   @Override
@@ -71,8 +70,8 @@ public class TypeAssignationSyntaxBranch extends AbstractSyntaxBranch {
 
   @Override
   public void accept(Visitor visitor) {
-    visitor.visitTypeAssingation(this);
     left.accept(visitor);
     right.accept(visitor);
+    visitor.visitTypeAssingation(this);
   }
 }

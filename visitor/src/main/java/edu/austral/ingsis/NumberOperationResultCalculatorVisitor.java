@@ -1,14 +1,23 @@
-package edu.austral.ingsis.visitor;
+package edu.austral.ingsis;
 
 import edu.austral.ingsis.*;
 
-public class EmptyValidatorVisitor implements Visitor{
+public class NumberOperationResultCalculatorVisitor implements Visitor {
 
-    private boolean foundEmpty = false;
+    private final VariableRegister variableRegister;
+
+    public NumberOperationResultCalculatorVisitor(VariableRegister variableRegister) {
+
+        this.variableRegister = variableRegister;
+    }
+
+    public double getResult() {
+        return 0;
+    }
 
     @Override
     public void visit(AbstractSyntaxTree abstractSyntaxTree) {
-        abstractSyntaxTree.accept(this);
+
     }
 
     @Override
@@ -53,10 +62,6 @@ public class EmptyValidatorVisitor implements Visitor{
 
     @Override
     public void visitEmpty(EmptySyntaxLeaf leaf) {
-        foundEmpty = true;
-    }
 
-    public boolean foundEmpty() {
-        return foundEmpty;
     }
 }

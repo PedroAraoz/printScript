@@ -16,6 +16,7 @@ public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
     return left;
   }
 
+  @Override
   public TokenWrapper getTokenWrapper() {
     return tokenWrapper;
   }

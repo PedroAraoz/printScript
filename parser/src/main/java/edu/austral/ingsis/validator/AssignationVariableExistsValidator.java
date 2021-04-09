@@ -2,8 +2,6 @@ package edu.austral.ingsis.validator;
 
 import edu.austral.ingsis.*;
 import edu.austral.ingsis.exception.CompilationTimeException;
-import edu.austral.ingsis.visitor.ValueAssignationFinderVisitor;
-import edu.austral.ingsis.visitor.VariableFinderVisitor;
 
 import java.util.Optional;
 

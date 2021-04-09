@@ -3,14 +3,18 @@ plugins {
     id 'my-library.java-common-conventions'
 }
 
-dependencies {
-    implementation project(':abstractSyntaxTree')
-    implementation project(':parser')
-    implementation project(':token')
-    implementation project(':visitor')
-    implementation project(':variableRegister')
-    implementation 'junit:junit:4.12'
+repositories {
+    mavenCentral()
 }
 
-group = 'edu.austral.ingsis'
-version = '1.0.1'
+dependencies {
+    implementation project(':abstractSyntaxTree')
+    implementation project(':token')
+    implementation project(':variableRegister')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}

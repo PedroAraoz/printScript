@@ -5,8 +5,8 @@ import edu.austral.ingsis.TokenWrapper;
 import edu.austral.ingsis.TypeAssignationSyntaxBranch;
 import edu.austral.ingsis.VariableRegister;
 import edu.austral.ingsis.exception.CompilationTimeException;
-import edu.austral.ingsis.visitor.TypeAssignationFinderVisitor;
-import edu.austral.ingsis.visitor.VariableFinderVisitor;
+import edu.austral.ingsis.TypeAssignationFinderVisitor;
+import edu.austral.ingsis.VariableFinderVisitor;
 
 import java.util.Optional;
 

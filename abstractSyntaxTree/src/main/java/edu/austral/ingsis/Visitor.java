@@ -1,6 +1,4 @@
-package edu.austral.ingsis.visitor;
-
-import edu.austral.ingsis.*;
+package edu.austral.ingsis;
 
 public interface Visitor {
 

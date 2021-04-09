@@ -1,16 +1,15 @@
-package edu.austral.ingsis.visitor;
+package edu.austral.ingsis;
 
 import edu.austral.ingsis.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
-public class GetAllVariablesVisitor implements Visitor {
+public class TypeAssignationFinderVisitor implements Visitor {
 
-    List<TokenWrapper> variables = new ArrayList<>();
+    private Optional<TypeAssignationSyntaxBranch> typeAsignation = Optional.empty();
 
-    public List<TokenWrapper> getAllVariables() {
-        return variables;
+    public Optional<TypeAssignationSyntaxBranch> getTypeAssignation() {
+        return typeAsignation;
     }
 
     @Override
@@ -25,7 +24,7 @@ public class GetAllVariablesVisitor implements Visitor {
 
     @Override
     public void visitTypeAssingation(TypeAssignationSyntaxBranch branch) {
-
+        this.typeAsignation = Optional.of(branch);
     }
 
     @Override
@@ -50,7 +49,7 @@ public class GetAllVariablesVisitor implements Visitor {
 
     @Override
     public void visitVariable(VariableSyntaxLeaf leaf) {
-        variables.add(leaf.getTokenWrapper());
+
     }
 
     @Override

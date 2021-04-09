@@ -1,15 +1,15 @@
-package edu.austral.ingsis.visitor;
+package edu.austral.ingsis;
 
 import edu.austral.ingsis.*;
 
 import java.util.Optional;
 
-public class TypeAssignationFinderVisitor implements Visitor {
+public class ValueAssignationFinderVisitor implements Visitor {
 
-    private Optional<TypeAssignationSyntaxBranch> typeAsignation = Optional.empty();
+    private Optional<ValueAssignationSyntaxBranch> valueAssignation = Optional.empty();
 
-    public Optional<TypeAssignationSyntaxBranch> getTypeAssignation() {
-        return typeAsignation;
+    public Optional<ValueAssignationSyntaxBranch> getValueAssignation() {
+        return this.valueAssignation;
     }
 
     @Override
@@ -19,12 +19,12 @@ public class TypeAssignationFinderVisitor implements Visitor {
 
     @Override
     public void visitValueAssignation(ValueAssignationSyntaxBranch branch) {
-
+        this.valueAssignation = Optional.of(branch);
     }
 
     @Override
     public void visitTypeAssingation(TypeAssignationSyntaxBranch branch) {
-        this.typeAsignation = Optional.of(branch);
+
     }
 
     @Override

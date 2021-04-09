@@ -8,5 +8,5 @@
  */
 
 rootProject.name = 'printScript'
-include 'app', 'parser', 'fileGenerator', 'token', 'lexer', 'state', 'printer', 'abstractSyntaxTree', 'interpreter'
+include 'app', 'parser', 'fileGenerator', 'token', 'lexer', 'state', 'printer', 'abstractSyntaxTree', 'interpreter', 'visitor', 'variableRegister'
 

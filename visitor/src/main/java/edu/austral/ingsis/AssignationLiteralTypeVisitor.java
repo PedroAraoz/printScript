@@ -1,15 +1,18 @@
-package edu.austral.ingsis.visitor;
+package edu.austral.ingsis;
 
 import edu.austral.ingsis.*;
 
-import java.util.Optional;
+public class AssignationLiteralTypeVisitor implements Visitor {
 
-public class ValueAssignationFinderVisitor implements Visitor {
+    private Token type = null;
+    private boolean match = true;
 
-    private Optional<ValueAssignationSyntaxBranch> valueAssignation = Optional.empty();
+    public Token getType() {
+        return type;
+    }
 
-    public Optional<ValueAssignationSyntaxBranch> getValueAssignation() {
-        return this.valueAssignation;
+    public boolean matches() {
+        return match;
     }
 
     @Override
@@ -19,7 +22,7 @@ public class ValueAssignationFinderVisitor implements Visitor {
 
     @Override
     public void visitValueAssignation(ValueAssignationSyntaxBranch branch) {
-        this.valueAssignation = Optional.of(branch);
+
     }
 
     @Override
@@ -49,12 +52,15 @@ public class ValueAssignationFinderVisitor implements Visitor {
 
     @Override
     public void visitVariable(VariableSyntaxLeaf leaf) {
-
     }
 
     @Override
     public void visitLiteral(LiteralSyntaxLeaf leaf) {
-
+        if (type == null)
+            type = leaf.getTokenWrapper().getToken();
+        else if (!leaf.getTokenWrapper().getToken().equals(type)) {
+            match = false;
+        }
     }
 
     @Override

@@ -1,7 +1,6 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
-import edu.austral.ingsis.visitor.Visitor;
 
 public class StringTypeSyntaxLeaf extends AbstractSyntaxLeaf {
   @Override

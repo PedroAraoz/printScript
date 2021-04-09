@@ -6,6 +6,8 @@ plugins {
 dependencies {
     implementation project(':token')
     implementation project(':abstractSyntaxTree')
+    implementation project(':variableRegister')
+    implementation project(':visitor')
 }
 
 group = 'edu.austral.ingsis'

@@ -2,7 +2,6 @@ package edu.austral.ingsis.validator;
 
 import edu.austral.ingsis.*;
 import edu.austral.ingsis.exception.CompilationTimeException;
-import edu.austral.ingsis.visitor.*;
 
 import java.util.List;
 import java.util.Optional;
