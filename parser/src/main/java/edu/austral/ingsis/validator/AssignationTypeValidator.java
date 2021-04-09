@@ -5,6 +5,7 @@ import edu.austral.ingsis.exception.CompilationTimeException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class AssignationTypeValidator implements Validator {
 
@@ -38,7 +39,9 @@ public class AssignationTypeValidator implements Validator {
             abstractSyntaxTree.accept(typeAssignationFinderVisitor);
             Optional<TypeAssignationSyntaxBranch> typeAssignationSyntaxBranch = typeAssignationFinderVisitor.getTypeAssignation();
 
-            Token assignationType = checkAssignationType(abstractSyntaxTree);
+            List<TokenWrapper> variablesToCheck = getVariablesToCheck(abstractSyntaxTree, typeAssignationSyntaxBranch);
+
+            Token assignationType = checkAssignationType(abstractSyntaxTree, variablesToCheck);
 
             if (typeAssignationSyntaxBranch.isPresent()) {
                 // In this case it is a declaration + assignation
@@ -63,13 +66,10 @@ public class AssignationTypeValidator implements Validator {
         }
     }
 
-    private Token checkAssignationType(AbstractSyntaxTree abstractSyntaxTree) throws CompilationTimeException {
+    private Token checkAssignationType(AbstractSyntaxTree abstractSyntaxTree, List<TokenWrapper> variables) throws CompilationTimeException {
         // Assignation type
 
         // Check that variables in the assignation are of the same type
-        GetAllVariablesVisitor getAllVariablesVisitor = new GetAllVariablesVisitor();
-        abstractSyntaxTree.accept(getAllVariablesVisitor);
-        List<TokenWrapper> variables = getAllVariablesVisitor.getAllVariables();
 
         if (!variables.isEmpty()) {
             // Check they exist
@@ -97,7 +97,8 @@ public class AssignationTypeValidator implements Validator {
         abstractSyntaxTree.accept(assignationLiteralTypeVisitor);
 
         if (!assignationLiteralTypeVisitor.matches()) {
-            throw new CompilationTimeException("Type mismatch in assignation in line " + variables.get(0).getLine() + " column " + variables.get(0).getStartPos() + ", elements are not of the same type");
+            // TODO Add line and column
+            throw new CompilationTimeException("Type mismatch in assignation");
         }
 
         // Check that variables and literals are of the same type
@@ -109,6 +110,20 @@ public class AssignationTypeValidator implements Validator {
             }
         }
 
+        // TODO problema si no hay literals
         return assignationLiteralTypeVisitor.getType();
+    }
+
+    private List<TokenWrapper> getVariablesToCheck(AbstractSyntaxTree abstractSyntaxTree, Optional<TypeAssignationSyntaxBranch> branch) {
+        GetAllVariablesVisitor getAllVariablesVisitor = new GetAllVariablesVisitor();
+        abstractSyntaxTree.accept(getAllVariablesVisitor);
+        List<TokenWrapper> variables = getAllVariablesVisitor.getAllVariables();
+
+        if (branch.isPresent()) {
+            String leftVarName = branch.get().getLeft().getTokenWrapper().getValue();
+            variables = variables.stream().filter(tw -> !tw.getValue().equals(leftVarName)).collect(Collectors.toList());
+        }
+
+        return variables;
     }
 }

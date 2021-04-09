@@ -19,7 +19,7 @@ public class DeclarationExecuter implements Executer {
 
         // If there is a declaration, add the variable to the register
         if (typeAssignationFinderVisitor.getTypeAssignation().isPresent()) {
-            // Agregar variable al register
+            // Add variable to register
 
             VariableFinderVisitor variableFinderVisitor = new VariableFinderVisitor();
             ast.accept(variableFinderVisitor);
@@ -28,6 +28,9 @@ public class DeclarationExecuter implements Executer {
             VariableInfo variableInfo = new VariableInfo();
             variableInfo.setVariableName(tokenWrapper.getValue());
             variableInfo.setType(tokenWrapper.getToken());
+
+            if (typeAssignationFinderVisitor.getTypeAssignation().get().right.getTokenWrapper().getToken().equals(Token.NUMBER_TYPE_TOKEN))
+                variableInfo.setValue("0");
 
             variableRegister.addNewVariable(variableInfo);
 

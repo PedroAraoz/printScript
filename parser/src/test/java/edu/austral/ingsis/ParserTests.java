@@ -448,4 +448,23 @@ public class ParserTests {
 
     parser.analyseSemantically(tree);
   }
+
+  @Test(expected = CompilationTimeException.class)
+  public void validationCorrectDeclarationAssignmentValuesTypesShouldPassValidationTest() throws CompilationTimeException {
+
+    final VariableRegister variableRegister = new VariableRegister();
+    final Parser parser = new ParserImpl(variableRegister);
+
+    final List<TokenWrapper> list = new ArrayList<>();
+    list.add(new TokenWrapper(Token.LET_TOKEN, 0, 0, 0, "let"));
+    list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
+    list.add(new TokenWrapper(Token.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
+    list.add(new TokenWrapper(Token.NUMBER_TYPE_TOKEN, 0, 0, 0, "number"));
+    list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
+    list.add(new TokenWrapper(Token.STRING_LITERAL_TOKEN, 0, 0, 0, "1"));
+    list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
+    final AbstractSyntaxTree tree = parser.analyseSintactically(list);
+
+    parser.analyseSemantically(tree);
+  }
 }

@@ -14,11 +14,12 @@ public class CLI {
     Lexer lexer = new LexerImpl();
     VariableRegister variableRegister = new VariableRegister();
     Parser parser = new ParserImpl(variableRegister);
-    Interpreter interpreter = null; //todo implement and add Variableregister
+    Interpreter interpreter = new InterpreterImpl(variableRegister);
     FileGenerator fileGenerator = new NormalFileGenerator();
     final StateFactory stateFactory = new StateFactory(this, lexer, parser, interpreter, fileGenerator);
     state = stateFactory.get("execute"); //default
   }
+
   public void changeState(State state) {
     this.state = state;
     state.setContext(this);

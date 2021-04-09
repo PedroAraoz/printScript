@@ -35,6 +35,40 @@ public class InterpreterTests {
     }
 
     @Test
+    public void declarationAndAssignationShouldBeAddedToRegister() throws CompilationTimeException {
+        String variableName = "x";
+        String value = "1";
+
+        final TypeAssignationSyntaxBranch declaration = new TypeAssignationSyntaxBranch();
+        declaration.setTokenWrapper(new TokenWrapper(Token.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
+
+        final VariableSyntaxLeaf variable = new VariableSyntaxLeaf();
+        variable.setTokenWrapper(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, variableName));
+        declaration.addVariableSyntaxLeaf(variable);
+
+        final StringTypeSyntaxLeaf stringTypeSyntaxLeaf = new StringTypeSyntaxLeaf();
+        stringTypeSyntaxLeaf.setTokenWrapper(new TokenWrapper(Token.NUMBER_TYPE_TOKEN, 0, 0, 0, "number"));
+        declaration.addStringTypeSyntaxLeaf(stringTypeSyntaxLeaf);
+
+        final ValueAssignationSyntaxBranch assig = new ValueAssignationSyntaxBranch();
+        assig.setTokenWrapper(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
+        assig.addTypeAsignationSyntaxTree(declaration);
+
+        final LiteralSyntaxLeaf literalSyntaxLeaf = new LiteralSyntaxLeaf();
+        literalSyntaxLeaf.setTokenWrapper(new TokenWrapper(Token.NUMBER_LITERAL_TOKEN, 0, 0, 0, value));
+        assig.addLiteralSyntaxLeaf(literalSyntaxLeaf);
+
+        final VariableRegister variableRegister = new VariableRegister();
+
+        final Interpreter interpreter = new InterpreterImpl(variableRegister);
+
+        interpreter.interpret(assig);
+
+        assert variableRegister.contains(variableName);
+        assert variableRegister.get(variableName).get().getValue().equals("1.0");
+    }
+
+    @Test
     public void assignationOfAnAlreadyDeclaredVariableShouldUpdateItsValue() throws CompilationTimeException {
         String variableName = "x";
         String newValue = "2.0";

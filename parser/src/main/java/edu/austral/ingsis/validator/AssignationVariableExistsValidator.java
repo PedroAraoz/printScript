@@ -8,7 +8,7 @@ import java.util.Optional;
 public class AssignationVariableExistsValidator implements Validator {
 
     /*
-    * This validator checks if the varible in which the values are being assigned exists
+    * This validator checks if the varible in which the values are being assigned to exists
      */
 
     private VariableRegister register;
@@ -23,7 +23,11 @@ public class AssignationVariableExistsValidator implements Validator {
         abstractSyntaxTree.accept(visitor);
         Optional<ValueAssignationSyntaxBranch> valueAssignationSyntaxBranch = visitor.getValueAssignation();
 
-        if (valueAssignationSyntaxBranch.isPresent()) {
+        TypeAssignationFinderVisitor typeVisitor = new TypeAssignationFinderVisitor();
+        abstractSyntaxTree.accept(typeVisitor);
+        Optional<TypeAssignationSyntaxBranch> typeAssignationBranch = typeVisitor.getTypeAssignation();
+
+        if (valueAssignationSyntaxBranch.isPresent() && !typeAssignationBranch.isPresent()) {
 
             VariableFinderVisitor variableFinderVisitor = new VariableFinderVisitor();
             valueAssignationSyntaxBranch.get().accept(variableFinderVisitor);
