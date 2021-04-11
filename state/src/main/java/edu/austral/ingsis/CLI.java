@@ -3,14 +3,16 @@ package edu.austral.ingsis;
 import edu.austral.ingsis.exception.CompilationTimeException;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Scanner;
 
 public class CLI {
   private State state;
-  private Printer printer;
+  private final Printer printer;
   
   public CLI() {
     //todo probablemente cambiar esto
+    printer = new CLIPrinter();
     Lexer lexer = new LexerImpl();
     VariableRegister variableRegister = new VariableRegister();
     Parser parser = new ParserImpl(variableRegister);
@@ -32,16 +34,21 @@ public class CLI {
             "<mode> <filePath>\n>";
     print(welcomeMessage);
     while (!message.equals("exit")) {
-      message = scanner.nextLine().trim().toLowerCase();
+//      message = scanner.nextLine().trim().toLowerCase();
+      message = "execute state/src/main/resources/test.txt";
       final String[] args = message.split(" ");
       if (args.length != 2) throw new RuntimeException("AAAAA"); //todo implement mejor
       //todo por algun lugar mirar que este bien armando con mode filepath
-      state.run(args);
+      final List<String> logs = state.run(args);
+      print(logs);
     }
   }
   
   public void print(String s) {
-    //todo implement
-    System.out.println(s);
+    printer.print(s);
+  }
+  
+  public void print(List<String> strings) {
+    strings.forEach(this::print);
   }
 }
