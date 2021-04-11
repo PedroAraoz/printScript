@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Executer implements State {
+public class StateExecuter implements State {
 
     private CLI cli;
     private final Lexer lexer;
@@ -16,7 +16,7 @@ public class Executer implements State {
     private final FileGenerator fileGenerator;
     private final StateFactory stateFactory;
 
-    public Executer(Lexer lexer, Parser parser, Interpreter interpreter, FileGenerator fileGenerator, StateFactory stateFactory) {
+    public StateExecuter(Lexer lexer, Parser parser, Interpreter interpreter, FileGenerator fileGenerator, StateFactory stateFactory) {
         this.lexer = lexer;
         this.parser = parser;
         this.interpreter = interpreter;
@@ -40,15 +40,31 @@ public class Executer implements State {
         // en vez de tener ese throws Error feo
         if (!checkMode(args[0])) return Collections.emptyList();
         final File file = fileGenerator.open(args[1]);
-        //todo vvvvvv cambiar eso
-        List<List<TokenWrapper>> cambiarEsto = new ArrayList<>();
-        while (file.hasNext())
-            cambiarEsto.add(lexer.analyseLexically(file.next().get()));
-        List<AbstractSyntaxTree> list = new ArrayList<>();
-        for (List<TokenWrapper> l : cambiarEsto)
-            list.add(parser.analyseSintactically(l));
-        //todo seguir implementando
-        return null;
+        List<String> all = new ArrayList<>();
+        while (file.hasNext()) {
+            final List<TokenWrapper> tokenWrappers = lexer.analyseLexically(file.next().get());
+            final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(tokenWrappers);
+            parser.analyseSemantically(abstractSyntaxTree);
+            final List<String> logs = interpreter.interpret(abstractSyntaxTree);
+            all.addAll(logs);
+        }
+//        final List<List<TokenWrapper>> tokenWrappers = new ArrayList<>();
+//        while (file.hasNext()) {
+//            tokenWrappers.add(lexer.analyseLexically(file.next().get()));
+//        }
+//        List<AbstractSyntaxTree> abstractSyntaxTreeList = new ArrayList<>();
+//        for (List<TokenWrapper> t : tokenWrappers) {
+//            final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(t);
+//            abstractSyntaxTreeList.add(abstractSyntaxTree);
+//        }
+//        for (AbstractSyntaxTree ast : abstractSyntaxTreeList) {
+//            parser.analyseSemantically(ast);
+//        }
+//        for (AbstractSyntaxTree ast : abstractSyntaxTreeList) {
+//            final List<String> interpret = interpreter.interpret(ast);
+//            all.addAll(interpret);
+//        }
+        return all;
     }
 
     private boolean checkMode(String mode) {
