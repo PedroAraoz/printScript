@@ -1,7 +1,5 @@
 package edu.austral.ingsis;
 
-//import java.util.List;
-//
-//public interface Interpreter {
-//  List<String> interpret(AbstractSyntaxTree ast);
-//}
+public interface Interpreter {
+  void interpret(AbstractSyntaxTree ast, Printer printer);
+}

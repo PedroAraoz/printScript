@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ParserImpl implements Parser {
 
-  public ParserImpl(VariableRegister variableRegister) {
+  public ParserImpl() {
     this.astFactory = new ASTFactory();
 //    this.astVerifier = new ASTVerifier(variableRegister);
   }

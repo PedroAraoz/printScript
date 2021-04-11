@@ -12,15 +12,26 @@ public class VariableRegister {
         return variables.stream().anyMatch(v -> v.getVariableName().equals(variableName));
     }
 
-    public void addNewVariable(VariableInfo newVariable) {
-        variables.add(newVariable);
+//    public void addNewVariable(VariableInfo newVariable) {
+//        variables.add(newVariable);
+//    }
+
+    public void addNewVariable(String variableName, Token type) {
+        VariableInfo variableInfo = new VariableInfo();
+
+        variableInfo.setVariableName(variableName);
+        variableInfo.setType(type);
+
+        // TODO check si ya existe
+        variables.add(variableInfo);
     }
 
     public Optional<VariableInfo> get(String variable) {
         return variables.stream().filter(v -> v.getVariableName().equals(variable)).findFirst();
     }
 
-    public void updateVariable(String name, String value) {
+    // TODO que explote si no esta
+    public void assignValueToVariable(String name, String value) {
         for (VariableInfo variable : variables) {
             if (variable.getVariableName().equals(name))
                 variable.setValue(value);

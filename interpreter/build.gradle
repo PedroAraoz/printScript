@@ -10,6 +10,7 @@ dependencies {
     implementation project(':token')
     implementation project(':visitor')
     implementation project(':variableRegister')
+    implementation project(':printer')
     implementation 'junit:junit:4.12'
 }
 
