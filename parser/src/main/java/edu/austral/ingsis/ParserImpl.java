@@ -8,19 +8,19 @@ public class ParserImpl implements Parser {
 
   public ParserImpl(VariableRegister variableRegister) {
     this.astFactory = new ASTFactory();
-    this.astVerifier = new ASTVerifier(variableRegister);
+//    this.astVerifier = new ASTVerifier(variableRegister);
   }
 
   private final ASTFactory astFactory;
-  private final ASTVerifier astVerifier;
+//  private final ASTVerifier astVerifier;
 
   @Override
   public AbstractSyntaxTree analyseSintactically(List<TokenWrapper> tokenWrapperList) throws CompilationTimeException {
     return astFactory.build(tokenWrapperList);
   }
 
-  @Override
-  public void analyseSemantically(AbstractSyntaxTree ast) throws CompilationTimeException {
-    astVerifier.verify(ast);
-  }
+//  @Override
+//  public void analyseSemantically(AbstractSyntaxTree ast) throws CompilationTimeException {
+//    astVerifier.verify(ast);
+//  }
 }

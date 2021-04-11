@@ -1,5 +1,6 @@
-package edu.austral.ingsis;
-
+import edu.austral.ingsis.Token;
+import edu.austral.ingsis.VariableInfo;
+import edu.austral.ingsis.VariableRegister;
 import org.junit.Test;
 
 public class VariableRegisterTests {

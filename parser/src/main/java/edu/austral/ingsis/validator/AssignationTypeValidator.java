@@ -104,7 +104,7 @@ public class AssignationTypeValidator implements Validator {
         // Check that variables and literals are of the same type
         Token varType;
         if (!variables.isEmpty()) {
-            varType = variables.get(0).getToken();
+            varType = register.get(variables.get(0).getValue()).get().getType();
             if (!varType.equals(assignationLiteralTypeVisitor.getType())) {
                 throw new CompilationTimeException("Variables and literals do not match type in assignation in line " + variables.get(0).getLine());
             }
