@@ -120,21 +120,21 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   }
 
   @Override
-  public EmptySyntaxLeaf visitPrintLn(PrintLnSyntaxLeaf leaf) throws CompilationTimeException {
+  public PrintLnSyntaxLeaf visitPrintLn(PrintLnSyntaxLeaf leaf) throws CompilationTimeException {
     AbstractSyntaxTree expression = leaf.getExpression();
     LiteralSyntaxLeaf result = smartCastToVariable(visit(expression));
-    // TODO terminar
-    return null;
+    printer.print(result.getValue());
+    return leaf;
   }
 
   @Override
-  public EmptySyntaxLeaf visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf) {
+  public LeftParenthesisSyntaxLeaf visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf) {
     // This shouldn't happen
     return null;
   }
 
   @Override
-  public EmptySyntaxLeaf visitRightParenthesis(RightParenthesisSyntaxLeaf leaf) {
+  public RightParenthesisSyntaxLeaf visitRightParenthesis(RightParenthesisSyntaxLeaf leaf) {
     // This shouldn't happen
     return null;
   }

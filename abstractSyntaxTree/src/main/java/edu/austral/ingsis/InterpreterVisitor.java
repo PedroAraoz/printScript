@@ -24,9 +24,9 @@ public interface InterpreterVisitor {
     
     EmptySyntaxLeaf visitEmpty(EmptySyntaxLeaf leaf);
 
-    EmptySyntaxLeaf visitPrintLn(PrintLnSyntaxLeaf leaf) throws CompilationTimeException;
+    PrintLnSyntaxLeaf visitPrintLn(PrintLnSyntaxLeaf leaf) throws CompilationTimeException;
 
-    EmptySyntaxLeaf visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf);
+    LeftParenthesisSyntaxLeaf visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf);
 
-    EmptySyntaxLeaf visitRightParenthesis(RightParenthesisSyntaxLeaf leaf);
+    RightParenthesisSyntaxLeaf visitRightParenthesis(RightParenthesisSyntaxLeaf leaf);
 }
