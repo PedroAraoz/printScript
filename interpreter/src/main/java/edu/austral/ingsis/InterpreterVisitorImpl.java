@@ -13,12 +13,12 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   }
   //todo falta agregar lo del printer que lo vas pasando
   @Override
-  public AbstractSyntaxTree visit(AbstractSyntaxTree abstractSyntaxTree) {
+  public AbstractSyntaxTree visit(AbstractSyntaxTree abstractSyntaxTree) throws CompilationTimeException {
     return abstractSyntaxTree.accept2(this);
   }
   
   @Override
-  public AbstractSyntaxTree visitValueAssignation(ValueAssignationSyntaxBranch branch) {
+  public AbstractSyntaxTree visitValueAssignation(ValueAssignationSyntaxBranch branch) throws CompilationTimeException {
     VariableSyntaxLeaf variableSyntaxLeaf = (VariableSyntaxLeaf) visit(branch.left);
     LiteralSyntaxLeaf literalSyntaxLeaf = (LiteralSyntaxLeaf) visit(branch.right);
     

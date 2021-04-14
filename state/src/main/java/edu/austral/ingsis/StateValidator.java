@@ -41,7 +41,7 @@ public class StateValidator implements State {
     int currentLine = 0;
     while (file.hasNext()) {
       printer.print(currentLine + "/" + totalLines);
-      final List<TokenWrapper> tokenWrappers = lexer.analyseLexically(file.next().get());
+      final List<Token> tokenWrappers = lexer.analyseLexically(file.next().get());
       parser.analyseSintactically(tokenWrappers);
       currentLine++;
     }

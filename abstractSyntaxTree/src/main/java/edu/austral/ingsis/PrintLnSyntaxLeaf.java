@@ -78,7 +78,7 @@ public class PrintLnSyntaxLeaf extends AbstractSyntaxLeaf {
     }
 
     @Override
-    public AbstractSyntaxTree accept2(InterpreterVisitor visitor) {
+    public AbstractSyntaxTree accept2(InterpreterVisitor visitor) throws CompilationTimeException {
         return visitor.visitPrintLn(this);
     }
 

@@ -4,9 +4,9 @@ import edu.austral.ingsis.exception.CompilationTimeException;
 
 public interface InterpreterVisitor {
 
-    AbstractSyntaxTree visit(AbstractSyntaxTree abstractSyntaxTree);
+    AbstractSyntaxTree visit(AbstractSyntaxTree abstractSyntaxTree) throws CompilationTimeException;
     
-    AbstractSyntaxTree visitValueAssignation(ValueAssignationSyntaxBranch branch);
+    AbstractSyntaxTree visitValueAssignation(ValueAssignationSyntaxBranch branch) throws CompilationTimeException;
 
     VariableSyntaxLeaf visitTypeAssingation(TypeAssignationSyntaxBranch branch);
     

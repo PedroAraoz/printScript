@@ -112,7 +112,7 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch {
   }
   
   @Override
-  public AbstractSyntaxTree accept2(InterpreterVisitor visitor) {
+  public AbstractSyntaxTree accept2(InterpreterVisitor visitor) throws CompilationTimeException {
     return visitor.visitSumSub(this);
   }
 }
