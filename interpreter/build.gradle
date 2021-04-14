@@ -12,6 +12,9 @@ dependencies {
     implementation project(':variableRegister')
     implementation project(':printer')
     implementation 'junit:junit:4.12'
+//    todo mirar como mover esto solo para los tests
+    implementation project(':lexer')
+    implementation project(':fileGenerator')
 }
 
 group = 'edu.austral.ingsis'

@@ -71,4 +71,9 @@ public class ValueAssignationSyntaxBranch extends AbstractSyntaxBranch {
         right.accept(visitor);
         visitor.visitValueAssignation(this);
     }
+    
+    @Override
+    public AbstractSyntaxTree accept2(InterpreterVisitor visitor) {
+        return visitor.visitValueAssignation(this);
+    }
 }

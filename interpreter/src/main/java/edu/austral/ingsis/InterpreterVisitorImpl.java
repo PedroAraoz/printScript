@@ -1,22 +1,25 @@
 package edu.austral.ingsis;
 
+import java.util.Optional;
+
 public class InterpreterVisitorImpl implements InterpreterVisitor {
   
   private final VariableRegister variableRegister = new VariableRegister();
   
+  //todo falta agregar lo del printer que lo vas pasando
   @Override
   public AbstractSyntaxTree visit(AbstractSyntaxTree abstractSyntaxTree) {
-//        return abstractSyntaxTree.accept2(this);
-    return null;
+    return abstractSyntaxTree.accept2(this);
   }
   
   @Override
-  public void visitValueAssignation(ValueAssignationSyntaxBranch branch) {
+  public AbstractSyntaxTree visitValueAssignation(ValueAssignationSyntaxBranch branch) {
     VariableSyntaxLeaf variableSyntaxLeaf = (VariableSyntaxLeaf) visit(branch.left);
     LiteralSyntaxLeaf literalSyntaxLeaf = (LiteralSyntaxLeaf) visit(branch.right);
     
     // TODO conseguir el tipo del literal
     variableRegister.assignValueToVariable(variableSyntaxLeaf.getTokenWrapper().getValue(), literalSyntaxLeaf.getTokenWrapper().getValue());
+    return null; //todo esto esta raro
   }
   
   @Override
@@ -31,19 +34,37 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   
   @Override
   public LiteralSyntaxLeaf visitSumSub(SumSubOperationSyntaxBranch branch) {
-    final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
-    final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
-    final String answer;
+    final AbstractSyntaxTree l = visit(branch.left);
+    final AbstractSyntaxTree r = visit(branch.right);
+    final LiteralSyntaxLeaf left = smartCastToVariable(l);
+    final LiteralSyntaxLeaf right = smartCastToVariable(r);
     if (isNumber(left) && isNumber(right)) {
       //only case when Literal will come out as number
       final int intAnswer =
               Integer.parseInt(left.getValue()) + Integer.parseInt(right.getValue());
-      answer = Integer.toString(intAnswer);
+      final String answer = Integer.toString(intAnswer);
+      return getLiteralSyntaxLeaf(answer, Token.NUMBER_LITERAL_TOKEN);
     } else {
       //We can add them normally
-      answer = left.getValue() + right.getValue();
+      final String answer = left.getValue() + right.getValue();
+      return getLiteralSyntaxLeaf(answer, Token.STRING_LITERAL_TOKEN);
     }
-    return getLiteralSyntaxLeaf(answer, Token.NUMBER_LITERAL_TOKEN);
+    
+  }
+  
+  private LiteralSyntaxLeaf smartCastToVariable(AbstractSyntaxTree ast) {
+    if (ast.getTokenWrapper().getToken().equals(Token.VARIABLE_TOKEN)) {
+      final Optional<VariableInfo> optional = variableRegister.get(ast.getTokenWrapper().getValue());
+      if (optional.isPresent()) {
+        final VariableInfo vi = optional.get();
+        return getLiteralSyntaxLeaf(vi.getValue(), vi.getType());
+      } else {
+        //todo implement
+        throw new Error();
+      }
+    } else {
+      return (LiteralSyntaxLeaf) ast;
+    }
   }
   
   @Override
@@ -102,9 +123,15 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   }
   
   private boolean isNumber(LiteralSyntaxLeaf b) {
-    return b.tokenWrapper.getToken().getName().equals(TokenName.NUMBER_LITERAL);
+    return b.getTokenWrapper().getToken().getName().equals(TokenName.NUMBER_LITERAL);
   }
   private boolean isString(LiteralSyntaxLeaf b) {
     return b.tokenWrapper.getToken().getName().equals(TokenName.STRING_LITERAL);
   }
+  
+  
+  public void debug() {
+    System.out.println("asd");
+  }
 }
+//todo checkear que no puedas guardar un string en un int

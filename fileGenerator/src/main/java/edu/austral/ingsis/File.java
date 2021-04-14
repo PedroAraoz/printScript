@@ -6,8 +6,7 @@ import java.util.Scanner;
 
 public class File {
   
-  //todo cambiar file para que levante de a 1 linea a la vez en vez de que levante
-  //todo a memoria. Tambien hacer que sean sentencias en vez de lineas.
+  //todo checkear que las sentencias las calcule bien.!
   
   private final String endCharacter = ";";
   private final Scanner scanner;

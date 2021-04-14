@@ -12,11 +12,11 @@ public class StateExecuter implements State {
     private CLI cli;
     private final Lexer lexer;
     private final Parser parser;
-    private final Interpreter interpreter;
+    private final InterpreterVisitor interpreter;
     private final FileGenerator fileGenerator;
     private final StateFactory stateFactory;
 
-    public StateExecuter(Lexer lexer, Parser parser, Interpreter interpreter, FileGenerator fileGenerator, StateFactory stateFactory) {
+    public StateExecuter(Lexer lexer, Parser parser, InterpreterVisitor interpreter, FileGenerator fileGenerator, StateFactory stateFactory) {
         this.lexer = lexer;
         this.parser = parser;
         this.interpreter = interpreter;
@@ -43,26 +43,10 @@ public class StateExecuter implements State {
         List<String> all = new ArrayList<>();
         while (file.hasNext()) {
             final List<TokenWrapper> tokenWrappers = lexer.analyseLexically(file.next().get());
-            final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(tokenWrappers);
-//            final List<String> logs = interpreter.interpret(abstractSyntaxTree);
-//            all.addAll(logs);
+            final AbstractSyntaxTree ast = parser.analyseSintactically(tokenWrappers);
+            interpreter.visit(ast);
         }
-//        final List<List<TokenWrapper>> tokenWrappers = new ArrayList<>();
-//        while (file.hasNext()) {
-//            tokenWrappers.add(lexer.analyseLexically(file.next().get()));
-//        }
-//        List<AbstractSyntaxTree> abstractSyntaxTreeList = new ArrayList<>();
-//        for (List<TokenWrapper> t : tokenWrappers) {
-//            final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(t);
-//            abstractSyntaxTreeList.add(abstractSyntaxTree);
-//        }
-//        for (AbstractSyntaxTree ast : abstractSyntaxTreeList) {
-//            parser.analyseSemantically(ast);
-//        }
-//        for (AbstractSyntaxTree ast : abstractSyntaxTreeList) {
-//            final List<String> interpret = interpreter.interpret(ast);
-//            all.addAll(interpret);
-//        }
+        ((InterpreterVisitorImpl) interpreter).debug();
         return all;
     }
 

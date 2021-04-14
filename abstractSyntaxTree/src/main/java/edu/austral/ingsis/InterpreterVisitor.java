@@ -3,22 +3,22 @@ package edu.austral.ingsis;
 public interface InterpreterVisitor {
 
     AbstractSyntaxTree visit(AbstractSyntaxTree abstractSyntaxTree);
-
-    void visitValueAssignation(ValueAssignationSyntaxBranch branch);
+    
+    AbstractSyntaxTree visitValueAssignation(ValueAssignationSyntaxBranch branch);
 
     VariableSyntaxLeaf visitTypeAssingation(TypeAssignationSyntaxBranch branch);
-
-    void visitSumSub(SumSubOperationSyntaxBranch branch);
+    
+    LiteralSyntaxLeaf visitSumSub(SumSubOperationSyntaxBranch branch);
 
     LiteralSyntaxLeaf visitMultDiv(MultDivOperationSyntaxBranch branch);
-
-    void visitNumberType(NumberTypeSyntaxLeaf leaf);
-
-    void visitStringType(StringTypeSyntaxLeaf leaf);
-
-    void visitVariable(VariableSyntaxLeaf leaf);
-
-    void visitLiteral(LiteralSyntaxLeaf leaf);
-
-    void visitEmpty(EmptySyntaxLeaf leaf);
+    
+    NumberTypeSyntaxLeaf visitNumberType(NumberTypeSyntaxLeaf leaf);
+    
+    StringTypeSyntaxLeaf visitStringType(StringTypeSyntaxLeaf leaf);
+    
+    VariableSyntaxLeaf visitVariable(VariableSyntaxLeaf leaf);
+    
+    LiteralSyntaxLeaf visitLiteral(LiteralSyntaxLeaf leaf);
+    
+    EmptySyntaxLeaf visitEmpty(EmptySyntaxLeaf leaf);
 }

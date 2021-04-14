@@ -16,7 +16,7 @@ public class CLI {
     Lexer lexer = new LexerImpl();
     VariableRegister variableRegister = new VariableRegister();
     Parser parser = new ParserImpl();
-    Interpreter interpreter = new InterpreterImpl();
+    final InterpreterVisitorImpl interpreter = new InterpreterVisitorImpl();
     FileGenerator fileGenerator = new NormalFileGenerator();
     final StateFactory stateFactory = new StateFactory(this, lexer, parser, interpreter, fileGenerator);
     state = stateFactory.get("execute"); //default

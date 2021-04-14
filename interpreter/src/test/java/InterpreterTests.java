@@ -1,8 +1,27 @@
-//import edu.austral.ingsis.*;
-//import edu.austral.ingsis.exception.CompilationTimeException;
-//import org.junit.Test;
-//
-//public class InterpreterTests {
+import edu.austral.ingsis.*;
+import edu.austral.ingsis.exception.CompilationTimeException;
+import org.junit.Test;
+
+import java.io.FileNotFoundException;
+import java.util.List;
+
+public class InterpreterTests {
+  @Test
+  public void test_001() throws CompilationTimeException, FileNotFoundException {
+    final InterpreterVisitorImpl i = new InterpreterVisitorImpl();
+    final Lexer lexer = new LexerImpl();
+    final Parser parser = new ParserImpl();
+    final FileGenerator generator= new NormalFileGenerator();
+    final File open = generator.open("/home/pedro/projects/printScript/interpreter/src/test/resources/myCode.txt");
+    while (open.hasNext()) {
+      final CodeLine codeLine = open.next().get();
+      final List<TokenWrapper> tokenWrappers = lexer.analyseLexically(codeLine);
+      final AbstractSyntaxTree ast = parser.analyseSintactically(tokenWrappers);
+      i.visit(ast);
+    }
+    i.debug();
+  }
+}
 //
 //    @Test
 //    public void interpretationOfAnEmptyASTShouldReturnAnEmptyList() {

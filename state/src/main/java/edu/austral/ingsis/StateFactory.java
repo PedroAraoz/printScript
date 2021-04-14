@@ -4,7 +4,7 @@ public class StateFactory {
   
   private final State execute, syntax, semantic;
   
-  public StateFactory(CLI cli, Lexer lexer, Parser parser, Interpreter interpreter, FileGenerator fileGenerator) {
+  public StateFactory(CLI cli, Lexer lexer, Parser parser, InterpreterVisitor interpreter, FileGenerator fileGenerator) {
     execute = new StateExecuter(lexer, parser, interpreter, fileGenerator, this);
     syntax = new SyntaxValidator(lexer, parser, fileGenerator, this);
     semantic = new StateExecuter(lexer, parser, interpreter, fileGenerator, this);

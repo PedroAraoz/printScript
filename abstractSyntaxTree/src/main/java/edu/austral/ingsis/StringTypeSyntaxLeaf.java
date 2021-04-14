@@ -57,4 +57,9 @@ public class StringTypeSyntaxLeaf extends AbstractSyntaxLeaf {
   public void accept(Visitor visitor) {
     visitor.visitStringType(this);
   }
+  
+  @Override
+  public AbstractSyntaxTree accept2(InterpreterVisitor visitor) {
+    return visitor.visitStringType(this);
+  }
 }

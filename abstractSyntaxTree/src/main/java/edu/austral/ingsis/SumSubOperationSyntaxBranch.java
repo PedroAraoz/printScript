@@ -95,4 +95,9 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch {
     right.accept(visitor);
     visitor.visitSumSub(this);
   }
+  
+  @Override
+  public AbstractSyntaxTree accept2(InterpreterVisitor visitor) {
+    return visitor.visitSumSub(this);
+  }
 }

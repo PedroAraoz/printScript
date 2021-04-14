@@ -57,4 +57,9 @@ public class NumberTypeSyntaxLeaf extends AbstractSyntaxLeaf {
   public void accept(Visitor visitor) {
     visitor.visitNumberType(this);
   }
+  
+  @Override
+  public AbstractSyntaxTree accept2(InterpreterVisitor visitor) {
+    return visitor.visitNumberType(this);
+  }
 }
