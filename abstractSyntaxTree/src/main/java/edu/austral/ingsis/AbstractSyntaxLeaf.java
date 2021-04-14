@@ -8,12 +8,12 @@ public abstract class AbstractSyntaxLeaf implements AbstractSyntaxTree {
     return token.getValue();
   }
   
-  public void setTokenWrapper(Token token) {
+  public void setToken(Token token) {
     this.token = token;
   }
 
   @Override
-  public Token getTokenWrapper() {
+  public Token getToken() {
     return token;
   }
 

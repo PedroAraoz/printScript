@@ -52,6 +52,21 @@ public class EmptySyntaxLeaf extends AbstractSyntaxLeaf {
   }
 
   @Override
+  public AbstractSyntaxTree addPrintLnSyntaxLeaf(PrintLnSyntaxLeaf leaf) {
+    return leaf;
+  }
+
+  @Override
+  public AbstractSyntaxTree addLeftParenthesisSyntaxLeaf(LeftParenthesisSyntaxLeaf leaf) {
+    return leaf;
+  }
+
+  @Override
+  public AbstractSyntaxTree addRightParenthesisSyntaxLeaf(RightParenthesisSyntaxLeaf leaf) {
+    return leaf;
+  }
+
+  @Override
   public void accept(Visitor visitor) {
     visitor.visitEmpty(this);
   }

@@ -61,6 +61,12 @@ public class TokenIdentifier {
                     Pattern.compile("('[a-zA-Z]+')|(\"[a-zA-Z]+\")"));
     public static TokenIdentifier variableTokenIdentifier =
             new TokenIdentifier(TokenName.VARIABLE, Pattern.compile(""));
+    public static TokenIdentifier printLnTokenIdentifier =
+            new TokenIdentifier(TokenName.PRINT, Pattern.compile("printLn"));
+    public static TokenIdentifier leftParenthesisIdentifier =
+            new TokenIdentifier(TokenName.LEFT_PARENTHESIS, Pattern.compile("\\("));
+    public static TokenIdentifier rightParenthesisIdentifier =
+            new TokenIdentifier(TokenName.RIGHT_PARENTHESIS, Pattern.compile("\\)"));
 
     public static List<TokenIdentifier> getAllTokens() {
         List<TokenIdentifier> tokenIdentifiers = new ArrayList<>();
@@ -74,6 +80,9 @@ public class TokenIdentifier {
         tokenIdentifiers.add(divOperationTokenIdentifier);
         tokenIdentifiers.add(numberTypeTokenIdentifier);
         tokenIdentifiers.add(stringTypeTokenIdentifier);
+        tokenIdentifiers.add(printLnTokenIdentifier);
+        tokenIdentifiers.add(leftParenthesisIdentifier);
+        tokenIdentifiers.add(rightParenthesisIdentifier);
         return tokenIdentifiers;
     }
 }

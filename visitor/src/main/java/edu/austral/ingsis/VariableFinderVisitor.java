@@ -46,7 +46,7 @@ public class VariableFinderVisitor implements Visitor {
 
     @Override
     public void visitVariable(VariableSyntaxLeaf leaf) {
-        variable = Optional.of(leaf.getTokenWrapper());
+        variable = Optional.of(leaf.getToken());
     }
 
     @Override
@@ -56,6 +56,21 @@ public class VariableFinderVisitor implements Visitor {
 
     @Override
     public void visitEmpty(EmptySyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitPrintLn(PrintLnSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitRightParenthesis(RightParenthesisSyntaxLeaf leaf) {
 
     }
 }

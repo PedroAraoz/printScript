@@ -21,4 +21,10 @@ public interface Visitor {
   void visitLiteral(LiteralSyntaxLeaf leaf);
 
   void visitEmpty(EmptySyntaxLeaf leaf);
+
+  void visitPrintLn(PrintLnSyntaxLeaf leaf);
+
+  void visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf);
+
+  void visitRightParenthesis(RightParenthesisSyntaxLeaf leaf);
 }

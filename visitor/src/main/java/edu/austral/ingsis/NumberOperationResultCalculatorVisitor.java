@@ -33,7 +33,7 @@ public class NumberOperationResultCalculatorVisitor implements Visitor {
 
     @Override
     public void visitSumSub(SumSubOperationSyntaxBranch branch) {
-        if (branch.getTokenWrapper().getToken().equals(TokenIdentifier.sumOperationTokenIdentifier)) {
+        if (branch.getToken().getToken().equals(TokenIdentifier.sumOperationTokenIdentifier)) {
             Double val1 = accumulator.pop();
             Double val2 = accumulator.pop();
             Double result = val2 + val1;
@@ -48,7 +48,7 @@ public class NumberOperationResultCalculatorVisitor implements Visitor {
 
     @Override
     public void visitMultDiv(MultDivOperationSyntaxBranch branch) {
-        if (branch.getTokenWrapper().getToken().equals(TokenIdentifier.multOperationTokenIdentifier)) {
+        if (branch.getToken().getToken().equals(TokenIdentifier.multOperationTokenIdentifier)) {
             Double val1 = accumulator.pop();
             Double val2 = accumulator.pop();
             Double result = val2 * val1;
@@ -73,18 +73,33 @@ public class NumberOperationResultCalculatorVisitor implements Visitor {
 
     @Override
     public void visitVariable(VariableSyntaxLeaf leaf) {
-        String value = variableRegister.get(leaf.getTokenWrapper().getValue()).get().getValue();
+        String value = variableRegister.get(leaf.getToken().getValue()).get().getValue();
         accumulator.push(Double.parseDouble(value));
     }
 
     @Override
     public void visitLiteral(LiteralSyntaxLeaf leaf) {
-        String value = leaf.getTokenWrapper().getValue();
+        String value = leaf.getToken().getValue();
         accumulator.push(Double.parseDouble(value));
     }
 
     @Override
     public void visitEmpty(EmptySyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitPrintLn(PrintLnSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitRightParenthesis(RightParenthesisSyntaxLeaf leaf) {
 
     }
 }

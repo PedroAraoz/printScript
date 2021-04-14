@@ -314,6 +314,37 @@ public class ParserTests {
     System.out.println("ASD");
   }
 
+  @Test
+  public void testParenthesis() throws CompilationTimeException {
+
+    final Parser parser = new ParserImpl();
+    final List<Token> list = new ArrayList<>();
+    list.add(new Token(TokenIdentifier.leftParenthesisIdentifier, 0, 0, 0, "("));
+    list.add(new Token(TokenIdentifier.variableTokenIdentifier, 0, 0, 0, "x"));
+    list.add(new Token(TokenIdentifier.sumOperationTokenIdentifier, 0, 0, 0, "+"));
+    list.add(new Token(TokenIdentifier.numberLiteralTokenIdentifier, 0, 0, 0, "1"));
+    list.add(new Token(TokenIdentifier.rightParenthesisIdentifier, 0, 0, 0, ")"));
+    list.add(new Token(TokenIdentifier.semicolonTokenIdentifier, 0, 0, 0, ";"));
+    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
+    System.out.println("ASD");
+  }
+
+  @Test
+  public void testPrintLn() throws CompilationTimeException {
+
+    final Parser parser = new ParserImpl();
+    final List<Token> list = new ArrayList<>();
+    list.add(new Token(TokenIdentifier.printLnTokenIdentifier, 0, 0, 0, "PrintLn"));
+    list.add(new Token(TokenIdentifier.leftParenthesisIdentifier, 0, 0, 0, "("));
+    list.add(new Token(TokenIdentifier.variableTokenIdentifier, 0, 0, 0, "x"));
+    list.add(new Token(TokenIdentifier.sumOperationTokenIdentifier, 0, 0, 0, "+"));
+    list.add(new Token(TokenIdentifier.numberLiteralTokenIdentifier, 0, 0, 0, "1"));
+    list.add(new Token(TokenIdentifier.rightParenthesisIdentifier, 0, 0, 0, ")"));
+    list.add(new Token(TokenIdentifier.semicolonTokenIdentifier, 0, 0, 0, ";"));
+    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
+    System.out.println("ASD");
+  }
+
 //  @Test(expected = CompilationTimeException.class)
 //  public void validationVariablesShouldNotBeInitializedTwice() throws CompilationTimeException {
 //

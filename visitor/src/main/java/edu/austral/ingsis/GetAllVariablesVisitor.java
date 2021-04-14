@@ -48,7 +48,7 @@ public class GetAllVariablesVisitor implements Visitor {
 
     @Override
     public void visitVariable(VariableSyntaxLeaf leaf) {
-        variables.add(leaf.getTokenWrapper());
+        variables.add(leaf.getToken());
     }
 
     @Override
@@ -58,6 +58,21 @@ public class GetAllVariablesVisitor implements Visitor {
 
     @Override
     public void visitEmpty(EmptySyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitPrintLn(PrintLnSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitRightParenthesis(RightParenthesisSyntaxLeaf leaf) {
 
     }
 }

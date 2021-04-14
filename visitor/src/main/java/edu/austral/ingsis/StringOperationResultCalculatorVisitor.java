@@ -55,18 +55,33 @@ public class StringOperationResultCalculatorVisitor implements Visitor {
 
     @Override
     public void visitVariable(VariableSyntaxLeaf leaf) {
-        String value = variableRegister.get(leaf.getTokenWrapper().getValue()).get().getValue();
+        String value = variableRegister.get(leaf.getToken().getValue()).get().getValue();
         accumulator.push(value);
     }
 
     @Override
     public void visitLiteral(LiteralSyntaxLeaf leaf) {
-        String value = leaf.getTokenWrapper().getValue();
+        String value = leaf.getToken().getValue();
         accumulator.push(value);
     }
 
     @Override
     public void visitEmpty(EmptySyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitPrintLn(PrintLnSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitRightParenthesis(RightParenthesisSyntaxLeaf leaf) {
 
     }
 }

@@ -4,9 +4,9 @@ import edu.austral.ingsis.exception.CompilationTimeException;
 
 public interface AbstractSyntaxTree extends Visitable {
 
-  void setTokenWrapper(Token token);
+  void setToken(Token token);
 
-  Token getTokenWrapper();
+  Token getToken();
 
   AbstractSyntaxTree add(AbstractSyntaxTree tree) throws CompilationTimeException;
 
@@ -27,6 +27,12 @@ public interface AbstractSyntaxTree extends Visitable {
   AbstractSyntaxTree addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) throws CompilationTimeException;
 
   AbstractSyntaxTree addEmptySyntaxLeaf(EmptySyntaxLeaf leaf);
+
+  AbstractSyntaxTree addPrintLnSyntaxLeaf(PrintLnSyntaxLeaf leaf) throws CompilationTimeException;
+
+  AbstractSyntaxTree addLeftParenthesisSyntaxLeaf(LeftParenthesisSyntaxLeaf leaf);
+
+  AbstractSyntaxTree addRightParenthesisSyntaxLeaf(RightParenthesisSyntaxLeaf leaf);
 
   boolean isEmpty();
 }

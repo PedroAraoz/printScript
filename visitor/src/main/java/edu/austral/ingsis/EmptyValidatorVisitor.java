@@ -1,7 +1,5 @@
 package edu.austral.ingsis;
 
-import edu.austral.ingsis.*;
-
 public class EmptyValidatorVisitor implements Visitor{
 
     private boolean foundEmpty = false;
@@ -54,6 +52,21 @@ public class EmptyValidatorVisitor implements Visitor{
     @Override
     public void visitEmpty(EmptySyntaxLeaf leaf) {
         foundEmpty = true;
+    }
+
+    @Override
+    public void visitPrintLn(PrintLnSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitRightParenthesis(RightParenthesisSyntaxLeaf leaf) {
+
     }
 
     public boolean foundEmpty() {

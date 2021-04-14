@@ -24,11 +24,14 @@ public class TokenToASTConverter {
     this.map.put(TokenIdentifier.numberLiteralTokenIdentifier, new LiteralCommand());
     this.map.put(TokenIdentifier.stringLiteralTokenIdentifier, new LiteralCommand());
     this.map.put(TokenIdentifier.variableTokenIdentifier, new VariableCommand());
+    this.map.put(TokenIdentifier.printLnTokenIdentifier, new PrintLnCommand());
+    this.map.put(TokenIdentifier.leftParenthesisIdentifier, new LeftParenthesisCommand());
+    this.map.put(TokenIdentifier.rightParenthesisIdentifier, new RightParenthesisCommand());
   }
 
   public AbstractSyntaxTree convert(Token token) {
     final AbstractSyntaxTree tree = map.get(token.getToken()).build();
-    tree.setTokenWrapper(token);
+    tree.setToken(token);
     return tree;
   }
 }

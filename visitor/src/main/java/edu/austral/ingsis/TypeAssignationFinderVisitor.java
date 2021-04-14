@@ -1,7 +1,5 @@
 package edu.austral.ingsis;
 
-import edu.austral.ingsis.*;
-
 import java.util.Optional;
 
 public class TypeAssignationFinderVisitor implements Visitor {
@@ -59,6 +57,21 @@ public class TypeAssignationFinderVisitor implements Visitor {
 
     @Override
     public void visitEmpty(EmptySyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitPrintLn(PrintLnSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitRightParenthesis(RightParenthesisSyntaxLeaf leaf) {
 
     }
 }

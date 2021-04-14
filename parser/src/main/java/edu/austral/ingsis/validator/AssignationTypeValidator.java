@@ -48,7 +48,7 @@ public class AssignationTypeValidator implements Validator {
                 // Should check declaration type = assignation type
 
                 // Check that declaration type is the same as all of the rest
-                if (!typeAssignationFinderVisitor.getTypeAssignation().get().getTokenWrapper().getToken().equals(assignationType)) {
+                if (!typeAssignationFinderVisitor.getTypeAssignation().get().getToken().getToken().equals(assignationType)) {
                     throw new CompilationTimeException("Assignation type does not match declaration type in line " + variable.getLine() + " in column " + variable.getStartPos());
                 }
 
@@ -120,7 +120,7 @@ public class AssignationTypeValidator implements Validator {
         List<Token> variables = getAllVariablesVisitor.getAllVariables();
 
         if (branch.isPresent()) {
-            String leftVarName = branch.get().getLeft().getTokenWrapper().getValue();
+            String leftVarName = branch.get().getLeft().getToken().getValue();
             variables = variables.stream().filter(tw -> !tw.getValue().equals(leftVarName)).collect(Collectors.toList());
         }
 

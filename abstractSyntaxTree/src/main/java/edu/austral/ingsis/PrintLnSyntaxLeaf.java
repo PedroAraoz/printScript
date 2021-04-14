@@ -2,62 +2,53 @@ package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
 
-public class ValueAssignationSyntaxBranch extends AbstractSyntaxBranch {
+public class PrintLnSyntaxLeaf extends AbstractSyntaxLeaf {
+
+    private AbstractSyntaxTree innerExpression;
 
     @Override
     public AbstractSyntaxTree add(AbstractSyntaxTree tree) throws CompilationTimeException {
-        return tree.addValueAsignationSyntaxTree(this);
+        return tree.addPrintLnSyntaxLeaf(this);
     }
 
     @Override
     public AbstractSyntaxTree addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) throws CompilationTimeException {
-        throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+        return null;
     }
 
     @Override
     public AbstractSyntaxTree addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) throws CompilationTimeException {
-        addLeft(branch);
-        return this;
+        return null;
     }
 
     @Override
     public AbstractSyntaxTree addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) throws CompilationTimeException {
-
-        addRight(branch);
-        return this;
+        return null;
     }
 
     @Override
     public AbstractSyntaxTree addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) throws CompilationTimeException {
-
-        addRight(branch);
-        return this;
+        return null;
     }
 
     @Override
     public AbstractSyntaxTree addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) throws CompilationTimeException {
-
-        addLeft(leaf);
-        return this;
+        return null;
     }
 
     @Override
     public AbstractSyntaxTree addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) throws CompilationTimeException {
-
-        addLeft(leaf);
-        return this;
+        return null;
     }
 
     @Override
     public AbstractSyntaxTree addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) throws CompilationTimeException {
-        addLeft(leaf);
-        return this;
+        return null;
     }
 
     @Override
     public AbstractSyntaxTree addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) throws CompilationTimeException {
-        addRight(leaf);
-        return this;
+        return null;
     }
 
     @Override
@@ -72,7 +63,8 @@ public class ValueAssignationSyntaxBranch extends AbstractSyntaxBranch {
 
     @Override
     public AbstractSyntaxTree addLeftParenthesisSyntaxLeaf(LeftParenthesisSyntaxLeaf leaf) {
-        return null;
+        this.innerExpression = leaf.getResultingExpression();
+        return this;
     }
 
     @Override
@@ -82,8 +74,6 @@ public class ValueAssignationSyntaxBranch extends AbstractSyntaxBranch {
 
     @Override
     public void accept(Visitor visitor) {
-        left.accept(visitor);
-        right.accept(visitor);
-        visitor.visitValueAssignation(this);
+        visitor.visitPrintLn(this);
     }
 }

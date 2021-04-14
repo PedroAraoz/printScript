@@ -69,6 +69,21 @@ public class TypeAssignationSyntaxBranch extends AbstractSyntaxBranch {
   }
 
   @Override
+  public AbstractSyntaxTree addPrintLnSyntaxLeaf(PrintLnSyntaxLeaf leaf) {
+    return null;
+  }
+
+  @Override
+  public AbstractSyntaxTree addLeftParenthesisSyntaxLeaf(LeftParenthesisSyntaxLeaf leaf) {
+    return null;
+  }
+
+  @Override
+  public AbstractSyntaxTree addRightParenthesisSyntaxLeaf(RightParenthesisSyntaxLeaf leaf) {
+    return null;
+  }
+
+  @Override
   public void accept(Visitor visitor) {
     left.accept(visitor);
     right.accept(visitor);

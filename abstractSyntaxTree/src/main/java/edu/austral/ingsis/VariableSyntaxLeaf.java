@@ -54,6 +54,21 @@ public class VariableSyntaxLeaf extends AbstractSyntaxLeaf {
   }
 
   @Override
+  public AbstractSyntaxTree addPrintLnSyntaxLeaf(PrintLnSyntaxLeaf leaf) {
+    return null;
+  }
+
+  @Override
+  public AbstractSyntaxTree addLeftParenthesisSyntaxLeaf(LeftParenthesisSyntaxLeaf leaf) {
+    return null;
+  }
+
+  @Override
+  public AbstractSyntaxTree addRightParenthesisSyntaxLeaf(RightParenthesisSyntaxLeaf leaf) {
+    return null;
+  }
+
+  @Override
   public void accept(Visitor visitor) {
     visitor.visitVariable(this);
   }

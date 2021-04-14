@@ -110,6 +110,53 @@ public class LexerTests {
     }
   }
 
+  @Test
+  public void parenthesisTest() {
+    List<CodeLine> codeLineList = new ArrayList<>();
+    codeLineList.add(new CodeLine("( x: string = 'hola' );", 0));
+    final List<Token> expected = new ArrayList<>();
+    expected.add(new Token(TokenIdentifier.leftParenthesisIdentifier, 0, 0, 0, "("));
+    expected.add(new Token(TokenIdentifier.variableTokenIdentifier, 0, 0, 0, "x"));
+    expected.add(new Token(TokenIdentifier.typeAssignationTokenIdentifier, 0, 0, 0, ":"));
+    expected.add(new Token(TokenIdentifier.stringTypeTokenIdentifier, 0, 0, 0, "string"));
+    expected.add(new Token(TokenIdentifier.valueAssignationTokenIdentifier, 0, 0, 0, "="));
+    expected.add(new Token(TokenIdentifier.stringLiteralTokenIdentifier, 0, 0, 0, "hola"));
+    expected.add(new Token(TokenIdentifier.rightParenthesisIdentifier, 0, 0, 0, ")"));
+    expected.add(new Token(TokenIdentifier.semicolonTokenIdentifier, 0, 0, 0, ";"));
+    LexerImpl lexer = new LexerImpl();
+    final List<Token> tokens = lexer.analyseLexically(codeLineList.get(0));
+
+    for (int i = 0; i < expected.size(); i++) {
+      final Token e = expected.get(i);
+      final Token a = tokens.get(i);
+      assertEquals(e.toString(), a.toString());
+      assertEquals(e.getLine(), a.getLine());
+      assertEquals(e.getValue(), a.getValue());
+    }
+  }
+
+  @Test
+  public void printLnTest() {
+    List<CodeLine> codeLineList = new ArrayList<>();
+    codeLineList.add(new CodeLine("printLn('hola');", 0));
+    final List<Token> expected = new ArrayList<>();
+    expected.add(new Token(TokenIdentifier.printLnTokenIdentifier, 0, 0, 0, "printLn"));
+    expected.add(new Token(TokenIdentifier.leftParenthesisIdentifier, 0, 0, 0, "("));
+    expected.add(new Token(TokenIdentifier.stringLiteralTokenIdentifier, 0, 0, 0, "hola"));
+    expected.add(new Token(TokenIdentifier.rightParenthesisIdentifier, 0, 0, 0, ")"));
+    expected.add(new Token(TokenIdentifier.semicolonTokenIdentifier, 0, 0, 0, ";"));
+    LexerImpl lexer = new LexerImpl();
+    final List<Token> tokens = lexer.analyseLexically(codeLineList.get(0));
+
+    for (int i = 0; i < expected.size(); i++) {
+      final Token e = expected.get(i);
+      final Token a = tokens.get(i);
+      assertEquals(e.toString(), a.toString());
+      assertEquals(e.getLine(), a.getLine());
+      assertEquals(e.getValue(), a.getValue());
+    }
+  }
+
   //  @Test
   //  public void aWeirdCase() {
   //    List<CodeLine> codeLineList = new ArrayList<>();

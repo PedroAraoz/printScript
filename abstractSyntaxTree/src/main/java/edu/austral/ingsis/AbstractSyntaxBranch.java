@@ -12,7 +12,7 @@ public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
     return token.getValue();
   }
   
-  public void setTokenWrapper(Token token) {
+  public void setToken(Token token) {
     this.token = token;
   }
 
@@ -21,7 +21,7 @@ public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
   }
 
   @Override
-  public Token getTokenWrapper() {
+  public Token getToken() {
     return token;
   }
 

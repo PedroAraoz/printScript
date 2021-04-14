@@ -23,7 +23,7 @@ public class LexerImpl implements Lexer {
     if (s.length() > 0) dumpVarOrLit(s);
 
     while (dumper.hasNext()) {
-      // Create TokenWrapper. Add extra information needed
+      // Create Token Add extra information needed
       final Tuple t = dumper.pop();
       endPos = startPos + t.getString().length();
       result.add(new Token(t.getToken(), line.getRow(), startPos, endPos, t.getString()));
