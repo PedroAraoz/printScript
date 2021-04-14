@@ -2,7 +2,6 @@ package edu.austral.ingsis;
 
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ public class FileTests {
   }
 
   @Test
-  public void File_ShouldReturnContentInCodeLines() throws FileNotFoundException {
+  public void File_ShouldReturnContentInCodeLines() throws IOException {
     File f = new File("src/test/resources/test.txt");
     List<CodeLine> result = new ArrayList<>();
     List<CodeLine> expected = new ArrayList<>();
@@ -33,7 +32,7 @@ public class FileTests {
   }
 
   @Test
-  public void NormalFileGeneratorShouldReturnFile() throws FileNotFoundException {
+  public void NormalFileGeneratorShouldReturnFile() throws IOException {
     final String path = "src/test/resources/test.txt";
     final NormalFileGenerator normalFileGenerator = new NormalFileGenerator();
     final File generatedFile = normalFileGenerator.open(path);

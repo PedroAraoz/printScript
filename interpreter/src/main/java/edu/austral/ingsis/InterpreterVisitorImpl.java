@@ -1,11 +1,16 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.exception.CompilationTimeException;
+
 import java.util.Optional;
 
 public class InterpreterVisitorImpl implements InterpreterVisitor {
   
   private final VariableRegister variableRegister = new VariableRegister();
-  
+  private final Printer printer;
+  public InterpreterVisitorImpl(Printer printer) {
+    this.printer = printer;
+  }
   //todo falta agregar lo del printer que lo vas pasando
   @Override
   public AbstractSyntaxTree visit(AbstractSyntaxTree abstractSyntaxTree) {
@@ -33,7 +38,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   }
   
   @Override
-  public LiteralSyntaxLeaf visitSumSub(SumSubOperationSyntaxBranch branch) {
+  public LiteralSyntaxLeaf visitSumSub(SumSubOperationSyntaxBranch branch) throws CompilationTimeException {
     final AbstractSyntaxTree l = visit(branch.left);
     final AbstractSyntaxTree r = visit(branch.right);
     final LiteralSyntaxLeaf left = smartCastToVariable(l);
@@ -52,15 +57,15 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     
   }
   
-  private LiteralSyntaxLeaf smartCastToVariable(AbstractSyntaxTree ast) {
+  private LiteralSyntaxLeaf smartCastToVariable(AbstractSyntaxTree ast) throws CompilationTimeException {
     if (ast.getToken().getTokenIdentifier().equals(TokenIdentifier.VARIABLE_TOKEN)) {
       final Optional<VariableInfo> optional = variableRegister.get(ast.getToken().getValue());
       if (optional.isPresent()) {
         final VariableInfo vi = optional.get();
         return getLiteralSyntaxLeaf(vi.getValue(), vi.getType());
       } else {
-        //todo implement
-        throw new Error();
+        
+        throw interpreterError("TODO ADD FILE", ast.getToken(), "Variable was not initialized"); //todo add file
       }
     } else {
       return (LiteralSyntaxLeaf) ast;
@@ -68,7 +73,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   }
   
   @Override
-  public LiteralSyntaxLeaf visitMultDiv(MultDivOperationSyntaxBranch branch) {
+  public LiteralSyntaxLeaf visitMultDiv(MultDivOperationSyntaxBranch branch) throws CompilationTimeException {
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
     int answer;
@@ -83,8 +88,9 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
       }
       return getLiteralSyntaxLeaf(Integer.toString(answer), TokenIdentifier.NUMBER_TYPE_TOKEN);
     } else {
-      //todo tirar error
-      throw new Error();
+      final Token t = !isNumber(left) ?
+              left.getToken() : right.getToken();
+      throw interpreterError("TODO ADD FILE", t, "Must be number"); //todo add file
     }
   }
   
@@ -114,7 +120,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   }
 
   @Override
-  public EmptySyntaxLeaf visitPrintLn(PrintLnSyntaxLeaf leaf) {
+  public EmptySyntaxLeaf visitPrintLn(PrintLnSyntaxLeaf leaf) throws CompilationTimeException {
     AbstractSyntaxTree expression = leaf.getExpression();
     LiteralSyntaxLeaf result = smartCastToVariable(visit(expression));
     // TODO terminar
@@ -148,9 +154,21 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   private boolean isString(LiteralSyntaxLeaf b) {
     return b.token.getTokenIdentifier().getName().equals(TokenName.STRING_LITERAL);
   }
-
+  
+  private CompilationTimeException interpreterError(String file, Token token, String message) {
+    return interpreterError(file, token.getLine(), token.getStartPos(), token.getEndPos(), message);
+  }
+  private CompilationTimeException interpreterError(String file, int line, int from, int to, String text) {
+    final String message = "On File: " + file  + "\n" +
+            "line: " + line + "\n" +
+            "from: " + from + " to: " + to + "\n" +
+            "message: " + text;
+    return new CompilationTimeException(message);
+  }
+  
+  
   public void debug() {
-    System.out.println("asd");
+    System.out.println("debugging");
   }
 }
 //todo checkear que no puedas guardar un string en un int

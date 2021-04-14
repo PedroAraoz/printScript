@@ -12,12 +12,20 @@ public class File {
   private final Scanner scanner;
   private int count = 0;
   private String buffer = "";
-  
+  private int lines;
   public File(String path) throws FileNotFoundException {
+    calculateLines(path);
     final java.io.File file = new java.io.File(path);
     scanner = new Scanner(file);
   }
-
+  
+  private void calculateLines(String path) throws FileNotFoundException {
+    java.io.File f = new java.io.File(path);
+    Scanner s = new Scanner(f);
+    lines = (int) s.findAll(endCharacter).count() - 1;
+    s.close();
+  }
+  
   public boolean hasNext() {
     if (scanner.hasNext()) return true;
     scanner.close();
@@ -39,5 +47,7 @@ public class File {
     }
     return Optional.empty();
   }
-  
+  public int getLines() {
+    return lines;
+  }
 }

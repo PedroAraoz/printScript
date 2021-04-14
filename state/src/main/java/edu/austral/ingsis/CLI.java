@@ -3,23 +3,20 @@ package edu.austral.ingsis;
 import edu.austral.ingsis.exception.CompilationTimeException;
 
 import java.io.FileNotFoundException;
-import java.util.List;
 import java.util.Scanner;
 
 public class CLI {
   private State state;
   private final Printer printer;
   
-  public CLI() {
+  public CLI(Printer printer) {
     //todo probablemente cambiar esto
-    printer = new CLIPrinter();
+    this.printer = printer;
     Lexer lexer = new LexerImpl();
-    VariableRegister variableRegister = new VariableRegister();
     Parser parser = new ParserImpl();
-    final InterpreterVisitorImpl interpreter = new InterpreterVisitorImpl();
+    final InterpreterVisitorImpl interpreter = new InterpreterVisitorImpl(printer);
     FileGenerator fileGenerator = new NormalFileGenerator();
-    final StateFactory stateFactory = new StateFactory(this, lexer, parser, interpreter, fileGenerator);
-    state = stateFactory.get("execute"); //default
+    final StateFactory stateFactory = new StateFactory(this, lexer, parser, interpreter, fileGenerator, printer);
   }
 
   public void changeState(State state) {
@@ -31,24 +28,15 @@ public class CLI {
     final Scanner scanner = new Scanner(System.in);
     String message = "";
     String welcomeMessage = "please type\n" +
-            "<mode> <filePath>\n>";
-    print(welcomeMessage);
+            "<mode> <filePath>";
+    printer.print(welcomeMessage);
     while (!message.equals("exit")) {
-//      message = scanner.nextLine().trim().toLowerCase();
-      message = "execute state/src/main/resources/test.txt";
+      printer.print(">");
+      message = scanner.nextLine().trim().toLowerCase();
+//      message = "execute state/src/main/resources/test.txt";
       final String[] args = message.split(" ");
-      if (args.length != 2) throw new RuntimeException("AAAAA"); //todo implement mejor
-      //todo por algun lugar mirar que este bien armando con mode filepath
-      final List<String> logs = state.run(args);
-      print(logs);
+      if (args.length < 2) throw new RuntimeException("Two arguments are needed"); //todo implement mejor
+      state.run(args);
     }
-  }
-  
-  public void print(String s) {
-    printer.print(s);
-  }
-  
-  public void print(List<String> strings) {
-    strings.forEach(this::print);
   }
 }

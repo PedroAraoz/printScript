@@ -2,20 +2,19 @@ package edu.austral.ingsis;
 
 public class StateFactory {
   
-  private final State execute, syntax, semantic;
+  private final State execute, validate;
   
-  public StateFactory(CLI cli, Lexer lexer, Parser parser, InterpreterVisitor interpreter, FileGenerator fileGenerator) {
-    execute = new StateExecuter(lexer, parser, interpreter, fileGenerator, this);
-    syntax = new SyntaxValidator(lexer, parser, fileGenerator, this);
-    semantic = new StateExecuter(lexer, parser, interpreter, fileGenerator, this);
+  public StateFactory(CLI cli, Lexer lexer, Parser parser, InterpreterVisitor interpreter, FileGenerator fileGenerator, Printer printer) {
+    execute = new StateExecuter(lexer, parser, interpreter, fileGenerator, this, printer);
+    validate = new StateValidator(lexer, parser, fileGenerator, this, printer);
+    cli.changeState(execute); //default state
   }
   
   public State get(String name) {
     switch (name) {
       case "execute": return execute;
-      case "syntax": return syntax;
-      case "semantic": return semantic;
-      default: throw new RuntimeException("Command invalid something"); //todo implement correclty
+      case "validate": return validate;
+      default: throw new RuntimeException("Command invalid something"); //todo implement correctly
     }
   }
   

@@ -8,7 +8,7 @@ import java.util.List;
 public class InterpreterTests {
   @Test
   public void test_001() throws CompilationTimeException, FileNotFoundException {
-    final InterpreterVisitorImpl i = new InterpreterVisitorImpl();
+    final InterpreterVisitorImpl i = new InterpreterVisitorImpl(new CLIPrinter());
     final Lexer lexer = new LexerImpl();
     final Parser parser = new ParserImpl();
     final FileGenerator generator= new NormalFileGenerator();

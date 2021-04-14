@@ -3,8 +3,6 @@ package edu.austral.ingsis;
 import edu.austral.ingsis.exception.CompilationTimeException;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class StateExecuter implements State {
@@ -15,13 +13,14 @@ public class StateExecuter implements State {
     private final InterpreterVisitor interpreter;
     private final FileGenerator fileGenerator;
     private final StateFactory stateFactory;
-
-    public StateExecuter(Lexer lexer, Parser parser, InterpreterVisitor interpreter, FileGenerator fileGenerator, StateFactory stateFactory) {
+    private final Printer printer;
+    public StateExecuter(Lexer lexer, Parser parser, InterpreterVisitor interpreter, FileGenerator fileGenerator, StateFactory stateFactory, Printer printer) {
         this.lexer = lexer;
         this.parser = parser;
         this.interpreter = interpreter;
         this.fileGenerator = fileGenerator;
         this.stateFactory = stateFactory;
+        this.printer = printer;
     }
 
     @Override
@@ -30,24 +29,27 @@ public class StateExecuter implements State {
     }
 
     @Override
-    public List<String> run(String[] args) throws FileNotFoundException, CompilationTimeException {
-        return execute(args);
+    public void run(String[] args) throws FileNotFoundException, CompilationTimeException {
+        execute(args);
     }
 
-    private List<String> execute(String[] args) throws FileNotFoundException, CompilationTimeException {
+    private void execute(String[] args) throws FileNotFoundException, CompilationTimeException {
         // todo capaz a este nivel conviene tener un error handler o algo. tipo
         // que le pasas los errores y ese se comunica con el cli/print y los escupe
         // en vez de tener ese throws Error feo
-        if (!checkMode(args[0])) return Collections.emptyList();
+        if (!checkMode(args[0])) return;
         final File file = fileGenerator.open(args[1]);
-        List<String> all = new ArrayList<>();
+        printer.print("Starting...");
+        final int totalLines = file.getLines();
+        int currentLine = 0;
         while (file.hasNext()) {
+            printer.print(currentLine + "/" + totalLines);
             final List<Token> tokens = lexer.analyseLexically(file.next().get());
             final AbstractSyntaxTree ast = parser.analyseSintactically(tokens);
             interpreter.visit(ast);
+            currentLine++;
+            ((InterpreterVisitorImpl) interpreter).debug();
         }
-        ((InterpreterVisitorImpl) interpreter).debug();
-        return all;
     }
 
     private boolean checkMode(String mode) {
@@ -56,3 +58,4 @@ public class StateExecuter implements State {
         return false;
     }
 }
+//todo checkear que la var existe cuando haces el interpreter

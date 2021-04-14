@@ -1,5 +1,7 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.exception.CompilationTimeException;
+
 public interface InterpreterVisitor {
 
     AbstractSyntaxTree visit(AbstractSyntaxTree abstractSyntaxTree);
@@ -8,9 +10,9 @@ public interface InterpreterVisitor {
 
     VariableSyntaxLeaf visitTypeAssingation(TypeAssignationSyntaxBranch branch);
     
-    LiteralSyntaxLeaf visitSumSub(SumSubOperationSyntaxBranch branch);
+    LiteralSyntaxLeaf visitSumSub(SumSubOperationSyntaxBranch branch) throws CompilationTimeException;
 
-    LiteralSyntaxLeaf visitMultDiv(MultDivOperationSyntaxBranch branch);
+    LiteralSyntaxLeaf visitMultDiv(MultDivOperationSyntaxBranch branch) throws CompilationTimeException;
     
     NumberTypeSyntaxLeaf visitNumberType(NumberTypeSyntaxLeaf leaf);
     
@@ -22,7 +24,7 @@ public interface InterpreterVisitor {
     
     EmptySyntaxLeaf visitEmpty(EmptySyntaxLeaf leaf);
 
-    EmptySyntaxLeaf visitPrintLn(PrintLnSyntaxLeaf leaf);
+    EmptySyntaxLeaf visitPrintLn(PrintLnSyntaxLeaf leaf) throws CompilationTimeException;
 
     EmptySyntaxLeaf visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf);
 

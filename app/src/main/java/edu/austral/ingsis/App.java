@@ -30,7 +30,7 @@ public class App {
   //  }
   // execute state/src/main/resources/test.txt
   public static void main(String[] args) {
-    CLI cli = new CLI();
+    CLI cli = new CLI(new CLIPrinter());
     try {
       cli.run();
     } catch (FileNotFoundException | CompilationTimeException e) {
@@ -38,3 +38,4 @@ public class App {
     }
   }
 }
+//todo tenemos el bug que se come los espacios adentro de los string literals
