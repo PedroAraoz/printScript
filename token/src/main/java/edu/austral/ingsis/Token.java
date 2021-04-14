@@ -49,7 +49,7 @@ public class Token {
     return value;
   }
 
-  public TokenIdentifier getToken() {
+  public TokenIdentifier getTokenIdentifier() {
     return tokenIdentifier;
   }
 }

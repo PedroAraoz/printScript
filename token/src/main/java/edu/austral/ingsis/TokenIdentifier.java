@@ -31,58 +31,58 @@ public class TokenIdentifier {
 
     // STATIC
 
-    public static TokenIdentifier letTokenIdentifier =
+    public static TokenIdentifier LET_TOKEN =
             new TokenIdentifier(TokenName.LET, Pattern.compile("let"));
-    public static TokenIdentifier typeAssignationTokenIdentifier =
+    public static TokenIdentifier TYPE_ASSIGNATION_TOKEN =
             new TokenIdentifier(TokenName.TYPE_ASSIGNATION, Pattern.compile(":"));
-    public static TokenIdentifier semicolonTokenIdentifier =
+    public static TokenIdentifier SEMICOLON_TOKEN =
             new TokenIdentifier(TokenName.SEMICOLON, Pattern.compile(";"));
-    public static TokenIdentifier valueAssignationTokenIdentifier =
+    public static TokenIdentifier VALUE_ASSIGNATION_TOKEN =
             new TokenIdentifier(TokenName.VALUE_ASSIGNATION, Pattern.compile("="));
-    public static TokenIdentifier sumOperationTokenIdentifier =
+    public static TokenIdentifier SUM_OPERATION_TOKEN =
             new TokenIdentifier(TokenName.SUM, Pattern.compile("\\+"));
-    public static TokenIdentifier subOperationTokenIdentifier =
+    public static TokenIdentifier SUB_OPERATION_TOKEN =
             new TokenIdentifier(TokenName.SUB, Pattern.compile("-"));
-    public static TokenIdentifier multOperationTokenIdentifier =
+    public static TokenIdentifier MULT_OPERATION_TOKEN =
             new TokenIdentifier(TokenName.MULT, Pattern.compile("\\*"));
-    public static TokenIdentifier divOperationTokenIdentifier =
+    public static TokenIdentifier DIV_OPERATION_TOKEN =
             new TokenIdentifier(TokenName.DIV, Pattern.compile("/"));
-    public static TokenIdentifier numberTypeTokenIdentifier =
+    public static TokenIdentifier NUMBER_TYPE_TOKEN =
             new TokenIdentifier(TokenName.NUMBER_TYPE, Pattern.compile("number"));
-    public static TokenIdentifier stringTypeTokenIdentifier =
+    public static TokenIdentifier STRING_TYPE_TOKEN =
             new TokenIdentifier(TokenName.STRING_TYPE, Pattern.compile("string"));
-    public static TokenIdentifier numberLiteralTokenIdentifier =
+    public static TokenIdentifier NUMBER_LITERAL_TOKEN =
             new TokenIdentifier(
                     TokenName.NUMBER_LITERAL,
                     Pattern.compile("[0-9]+|([0-9]+.[0-9]+)"));
-    public static TokenIdentifier stringLiteralTokenIdentifier =
+    public static TokenIdentifier STRING_LITERAL_TOKEN =
             new TokenIdentifier(
                     TokenName.STRING_LITERAL,
                     Pattern.compile("('[a-zA-Z]+')|(\"[a-zA-Z]+\")"));
-    public static TokenIdentifier variableTokenIdentifier =
+    public static TokenIdentifier VARIABLE_TOKEN =
             new TokenIdentifier(TokenName.VARIABLE, Pattern.compile(""));
-    public static TokenIdentifier printLnTokenIdentifier =
+    public static TokenIdentifier PRINTLN_TOKEN =
             new TokenIdentifier(TokenName.PRINT, Pattern.compile("printLn"));
-    public static TokenIdentifier leftParenthesisIdentifier =
+    public static TokenIdentifier LEFT_PARENTHESIS_TOKEN =
             new TokenIdentifier(TokenName.LEFT_PARENTHESIS, Pattern.compile("\\("));
-    public static TokenIdentifier rightParenthesisIdentifier =
+    public static TokenIdentifier RIGHT_PARENTHESIS_TOKEN =
             new TokenIdentifier(TokenName.RIGHT_PARENTHESIS, Pattern.compile("\\)"));
 
     public static List<TokenIdentifier> getAllTokens() {
         List<TokenIdentifier> tokenIdentifiers = new ArrayList<>();
-        tokenIdentifiers.add(letTokenIdentifier);
-        tokenIdentifiers.add(typeAssignationTokenIdentifier);
-        tokenIdentifiers.add(semicolonTokenIdentifier);
-        tokenIdentifiers.add(valueAssignationTokenIdentifier);
-        tokenIdentifiers.add(sumOperationTokenIdentifier);
-        tokenIdentifiers.add(subOperationTokenIdentifier);
-        tokenIdentifiers.add(multOperationTokenIdentifier);
-        tokenIdentifiers.add(divOperationTokenIdentifier);
-        tokenIdentifiers.add(numberTypeTokenIdentifier);
-        tokenIdentifiers.add(stringTypeTokenIdentifier);
-        tokenIdentifiers.add(printLnTokenIdentifier);
-        tokenIdentifiers.add(leftParenthesisIdentifier);
-        tokenIdentifiers.add(rightParenthesisIdentifier);
+        tokenIdentifiers.add(LET_TOKEN);
+        tokenIdentifiers.add(TYPE_ASSIGNATION_TOKEN);
+        tokenIdentifiers.add(SEMICOLON_TOKEN);
+        tokenIdentifiers.add(VALUE_ASSIGNATION_TOKEN);
+        tokenIdentifiers.add(SUM_OPERATION_TOKEN);
+        tokenIdentifiers.add(SUB_OPERATION_TOKEN);
+        tokenIdentifiers.add(MULT_OPERATION_TOKEN);
+        tokenIdentifiers.add(DIV_OPERATION_TOKEN);
+        tokenIdentifiers.add(NUMBER_TYPE_TOKEN);
+        tokenIdentifiers.add(STRING_TYPE_TOKEN);
+        tokenIdentifiers.add(PRINTLN_TOKEN);
+        tokenIdentifiers.add(LEFT_PARENTHESIS_TOKEN);
+        tokenIdentifiers.add(RIGHT_PARENTHESIS_TOKEN);
         return tokenIdentifiers;
     }
 }

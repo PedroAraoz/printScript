@@ -80,4 +80,9 @@ public class LeftParenthesisSyntaxLeaf extends AbstractSyntaxLeaf {
     public AbstractSyntaxTree getResultingExpression() {
         return expression;
     }
+
+    @Override
+    public AbstractSyntaxTree accept2(InterpreterVisitor visitor) {
+        return visitor.visitLeftParenthesis(this);
+    }
 }

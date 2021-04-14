@@ -55,8 +55,8 @@ public class AssignationLiteralTypeVisitor implements Visitor {
     @Override
     public void visitLiteral(LiteralSyntaxLeaf leaf) {
         if (type == null)
-            type = leaf.getToken().getToken();
-        else if (!leaf.getToken().getToken().equals(type)) {
+            type = leaf.getToken().getTokenIdentifier();
+        else if (!leaf.getToken().getTokenIdentifier().equals(type)) {
             match = false;
         }
     }

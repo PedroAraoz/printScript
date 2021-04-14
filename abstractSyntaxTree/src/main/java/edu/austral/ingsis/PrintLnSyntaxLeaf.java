@@ -76,4 +76,9 @@ public class PrintLnSyntaxLeaf extends AbstractSyntaxLeaf {
     public void accept(Visitor visitor) {
         visitor.visitPrintLn(this);
     }
+
+    @Override
+    public AbstractSyntaxTree accept2(InterpreterVisitor visitor) {
+        return visitor.visitPrintLn(this);
+    }
 }

@@ -21,4 +21,10 @@ public interface InterpreterVisitor {
     LiteralSyntaxLeaf visitLiteral(LiteralSyntaxLeaf leaf);
     
     EmptySyntaxLeaf visitEmpty(EmptySyntaxLeaf leaf);
+
+    EmptySyntaxLeaf visitPrintLn(PrintLnSyntaxLeaf leaf);
+
+    EmptySyntaxLeaf visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf);
+
+    EmptySyntaxLeaf visitRightParenthesis(RightParenthesisSyntaxLeaf leaf);
 }

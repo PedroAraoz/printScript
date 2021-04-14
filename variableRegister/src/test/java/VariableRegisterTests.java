@@ -13,9 +13,9 @@ public class VariableRegisterTests {
         final VariableInfo variable = new VariableInfo();
         variable.setVariableName("x");
         variable.setValue("0");
-        variable.setType(TokenIdentifier.numberTypeTokenIdentifier);
+        variable.setType(TokenIdentifier.NUMBER_TYPE_TOKEN);
 
-        variableRegister.addNewVariable(variable);
+        variableRegister.addNewVariable("x", TokenIdentifier.NUMBER_TYPE_TOKEN);
 
         assert variableRegister.contains(variable.getVariableName());
     }

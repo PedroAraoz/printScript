@@ -82,4 +82,9 @@ public class RightParenthesisSyntaxLeaf extends AbstractSyntaxLeaf {
     public AbstractSyntaxTree getResultingExpression() {
         return resultingExpression;
     }
+
+    @Override
+    public AbstractSyntaxTree accept2(InterpreterVisitor visitor) {
+        return visitor.visitRightParenthesis(this);
+    }
 }

@@ -18,14 +18,14 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     LiteralSyntaxLeaf literalSyntaxLeaf = (LiteralSyntaxLeaf) visit(branch.right);
     
     // TODO conseguir el tipo del literal
-    variableRegister.assignValueToVariable(variableSyntaxLeaf.getTokenWrapper().getValue(), literalSyntaxLeaf.getTokenWrapper().getValue());
+    variableRegister.assignValueToVariable(variableSyntaxLeaf.getToken().getValue(), literalSyntaxLeaf.getToken().getValue());
     return null; //todo esto esta raro
   }
   
   @Override
   public VariableSyntaxLeaf visitTypeAssingation(TypeAssignationSyntaxBranch branch) {
-    String variableName = branch.left.getTokenWrapper().getValue();
-    Token type = branch.right.getTokenWrapper().getToken();
+    String variableName = branch.left.getToken().getValue();
+    TokenIdentifier type = branch.right.getToken().getTokenIdentifier();
     
     variableRegister.addNewVariable(variableName, type);
     
@@ -43,18 +43,18 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
       final int intAnswer =
               Integer.parseInt(left.getValue()) + Integer.parseInt(right.getValue());
       final String answer = Integer.toString(intAnswer);
-      return getLiteralSyntaxLeaf(answer, Token.NUMBER_LITERAL_TOKEN);
+      return getLiteralSyntaxLeaf(answer, TokenIdentifier.NUMBER_LITERAL_TOKEN);
     } else {
       //We can add them normally
       final String answer = left.getValue() + right.getValue();
-      return getLiteralSyntaxLeaf(answer, Token.STRING_LITERAL_TOKEN);
+      return getLiteralSyntaxLeaf(answer, TokenIdentifier.STRING_LITERAL_TOKEN);
     }
     
   }
   
   private LiteralSyntaxLeaf smartCastToVariable(AbstractSyntaxTree ast) {
-    if (ast.getTokenWrapper().getToken().equals(Token.VARIABLE_TOKEN)) {
-      final Optional<VariableInfo> optional = variableRegister.get(ast.getTokenWrapper().getValue());
+    if (ast.getToken().getTokenIdentifier().equals(TokenIdentifier.VARIABLE_TOKEN)) {
+      final Optional<VariableInfo> optional = variableRegister.get(ast.getToken().getValue());
       if (optional.isPresent()) {
         final VariableInfo vi = optional.get();
         return getLiteralSyntaxLeaf(vi.getValue(), vi.getType());
@@ -73,7 +73,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
     int answer;
     if (isNumber(left) && isNumber(right)) {
-      if (branch.getTokenWrapper().getToken().equals(Token.MULT_OPERATION_TOKEN)) {
+      if (branch.getToken().getTokenIdentifier().equals(TokenIdentifier.MULT_OPERATION_TOKEN)) {
         answer = Integer.parseInt(left.getValue()) *
                 Integer.parseInt(right.getValue());
       } else {
@@ -81,7 +81,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
         answer = Integer.parseInt(left.getValue()) /
                 Integer.parseInt(right.getValue());
       }
-      return getLiteralSyntaxLeaf(Integer.toString(answer), Token.NUMBER_TYPE_TOKEN);
+      return getLiteralSyntaxLeaf(Integer.toString(answer), TokenIdentifier.NUMBER_TYPE_TOKEN);
     } else {
       //todo tirar error
       throw new Error();
@@ -112,21 +112,39 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   public EmptySyntaxLeaf visitEmpty(EmptySyntaxLeaf leaf) {
     return leaf;
   }
-  
-  private LiteralSyntaxLeaf getLiteralSyntaxLeaf(String value,  Token token) {
+
+  @Override
+  public EmptySyntaxLeaf visitPrintLn(PrintLnSyntaxLeaf leaf) {
+    // TODO implement
+    return null;
+  }
+
+  @Override
+  public EmptySyntaxLeaf visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf) {
+    // This shouldn't happen
+    return null;
+  }
+
+  @Override
+  public EmptySyntaxLeaf visitRightParenthesis(RightParenthesisSyntaxLeaf leaf) {
+    // This shouldn't happen
+    return null;
+  }
+
+  private LiteralSyntaxLeaf getLiteralSyntaxLeaf(String value,  TokenIdentifier token) {
     final LiteralSyntaxLeaf literalSyntaxLeaf = new LiteralSyntaxLeaf();
-    literalSyntaxLeaf.setTokenWrapper(
-            new TokenWrapper(token,
+    literalSyntaxLeaf.setToken(
+            new Token(token,
                     -1, -1, -1,
                     value));
     return literalSyntaxLeaf;
   }
   
   private boolean isNumber(LiteralSyntaxLeaf b) {
-    return b.getTokenWrapper().getToken().getName().equals(TokenName.NUMBER_LITERAL);
+    return b.getToken().getTokenIdentifier().getName().equals(TokenName.NUMBER_LITERAL);
   }
   private boolean isString(LiteralSyntaxLeaf b) {
-    return b.tokenWrapper.getToken().getName().equals(TokenName.STRING_LITERAL);
+    return b.token.getTokenIdentifier().getName().equals(TokenName.STRING_LITERAL);
   }
   
   

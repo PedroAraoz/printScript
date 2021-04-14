@@ -48,7 +48,7 @@ public class AssignationTypeValidator implements Validator {
                 // Should check declaration type = assignation type
 
                 // Check that declaration type is the same as all of the rest
-                if (!typeAssignationFinderVisitor.getTypeAssignation().get().getToken().getToken().equals(assignationType)) {
+                if (!typeAssignationFinderVisitor.getTypeAssignation().get().getToken().getTokenIdentifier().equals(assignationType)) {
                     throw new CompilationTimeException("Assignation type does not match declaration type in line " + variable.getLine() + " in column " + variable.getStartPos());
                 }
 
@@ -83,9 +83,9 @@ public class AssignationTypeValidator implements Validator {
             TokenIdentifier type = null;
             for (Token var : variables) {
                 if (type == null) {
-                    type = var.getToken();
+                    type = var.getTokenIdentifier();
                 } else {
-                    if (!var.getToken().equals(type)) {
+                    if (!var.getTokenIdentifier().equals(type)) {
                         throw new CompilationTimeException("Variable " + var.getValue() + " does not match the type of the expression in line " + var.getLine() + " in column " + var.getStartPos());
                     }
                 }
