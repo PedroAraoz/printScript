@@ -81,4 +81,8 @@ public class PrintLnSyntaxLeaf extends AbstractSyntaxLeaf {
     public AbstractSyntaxTree accept2(InterpreterVisitor visitor) {
         return visitor.visitPrintLn(this);
     }
+
+    public AbstractSyntaxTree getExpression() {
+        return innerExpression;
+    }
 }

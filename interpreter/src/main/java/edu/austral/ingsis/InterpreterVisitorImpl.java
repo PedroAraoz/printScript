@@ -115,7 +115,9 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public EmptySyntaxLeaf visitPrintLn(PrintLnSyntaxLeaf leaf) {
-    // TODO implement
+    AbstractSyntaxTree expression = leaf.getExpression();
+    LiteralSyntaxLeaf result = smartCastToVariable(visit(expression));
+    // TODO terminar
     return null;
   }
 
@@ -146,8 +148,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   private boolean isString(LiteralSyntaxLeaf b) {
     return b.token.getTokenIdentifier().getName().equals(TokenName.STRING_LITERAL);
   }
-  
-  
+
   public void debug() {
     System.out.println("asd");
   }
