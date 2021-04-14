@@ -8,6 +8,10 @@ public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
   protected TokenWrapper tokenWrapper;
   protected AbstractSyntaxTree right = new EmptySyntaxLeaf();
 
+  public String getValue() {
+    return tokenWrapper.getValue();
+  }
+  
   public void setTokenWrapper(TokenWrapper tokenWrapper) {
     this.tokenWrapper = tokenWrapper;
   }

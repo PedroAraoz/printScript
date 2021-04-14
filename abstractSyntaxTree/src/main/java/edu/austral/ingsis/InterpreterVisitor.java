@@ -10,7 +10,7 @@ public interface InterpreterVisitor {
 
     void visitSumSub(SumSubOperationSyntaxBranch branch);
 
-    void visitMultDiv(MultDivOperationSyntaxBranch branch);
+    LiteralSyntaxLeaf visitMultDiv(MultDivOperationSyntaxBranch branch);
 
     void visitNumberType(NumberTypeSyntaxLeaf leaf);
 
