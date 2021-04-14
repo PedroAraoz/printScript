@@ -4,9 +4,9 @@ import edu.austral.ingsis.exception.CompilationTimeException;
 
 public interface AbstractSyntaxTree extends Visitable {
 
-  void setTokenWrapper(TokenWrapper tokenWrapper);
+  void setTokenWrapper(Token token);
 
-  TokenWrapper getTokenWrapper();
+  Token getTokenWrapper();
 
   AbstractSyntaxTree add(AbstractSyntaxTree tree) throws CompilationTimeException;
 

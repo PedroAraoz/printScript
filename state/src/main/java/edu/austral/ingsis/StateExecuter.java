@@ -42,8 +42,8 @@ public class StateExecuter implements State {
         final File file = fileGenerator.open(args[1]);
         List<String> all = new ArrayList<>();
         while (file.hasNext()) {
-            final List<TokenWrapper> tokenWrappers = lexer.analyseLexically(file.next().get());
-            final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(tokenWrappers);
+            final List<Token> tokens = lexer.analyseLexically(file.next().get());
+            final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(tokens);
 //            final List<String> logs = interpreter.interpret(abstractSyntaxTree);
 //            all.addAll(logs);
         }

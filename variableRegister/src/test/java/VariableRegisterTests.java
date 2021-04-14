@@ -1,4 +1,4 @@
-import edu.austral.ingsis.Token;
+import edu.austral.ingsis.TokenIdentifier;
 import edu.austral.ingsis.VariableInfo;
 import edu.austral.ingsis.VariableRegister;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class VariableRegisterTests {
         final VariableInfo variable = new VariableInfo();
         variable.setVariableName("x");
         variable.setValue("0");
-        variable.setType(Token.NUMBER_TYPE_TOKEN);
+        variable.setType(TokenIdentifier.numberTypeTokenIdentifier);
 
         variableRegister.addNewVariable(variable);
 

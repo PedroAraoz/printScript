@@ -32,7 +32,7 @@ public class AssignationVariableExistsValidator implements Validator {
             VariableFinderVisitor variableFinderVisitor = new VariableFinderVisitor();
             valueAssignationSyntaxBranch.get().accept(variableFinderVisitor);
 
-            TokenWrapper variable = variableFinderVisitor.getVariable().get();
+            Token variable = variableFinderVisitor.getVariable().get();
 
             if (!register.contains(variable.getValue())) {
                 throw new CompilationTimeException("Undeclared variable " + variable.getValue() + " in line " + variable.getLine() + " column " + variable.getStartPos());

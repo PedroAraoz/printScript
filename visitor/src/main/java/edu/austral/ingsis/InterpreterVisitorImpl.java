@@ -22,7 +22,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   @Override
   public VariableSyntaxLeaf visitTypeAssingation(TypeAssignationSyntaxBranch branch) {
     String variableName = branch.left.getTokenWrapper().getValue();
-    Token type = branch.right.getTokenWrapper().getToken();
+    TokenIdentifier type = branch.right.getTokenWrapper().getToken();
     
     variableRegister.addNewVariable(variableName, type);
     
@@ -43,7 +43,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
       //We can add them normally
       answer = left.getValue() + right.getValue();
     }
-    return getLiteralSyntaxLeaf(answer, Token.NUMBER_LITERAL_TOKEN);
+    return getLiteralSyntaxLeaf(answer, TokenIdentifier.numberLiteralTokenIdentifier);
   }
   
   @Override
@@ -52,7 +52,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
     int answer;
     if (isNumber(left) && isNumber(right)) {
-      if (branch.getTokenWrapper().getToken().equals(Token.MULT_OPERATION_TOKEN)) {
+      if (branch.getTokenWrapper().getToken().equals(TokenIdentifier.multOperationTokenIdentifier)) {
         answer = Integer.parseInt(left.getValue()) *
                 Integer.parseInt(right.getValue());
       } else {
@@ -60,7 +60,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
         answer = Integer.parseInt(left.getValue()) /
                 Integer.parseInt(right.getValue());
       }
-      return getLiteralSyntaxLeaf(Integer.toString(answer), Token.NUMBER_TYPE_TOKEN);
+      return getLiteralSyntaxLeaf(Integer.toString(answer), TokenIdentifier.numberTypeTokenIdentifier);
     } else {
       //todo tirar error
       throw new Error();
@@ -92,19 +92,19 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     return leaf;
   }
   
-  private LiteralSyntaxLeaf getLiteralSyntaxLeaf(String value,  Token token) {
+  private LiteralSyntaxLeaf getLiteralSyntaxLeaf(String value,  TokenIdentifier tokenIdentifier) {
     final LiteralSyntaxLeaf literalSyntaxLeaf = new LiteralSyntaxLeaf();
     literalSyntaxLeaf.setTokenWrapper(
-            new TokenWrapper(token,
+            new Token(tokenIdentifier,
                     -1, -1, -1,
                     value));
     return literalSyntaxLeaf;
   }
   
   private boolean isNumber(LiteralSyntaxLeaf b) {
-    return b.tokenWrapper.getToken().getName().equals(TokenName.NUMBER_LITERAL);
+    return b.token.getToken().getName().equals(TokenName.NUMBER_LITERAL);
   }
   private boolean isString(LiteralSyntaxLeaf b) {
-    return b.tokenWrapper.getToken().getName().equals(TokenName.STRING_LITERAL);
+    return b.token.getToken().getName().equals(TokenName.STRING_LITERAL);
   }
 }

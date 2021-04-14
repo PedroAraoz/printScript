@@ -33,15 +33,15 @@ public class AssignationTypeValidator implements Validator {
             VariableFinderVisitor variableFinderVisitor = new VariableFinderVisitor();
             valueAssignationSyntaxBranch.get().accept(variableFinderVisitor);
 
-            TokenWrapper variable = variableFinderVisitor.getVariable().get();
+            Token variable = variableFinderVisitor.getVariable().get();
 
             TypeAssignationFinderVisitor typeAssignationFinderVisitor = new TypeAssignationFinderVisitor();
             abstractSyntaxTree.accept(typeAssignationFinderVisitor);
             Optional<TypeAssignationSyntaxBranch> typeAssignationSyntaxBranch = typeAssignationFinderVisitor.getTypeAssignation();
 
-            List<TokenWrapper> variablesToCheck = getVariablesToCheck(abstractSyntaxTree, typeAssignationSyntaxBranch);
+            List<Token> variablesToCheck = getVariablesToCheck(abstractSyntaxTree, typeAssignationSyntaxBranch);
 
-            Token assignationType = checkAssignationType(abstractSyntaxTree, variablesToCheck);
+            TokenIdentifier assignationType = checkAssignationType(abstractSyntaxTree, variablesToCheck);
 
             if (typeAssignationSyntaxBranch.isPresent()) {
                 // In this case it is a declaration + assignation
@@ -66,22 +66,22 @@ public class AssignationTypeValidator implements Validator {
         }
     }
 
-    private Token checkAssignationType(AbstractSyntaxTree abstractSyntaxTree, List<TokenWrapper> variables) throws CompilationTimeException {
+    private TokenIdentifier checkAssignationType(AbstractSyntaxTree abstractSyntaxTree, List<Token> variables) throws CompilationTimeException {
         // Assignation type
 
         // Check that variables in the assignation are of the same type
 
         if (!variables.isEmpty()) {
             // Check they exist
-            for (TokenWrapper var : variables) {
+            for (Token var : variables) {
                 if (!register.contains(var.getValue())) {
                     throw new CompilationTimeException("Undeclared variable in line " + var.getLine() + " in column " + var.getStartPos());
                 }
             }
 
             // Check their types are the same
-            Token type = null;
-            for (TokenWrapper var : variables) {
+            TokenIdentifier type = null;
+            for (Token var : variables) {
                 if (type == null) {
                     type = var.getToken();
                 } else {
@@ -102,7 +102,7 @@ public class AssignationTypeValidator implements Validator {
         }
 
         // Check that variables and literals are of the same type
-        Token varType;
+        TokenIdentifier varType;
         if (!variables.isEmpty()) {
             varType = register.get(variables.get(0).getValue()).get().getType();
             if (!varType.equals(assignationLiteralTypeVisitor.getType())) {
@@ -114,10 +114,10 @@ public class AssignationTypeValidator implements Validator {
         return assignationLiteralTypeVisitor.getType();
     }
 
-    private List<TokenWrapper> getVariablesToCheck(AbstractSyntaxTree abstractSyntaxTree, Optional<TypeAssignationSyntaxBranch> branch) {
+    private List<Token> getVariablesToCheck(AbstractSyntaxTree abstractSyntaxTree, Optional<TypeAssignationSyntaxBranch> branch) {
         GetAllVariablesVisitor getAllVariablesVisitor = new GetAllVariablesVisitor();
         abstractSyntaxTree.accept(getAllVariablesVisitor);
-        List<TokenWrapper> variables = getAllVariablesVisitor.getAllVariables();
+        List<Token> variables = getAllVariablesVisitor.getAllVariables();
 
         if (branch.isPresent()) {
             String leftVarName = branch.get().getLeft().getTokenWrapper().getValue();

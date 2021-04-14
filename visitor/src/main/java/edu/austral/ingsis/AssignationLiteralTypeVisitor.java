@@ -1,13 +1,11 @@
 package edu.austral.ingsis;
 
-import edu.austral.ingsis.*;
-
 public class AssignationLiteralTypeVisitor implements Visitor {
 
-    private Token type = null;
+    private TokenIdentifier type = null;
     private boolean match = true;
 
-    public Token getType() {
+    public TokenIdentifier getType() {
         return type;
     }
 

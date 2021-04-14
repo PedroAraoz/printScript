@@ -5,8 +5,8 @@ import java.util.*;
 public class TokenDumper {
   private final List<Tuple> list = new ArrayList<>();
 
-  public void dump(Token token, String value) {
-    list.add(new Tuple(token, value));
+  public void dump(TokenIdentifier tokenIdentifier, String value) {
+    list.add(new Tuple(tokenIdentifier, value));
   }
 
   public boolean hasNext() {

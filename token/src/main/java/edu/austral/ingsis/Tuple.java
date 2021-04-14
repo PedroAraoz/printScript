@@ -1,16 +1,16 @@
 package edu.austral.ingsis;
 
 public class Tuple {
-  private final Token token;
+  private final TokenIdentifier tokenIdentifier;
   private final String optional;
 
-  public Tuple(Token token, String optional) {
-    this.token = token;
+  public Tuple(TokenIdentifier tokenIdentifier, String optional) {
+    this.tokenIdentifier = tokenIdentifier;
     this.optional = optional;
   }
 
-  public Token getToken() {
-    return token;
+  public TokenIdentifier getToken() {
+    return tokenIdentifier;
   }
 
   public String getString() {

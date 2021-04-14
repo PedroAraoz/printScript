@@ -3,7 +3,7 @@ package edu.austral.ingsis;
 public class VariableInfo {
 
     private String variableName;
-    private Token type;
+    private TokenIdentifier type;
     private String value = "";
 
     public String getVariableName() {
@@ -14,11 +14,11 @@ public class VariableInfo {
         this.variableName = variableName;
     }
 
-    public Token getType() {
+    public TokenIdentifier getType() {
         return type;
     }
 
-    public void setType(Token type) {
+    public void setType(TokenIdentifier type) {
         this.type = type;
     }
 

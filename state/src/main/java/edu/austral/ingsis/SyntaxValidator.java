@@ -37,11 +37,11 @@ public class SyntaxValidator implements State {
     if (!checkMode(args[0])) return Collections.emptyList();
     final File file = fileGenerator.open(args[1]);
     //todo vvvvvv cambiar eso
-    List<List<TokenWrapper>> cambiarEsto = new ArrayList<>();
+    List<List<Token>> cambiarEsto = new ArrayList<>();
     while (file.hasNext())
       cambiarEsto.add(lexer.analyseLexically(file.next().get()));
     List<AbstractSyntaxTree> list = new ArrayList<>();
-    for (List<TokenWrapper> l : cambiarEsto)
+    for (List<Token> l : cambiarEsto)
       list.add(parser.analyseSintactically(l));
     //todo done?
     return null;

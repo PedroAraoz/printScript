@@ -1,15 +1,13 @@
 package edu.austral.ingsis;
 
-import edu.austral.ingsis.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class GetAllVariablesVisitor implements Visitor {
 
-    List<TokenWrapper> variables = new ArrayList<>();
+    List<Token> variables = new ArrayList<>();
 
-    public List<TokenWrapper> getAllVariables() {
+    public List<Token> getAllVariables() {
         return variables;
     }
 

@@ -8,14 +8,14 @@ import java.util.stream.Collectors;
 
 public class LexerImpl implements Lexer {
   private final TokenDumper dumper = new TokenDumper();
-  private final List<Token> tokenList = Token.getAllTokens();
+  private final List<TokenIdentifier> tokenIdentifierList = TokenIdentifier.getAllTokens();
   private StringBuilder stringBuilder = new StringBuilder();
 
   @Override
-  public List<TokenWrapper> analyseLexically(CodeLine line) {
+  public List<Token> analyseLexically(CodeLine line) {
     int startPos = 0;
     int endPos;
-    final List<TokenWrapper> result = new ArrayList<>();
+    final List<Token> result = new ArrayList<>();
     final List<String> list = Arrays.asList(line.toString().split("(?!^)"));
 
     list.forEach(this::put);
@@ -26,7 +26,7 @@ public class LexerImpl implements Lexer {
       // Create TokenWrapper. Add extra information needed
       final Tuple t = dumper.pop();
       endPos = startPos + t.getString().length();
-      result.add(new TokenWrapper(t.getToken(), line.getRow(), startPos, endPos, t.getString()));
+      result.add(new Token(t.getToken(), line.getRow(), startPos, endPos, t.getString()));
       startPos = endPos;
     }
     // todo el manejo de pos podria ser mejor
@@ -35,10 +35,10 @@ public class LexerImpl implements Lexer {
 
   private void put(String c) {
     // Firstly we validate if the character is a token in and of itself
-    Optional<Token> single =
-        tokenList.stream().filter(t -> t.getRegex().matcher(c).matches()).findFirst();
+    Optional<TokenIdentifier> single =
+        tokenIdentifierList.stream().filter(t -> t.getRegex().matcher(c).matches()).findFirst();
 
-    if (single.isPresent() && (!single.get().equals(Token.NUMBER_LITERAL_TOKEN) || !single.get().equals(Token.STRING_LITERAL_TOKEN))) {
+    if (single.isPresent() && (!single.get().equals(TokenIdentifier.numberLiteralTokenIdentifier) || !single.get().equals(TokenIdentifier.stringLiteralTokenIdentifier))) {
       String s = stringBuilder.toString();
       s = s.replace(" ", "");
       if (s.length() > 0) {
@@ -62,7 +62,7 @@ public class LexerImpl implements Lexer {
 
       for (int i = 0; i < list.size(); i++) {
         final String s1 = list.get(i);
-        Optional<Token> tokenOptional = tokenList.stream().filter(t -> matches(t, s1)).findFirst();
+        Optional<TokenIdentifier> tokenOptional = tokenIdentifierList.stream().filter(t -> matches(t, s1)).findFirst();
         if (tokenOptional.isPresent()) {
           for (int j = i - 1; j >= 0; j--) dumpVarOrLit(list.get(j));
           dumper.dump(tokenOptional.get(), s1);
@@ -72,17 +72,17 @@ public class LexerImpl implements Lexer {
     }
   }
 
-  private boolean matches(Token t, String s) {
+  private boolean matches(TokenIdentifier t, String s) {
     return t.getRegex().matcher(s).matches();
   }
 
   private void dumpVarOrLit(String s) {
-    if (matches(Token.NUMBER_LITERAL_TOKEN, s)) {
-      dumper.dump(Token.NUMBER_LITERAL_TOKEN, s);
-    } else if(matches(Token.STRING_LITERAL_TOKEN, s)) {
-      dumper.dump(Token.STRING_LITERAL_TOKEN, s);
+    if (matches(TokenIdentifier.numberLiteralTokenIdentifier, s)) {
+      dumper.dump(TokenIdentifier.numberLiteralTokenIdentifier, s);
+    } else if(matches(TokenIdentifier.stringLiteralTokenIdentifier, s)) {
+      dumper.dump(TokenIdentifier.stringLiteralTokenIdentifier, s);
     } else {
-      dumper.dump(Token.VARIABLE_TOKEN, s);
+      dumper.dump(TokenIdentifier.variableTokenIdentifier, s);
     }
     stringBuilder = new StringBuilder();
   }

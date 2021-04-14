@@ -5,15 +5,15 @@ import edu.austral.ingsis.exception.CompilationTimeException;
 public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
 
   protected AbstractSyntaxTree left = new EmptySyntaxLeaf();
-  protected TokenWrapper tokenWrapper;
+  protected Token token;
   protected AbstractSyntaxTree right = new EmptySyntaxLeaf();
 
   public String getValue() {
-    return tokenWrapper.getValue();
+    return token.getValue();
   }
   
-  public void setTokenWrapper(TokenWrapper tokenWrapper) {
-    this.tokenWrapper = tokenWrapper;
+  public void setTokenWrapper(Token token) {
+    this.token = token;
   }
 
   public AbstractSyntaxTree getLeft() {
@@ -21,8 +21,8 @@ public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
   }
 
   @Override
-  public TokenWrapper getTokenWrapper() {
-    return tokenWrapper;
+  public Token getTokenWrapper() {
+    return token;
   }
 
   public AbstractSyntaxTree getRight() {

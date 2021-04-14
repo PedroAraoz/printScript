@@ -16,7 +16,7 @@ public class VariableRegister {
 //        variables.add(newVariable);
 //    }
 
-    public void addNewVariable(String variableName, Token type) {
+    public void addNewVariable(String variableName, TokenIdentifier type) {
         VariableInfo variableInfo = new VariableInfo();
 
         variableInfo.setVariableName(variableName);

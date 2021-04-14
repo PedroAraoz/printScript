@@ -33,7 +33,7 @@ public class NumberOperationResultCalculatorVisitor implements Visitor {
 
     @Override
     public void visitSumSub(SumSubOperationSyntaxBranch branch) {
-        if (branch.getTokenWrapper().getToken().equals(Token.SUM_OPERATION_TOKEN)) {
+        if (branch.getTokenWrapper().getToken().equals(TokenIdentifier.sumOperationTokenIdentifier)) {
             Double val1 = accumulator.pop();
             Double val2 = accumulator.pop();
             Double result = val2 + val1;
@@ -48,7 +48,7 @@ public class NumberOperationResultCalculatorVisitor implements Visitor {
 
     @Override
     public void visitMultDiv(MultDivOperationSyntaxBranch branch) {
-        if (branch.getTokenWrapper().getToken().equals(Token.MULT_OPERATION_TOKEN)) {
+        if (branch.getTokenWrapper().getToken().equals(TokenIdentifier.multOperationTokenIdentifier)) {
             Double val1 = accumulator.pop();
             Double val2 = accumulator.pop();
             Double result = val2 * val1;

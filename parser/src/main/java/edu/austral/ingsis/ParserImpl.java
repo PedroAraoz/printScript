@@ -15,8 +15,8 @@ public class ParserImpl implements Parser {
 //  private final ASTVerifier astVerifier;
 
   @Override
-  public AbstractSyntaxTree analyseSintactically(List<TokenWrapper> tokenWrapperList) throws CompilationTimeException {
-    return astFactory.build(tokenWrapperList);
+  public AbstractSyntaxTree analyseSintactically(List<Token> tokenList) throws CompilationTimeException {
+    return astFactory.build(tokenList);
   }
 
 //  @Override

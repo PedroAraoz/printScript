@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface Parser {
 
-  AbstractSyntaxTree analyseSintactically(List<TokenWrapper> tokenWrapperList) throws CompilationTimeException;
+  AbstractSyntaxTree analyseSintactically(List<Token> tokenList) throws CompilationTimeException;
 
 //  void analyseSemantically(AbstractSyntaxTree ast) throws CompilationTimeException;
 }

@@ -4,9 +4,9 @@ import java.util.Optional;
 
 public class VariableFinderVisitor implements Visitor {
 
-    private Optional<TokenWrapper> variable = Optional.empty();
+    private Optional<Token> variable = Optional.empty();
 
-    public Optional<TokenWrapper> getVariable() {
+    public Optional<Token> getVariable() {
         return variable;
     }
 

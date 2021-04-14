@@ -5,30 +5,30 @@ import java.util.HashMap;
 
 public class TokenToASTConverter {
 
-  final HashMap<Token, ASTCommand> map;
+  final HashMap<TokenIdentifier, ASTCommand> map;
 
   public TokenToASTConverter() {
 
     this.map = new HashMap<>();
 
-    this.map.put(Token.LET_TOKEN, new EmptyCommand());
-    this.map.put(Token.TYPE_ASSIGNATION_TOKEN, new TypeAssignationCommand());
-    this.map.put(Token.SEMICOLON_TOKEN, new EmptyCommand());
-    this.map.put(Token.VALUE_ASSIGNATION_TOKEN, new ValueAssignationCommand());
-    this.map.put(Token.SUM_OPERATION_TOKEN, new SumSubOperationCommand());
-    this.map.put(Token.SUB_OPERATION_TOKEN, new SumSubOperationCommand());
-    this.map.put(Token.MULT_OPERATION_TOKEN, new MultDivOperationCommand());
-    this.map.put(Token.DIV_OPERATION_TOKEN, new MultDivOperationCommand());
-    this.map.put(Token.NUMBER_TYPE_TOKEN, new NumberTypeCommand());
-    this.map.put(Token.STRING_TYPE_TOKEN, new StringTypeCommand());
-    this.map.put(Token.NUMBER_LITERAL_TOKEN, new LiteralCommand());
-    this.map.put(Token.STRING_LITERAL_TOKEN, new LiteralCommand());
-    this.map.put(Token.VARIABLE_TOKEN, new VariableCommand());
+    this.map.put(TokenIdentifier.letTokenIdentifier, new EmptyCommand());
+    this.map.put(TokenIdentifier.typeAssignationTokenIdentifier, new TypeAssignationCommand());
+    this.map.put(TokenIdentifier.semicolonTokenIdentifier, new EmptyCommand());
+    this.map.put(TokenIdentifier.valueAssignationTokenIdentifier, new ValueAssignationCommand());
+    this.map.put(TokenIdentifier.sumOperationTokenIdentifier, new SumSubOperationCommand());
+    this.map.put(TokenIdentifier.subOperationTokenIdentifier, new SumSubOperationCommand());
+    this.map.put(TokenIdentifier.multOperationTokenIdentifier, new MultDivOperationCommand());
+    this.map.put(TokenIdentifier.divOperationTokenIdentifier, new MultDivOperationCommand());
+    this.map.put(TokenIdentifier.numberTypeTokenIdentifier, new NumberTypeCommand());
+    this.map.put(TokenIdentifier.stringTypeTokenIdentifier, new StringTypeCommand());
+    this.map.put(TokenIdentifier.numberLiteralTokenIdentifier, new LiteralCommand());
+    this.map.put(TokenIdentifier.stringLiteralTokenIdentifier, new LiteralCommand());
+    this.map.put(TokenIdentifier.variableTokenIdentifier, new VariableCommand());
   }
 
-  public AbstractSyntaxTree convert(TokenWrapper tokenWrapper) {
-    final AbstractSyntaxTree tree = map.get(tokenWrapper.getToken()).build();
-    tree.setTokenWrapper(tokenWrapper);
+  public AbstractSyntaxTree convert(Token token) {
+    final AbstractSyntaxTree tree = map.get(token.getToken()).build();
+    tree.setTokenWrapper(token);
     return tree;
   }
 }

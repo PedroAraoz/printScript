@@ -1,7 +1,7 @@
 package edu.austral.ingsis.validator;
 
 import edu.austral.ingsis.AbstractSyntaxTree;
-import edu.austral.ingsis.TokenWrapper;
+import edu.austral.ingsis.Token;
 import edu.austral.ingsis.TypeAssignationSyntaxBranch;
 import edu.austral.ingsis.VariableRegister;
 import edu.austral.ingsis.exception.CompilationTimeException;
@@ -34,7 +34,7 @@ public class DeclarationValidator implements Validator {
             VariableFinderVisitor variableFinderVisitor = new VariableFinderVisitor();
             typeAssignationSyntaxBranch.get().accept(variableFinderVisitor);
 
-            TokenWrapper variable = variableFinderVisitor.getVariable().get();
+            Token variable = variableFinderVisitor.getVariable().get();
 
             if (register.contains(variable.getValue())) {
                 throw new CompilationTimeException("Variable " + variable.getValue() + " in line " + variable.getLine() + " column " + variable.getStartPos() + " is already initialized");
