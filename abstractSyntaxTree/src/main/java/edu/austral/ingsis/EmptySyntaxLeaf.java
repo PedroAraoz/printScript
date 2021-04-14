@@ -75,4 +75,9 @@ public class EmptySyntaxLeaf extends AbstractSyntaxLeaf {
   public boolean isEmpty() {
     return true;
   }
+  
+  @Override
+  public AbstractSyntaxTree accept2(InterpreterVisitor visitor) {
+    return visitor.visitEmpty(this);
+  }
 }

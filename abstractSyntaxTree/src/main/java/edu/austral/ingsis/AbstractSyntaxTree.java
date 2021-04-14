@@ -2,7 +2,7 @@ package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
 
-public interface AbstractSyntaxTree extends Visitable {
+public interface AbstractSyntaxTree extends Visitable, InterpreterVisitable {
 
   void setToken(Token token);
 

@@ -1,12 +1,12 @@
-package edu.austral.ingsis;
-
-public class InterpreterImpl implements Interpreter {
-
-    @Override
-    public void interpret(AbstractSyntaxTree ast, Printer printer) {
-
-    }
-}
+//package edu.austral.ingsis;
+//
+//public class InterpreterImpl implements Interpreter {
+//
+//    @Override
+//    public void interpret(AbstractSyntaxTree ast, Printer printer) {
+//
+//    }
+//}
 
 //
 //import java.util.ArrayList;

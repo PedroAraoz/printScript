@@ -72,4 +72,9 @@ public class LiteralSyntaxLeaf extends AbstractSyntaxLeaf {
   public void accept(Visitor visitor) {
     visitor.visitLiteral(this);
   }
+  
+  @Override
+  public AbstractSyntaxTree accept2(InterpreterVisitor visitor) {
+    return visitor.visitLiteral(this);
+  }
 }

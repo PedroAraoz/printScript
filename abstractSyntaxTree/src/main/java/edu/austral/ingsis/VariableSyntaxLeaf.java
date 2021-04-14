@@ -72,4 +72,9 @@ public class VariableSyntaxLeaf extends AbstractSyntaxLeaf {
   public void accept(Visitor visitor) {
     visitor.visitVariable(this);
   }
+  
+  @Override
+  public AbstractSyntaxTree accept2(InterpreterVisitor visitor) {
+    return visitor.visitVariable(this);
+  }
 }
