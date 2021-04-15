@@ -7,9 +7,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class LexerImpl implements Lexer {
+
   private final TokenDumper dumper = new TokenDumper();
-  private final List<TokenIdentifier> tokenIdentifierList = TokenIdentifier.getAllTokens();
+  private List<TokenIdentifier> tokenIdentifierList = TokenIdentifier.getAllTokens("1.0");
   private StringBuilder stringBuilder = new StringBuilder();
+
+  @Override
+  public void setVersion(String version) {
+    tokenIdentifierList = TokenIdentifier.getAllTokens(version);
+  }
 
   @Override
   public List<Token> analyseLexically(CodeLine line) {

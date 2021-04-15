@@ -28,14 +28,14 @@ public class CLI {
     final Scanner scanner = new Scanner(System.in);
     String message = "";
     String welcomeMessage = "please type\n" +
-            "<mode> <filePath>";
+            "<mode> <filePath> <versionNumber>";
     printer.print(welcomeMessage);
     while (!message.equals("exit")) {
       printer.print(">");
       message = scanner.nextLine().trim().toLowerCase();
 //      message = "execute state/src/main/resources/test.txt";
       final String[] args = message.split(" ");
-      if (args.length < 2) throw new RuntimeException("Two arguments are needed"); //todo implement mejor
+      if (args.length < 3) throw new RuntimeException("Three arguments are needed"); //todo implement mejor
       state.run(args);
     }
   }

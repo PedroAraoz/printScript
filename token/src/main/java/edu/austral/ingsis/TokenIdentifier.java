@@ -68,7 +68,7 @@ public class TokenIdentifier {
     public static TokenIdentifier RIGHT_PARENTHESIS_TOKEN =
             new TokenIdentifier(TokenName.RIGHT_PARENTHESIS, Pattern.compile("\\)"));
 
-    public static List<TokenIdentifier> getAllTokens() {
+    public static List<TokenIdentifier> getAllTokens(String version) {
         List<TokenIdentifier> tokenIdentifiers = new ArrayList<>();
         tokenIdentifiers.add(LET_TOKEN);
         tokenIdentifiers.add(TYPE_ASSIGNATION_TOKEN);
@@ -83,6 +83,9 @@ public class TokenIdentifier {
         tokenIdentifiers.add(PRINTLN_TOKEN);
         tokenIdentifiers.add(LEFT_PARENTHESIS_TOKEN);
         tokenIdentifiers.add(RIGHT_PARENTHESIS_TOKEN);
+        if (version.equals("1.1")) {
+            // TODO Agregar nuevos
+        }
         return tokenIdentifiers;
     }
 }
