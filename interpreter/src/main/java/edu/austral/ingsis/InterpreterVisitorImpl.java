@@ -8,10 +8,11 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   
   private final VariableRegister variableRegister = new VariableRegister();
   private final Printer printer;
+  
   public InterpreterVisitorImpl(Printer printer) {
     this.printer = printer;
   }
-  //todo falta agregar lo del printer que lo vas pasando
+  
   @Override
   public AbstractSyntaxTree visit(AbstractSyntaxTree abstractSyntaxTree) throws CompilationTimeException {
     return abstractSyntaxTree.accept2(this);
@@ -19,16 +20,17 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   
   @Override
   public AbstractSyntaxTree visitValueAssignation(ValueAssignationSyntaxBranch branch) throws CompilationTimeException {
+    printer.print("handling value assignation");
     VariableSyntaxLeaf variableSyntaxLeaf = (VariableSyntaxLeaf) visit(branch.left);
     LiteralSyntaxLeaf literalSyntaxLeaf = (LiteralSyntaxLeaf) visit(branch.right);
     
-    // TODO conseguir el tipo del literal
-    variableRegister.assignValueToVariable(variableSyntaxLeaf.getToken().getValue(), literalSyntaxLeaf.getToken().getValue());
+    variableRegister.assignValueToVariable(variableSyntaxLeaf.getToken(), literalSyntaxLeaf.getToken());
     return null; //todo esto esta raro
   }
   
   @Override
   public VariableSyntaxLeaf visitTypeAssingation(TypeAssignationSyntaxBranch branch) {
+    printer.print("handling type assignation");
     String variableName = branch.left.getToken().getValue();
     TokenIdentifier type = branch.right.getToken().getTokenIdentifier();
     
@@ -39,6 +41,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   
   @Override
   public LiteralSyntaxLeaf visitSumSub(SumSubOperationSyntaxBranch branch) throws CompilationTimeException {
+    printer.print("handling sum/sub operation");
     final AbstractSyntaxTree l = visit(branch.left);
     final AbstractSyntaxTree r = visit(branch.right);
     final LiteralSyntaxLeaf left = smartCastToVariable(l);
@@ -74,6 +77,8 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   
   @Override
   public LiteralSyntaxLeaf visitMultDiv(MultDivOperationSyntaxBranch branch) throws CompilationTimeException {
+    printer.print("handling mult/div operation");
+    
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
     int answer;
@@ -118,7 +123,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   public EmptySyntaxLeaf visitEmpty(EmptySyntaxLeaf leaf) {
     return leaf;
   }
-
+  
   @Override
   public PrintLnSyntaxLeaf visitPrintLn(PrintLnSyntaxLeaf leaf) throws CompilationTimeException {
     AbstractSyntaxTree expression = leaf.getExpression();
@@ -126,20 +131,20 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     printer.print(result.getValue());
     return leaf;
   }
-
+  
   @Override
   public LeftParenthesisSyntaxLeaf visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf) {
     // This shouldn't happen
     return null;
   }
-
+  
   @Override
   public RightParenthesisSyntaxLeaf visitRightParenthesis(RightParenthesisSyntaxLeaf leaf) {
     // This shouldn't happen
     return null;
   }
-
-  private LiteralSyntaxLeaf getLiteralSyntaxLeaf(String value,  TokenIdentifier token) {
+  
+  private LiteralSyntaxLeaf getLiteralSyntaxLeaf(String value, TokenIdentifier token) {
     final LiteralSyntaxLeaf literalSyntaxLeaf = new LiteralSyntaxLeaf();
     literalSyntaxLeaf.setToken(
             new Token(token,
@@ -151,6 +156,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   private boolean isNumber(LiteralSyntaxLeaf b) {
     return b.getToken().getTokenIdentifier().getName().equals(TokenName.NUMBER_LITERAL);
   }
+  
   private boolean isString(LiteralSyntaxLeaf b) {
     return b.token.getTokenIdentifier().getName().equals(TokenName.STRING_LITERAL);
   }
@@ -158,8 +164,9 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   private CompilationTimeException interpreterError(String file, Token token, String message) {
     return interpreterError(file, token.getLine(), token.getStartPos(), token.getEndPos(), message);
   }
+  
   private CompilationTimeException interpreterError(String file, int line, int from, int to, String text) {
-    final String message = "On File: " + file  + "\n" +
+    final String message = "On File: " + file + "\n" +
             "line: " + line + "\n" +
             "from: " + from + " to: " + to + "\n" +
             "message: " + text;

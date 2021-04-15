@@ -15,7 +15,6 @@ dependencies {
     implementation project(':fileGenerator')
     implementation project(':interpreter')
     implementation project(':printer')
-    implementation project(':variableRegister')
     implementation 'junit:junit:4.12'
 }
 
