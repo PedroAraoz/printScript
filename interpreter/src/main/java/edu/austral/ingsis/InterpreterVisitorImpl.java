@@ -91,7 +91,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
         answer = Integer.parseInt(left.getValue()) /
                 Integer.parseInt(right.getValue());
       }
-      return getLiteralSyntaxLeaf(Integer.toString(answer), TokenIdentifier.NUMBER_TYPE_TOKEN);
+      return getLiteralSyntaxLeaf(Integer.toString(answer), TokenIdentifier.NUMBER_LITERAL_TOKEN);
     } else {
       final Token t = !isNumber(left) ?
               left.getToken() : right.getToken();

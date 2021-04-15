@@ -32,8 +32,8 @@ public class CLI {
     printer.print(welcomeMessage);
     while (!message.equals("exit")) {
       printer.print(">");
-      message = scanner.nextLine().trim().toLowerCase();
-//      message = "execute state/src/main/resources/test.txt";
+//      message = scanner.nextLine().trim().toLowerCase();
+      message = "execute state/src/main/resources/test2.txt";
       final String[] args = message.split(" ");
       if (args.length < 2) throw new RuntimeException("Two arguments are needed"); //todo implement mejor
       state.run(args);
