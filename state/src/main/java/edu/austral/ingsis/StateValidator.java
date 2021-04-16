@@ -38,12 +38,13 @@ public class StateValidator implements State {
     printer.print("Starting...");
 //    final int totalLines = file.getLines();
 //    int currentLine = 0;
+//    lexer.setVersion(args[2]);
 //    while (file.hasNext()) {
 //      printer.print(currentLine + "/" + totalLines);
 //      final List<Token> tokenWrappers = lexer.analyseLexically(file.next().get());
 //      parser.analyseSintactically(tokenWrappers);
 //      currentLine++;
-//    }
+    }
   }
   
   private boolean checkMode(String mode) {

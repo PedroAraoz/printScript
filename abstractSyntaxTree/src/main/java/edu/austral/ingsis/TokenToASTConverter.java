@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class TokenToASTConverter {
 
-  final HashMap<TokenIdentifier, ASTCommand> map;
+  final HashMap<TokenIdentifier, ASTCommand> map;// TODO ADD LOGIC OF VERSION 1.1
 
   public TokenToASTConverter() {
 

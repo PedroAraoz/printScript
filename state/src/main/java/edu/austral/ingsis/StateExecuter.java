@@ -41,6 +41,7 @@ public class StateExecuter implements State {
         printer.print("Starting...");
 //        final int totalLines = file.getLines();
 //        int currentLine = 0;
+//        lexer.setVersion(args[2]);
 //        while (file.hasNext()) {
 //            printer.print(currentLine + "/" + totalLines);
 //            final List<Token> tokens = lexer.analyseLexically(file.next().get());
@@ -49,7 +50,7 @@ public class StateExecuter implements State {
 //            currentLine++;
 //            ((InterpreterVisitorImpl) interpreter).debug();
 //        }
-    }
+//    }
 
     private boolean checkMode(String mode) {
         if (mode.equals("execute")) return true;
