@@ -4,6 +4,8 @@ plugins {
     id 'jacoco'
 }
 
+apply plugin: 'checkstyle'
+
 test {
     finalizedBy(jacocoTestReport)
 }
@@ -30,3 +32,8 @@ tasks.build.dependsOn(check)
 
 group = 'edu.austral.ingsis'
 version = '1.0.1'
+
+checkstyle {
+    toolVersion = '6.16.1'
+    config = rootProject.resources.text.fromFile('etc/checkstyle/rules.xml')
+}

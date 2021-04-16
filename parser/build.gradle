@@ -4,6 +4,8 @@ plugins {
     id 'jacoco'
 }
 
+apply plugin: 'checkstyle'
+
 dependencies {
     implementation project(':token')
     implementation project(':abstractSyntaxTree')
@@ -36,3 +38,8 @@ jacocoTestCoverageVerification {
 
 check.dependsOn jacocoTestCoverageVerification
 tasks.build.dependsOn(check)
+
+checkstyle {
+    toolVersion = '6.16.1'
+    config = rootProject.resources.text.fromFile('etc/checkstyle/rules.xml')
+}
