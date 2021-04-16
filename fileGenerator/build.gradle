@@ -3,6 +3,9 @@ plugins {
     id 'my-library.java-common-conventions'
     id 'jacoco'
 }
+
+apply plugin: 'checkstyle'
+
 repositories {
     mavenCentral()
 }
@@ -41,3 +44,8 @@ jacocoTestCoverageVerification {
 
 check.dependsOn jacocoTestCoverageVerification
 tasks.build.dependsOn(check)
+
+checkstyle {
+    toolVersion = '6.16.1'
+    config = rootProject.resources.text.fromFile('etc/checkstyle/rules.xml')
+}
