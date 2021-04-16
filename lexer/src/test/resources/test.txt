@@ -1,4 +1,4 @@
-let x: number = "hola amigo";
+let asd: string = "hola amigo";
 x = 5.5;
 
 let y: string = "hola";

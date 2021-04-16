@@ -58,7 +58,7 @@ public class TokenIdentifier {
     public static TokenIdentifier STRING_LITERAL_TOKEN =
             new TokenIdentifier(
                     TokenName.STRING_LITERAL,
-                    Pattern.compile("('[a-zA-Z]+')|(\"[a-zA-Z]+\")"));
+                    Pattern.compile("('[a-zA-Z ]+')|(\"[a-zA-Z ]+\")"));
     public static TokenIdentifier VARIABLE_TOKEN =
             new TokenIdentifier(TokenName.VARIABLE, Pattern.compile(""));
     public static TokenIdentifier PRINTLN_TOKEN =
@@ -68,7 +68,7 @@ public class TokenIdentifier {
     public static TokenIdentifier RIGHT_PARENTHESIS_TOKEN =
             new TokenIdentifier(TokenName.RIGHT_PARENTHESIS, Pattern.compile("\\)"));
     public static TokenIdentifier WIP_TOKEN =
-            new TokenIdentifier(TokenName.WIP_TOKEN, Pattern.compile(""));
+            new TokenIdentifier(TokenName.WIP_TOKEN, Pattern.compile(".*"));
 
     public static List<TokenIdentifier> getAllTokens() {
         List<TokenIdentifier> tokenIdentifiers = new ArrayList<>();
