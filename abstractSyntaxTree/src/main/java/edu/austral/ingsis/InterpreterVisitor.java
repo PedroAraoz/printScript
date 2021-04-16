@@ -44,5 +44,5 @@ public interface InterpreterVisitor {
 
     RightBracketSyntaxLeaf visitRightBracket(RightBracketSyntaxLeaf leaf);
 
-    IfElseOperationSyntaxBranch visitIfElse(IfElseOperationSyntaxBranch branch);
+    IfOperationSyntaxBranch visitIf(IfOperationSyntaxBranch branch);
 }

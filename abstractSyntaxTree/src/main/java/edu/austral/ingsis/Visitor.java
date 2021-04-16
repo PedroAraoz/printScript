@@ -42,5 +42,5 @@ public interface Visitor {
 
   void visitRightBracket(RightBracketSyntaxLeaf leaf);
 
-  void visitIfElse(IfElseOperationSyntaxBranch branch);
+  void visitIf(IfOperationSyntaxBranch branch);
 }

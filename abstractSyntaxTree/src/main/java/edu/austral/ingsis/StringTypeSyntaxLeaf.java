@@ -104,7 +104,7 @@ public class StringTypeSyntaxLeaf extends AbstractSyntaxLeaf {
   }
 
   @Override
-  public AbstractSyntaxTree addIfElseOperationSyntaxBranch(IfElseOperationSyntaxBranch branch) {
+  public AbstractSyntaxTree addIfOperationSyntaxBranch(IfOperationSyntaxBranch branch) {
     return null;
   }
 

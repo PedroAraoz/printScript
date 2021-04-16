@@ -116,7 +116,7 @@ public class ValueAssignationSyntaxBranch extends AbstractSyntaxBranch {
     }
 
     @Override
-    public AbstractSyntaxTree addIfElseOperationSyntaxBranch(IfElseOperationSyntaxBranch branch) {
+    public AbstractSyntaxTree addIfOperationSyntaxBranch(IfOperationSyntaxBranch branch) {
         return null;
     }
 
