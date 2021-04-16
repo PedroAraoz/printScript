@@ -50,7 +50,7 @@ public class StateExecuter implements State {
 //            currentLine++;
 //            ((InterpreterVisitorImpl) interpreter).debug();
 //        }
-//    }
+    }
 
     private boolean checkMode(String mode) {
         if (mode.equals("execute")) return true;

@@ -12,12 +12,12 @@ public class InterpreterTests {
     final Parser parser = new ParserImpl();
     final FileGenerator generator= new NormalFileGenerator();
     final File open = generator.open("/home/pedro/projects/printScript/interpreter/src/test/resources/myCode.txt");
-    while (open.hasNext()) {
+//    while (open.hasNext()) {
 //      final CodeLine codeLine = open.next().get();
 //      final List<Token> tokens = lexer.analyseLexically(codeLine);
 //      final AbstractSyntaxTree ast = parser.analyseSintactically(tokens);
 //      i.visit(ast);
-    }
+//    }
     i.debug();
   }
 }

@@ -44,7 +44,7 @@ public class StateValidator implements State {
 //      final List<Token> tokenWrappers = lexer.analyseLexically(file.next().get());
 //      parser.analyseSintactically(tokenWrappers);
 //      currentLine++;
-    }
+//    }
   }
   
   private boolean checkMode(String mode) {

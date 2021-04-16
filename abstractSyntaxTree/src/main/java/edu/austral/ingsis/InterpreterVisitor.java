@@ -30,19 +30,19 @@ public interface InterpreterVisitor {
 
     RightParenthesisSyntaxLeaf visitRightParenthesis(RightParenthesisSyntaxLeaf leaf);
 
-    BooleanTypeSyntaxLeaf visitBooleanType(BooleanTypeSyntaxLeaf leaf);
-
-    GreaterThanOperationSyntaxBranch visitGreaterThan(GreaterThanOperationSyntaxBranch branch);
-
-    LesserThanOperationSyntaxBranch visitLesserThan(LesserThanOperationSyntaxBranch branch);
-
-    LesserEqualThanOperationSyntaxBranch visitLesserEqualThan(LesserEqualThanOperationSyntaxBranch branch);
-
-    GreaterEqualThanOperationSyntaxBranch visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch);
-
-    LeftBracketSyntaxLeaf visitLeftBracket(LeftBracketSyntaxLeaf leaf);
-
-    RightBracketSyntaxLeaf visitRightBracket(RightBracketSyntaxLeaf leaf);
-
-    IfElseOperationSyntaxBranch visitIfElse(IfElseOperationSyntaxBranch branch);
+//    BooleanTypeSyntaxLeaf visitBooleanType(BooleanTypeSyntaxLeaf leaf);
+//
+//    GreaterThanOperationSyntaxBranch visitGreaterThan(GreaterThanOperationSyntaxBranch branch);
+//
+//    LesserThanOperationSyntaxBranch visitLesserThan(LesserThanOperationSyntaxBranch branch);
+//
+//    LesserEqualThanOperationSyntaxBranch visitLesserEqualThan(LesserEqualThanOperationSyntaxBranch branch);
+//
+//    GreaterEqualThanOperationSyntaxBranch visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch);
+//
+//    LeftBracketSyntaxLeaf visitLeftBracket(LeftBracketSyntaxLeaf leaf);
+//
+//    RightBracketSyntaxLeaf visitRightBracket(RightBracketSyntaxLeaf leaf);
+//
+//    IfElseOperationSyntaxBranch visitIfElse(IfElseOperationSyntaxBranch branch); todo PEDRO Y ALEJO
 }

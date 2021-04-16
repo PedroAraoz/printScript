@@ -158,6 +158,12 @@ public class LexerImpl implements Lexer {
     return Collections.singletonList(new Token(TokenIdentifier.WIP_TOKEN, 0, 0, 0, ""));
   }
   
+  @Override
+  public void setVersion(String version) {
+    // TODO MURIO EN EL MERGE!
+  
+  }
+  
   
   public Optional<Token> getNextToken() {
     return null;
