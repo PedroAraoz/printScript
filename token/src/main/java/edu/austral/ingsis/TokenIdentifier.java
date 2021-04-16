@@ -51,8 +51,6 @@ public class TokenIdentifier {
             new TokenIdentifier(TokenName.NUMBER_TYPE, Pattern.compile("number"));
     public static TokenIdentifier STRING_TYPE_TOKEN =
             new TokenIdentifier(TokenName.STRING_TYPE, Pattern.compile("string"));
-    public static TokenIdentifier BOOLEAN_TYPE_TOKEN =
-            new TokenIdentifier(TokenName.BOOLEAN_TYPE, Pattern.compile("boolean"));
     public static TokenIdentifier NUMBER_LITERAL_TOKEN =
             new TokenIdentifier(
                     TokenName.NUMBER_LITERAL,
@@ -61,14 +59,6 @@ public class TokenIdentifier {
             new TokenIdentifier(
                     TokenName.STRING_LITERAL,
                     Pattern.compile("('[a-zA-Z ]+')|(\"[a-zA-Z ]+\")"));
-    public static TokenIdentifier TRUE_TOKEN =
-            new TokenIdentifier(
-                    TokenName.TRUE,
-                    Pattern.compile("true"));
-    public static TokenIdentifier FALSE_TOKEN =
-            new TokenIdentifier(
-                    TokenName.FALSE,
-                    Pattern.compile("false"));
     public static TokenIdentifier VARIABLE_TOKEN =
             new TokenIdentifier(TokenName.VARIABLE, Pattern.compile(""));
     public static TokenIdentifier PRINTLN_TOKEN =
@@ -79,24 +69,6 @@ public class TokenIdentifier {
             new TokenIdentifier(TokenName.RIGHT_PARENTHESIS, Pattern.compile("\\)"));
     public static TokenIdentifier WIP_TOKEN =
             new TokenIdentifier(TokenName.WIP_TOKEN, Pattern.compile(".*"));
-    public static TokenIdentifier CONST_TOKEN =
-            new TokenIdentifier(TokenName.CONST, Pattern.compile("const"));
-    public static TokenIdentifier IF_TOKEN =
-            new TokenIdentifier(TokenName.IF, Pattern.compile("if"));
-    public static TokenIdentifier ELSE_TOKEN =
-            new TokenIdentifier(TokenName.ELSE, Pattern.compile("else"));
-    public static TokenIdentifier LEFT_BRACKET_TOKEN =
-            new TokenIdentifier(TokenName.LEFT_BRACKET, Pattern.compile("\\{"));
-    public static TokenIdentifier RIGHT_BRACKET_TOKEN =
-            new TokenIdentifier(TokenName.RIGHT_BRACKET, Pattern.compile("}"));
-    public static TokenIdentifier GREATER_TOKEN =
-            new TokenIdentifier(TokenName.GREATER, Pattern.compile(">"));
-    public static TokenIdentifier LESSER_TOKEN =
-            new TokenIdentifier(TokenName.LESSER, Pattern.compile("<"));
-    public static TokenIdentifier GREATER_EQUALS_TOKEN =
-            new TokenIdentifier(TokenName.GREATER_EQUAL, Pattern.compile(">="));
-    public static TokenIdentifier LESSER_EQUALS_TOKEN =
-            new TokenIdentifier(TokenName.LESSER_EQUAL, Pattern.compile("<="));
 
     public static List<TokenIdentifier> getAllTokens(String version) {
         List<TokenIdentifier> tokenIdentifiers = new ArrayList<>();
@@ -116,20 +88,6 @@ public class TokenIdentifier {
         tokenIdentifiers.add(PRINTLN_TOKEN);
         tokenIdentifiers.add(LEFT_PARENTHESIS_TOKEN);
         tokenIdentifiers.add(RIGHT_PARENTHESIS_TOKEN);
-        if (version.equals("1.1")) {
-            tokenIdentifiers.add(BOOLEAN_TYPE_TOKEN);
-            tokenIdentifiers.add(TRUE_TOKEN);
-            tokenIdentifiers.add(FALSE_TOKEN);
-            tokenIdentifiers.add(CONST_TOKEN);
-            tokenIdentifiers.add(IF_TOKEN);
-            tokenIdentifiers.add(ELSE_TOKEN);
-            tokenIdentifiers.add(LEFT_BRACKET_TOKEN);
-            tokenIdentifiers.add(RIGHT_BRACKET_TOKEN);
-            tokenIdentifiers.add(GREATER_TOKEN);
-            tokenIdentifiers.add(GREATER_EQUALS_TOKEN);
-            tokenIdentifiers.add(LESSER_TOKEN);
-            tokenIdentifiers.add(LESSER_EQUALS_TOKEN);
-        }
         return tokenIdentifiers;
     }
     
