@@ -1,9 +1,7 @@
-import edu.austral.ingsis.CodeLine;
-import edu.austral.ingsis.LexerImpl;
-import edu.austral.ingsis.TokenIdentifier;
-import edu.austral.ingsis.Token;
+import edu.austral.ingsis.*;
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -156,7 +154,17 @@ public class LexerTests {
       assertEquals(e.getValue(), a.getValue());
     }
   }
-
+  
+  @Test
+  public void asdasdasd() throws FileNotFoundException {
+    final LexerImpl lexer = new LexerImpl();
+    final File f = new NormalFileGenerator().open("/home/pedro/projects/printScript/lexer/src/test/resources/test.txt");
+    List<String> all = new ArrayList<>();
+    while (f.hasNext()) {
+      all.add(f.next());
+    }
+    lexer.analyseLexically(all);
+  }
   //  @Test
   //  public void aWeirdCase() {
   //    List<CodeLine> codeLineList = new ArrayList<>();

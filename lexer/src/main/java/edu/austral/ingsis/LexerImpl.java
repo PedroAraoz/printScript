@@ -1,89 +1,142 @@
 package edu.austral.ingsis;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.regex.MatchResult;
+import java.util.regex.Matcher;
 import java.util.stream.Collectors;
 
 public class LexerImpl implements Lexer {
-  private final TokenDumper dumper = new TokenDumper();
-  private final List<TokenIdentifier> tokenIdentifierList = TokenIdentifier.getAllTokens();
-  private StringBuilder stringBuilder = new StringBuilder();
-
+  
+  public List<Token> analyseLexically(List<String> code) {
+    List<Token> tokens = new ArrayList<>();
+    List<TokenIdentifier> one = TokenIdentifier.getPriorityOneTokens();
+    List<TokenIdentifier> two = TokenIdentifier.getPriorityTwoTokens();
+    List<TokenIdentifier> three = TokenIdentifier.getPriorityThreeTokens();
+    // PART 1 (no space needed tokens)
+    for (int i = 0; i < code.size(); i++)
+      tokens.add(stringToEmptyToken(code.get(i), i, 0, -1)); //the -1 does not matter
+    for (TokenIdentifier i : one)
+      tokens = findAndReplace(tokens, i);
+    
+    // PART 2 (String and number literals)
+    for (TokenIdentifier i : two) {
+      tokens = findAndReplaceTwo(tokens, i);
+    }
+    return tokens;
+  }
+  
+  private List<Token> findAndReplaceTwo(List<Token> tokens, TokenIdentifier ti) {
+    final List<Token> answer = new ArrayList<>();
+    for (Token t : tokens) {
+      if (t.getName().equals(TokenName.WIP_TOKEN)) {
+        final String string = t.getValue();
+        final Matcher matcher = ti.getRegex().matcher(string);
+        List<String> matches = matcher.results().map(MatchResult::group).collect(Collectors.toList());
+        for (String s : matches) {
+          final List<String> strings = Arrays.asList(string.split(s));
+          int startPos = t.getStartPos();
+          int endPos;
+          for (int i = 0; i < strings.size() - 1; i++) {
+            endPos = startPos + strings.get(i)
+            answer.add(stringToEmptyToken(strings.get(i), t.getLine(), startPos, ))
+          }
+        }
+        
+        
+      } else {
+        answer.add(t);
+      }
+    }
+    return answer;
+  }
+  
+  
+  private void wat(String string, List<String> list, TokenIdentifier token, int line, int startPos) {
+    final List<Token> tokens = new ArrayList<>();
+    int endPos = 0;
+    if (list.get(0).equals("")) {
+      //esto significa que habia un token en posicion 0
+      tokens.add(new Token(token, line, startPos, startPos, token.toString()));
+      startPos++;
+    }
+    for (int i = 0; i < list.size() - 1; i++) {
+      endPos += list.get(i).length() - 1;
+      tokens.add(stringToEmptyToken(list.get(i), line, startPos, endPos));
+      endPos++;
+      tokens.add(new Token(token, line, endPos, endPos, token.toString()));
+      startPos = endPos + 1;
+    }
+    endPos = startPos + list.get(list.size() - 1).length() - 1;
+    tokens.add(stringToEmptyToken(list.get(list.size() - 1), line, startPos, endPos));
+    startPos = endPos + 1;
+    if (token.verify(string.substring(string.length() - 2)) || token.verify(string.substring(string.length() - 1))) {
+      //si el ultimo o ultimos 2 caracters del string matchea es porque falta un ultimo
+      tokens.add(new Token(token, line, startPos, startPos, token.toString()));
+    }
+  }
+  
+  private List<Token> filterEmptyWIPToken(List<Token> tokens) {
+    return tokens.stream().filter(e -> !e.getValue().equals("")).collect(Collectors.toList());
+  }
+  
+  public List<Token> findAndReplace(String string, TokenIdentifier token, int line) {
+    return findAndReplace(string, token, line, 0);
+  }
+  
+  public List<Token> findAndReplace(String string, TokenIdentifier token, int line, int startPos) {
+    final List<String> list = Arrays.asList(token.getRegex().split(string));
+    final List<Token> tokens = new ArrayList<>();
+    int endPos = 0;
+    if (list.get(0).equals("")) {
+      //esto significa que habia un token en posicion 0
+      tokens.add(new Token(token, line, startPos, startPos, token.toString()));
+      startPos++;
+    }
+    for (int i = 0; i < list.size() - 1; i++) {
+      endPos += list.get(i).length() - 1;
+      tokens.add(stringToEmptyToken(list.get(i), line, startPos, endPos));
+      endPos++;
+      tokens.add(new Token(token, line, endPos, endPos, token.toString()));
+      startPos = endPos + 1;
+    }
+    endPos = startPos + list.get(list.size() - 1).length() - 1;
+    tokens.add(stringToEmptyToken(list.get(list.size() - 1), line, startPos, endPos));
+    startPos = endPos + 1;
+    if (token.verify(string.substring(string.length() - 2)) || token.verify(string.substring(string.length() - 1))) {
+      //si el ultimo o ultimos 2 caracters del string matchea es porque falta un ultimo
+      tokens.add(new Token(token, line, startPos, startPos, token.toString()));
+    }
+    return tokens;
+  }
+  
+  public List<Token> findAndReplace(List<Token> tokens, TokenIdentifier token) {
+    tokens = filterEmptyWIPToken(tokens);
+    if (tokens.isEmpty()) return new ArrayList<>();
+    final List<Token> answer = new ArrayList<>();
+    for (Token t : tokens) {
+      if (t.getName().equals(TokenName.WIP_TOKEN)) {
+        final List<Token> andReplace = findAndReplace(t.getValue(), token, t.getLine(), t.getStartPos());
+        answer.addAll(andReplace);
+      } else {
+        answer.add(t);
+      }
+    }
+    return answer;
+  }
+  
+  
+  private Token stringToEmptyToken(String string, int line, int s, int e) {
+    return new Token(TokenIdentifier.WIP_TOKEN, line, s, e, string);
+  }
+  
   @Override
   public List<Token> analyseLexically(CodeLine line) {
-    int startPos = 0;
-    int endPos;
-    final List<Token> result = new ArrayList<>();
-    final List<String> list = Arrays.asList(line.toString().split("(?!^)"));
-
-    list.forEach(this::put);
-    final String s = stringBuilder.toString().replace(" ", "");
-    if (s.length() > 0) dumpVarOrLit(s);
-
-    while (dumper.hasNext()) {
-      // Create Token Add extra information needed
-      final Tuple t = dumper.pop();
-      endPos = startPos + t.getString().length();
-      result.add(new Token(t.getToken(), line.getRow(), startPos, endPos, t.getString()));
-      startPos = endPos;
-    }
-    // todo el manejo de pos podria ser mejor
-    return result;
+    return Collections.singletonList(new Token(TokenIdentifier.WIP_TOKEN, 0, 0, 0, ""));
   }
-
-  private void put(String c) {
-    // Firstly we validate if the character is a token in and of itself
-    Optional<TokenIdentifier> single =
-        tokenIdentifierList.stream().filter(t -> t.getRegex().matcher(c).matches()).findFirst();
-
-    if (single.isPresent() && (!single.get().equals(TokenIdentifier.NUMBER_LITERAL_TOKEN) || !single.get().equals(TokenIdentifier.STRING_LITERAL_TOKEN))) {
-      String s = stringBuilder.toString();
-      s = s.replace(" ", "");
-      if (s.length() > 0) {
-        // Aca podemos tener en s o un token o una variable.
-        dumpVarOrLit(s);
-      }
-      dumper.dump(single.get(), c);
-    }
-    // If the character is not a token, we must add it to the StringBuilder and check as a whole
-    else {
-
-      stringBuilder.append(c);
-      String s = stringBuilder.toString();
-
-      // We separate the contents of the StringBuilder into different words separated by spaces.
-      // This is because if a word has not been identified as a token, it is a variable name
-      List<String> list = Arrays.asList(s.split(" "));
-
-      // We need to filter the empty strings out of the list, because of how split() method works
-      list = list.stream().filter(e -> !e.equals("")).collect(Collectors.toList());
-
-      for (int i = 0; i < list.size(); i++) {
-        final String s1 = list.get(i);
-        Optional<TokenIdentifier> tokenOptional = tokenIdentifierList.stream().filter(t -> matches(t, s1)).findFirst();
-        if (tokenOptional.isPresent()) {
-          for (int j = i - 1; j >= 0; j--) dumpVarOrLit(list.get(j));
-          dumper.dump(tokenOptional.get(), s1);
-          stringBuilder = new StringBuilder();
-        }
-      }
-    }
-  }
-
-  private boolean matches(TokenIdentifier t, String s) {
-    return t.getRegex().matcher(s).matches();
-  }
-
-  private void dumpVarOrLit(String s) {
-    if (matches(TokenIdentifier.NUMBER_LITERAL_TOKEN, s)) {
-      dumper.dump(TokenIdentifier.NUMBER_LITERAL_TOKEN, s);
-    } else if(matches(TokenIdentifier.STRING_LITERAL_TOKEN, s)) {
-      dumper.dump(TokenIdentifier.STRING_LITERAL_TOKEN, s);
-    } else {
-      dumper.dump(TokenIdentifier.VARIABLE_TOKEN, s);
-    }
-    stringBuilder = new StringBuilder();
+  
+  
+  public Optional<Token> getNextToken() {
+    return null;
   }
 }
+//todo cuando metes en step 1 characters de 2 de largo se rompen las locations

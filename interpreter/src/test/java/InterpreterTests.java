@@ -3,7 +3,6 @@ import edu.austral.ingsis.exception.CompilationTimeException;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
-import java.util.List;
 
 public class InterpreterTests {
   @Test
@@ -14,10 +13,10 @@ public class InterpreterTests {
     final FileGenerator generator= new NormalFileGenerator();
     final File open = generator.open("/home/pedro/projects/printScript/interpreter/src/test/resources/myCode.txt");
     while (open.hasNext()) {
-      final CodeLine codeLine = open.next().get();
-      final List<Token> tokens = lexer.analyseLexically(codeLine);
-      final AbstractSyntaxTree ast = parser.analyseSintactically(tokens);
-      i.visit(ast);
+//      final CodeLine codeLine = open.next().get();
+//      final List<Token> tokens = lexer.analyseLexically(codeLine);
+//      final AbstractSyntaxTree ast = parser.analyseSintactically(tokens);
+//      i.visit(ast);
     }
     i.debug();
   }
