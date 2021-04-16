@@ -11,6 +11,16 @@ public class App {
     } catch (FileNotFoundException | CompilationTimeException e) {
       e.printStackTrace();
     }
+
+    //    final Pattern p = Pattern.compile("([0-9]+.[0-9]+)|[0-9]+");
+    //    String string = "12345Nolopuedocreer2.2hola";
+    //    final Matcher matcher = p.matcher(string);
+    //    List<String> all = new ArrayList<>();
+    //    all = matcher.results().map(MatchResult::group).collect(Collectors.toList());
+    //    for (String s : all) {
+    //      final List<String> strings = Arrays.asList(string.split(s));
+    //    }
+
   }
 }
 // todo tenemos el bug que se come los espacios adentro de los string literals

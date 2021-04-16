@@ -3,7 +3,6 @@ package edu.austral.ingsis;
 import edu.austral.ingsis.exception.CompilationTimeException;
 
 import java.io.FileNotFoundException;
-import java.util.List;
 
 public class StateExecuter implements State {
 
@@ -40,17 +39,17 @@ public class StateExecuter implements State {
         if (!checkMode(args[0])) return;
         final File file = fileGenerator.open(args[1]);
         printer.print("Starting...");
-        final int totalLines = file.getLines();
-        int currentLine = 0;
-        lexer.setVersion(args[2]);
-        while (file.hasNext()) {
-            printer.print(currentLine + "/" + totalLines);
-            final List<Token> tokens = lexer.analyseLexically(file.next().get());
-            final AbstractSyntaxTree ast = parser.analyseSintactically(tokens);
-            interpreter.visit(ast);
-            currentLine++;
-            ((InterpreterVisitorImpl) interpreter).debug();
-        }
+//        final int totalLines = file.getLines();
+//        int currentLine = 0;
+//        lexer.setVersion(args[2]);
+//        while (file.hasNext()) {
+//            printer.print(currentLine + "/" + totalLines);
+//            final List<Token> tokens = lexer.analyseLexically(file.next().get());
+//            final AbstractSyntaxTree ast = parser.analyseSintactically(tokens);
+//            interpreter.visit(ast);
+//            currentLine++;
+//            ((InterpreterVisitorImpl) interpreter).debug();
+//        }
     }
 
     private boolean checkMode(String mode) {
