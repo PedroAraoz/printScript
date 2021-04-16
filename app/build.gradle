@@ -5,6 +5,8 @@ plugins {
     id "com.github.sherter.google-java-format" version "0.9"
 }
 
+apply plugin: 'checkstyle'
+
 group = 'edu.austral.ingsis'
 version = '1.0.1'
 
@@ -56,3 +58,8 @@ task ourGoogleJavaFormat {
 tasks.build.dependsOn(check)
 
 check.dependsOn ourGoogleJavaFormat
+
+checkstyle {
+    toolVersion = '6.16.1'
+    config = rootProject.resources.text.fromFile('etc/checkstyle/rules.xml')
+}
