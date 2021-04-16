@@ -25,17 +25,6 @@ application {
     mainClass = 'edu.austral.ingsis.App'
 }
 
-test {
-    finalizedBy(jacocoTestReport)
-}
-
-jacocoTestReport {
-    dependsOn(test)
-    reports {
-        html.destination(file("${buildDir}/jacocoReport"))
-    }
-}
-
 jar {
     manifest {
         attributes(
@@ -44,6 +33,17 @@ jar {
                 'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
                 'Main-Class': 'edu.austral.ingsis.App'
         )
+    }
+}
+
+test {
+    finalizedBy(jacocoTestReport)
+}
+
+jacocoTestReport {
+    dependsOn(test)
+    reports {
+        html.destination(file("${buildDir}/jacocoReport"))
     }
 }
 
