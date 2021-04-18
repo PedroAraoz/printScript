@@ -1,9 +1,9 @@
 package edu.austral.ingsis;
 
-import java.util.*;
-import java.util.regex.MatchResult;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class LexerImpl implements Lexer {
@@ -20,16 +20,20 @@ public class LexerImpl implements Lexer {
     for (int i = 0; i < code.size(); i++)
       tokens.add(stringToEmptyToken(code.get(i), i, 0, -1)); //the -1 does not matter
     for (TokenIdentifier i : one)
-      tokens = findAndReplace(tokens, i);
+      tokens = firstFindAndReplace(tokens, i);
     
     // PART 2 (String and number literals)
-    for (TokenIdentifier i : two)
-      tokens = findAndReplaceTwo(tokens, i);
+    findAndReplace(tokens, two);
     removeQuotationMarkers(tokens);
     tokens = removeSpacesInWIPToken(tokens);
     tokens = filterEmptyWIPToken(tokens);
     // PART 3
-    for (TokenIdentifier ti : three) {
+    findAndReplace(tokens, three);
+    this.tokens = tokens;
+  }
+  
+  private void findAndReplace(List<Token> tokens, List<TokenIdentifier> two) {
+    for (TokenIdentifier ti : two) {
       for (int i = 0; i < tokens.size(); i++) {
         Token t = tokens.get(i);
         if (t.getName().equals(TokenName.WIP_TOKEN)) {
@@ -43,7 +47,6 @@ public class LexerImpl implements Lexer {
         }
       }
     }
-    this.tokens = tokens;
   }
   
   private List<Token> removeSpacesInWIPToken(List<Token> tokens) {
@@ -74,28 +77,6 @@ public class LexerImpl implements Lexer {
         t.setEndPos(t.getEndPos() - 1);
       }
     }
-  }
-  
-  private List<Token> findAndReplaceTwo(List<Token> tokens, TokenIdentifier ti) {
-    final List<Token> answer = new ArrayList<>();
-    for (Token t : tokens) {
-      if (t.getName().equals(TokenName.WIP_TOKEN)) {
-        final String string = t.getValue();
-        final Matcher matcher = ti.getRegex().matcher(string);
-        List<String> matches = matcher.results().map(MatchResult::group).collect(Collectors.toList());
-        if (matches.isEmpty()) {
-          answer.add(t);
-        }
-        for (String s : matches) {
-          final List<String> strings = Arrays.asList(string.split(s));
-          final List<Token> wat = findAndReplace(string, strings, ti, t.getLine(), t.getStartPos(), s.length() - 1, s);
-          answer.addAll(wat);
-        }
-      } else {
-        answer.add(t);
-      }
-    }
-    return answer;
   }
   
   private List<Token> findAndReplace(String original, List<String> list, TokenIdentifier token, int line, int startPos, int tokenStep, String tokenValue) {
@@ -134,7 +115,7 @@ public class LexerImpl implements Lexer {
     return tokens;
   }
   
-  private List<Token> findAndReplace(List<Token> tokens, TokenIdentifier token) {
+  private List<Token> firstFindAndReplace(List<Token> tokens, TokenIdentifier token) {
     tokens = filterEmptyWIPToken(tokens);
     if (tokens.isEmpty()) return new ArrayList<>();
     final List<Token> answer = new ArrayList<>();
@@ -170,17 +151,4 @@ public class LexerImpl implements Lexer {
   public List<Token> getAll() {
     return tokens;
   }
-  
-  public void testing(String string, TokenIdentifier ti) {
-    final Pattern regex = ti.getRegex();
-    final Matcher matcher = regex.matcher(string);
-    final ArrayList<String> objects = new ArrayList<>();
-    while (matcher.find()) {
-      objects.add(matcher.group());
-    }
-    System.out.println(
-            "asd"
-    );
-  }
-  
 }

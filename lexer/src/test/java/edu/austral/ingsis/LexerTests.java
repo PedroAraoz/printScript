@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LexerTests {
@@ -156,7 +157,8 @@ public class LexerTests {
   @Test
   public void asdasdasdasd() {
     LexerImpl lexer = new LexerImpl();
-    lexer.testing("1+1+1+1+1",TokenIdentifier.SUM_OPERATION_TOKEN);
+    lexer.analyseLexically(Collections.singletonList("1+2;"));
+    final List<Token> all = lexer.getAll();
     System.out.println("asd");
   }
 }
