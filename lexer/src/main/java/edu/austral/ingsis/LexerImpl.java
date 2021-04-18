@@ -3,11 +3,15 @@ package edu.austral.ingsis;
 import java.util.*;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class LexerImpl implements Lexer {
   
-  public List<Token> analyseLexically(List<String> code) {
+  List<Token> tokens = new ArrayList<>();
+  
+  @Override
+  public void analyseLexically(List<String> code) {
     List<Token> tokens = new ArrayList<>();
     List<TokenIdentifier> one = TokenIdentifier.getPriorityOneTokens();
     List<TokenIdentifier> two = TokenIdentifier.getPriorityTwoTokens();
@@ -21,27 +25,25 @@ public class LexerImpl implements Lexer {
     // PART 2 (String and number literals)
     for (TokenIdentifier i : two)
       tokens = findAndReplaceTwo(tokens, i);
-    tokens = filterEmptyWIPToken(tokens);
-    removeBrackets(tokens);
+    removeQuotationMarkers(tokens);
     tokens = removeSpacesInWIPToken(tokens);
     tokens = filterEmptyWIPToken(tokens);
     // PART 3
-    final List<Token> answer = new ArrayList<>();
-    for (TokenIdentifier i : three) {
-      for (Token t : tokens) {
+    for (TokenIdentifier ti : three) {
+      for (int i = 0; i < tokens.size(); i++) {
+        Token t = tokens.get(i);
         if (t.getName().equals(TokenName.WIP_TOKEN)) {
-          if (i.verify(t.getValue())) {
-            answer.add(new Token(i, t.getLine(), t.getStartPos(), t.getEndPos(), t.getValue()));
-          } else  {
-            answer.add(t);
+          if (ti.verify(t.getValue())) {
+            tokens.set(i, new Token(ti, t.getLine(), t.getStartPos(), t.getEndPos(), t.getValue()));
+          } else {
+            tokens.set(i, t);
           }
         } else {
-          answer.add(t);
+          tokens.set(i, t);
         }
       }
     }
-    tokens = answer;
-    return tokens;
+    this.tokens = tokens;
   }
   
   private List<Token> removeSpacesInWIPToken(List<Token> tokens) {
@@ -64,7 +66,7 @@ public class LexerImpl implements Lexer {
     return answer;
   }
   
-  private void removeBrackets(List<Token> tokens) {
+  private void removeQuotationMarkers(List<Token> tokens) {
     for (Token t : tokens) {
       if (t.getName().equals(TokenName.STRING_LITERAL)) {
         t.setValue(t.getValue().substring(1, t.getValue().length() - 1));
@@ -86,7 +88,7 @@ public class LexerImpl implements Lexer {
         }
         for (String s : matches) {
           final List<String> strings = Arrays.asList(string.split(s));
-          final List<Token> wat = wat(string, strings, ti, t.getLine(), t.getStartPos(), s.length(), s);//todo el 0 es provicional
+          final List<Token> wat = findAndReplace(string, strings, ti, t.getLine(), t.getStartPos(), s.length() - 1, s);
           answer.addAll(wat);
         }
       } else {
@@ -96,8 +98,7 @@ public class LexerImpl implements Lexer {
     return answer;
   }
   
-  
-  private List<Token> wat(String original, List<String> list, TokenIdentifier token, int line, int startPos, int tokenStep, String tokenValue) {
+  private List<Token> findAndReplace(String original, List<String> list, TokenIdentifier token, int line, int startPos, int tokenStep, String tokenValue) {
     final List<Token> tokens = new ArrayList<>();
     int endPos = 0;
     if (list.get(0).equals("")) {
@@ -116,7 +117,7 @@ public class LexerImpl implements Lexer {
     endPos = startPos + list.get(list.size() - 1).length() - 1;
     tokens.add(stringToEmptyToken(list.get(list.size() - 1), line, startPos, endPos));
     startPos = endPos + 1;
-    if (token.verify(original.substring(original.length() - tokenStep))) {
+    if (token.verify(original.substring(original.length() - tokenStep - 1))) {
       tokens.add(new Token(token, line, startPos, startPos + tokenStep, tokenValue));
     }
     return tokens;
@@ -126,14 +127,14 @@ public class LexerImpl implements Lexer {
     return tokens.stream().filter(e -> !e.getValue().equals("")).collect(Collectors.toList());
   }
   
-  public List<Token> findAndReplace(String string, TokenIdentifier token, int line, int startPos) {
+  private List<Token> findAndReplace(String string, TokenIdentifier token, int line, int startPos) {
     final List<String> list = Arrays.asList(token.getRegex().split(string));
     int tokenStep = 0; //todo aca cammbar si es as largo o no
-    List<Token> tokens = wat(string, list, token, line, startPos, tokenStep, token.toString());
+    List<Token> tokens = findAndReplace(string, list, token, line, startPos, tokenStep, token.toString());
     return tokens;
   }
   
-  public List<Token> findAndReplace(List<Token> tokens, TokenIdentifier token) {
+  private List<Token> findAndReplace(List<Token> tokens, TokenIdentifier token) {
     tokens = filterEmptyWIPToken(tokens);
     if (tokens.isEmpty()) return new ArrayList<>();
     final List<Token> answer = new ArrayList<>();
@@ -148,24 +149,38 @@ public class LexerImpl implements Lexer {
     return answer;
   }
   
-  
   private Token stringToEmptyToken(String string, int line, int s, int e) {
     return new Token(TokenIdentifier.WIP_TOKEN, line, s, e, string);
   }
   
-  @Override
-  public List<Token> analyseLexically(CodeLine line) {
-    return Collections.singletonList(new Token(TokenIdentifier.WIP_TOKEN, 0, 0, 0, ""));
-  }
-  
-  @Override
-  public void setVersion(String version) {
-    // TODO MURIO EN EL MERGE!
-  
-  }
-  
-  
   public Optional<Token> getNextToken() {
-    return null;
+    try {
+      return Optional.ofNullable(tokens.remove(0));
+    } catch (IndexOutOfBoundsException _ignored) {
+      return Optional.empty();
+    }
   }
+  
+  @Override
+  public boolean hasNext() {
+    return !tokens.isEmpty();
+  }
+  
+  @Override
+  public List<Token> getAll() {
+    return tokens;
+  }
+  
+  public void testing(String string, TokenIdentifier ti) {
+    final Pattern regex = ti.getRegex();
+    final Matcher matcher = regex.matcher(string);
+    final ArrayList<String> objects = new ArrayList<>();
+    while (matcher.find()) {
+      objects.add(matcher.group());
+    }
+    System.out.println(
+            "asd"
+    );
+  }
+  
 }
