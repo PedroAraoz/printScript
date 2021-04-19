@@ -75,4 +75,44 @@ public class GetAllVariablesVisitor implements Visitor {
     public void visitRightParenthesis(RightParenthesisSyntaxLeaf leaf) {
 
     }
+
+    @Override
+    public void visitBooleanType(BooleanTypeSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitGreaterThan(GreaterThanOperationSyntaxBranch branch) {
+
+    }
+
+    @Override
+    public void visitLesserThan(LesserThanOperationSyntaxBranch branch) {
+
+    }
+
+    @Override
+    public void visitLesserEqualThan(LesserEqualThanOperationSyntaxBranch branch) {
+
+    }
+
+    @Override
+    public void visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch) {
+
+    }
+
+    @Override
+    public void visitLeftBracket(LeftBracketSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitRightBracket(RightBracketSyntaxLeaf leaf) {
+
+    }
+
+    @Override
+    public void visitIf(IfOperationSyntaxBranch branch) {
+
+    }
 }

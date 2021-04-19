@@ -30,7 +30,7 @@ public class ConditionParser {
   private AbstractSyntaxTree parseIf(List<Token> tokenList) throws CompilationTimeException {
     List<Token> header = new ArrayList<>();
     List<Token> body = new ArrayList<>();
-    Iterator<Token> iterator = tokenList.iterator()
+    Iterator<Token> iterator = tokenList.iterator();
     while (iterator.hasNext()) {
       Token token = iterator.next();
       header.add(token);
@@ -45,6 +45,6 @@ public class ConditionParser {
       }
       body.add(token);
     }
-
+    return null;
   }
 }
