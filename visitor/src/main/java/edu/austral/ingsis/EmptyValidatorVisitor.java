@@ -1,11 +1,13 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.exception.CompilationTimeException;
+
 public class EmptyValidatorVisitor implements Visitor{
 
     private boolean foundEmpty = false;
 
     @Override
-    public void visit(AbstractSyntaxTree abstractSyntaxTree) {
+    public void visit(AbstractSyntaxTree abstractSyntaxTree) throws CompilationTimeException {
         abstractSyntaxTree.accept(this);
     }
 

@@ -145,4 +145,8 @@ public class IfOperationSyntaxBranch extends AbstractSyntaxBranch {
   public void setCondition(VariableSyntaxLeaf condition) {
     this.condition = condition;
   }
+
+  public void addElseStatements(List<AbstractSyntaxTree> elseStatements) {
+    this._else = elseStatements;
+  }
 }

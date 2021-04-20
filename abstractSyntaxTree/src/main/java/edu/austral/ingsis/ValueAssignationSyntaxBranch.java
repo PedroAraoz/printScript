@@ -122,7 +122,7 @@ public class ValueAssignationSyntaxBranch extends AbstractSyntaxBranch {
     }
 
     @Override
-    public void accept(Visitor visitor) {
+    public void accept(Visitor visitor) throws CompilationTimeException {
         left.accept(visitor);
         right.accept(visitor);
         visitor.visitValueAssignation(this);

@@ -5,7 +5,6 @@ import edu.austral.ingsis.exception.CompilationTimeException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Stack;
 
 public class ConditionParser {
 
@@ -17,19 +16,26 @@ public class ConditionParser {
   }
 
   public AbstractSyntaxTree analyseSintactically(List<Token> tokenList) throws CompilationTimeException {
-//    for (Token token : tokenList) {
-//      if (token.getTokenIdentifier().equals(TokenIdentifier.ELSE_TOKEN)) {
-//        List<Token> ifList = tokenList.subList(0,tokenList.indexOf(token));
-//        List<Token> elseList = tokenList.subList(tokenList.indexOf(token), tokenList.size());
-//        AbstractSyntaxTree ifAST = parseCondition(ifList);
-//        AbstractSyntaxTree elseAST = parseCondition(elseList);
-//        return ifAST.add(elseAST);
-//      }
-//    }
-    return parseCondition(tokenList);
+    for (Token token : tokenList) {
+      if (token.getTokenIdentifier().equals(TokenIdentifier.ELSE_TOKEN)) {
+        List<Token> ifList = tokenList.subList(0, tokenList.indexOf(token));
+        List<Token> elseList = tokenList.subList(tokenList.indexOf(token)+1, tokenList.size());
+        IfOperationSyntaxBranch ifAST = (IfOperationSyntaxBranch) parseIf(ifList);
+        List<AbstractSyntaxTree> elseASTs = parseElse(elseList);
+        ifAST.addElseStatements(elseASTs);
+        return ifAST;
+      }
+    }
+    return parseIf(tokenList);
   }
 
-  private AbstractSyntaxTree parseCondition(List<Token> tokenList) throws CompilationTimeException {
+  private List<AbstractSyntaxTree> parseElse(List<Token> elseList) throws CompilationTimeException {
+    elseList.remove(elseList.get(0));
+    List<List<Token>> sentences = getSentences(elseList);
+    return getAbstractSyntaxTrees(sentences);
+  }
+
+  private AbstractSyntaxTree parseIf(List<Token> tokenList) throws CompilationTimeException {
     Token _if = tokenList.get(0);
     Token conditionToken = tokenList.get(2);
     List<Token> header = new ArrayList<>();
@@ -44,15 +50,20 @@ public class ConditionParser {
     VariableSyntaxLeaf condition = (VariableSyntaxLeaf) tokenToASTConverter.convert(conditionToken);
     ifTree.setCondition(condition);
 
+    List<AbstractSyntaxTree> ifTrees = getAbstractSyntaxTrees(sentences);
+
+    ifTree.addIfTrees(ifTrees);
+    return ifTree;
+  }
+
+  private List<AbstractSyntaxTree> getAbstractSyntaxTrees(List<List<Token>> sentences) throws CompilationTimeException {
     List<AbstractSyntaxTree> ifTrees = new ArrayList<>();
     if (!sentences.isEmpty()) {
       for (List<Token> sentence : sentences) {
         ifTrees.add(astFactory.build(sentence));
       }
     }
-
-    ifTree.addIfTrees(ifTrees);
-    return ifTree;
+    return ifTrees;
   }
 
   private List<List<Token>> getSentences(List<Token> body) {

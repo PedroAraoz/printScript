@@ -1,8 +1,10 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.exception.CompilationTimeException;
+
 public interface Visitor {
 
-  void visit(AbstractSyntaxTree abstractSyntaxTree);
+  void visit(AbstractSyntaxTree abstractSyntaxTree) throws CompilationTimeException;
 
   void visitValueAssignation(ValueAssignationSyntaxBranch branch);
 

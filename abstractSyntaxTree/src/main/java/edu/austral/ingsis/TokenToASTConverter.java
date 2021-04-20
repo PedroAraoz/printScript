@@ -32,7 +32,6 @@ public class TokenToASTConverter {
     this.map.put(TokenIdentifier.FALSE_TOKEN, new LiteralCommand());
     this.map.put(TokenIdentifier.CONST_TOKEN, new ConstCommand());
     this.map.put(TokenIdentifier.IF_TOKEN, new IfCommand());
-    this.map.put(TokenIdentifier.ELSE_TOKEN, new ElseCommand());
     this.map.put(TokenIdentifier.GREATER_TOKEN, new GreaterCommand());
     this.map.put(TokenIdentifier.LESSER_TOKEN, new LesserCommand());
     this.map.put(TokenIdentifier.GREATER_EQUALS_TOKEN, new GreaterEqualsCommand());
