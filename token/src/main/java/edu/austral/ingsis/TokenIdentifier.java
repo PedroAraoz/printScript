@@ -70,11 +70,10 @@ public class TokenIdentifier {
     public static TokenIdentifier WIP_TOKEN =
             new TokenIdentifier(TokenName.WIP_TOKEN, Pattern.compile(""));
 
-    public static List<TokenIdentifier> getAllTokens(String version) {
+    public static List<TokenIdentifier> getAllTokens() {
         List<TokenIdentifier> tokenIdentifiers = new ArrayList<>();
         tokenIdentifiers.addAll(getPriorityOneTokens());
         tokenIdentifiers.addAll(getPriorityTwoTokens());
-        tokenIdentifiers.addAll(getPriorityThreeTokens());
         return tokenIdentifiers;
     }
     
@@ -87,6 +86,7 @@ public class TokenIdentifier {
         tokens.add(SUB_OPERATION_TOKEN);
         tokens.add(MULT_OPERATION_TOKEN);
         tokens.add(DIV_OPERATION_TOKEN);
+        tokens.add(PRINTLN_TOKEN);
         tokens.add(LEFT_PARENTHESIS_TOKEN);
         tokens.add(RIGHT_PARENTHESIS_TOKEN);
         return tokens;
@@ -96,15 +96,9 @@ public class TokenIdentifier {
         List<TokenIdentifier> tokens = new ArrayList<>();
         tokens.add(STRING_LITERAL_TOKEN);
         tokens.add(NUMBER_LITERAL_TOKEN);
-        return tokens;
-    }
-    
-    public static List<TokenIdentifier> getPriorityThreeTokens() {
-        List<TokenIdentifier> tokens = new ArrayList<>();
         tokens.add(LET_TOKEN);
         tokens.add(NUMBER_TYPE_TOKEN);
         tokens.add(STRING_TYPE_TOKEN);
-        tokens.add(PRINTLN_TOKEN);
         tokens.add(VARIABLE_TOKEN);
         return tokens;
     }

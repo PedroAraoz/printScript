@@ -145,6 +145,7 @@ public class LexerTests {
     LexerImpl lexer = new LexerImpl();
     lexer.analyseLexically(codeLineList);
     final List<Token> tokens = lexer.getAll();
+    System.out.println("asd");
     for (int i = 0; i < expected.size(); i++) {
       final Token e = expected.get(i);
       final Token a = tokens.get(i);
