@@ -81,8 +81,9 @@ public class ValueAssignationSyntaxBranch extends AbstractSyntaxBranch {
     }
 
     @Override
-    public AbstractSyntaxTree addBooleanTypeSyntaxLeaf(BooleanTypeSyntaxLeaf leaf) {
-        return null;
+    public AbstractSyntaxTree addBooleanTypeSyntaxLeaf(BooleanTypeSyntaxLeaf leaf) throws CompilationTimeException {
+        addLeft(leaf);
+        return this;
     }
 
     @Override
@@ -118,6 +119,12 @@ public class ValueAssignationSyntaxBranch extends AbstractSyntaxBranch {
     @Override
     public AbstractSyntaxTree addIfOperationSyntaxBranch(IfOperationSyntaxBranch branch) {
         return null;
+    }
+
+    @Override
+    public AbstractSyntaxTree addConstSyntaxLeaf(ConstSyntaxLeaf leaf) throws CompilationTimeException {
+        left.addConstSyntaxLeaf(leaf);
+        return this;
     }
 
     @Override

@@ -115,4 +115,9 @@ public class GetAllVariablesVisitor implements Visitor {
     public void visitIf(IfOperationSyntaxBranch branch) {
 
     }
+
+    @Override
+    public void visitConst(ConstSyntaxLeaf constSyntaxLeaf) {
+
+    }
 }

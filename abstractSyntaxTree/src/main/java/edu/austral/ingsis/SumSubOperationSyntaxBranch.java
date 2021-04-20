@@ -145,6 +145,11 @@ public class SumSubOperationSyntaxBranch extends AbstractSyntaxBranch {
   }
 
   @Override
+  public AbstractSyntaxTree addConstSyntaxLeaf(ConstSyntaxLeaf leaf) throws CompilationTimeException {
+    return null;
+  }
+
+  @Override
   public void accept(Visitor visitor) {
     left.accept(visitor);
     right.accept(visitor);

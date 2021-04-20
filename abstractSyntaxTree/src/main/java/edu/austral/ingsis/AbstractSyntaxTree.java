@@ -51,4 +51,6 @@ public interface AbstractSyntaxTree extends Visitable, InterpreterVisitable {
   AbstractSyntaxTree addIfOperationSyntaxBranch(IfOperationSyntaxBranch branch) throws CompilationTimeException;
 
   boolean isEmpty();
+
+  AbstractSyntaxTree addConstSyntaxLeaf(ConstSyntaxLeaf leaf) throws CompilationTimeException;
 }

@@ -109,6 +109,11 @@ public class EmptyValidatorVisitor implements Visitor{
 
     }
 
+    @Override
+    public void visitConst(ConstSyntaxLeaf constSyntaxLeaf) {
+
+    }
+
     public boolean foundEmpty() {
         return foundEmpty;
     }

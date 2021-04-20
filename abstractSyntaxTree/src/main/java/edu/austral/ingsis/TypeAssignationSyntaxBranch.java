@@ -84,8 +84,13 @@ public class TypeAssignationSyntaxBranch extends AbstractSyntaxBranch {
   }
 
   @Override
-  public AbstractSyntaxTree addBooleanTypeSyntaxLeaf(BooleanTypeSyntaxLeaf leaf) {
-    return null;
+  public AbstractSyntaxTree addBooleanTypeSyntaxLeaf(BooleanTypeSyntaxLeaf leaf) throws CompilationTimeException {
+    if (right.isEmpty()) {
+      right = leaf;
+    } else {
+      throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+    }
+    return this;
   }
 
   @Override
@@ -121,6 +126,12 @@ public class TypeAssignationSyntaxBranch extends AbstractSyntaxBranch {
   @Override
   public AbstractSyntaxTree addIfOperationSyntaxBranch(IfOperationSyntaxBranch branch) {
     return null;
+  }
+
+  @Override
+  public AbstractSyntaxTree addConstSyntaxLeaf(ConstSyntaxLeaf leaf) throws CompilationTimeException {
+    left = left.addConstSyntaxLeaf(leaf);
+    return this;
   }
 
   @Override

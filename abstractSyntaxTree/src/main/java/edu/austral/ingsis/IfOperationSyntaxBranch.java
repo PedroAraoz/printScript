@@ -140,6 +140,11 @@ public class IfOperationSyntaxBranch extends AbstractSyntaxBranch {
   }
 
   @Override
+  public AbstractSyntaxTree addConstSyntaxLeaf(ConstSyntaxLeaf leaf) throws CompilationTimeException {
+    return null;
+  }
+
+  @Override
   public AbstractSyntaxTree accept2(InterpreterVisitor visitor) throws CompilationTimeException {
     return visitor.visitIf(this);
   }

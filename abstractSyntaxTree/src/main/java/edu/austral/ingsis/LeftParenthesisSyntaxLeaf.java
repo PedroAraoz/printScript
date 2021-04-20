@@ -113,6 +113,11 @@ public class LeftParenthesisSyntaxLeaf extends AbstractSyntaxLeaf {
     }
 
     @Override
+    public AbstractSyntaxTree addConstSyntaxLeaf(ConstSyntaxLeaf leaf) throws CompilationTimeException {
+        return null;
+    }
+
+    @Override
     public void accept(Visitor visitor) {
         visitor.visitLeftParenthesis(this);
     }

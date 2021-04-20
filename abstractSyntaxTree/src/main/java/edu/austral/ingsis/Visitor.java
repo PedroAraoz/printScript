@@ -43,4 +43,6 @@ public interface Visitor {
   void visitRightBracket(RightBracketSyntaxLeaf leaf);
 
   void visitIf(IfOperationSyntaxBranch branch);
+
+  void visitConst(ConstSyntaxLeaf constSyntaxLeaf);
 }

@@ -120,4 +120,9 @@ public class AssignationLiteralTypeVisitor implements Visitor {
     public void visitIf(IfOperationSyntaxBranch branch) {
 
     }
+
+    @Override
+    public void visitConst(ConstSyntaxLeaf constSyntaxLeaf) {
+
+    }
 }
