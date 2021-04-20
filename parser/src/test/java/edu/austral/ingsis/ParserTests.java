@@ -483,6 +483,30 @@ public class ParserTests {
     System.out.println("ASD");
   }
 
+  @Test
+  public void testIfWithTwoSentences() throws CompilationTimeException {
+
+    final Parser parser = new ParserImpl();
+    final List<Token> list = new ArrayList<>();
+    list.add(new Token(TokenIdentifier.IF_TOKEN, 0, 0, 0, "if"));
+    list.add(new Token(TokenIdentifier.LEFT_PARENTHESIS_TOKEN, 0, 0, 0, "("));
+    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
+    list.add(new Token(TokenIdentifier.RIGHT_PARENTHESIS_TOKEN, 0, 0, 0, ")"));
+    list.add(new Token(TokenIdentifier.LEFT_BRACKET_TOKEN, 0, 0, 0, "{"));
+    list.add(new Token(TokenIdentifier.LET_TOKEN, 0, 0, 0, "let"));
+    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
+    list.add(new Token(TokenIdentifier.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
+    list.add(new Token(TokenIdentifier.NUMBER_TYPE_TOKEN, 0, 0, 0, "number"));
+    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
+    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
+    list.add(new Token(TokenIdentifier.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
+    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "1"));
+    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
+    list.add(new Token(TokenIdentifier.RIGHT_BRACKET_TOKEN, 0, 0, 0, "}"));
+    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
+    System.out.println("ASD");
+  }
+
 //  @Test(expected = CompilationTimeException.class)
 //  public void validationVariablesShouldNotBeInitializedTwice() throws CompilationTimeException {
 //

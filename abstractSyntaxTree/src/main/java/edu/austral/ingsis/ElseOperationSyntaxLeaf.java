@@ -104,16 +104,6 @@ public class ElseOperationSyntaxLeaf implements AbstractSyntaxTree {
   }
 
   @Override
-  public AbstractSyntaxTree addLeftBracketSyntaxLeaf(LeftBracketSyntaxLeaf leaf) throws CompilationTimeException {
-    return null;
-  }
-
-  @Override
-  public AbstractSyntaxTree addRightBracketSyntaxLeaf(RightBracketSyntaxLeaf leaf) throws CompilationTimeException {
-    return null;
-  }
-
-  @Override
   public AbstractSyntaxTree addIfOperationSyntaxBranch(IfOperationSyntaxBranch branch) throws CompilationTimeException {
     return null;
   }

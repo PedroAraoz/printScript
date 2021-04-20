@@ -95,16 +95,6 @@ public class EmptyValidatorVisitor implements Visitor{
     }
 
     @Override
-    public void visitLeftBracket(LeftBracketSyntaxLeaf leaf) {
-
-    }
-
-    @Override
-    public void visitRightBracket(RightBracketSyntaxLeaf leaf) {
-
-    }
-
-    @Override
     public void visitIf(IfOperationSyntaxBranch branch) {
 
     }

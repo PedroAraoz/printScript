@@ -19,6 +19,10 @@ public class ASTFactory {
       abstractSyntaxTreeStack.add(tokenToASTConverter.convert(t));
     }
 
+    return getAbstractSyntaxTreeFromStack(abstractSyntaxTreeStack);
+  }
+
+  public AbstractSyntaxTree getAbstractSyntaxTreeFromStack(Stack<AbstractSyntaxTree> abstractSyntaxTreeStack) throws CompilationTimeException {
     // Then we fold the node list unto itself to validate the structure (order of the tokenIdentifiers)
 
     while (abstractSyntaxTreeStack.size() > 1) {
@@ -32,7 +36,7 @@ public class ASTFactory {
     final EmptyValidatorVisitor visitor = new EmptyValidatorVisitor();
     abstractSyntaxTreeStack.peek().accept(visitor);
     if (visitor.foundEmpty()) {
-      throw new CompilationTimeException("Syntax Error in line " + tokenList.get(0).getLine());
+      throw new CompilationTimeException("Syntax Error in line " + abstractSyntaxTreeStack.peek().getToken().getLine());
     }
 
     return abstractSyntaxTreeStack.pop();

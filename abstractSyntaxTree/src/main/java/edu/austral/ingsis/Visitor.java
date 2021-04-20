@@ -38,10 +38,6 @@ public interface Visitor {
 
   void visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch);
 
-  void visitLeftBracket(LeftBracketSyntaxLeaf leaf);
-
-  void visitRightBracket(RightBracketSyntaxLeaf leaf);
-
   void visitIf(IfOperationSyntaxBranch branch);
 
   void visitConst(ConstSyntaxLeaf constSyntaxLeaf);

@@ -98,16 +98,6 @@ public class LeftParenthesisSyntaxLeaf extends AbstractSyntaxLeaf {
     }
 
     @Override
-    public AbstractSyntaxTree addLeftBracketSyntaxLeaf(LeftBracketSyntaxLeaf leaf) {
-        return null;
-    }
-
-    @Override
-    public AbstractSyntaxTree addRightBracketSyntaxLeaf(RightBracketSyntaxLeaf leaf) {
-        return null;
-    }
-
-    @Override
     public AbstractSyntaxTree addIfOperationSyntaxBranch(IfOperationSyntaxBranch branch) throws CompilationTimeException {
         return branch.addLeftParenthesisSyntaxLeaf(this);
     }

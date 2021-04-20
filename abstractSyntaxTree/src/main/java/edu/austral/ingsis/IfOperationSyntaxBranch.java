@@ -75,13 +75,12 @@ public class IfOperationSyntaxBranch extends AbstractSyntaxBranch {
 
   @Override
   public AbstractSyntaxTree addLeftParenthesisSyntaxLeaf(LeftParenthesisSyntaxLeaf leaf) throws CompilationTimeException {
-    return leaf.getResultingExpression().addIfOperationSyntaxBranch(this);
+    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
   }
 
   @Override
   public AbstractSyntaxTree addRightParenthesisSyntaxLeaf(RightParenthesisSyntaxLeaf leaf) throws CompilationTimeException {
     throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
-
   }
 
   @Override
@@ -115,25 +114,6 @@ public class IfOperationSyntaxBranch extends AbstractSyntaxBranch {
   }
 
   @Override
-  public AbstractSyntaxTree addLeftBracketSyntaxLeaf(LeftBracketSyntaxLeaf leaf) throws CompilationTimeException {
-    if (!this.right.isEmpty() || !this.left.isEmpty()) {
-      throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
-    }
-    if (leaf.containsElse()) {
-      this._else = leaf.getElse();
-    }
-    this._if = leaf.getIf();
-    this.condition = leaf.getCondition();
-    return this;
-  }
-
-  @Override
-  public AbstractSyntaxTree addRightBracketSyntaxLeaf(RightBracketSyntaxLeaf leaf) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
-
-  }
-
-  @Override
   public AbstractSyntaxTree addIfOperationSyntaxBranch(IfOperationSyntaxBranch branch) throws CompilationTimeException {
     throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
 
@@ -156,5 +136,13 @@ public class IfOperationSyntaxBranch extends AbstractSyntaxBranch {
 
   public void addExpression(VariableSyntaxLeaf variableSyntaxLeaf) {
     this.condition = variableSyntaxLeaf;
+  }
+
+  public void addIfTrees(List<AbstractSyntaxTree> ifTrees) {
+    this._if = ifTrees;
+  }
+
+  public void setCondition(VariableSyntaxLeaf condition) {
+    this.condition = condition;
   }
 }

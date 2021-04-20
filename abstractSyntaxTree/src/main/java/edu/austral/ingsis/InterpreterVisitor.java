@@ -40,10 +40,6 @@ public interface InterpreterVisitor {
 
     GreaterEqualThanOperationSyntaxBranch visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch);
 
-    LeftBracketSyntaxLeaf visitLeftBracket(LeftBracketSyntaxLeaf leaf);
-
-    RightBracketSyntaxLeaf visitRightBracket(RightBracketSyntaxLeaf leaf);
-
     IfOperationSyntaxBranch visitIf(IfOperationSyntaxBranch branch);
 
   AbstractSyntaxTree visitConst(ConstSyntaxLeaf constSyntaxLeaf);
