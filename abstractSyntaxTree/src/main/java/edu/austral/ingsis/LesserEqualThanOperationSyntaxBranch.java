@@ -10,7 +10,7 @@ public class LesserEqualThanOperationSyntaxBranch extends AbstractSyntaxBranch {
 
   @Override
   public AbstractSyntaxTree addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+    return branch.addLesserEqualThanOperationSyntaxBranch(this);
   }
 
   @Override
