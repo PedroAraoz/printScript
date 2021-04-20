@@ -75,7 +75,7 @@ public class IfOperationSyntaxBranch extends AbstractSyntaxBranch {
 
   @Override
   public AbstractSyntaxTree addLeftParenthesisSyntaxLeaf(LeftParenthesisSyntaxLeaf leaf) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+    return leaf.getResultingExpression().addIfOperationSyntaxBranch(this);
   }
 
   @Override
@@ -152,5 +152,9 @@ public class IfOperationSyntaxBranch extends AbstractSyntaxBranch {
   @Override
   public void accept(Visitor visitor) {
     visitor.visitIf(this);
+  }
+
+  public void addExpression(VariableSyntaxLeaf variableSyntaxLeaf) {
+    this.condition = variableSyntaxLeaf;
   }
 }

@@ -81,8 +81,7 @@ public class LeftBracketSyntaxLeaf extends AbstractSyntaxLeaf {
 
   @Override
   public AbstractSyntaxTree addRightParenthesisSyntaxLeaf(RightParenthesisSyntaxLeaf leaf) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
-
+    return leaf;
   }
 
   @Override
@@ -121,8 +120,9 @@ public class LeftBracketSyntaxLeaf extends AbstractSyntaxLeaf {
   }
 
   @Override
-  public AbstractSyntaxTree addRightBracketSyntaxLeaf(RightBracketSyntaxLeaf leaf) {
-    return null;
+  public AbstractSyntaxTree addRightBracketSyntaxLeaf(RightBracketSyntaxLeaf leaf) throws CompilationTimeException {
+    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+
   }
 
   @Override

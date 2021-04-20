@@ -117,8 +117,8 @@ public class VariableSyntaxLeaf extends AbstractSyntaxLeaf {
 
   @Override
   public AbstractSyntaxTree addIfOperationSyntaxBranch(IfOperationSyntaxBranch branch) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
-
+    branch.addExpression(this);
+    return branch;
   }
 
   @Override

@@ -117,7 +117,7 @@ public class RightBracketSyntaxLeaf extends AbstractSyntaxLeaf {
 
   @Override
   public AbstractSyntaxTree addLeftBracketSyntaxLeaf(LeftBracketSyntaxLeaf leaf) {
-    return null;
+    return leaf;
   }
 
   @Override
