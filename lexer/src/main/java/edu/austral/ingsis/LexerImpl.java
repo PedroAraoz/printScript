@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -17,26 +16,25 @@ public class LexerImpl implements Lexer {
     List<Token> tokens = new ArrayList<>();
     List<TokenIdentifier> one = TokenIdentifier.getPriorityOneTokens();
     List<TokenIdentifier> all = TokenIdentifier.getAllTokens();
-    // PART 1 (no space needed tokens)
+    // PART 1 we split based on the no-space tokens (priorityOne)
     for (int i = 0; i < code.size(); i++)
       tokens.add(stringToEmptyToken(code.get(i), i, 0, 0));
     for (TokenIdentifier ti : one)
-      tokens = findReplaceAndSplit(tokens, ti);
+      tokens = findAndSplit(tokens, ti);
       
     
-    // PART 2 (String and number literals)
+    // then we remove unnecessary spaces that might be there.
     doubleTrim(tokens);
-//    findAndReplace(tokens, two);
     tokens = removeSpacesInWIPToken(tokens);
     tokens = filterEmptyWIPToken(tokens);
-    // PART 3
+    // then we find and replace the tokens in an important order.
     findAndReplace(tokens, all);
     removeQuotationMarkers(tokens);
     this.tokens = tokens;
   }
   
-  public List<Token> findReplaceAndSplit(List<Token> tokens, TokenIdentifier ti) {
-    List<Token> AAAA = new ArrayList<>();
+  public List<Token> findAndSplit(List<Token> tokens, TokenIdentifier ti) {
+    List<Token> list = new ArrayList<>();
     for (int i = 0; i < tokens.size(); i++) {
       final Token t = tokens.get(i);
       final String value = t.getValue();
@@ -48,23 +46,16 @@ public class LexerImpl implements Lexer {
         final Token token = stringToEmptyToken(s, t.getLine(),
                 t.getStartPos() + startpos, t.getEndPos() + endpos);
         startpos = endpos + 1;
-        AAAA.add(token);
+        list.add(token);
       }
     }
-    return AAAA;
+    return list;
   }
   
   public Pattern addLookaheadandLookbehind(Pattern p) {
     String regex = p.pattern();
     regex = "((?<=" + regex + ")|(?=" + regex + "))";
     return Pattern.compile(regex);
-  }
-  
-  private List<String> getMatches(Pattern regex, String text) {
-    final List<String> list = new ArrayList<>();
-    final Matcher matcher = regex.matcher(text);
-    while (matcher.find()) list.add(matcher.group());
-    return list;
   }
   
   private void findAndReplace(List<Token> tokens, List<TokenIdentifier> two) {
