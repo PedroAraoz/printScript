@@ -67,6 +67,46 @@ public class EmptySyntaxLeaf extends AbstractSyntaxLeaf {
   }
 
   @Override
+  public AbstractSyntaxTree addBooleanTypeSyntaxLeaf(BooleanTypeSyntaxLeaf leaf) {
+    return leaf;
+  }
+
+  @Override
+  public AbstractSyntaxTree addGreaterThanOperationSyntaxBranch(GreaterThanOperationSyntaxBranch branch) {
+    return branch;
+  }
+
+  @Override
+  public AbstractSyntaxTree addLesserThanOperationSyntaxBranch(LesserThanOperationSyntaxBranch branch) {
+    return branch;
+  }
+
+  @Override
+  public AbstractSyntaxTree addLesserEqualThanOperationSyntaxBranch(LesserEqualThanOperationSyntaxBranch branch) {
+    return branch;
+  }
+
+  @Override
+  public AbstractSyntaxTree addGreaterEqualThanOperationSyntaxBranch(GreaterEqualThanOperationSyntaxBranch branch) {
+    return branch;
+  }
+
+  @Override
+  public AbstractSyntaxTree addLeftBracketSyntaxLeaf(LeftBracketSyntaxLeaf leaf) {
+    return leaf;
+  }
+
+  @Override
+  public AbstractSyntaxTree addRightBracketSyntaxLeaf(RightBracketSyntaxLeaf leaf) {
+    return leaf;
+  }
+
+  @Override
+  public AbstractSyntaxTree addIfOperationSyntaxBranch(IfOperationSyntaxBranch branch) {
+    return branch;
+  }
+
+  @Override
   public void accept(Visitor visitor) {
     visitor.visitEmpty(this);
   }

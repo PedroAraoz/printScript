@@ -27,4 +27,20 @@ public interface Visitor {
   void visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf);
 
   void visitRightParenthesis(RightParenthesisSyntaxLeaf leaf);
+
+  void visitBooleanType(BooleanTypeSyntaxLeaf leaf);
+
+  void visitGreaterThan(GreaterThanOperationSyntaxBranch branch);
+
+  void visitLesserThan(LesserThanOperationSyntaxBranch branch);
+
+  void visitLesserEqualThan(LesserEqualThanOperationSyntaxBranch branch);
+
+  void visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch);
+
+  void visitLeftBracket(LeftBracketSyntaxLeaf leaf);
+
+  void visitRightBracket(RightBracketSyntaxLeaf leaf);
+
+  void visitIf(IfOperationSyntaxBranch branch);
 }

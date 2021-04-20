@@ -7,6 +7,7 @@ import java.util.Stack;
 
 public class ASTFactory {
 
+  // Receives a single sentence and returns it's corresponding ast if it can be build
   public AbstractSyntaxTree build(List<Token> tokenList) throws CompilationTimeException {
 
     final Stack<AbstractSyntaxTree> abstractSyntaxTreeStack = new Stack<>();

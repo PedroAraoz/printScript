@@ -75,6 +75,46 @@ public class RightParenthesisSyntaxLeaf extends AbstractSyntaxLeaf {
     }
 
     @Override
+    public AbstractSyntaxTree addBooleanTypeSyntaxLeaf(BooleanTypeSyntaxLeaf leaf) {
+        return null;
+    }
+
+    @Override
+    public AbstractSyntaxTree addGreaterThanOperationSyntaxBranch(GreaterThanOperationSyntaxBranch branch) {
+        return null;
+    }
+
+    @Override
+    public AbstractSyntaxTree addLesserThanOperationSyntaxBranch(LesserThanOperationSyntaxBranch branch) {
+        return null;
+    }
+
+    @Override
+    public AbstractSyntaxTree addLesserEqualThanOperationSyntaxBranch(LesserEqualThanOperationSyntaxBranch branch) {
+        return null;
+    }
+
+    @Override
+    public AbstractSyntaxTree addGreaterEqualThanOperationSyntaxBranch(GreaterEqualThanOperationSyntaxBranch branch) {
+        return null;
+    }
+
+    @Override
+    public AbstractSyntaxTree addLeftBracketSyntaxLeaf(LeftBracketSyntaxLeaf leaf) {
+        return null;
+    }
+
+    @Override
+    public AbstractSyntaxTree addRightBracketSyntaxLeaf(RightBracketSyntaxLeaf leaf) {
+        return null;
+    }
+
+    @Override
+    public AbstractSyntaxTree addIfOperationSyntaxBranch(IfOperationSyntaxBranch branch) {
+        return null;
+    }
+
+    @Override
     public void accept(Visitor visitor) {
         visitor.visitRightParenthesis(this);
     }

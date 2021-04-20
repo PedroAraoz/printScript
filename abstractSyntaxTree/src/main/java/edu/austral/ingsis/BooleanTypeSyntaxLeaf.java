@@ -2,10 +2,10 @@ package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
 
-public class NumberTypeSyntaxLeaf extends AbstractSyntaxLeaf {
+public class BooleanTypeSyntaxLeaf extends AbstractSyntaxLeaf {
   @Override
   public AbstractSyntaxTree add(AbstractSyntaxTree tree) throws CompilationTimeException {
-    return tree.addNumberTypeSyntaxLeaf(this);
+    return tree.addBooleanTypeSyntaxLeaf(this);
   }
 
   @Override
@@ -15,7 +15,7 @@ public class NumberTypeSyntaxLeaf extends AbstractSyntaxLeaf {
 
   @Override
   public AbstractSyntaxTree addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) throws CompilationTimeException {
-    return branch.addNumberTypeSyntaxLeaf(this);
+    return branch.addBooleanTypeSyntaxLeaf(this);
   }
 
   @Override
@@ -110,11 +110,11 @@ public class NumberTypeSyntaxLeaf extends AbstractSyntaxLeaf {
 
   @Override
   public void accept(Visitor visitor) {
-    visitor.visitNumberType(this);
+    visitor.visitBooleanType(this);
   }
-  
+
   @Override
   public AbstractSyntaxTree accept2(InterpreterVisitor visitor) {
-    return visitor.visitNumberType(this);
+    return visitor.visitBooleanType(this);
   }
 }
