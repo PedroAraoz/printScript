@@ -14,11 +14,6 @@ public class ParserImpl implements Parser {
 
   @Override
   public AbstractSyntaxTree analyseSintactically(List<Token> tokenList) throws CompilationTimeException {
-    if (tokenList.get(0).getTokenIdentifier().equals(TokenIdentifier.IF_TOKEN)) {
-      ConditionParser conditionParser = new ConditionParser(astFactory);
-      return conditionParser.analyseSintactically(tokenList);
-    } else {
-      return astFactory.build(tokenList);
-    }
+    return astFactory.build(tokenList);
   }
 }

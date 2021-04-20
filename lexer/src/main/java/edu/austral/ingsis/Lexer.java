@@ -1,9 +1,11 @@
 package edu.austral.ingsis;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface Lexer {
-  List<Token> analyseLexically(CodeLine line);
-
-  void setVersion(String version);
+  void analyseLexically(List<String> string);
+  Optional<Token> getNextToken();
+  boolean hasNext();
+  List<Token> getAll();
 }
