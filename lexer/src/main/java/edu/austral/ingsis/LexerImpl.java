@@ -126,12 +126,22 @@ public class LexerImpl implements Lexer {
   public Token stringToEmptyToken(String string, int line, int s, int e) {
     return new Token(TokenIdentifier.WIP_TOKEN, line, s, e, string);
   }
-  
+
+  @Override
   public Optional<Token> getNextToken() {
     try {
       return Optional.ofNullable(tokens.remove(0));
     } catch (IndexOutOfBoundsException _ignored) {
       return Optional.empty();
+    }
+  }
+
+  @Override
+  public Optional<Token> peek() {
+    if (tokens.isEmpty()) {
+      return Optional.empty();
+    } else {
+      return Optional.ofNullable(tokens.get(0));
     }
   }
   

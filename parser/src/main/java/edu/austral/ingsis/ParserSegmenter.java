@@ -43,6 +43,10 @@ public class ParserSegmenter {
       return;
     }
 
+    segmentStatement(statement);
+  }
+
+  private void segmentStatement(List<Token> statement) throws CompilationTimeException {
     while (lexer.hasNext()) {
       Token one = lexer.getNextToken().get();
       statement.add(one);
