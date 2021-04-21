@@ -1,8 +1,4 @@
-import edu.austral.ingsis.*;
-import edu.austral.ingsis.exception.CompilationTimeException;
-import org.junit.Test;
 
-import java.io.FileNotFoundException;
 
 public class InterpreterTests {
 //  @Test
@@ -11,7 +7,7 @@ public class InterpreterTests {
 //    final Lexer lexer = new LexerImpl();
 //    final Parser parser = new ParserImpl();
 //    final FileGenerator generator= new NormalFileGenerator();
-//    final File open = generator.open("/home/pedro/projects/printScript/interpreter/src/test/resources/myCode.txt");
+//    final File open = generator.open("src/test/resources/myCode.txt");
 ////    while (open.hasNext()) {
 ////      final CodeLine codeLine = open.next().get();
 ////      final List<Token> tokens = lexer.analyseLexically(codeLine);

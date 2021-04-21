@@ -9,7 +9,7 @@ public class TokenIdentifierTests {
 
   @Test
   public void test001_WhenGetAllTokensTestShouldReturnThem() {
-    List<TokenIdentifier> list = TokenIdentifier.getAllTokens("1.0");
+    List<TokenIdentifier> list = TokenIdentifier.getAllTokens();
     Assert.assertFalse(list.isEmpty());
   }
 

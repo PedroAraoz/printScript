@@ -60,7 +60,7 @@ public class TokenIdentifier {
                     TokenName.STRING_LITERAL,
                     Pattern.compile("('[a-zA-Z ]+')|(\"[a-zA-Z ]+\")"));
     public static TokenIdentifier VARIABLE_TOKEN =
-            new TokenIdentifier(TokenName.VARIABLE, Pattern.compile(""));
+            new TokenIdentifier(TokenName.VARIABLE, Pattern.compile(".*"));
     public static TokenIdentifier PRINTLN_TOKEN =
             new TokenIdentifier(TokenName.PRINT, Pattern.compile("printLn"));
     public static TokenIdentifier LEFT_PARENTHESIS_TOKEN =
@@ -68,7 +68,7 @@ public class TokenIdentifier {
     public static TokenIdentifier RIGHT_PARENTHESIS_TOKEN =
             new TokenIdentifier(TokenName.RIGHT_PARENTHESIS, Pattern.compile("\\)"));
     public static TokenIdentifier WIP_TOKEN =
-            new TokenIdentifier(TokenName.WIP_TOKEN, Pattern.compile(".*"));
+            new TokenIdentifier(TokenName.WIP_TOKEN, Pattern.compile(""));
     public static TokenIdentifier CONST_TOKEN =
             new TokenIdentifier(TokenName.CONST, Pattern.compile("const"));
     public static TokenIdentifier IF_TOKEN =
@@ -94,37 +94,10 @@ public class TokenIdentifier {
                     TokenName.BOOLEAN_LITERAL,
                     Pattern.compile("true|false"));
 
-    public static List<TokenIdentifier> getAllTokens(String version) {
+    public static List<TokenIdentifier> getAllTokens() {
         List<TokenIdentifier> tokenIdentifiers = new ArrayList<>();
         tokenIdentifiers.addAll(getPriorityOneTokens());
         tokenIdentifiers.addAll(getPriorityTwoTokens());
-        tokenIdentifiers.addAll(getPriorityThreeTokens());
-        tokenIdentifiers.add(LET_TOKEN);
-        tokenIdentifiers.add(TYPE_ASSIGNATION_TOKEN);
-        tokenIdentifiers.add(SEMICOLON_TOKEN);
-        tokenIdentifiers.add(VALUE_ASSIGNATION_TOKEN);
-        tokenIdentifiers.add(SUM_OPERATION_TOKEN);
-        tokenIdentifiers.add(SUB_OPERATION_TOKEN);
-        tokenIdentifiers.add(MULT_OPERATION_TOKEN);
-        tokenIdentifiers.add(DIV_OPERATION_TOKEN);
-        tokenIdentifiers.add(NUMBER_TYPE_TOKEN);
-        tokenIdentifiers.add(STRING_TYPE_TOKEN);
-        tokenIdentifiers.add(PRINTLN_TOKEN);
-        tokenIdentifiers.add(LEFT_PARENTHESIS_TOKEN);
-        tokenIdentifiers.add(RIGHT_PARENTHESIS_TOKEN);
-        if (version.equals("1.1")) {
-            tokenIdentifiers.add(BOOLEAN_TYPE_TOKEN);
-            tokenIdentifiers.add(CONST_TOKEN);
-            tokenIdentifiers.add(IF_TOKEN);
-            tokenIdentifiers.add(ELSE_TOKEN);
-            tokenIdentifiers.add(LEFT_BRACKET_TOKEN);
-            tokenIdentifiers.add(RIGHT_BRACKET_TOKEN);
-            tokenIdentifiers.add(GREATER_TOKEN);
-            tokenIdentifiers.add(GREATER_EQUALS_TOKEN);
-            tokenIdentifiers.add(LESSER_TOKEN);
-            tokenIdentifiers.add(LESSER_EQUALS_TOKEN);
-            tokenIdentifiers.add(BOOLEAN_LITERAL_TOKEN);
-        }
         return tokenIdentifiers;
     }
     
@@ -137,6 +110,7 @@ public class TokenIdentifier {
         tokens.add(SUB_OPERATION_TOKEN);
         tokens.add(MULT_OPERATION_TOKEN);
         tokens.add(DIV_OPERATION_TOKEN);
+        tokens.add(PRINTLN_TOKEN);
         tokens.add(LEFT_PARENTHESIS_TOKEN);
         tokens.add(RIGHT_PARENTHESIS_TOKEN);
         return tokens;
@@ -146,15 +120,9 @@ public class TokenIdentifier {
         List<TokenIdentifier> tokens = new ArrayList<>();
         tokens.add(STRING_LITERAL_TOKEN);
         tokens.add(NUMBER_LITERAL_TOKEN);
-        return tokens;
-    }
-    
-    public static List<TokenIdentifier> getPriorityThreeTokens() {
-        List<TokenIdentifier> tokens = new ArrayList<>();
         tokens.add(LET_TOKEN);
         tokens.add(NUMBER_TYPE_TOKEN);
         tokens.add(STRING_TYPE_TOKEN);
-        tokens.add(PRINTLN_TOKEN);
         tokens.add(VARIABLE_TOKEN);
         return tokens;
     }
