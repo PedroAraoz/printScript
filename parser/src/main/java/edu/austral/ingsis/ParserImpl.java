@@ -2,15 +2,17 @@ package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ParserImpl implements Parser {
 
+  private final ASTFactory astFactory;
+  private ParserSegmenter parserSegmenter;
+
   public ParserImpl() {
     this.astFactory = new ASTFactory();
   }
-
-  private final ASTFactory astFactory;
 
   @Override
   public AbstractSyntaxTree analyseSintactically(List<Token> tokenList) throws CompilationTimeException {
@@ -20,5 +22,15 @@ public class ParserImpl implements Parser {
     } else {
       return astFactory.build(tokenList);
     }
+  }
+
+  @Override
+  public List<AbstractSyntaxTree> analyseSintactically(Lexer lexer) throws CompilationTimeException {
+    this.parserSegmenter = new ParserSegmenter(lexer);
+    final List<AbstractSyntaxTree> abstractSyntaxTrees = new ArrayList<>();
+    while (this.parserSegmenter.hasNext()) {
+      abstractSyntaxTrees.add(analyseSintactically(parserSegmenter.getNext()));
+    }
+    return abstractSyntaxTrees;
   }
 }
