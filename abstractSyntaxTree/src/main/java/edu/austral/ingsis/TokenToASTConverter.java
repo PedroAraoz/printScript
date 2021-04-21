@@ -34,6 +34,7 @@ public class TokenToASTConverter {
     this.map.put(TokenIdentifier.LESSER_TOKEN, new LesserCommand());
     this.map.put(TokenIdentifier.GREATER_EQUALS_TOKEN, new GreaterEqualsCommand());
     this.map.put(TokenIdentifier.LESSER_EQUALS_TOKEN, new LesserEqualsCommand());
+    this.map.put(TokenIdentifier.BOOLEAN_LITERAL_TOKEN, new LiteralCommand());
   }
 
   public AbstractSyntaxTree convert(Token token) {
