@@ -143,7 +143,112 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     // This shouldn't happen
     return null;
   }
-  
+
+  @Override
+  public BooleanTypeSyntaxLeaf visitBooleanType(BooleanTypeSyntaxLeaf leaf) {
+    return leaf;
+  }
+
+  @Override
+  public LiteralSyntaxLeaf visitGreaterThan(GreaterThanOperationSyntaxBranch branch) throws CompilationTimeException {
+    printer.print("handling 'Greater than' (>) operation");
+    final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
+    final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
+    int answer;
+    if (isNumber(left) && isNumber(right)) {
+      if (Integer.parseInt(left.getValue()) > Integer.parseInt(right.getValue())) {
+        answer = 1;
+      } else {
+        answer = 0;
+      }
+      return getLiteralSyntaxLeaf(Integer.toString(answer), TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
+    } else {
+      final Token t = !isNumber(left) ?
+              left.getToken() : right.getToken();
+      throw interpreterError("TODO ADD FILE", t, "Must be number"); //todo add file
+    }
+  }
+
+  @Override
+  public LiteralSyntaxLeaf visitLesserThan(LesserThanOperationSyntaxBranch branch) throws CompilationTimeException {
+    printer.print("handling 'Lesser than' (<) operation");
+    final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
+    final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
+    int answer;
+    if (isNumber(left) && isNumber(right)) {
+      if (Integer.parseInt(left.getValue()) < Integer.parseInt(right.getValue())) {
+        answer = 1;
+      } else {
+        answer = 0;
+      }
+      return getLiteralSyntaxLeaf(Integer.toString(answer), TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
+    } else {
+      final Token t = !isNumber(left) ?
+              left.getToken() : right.getToken();
+      throw interpreterError("TODO ADD FILE", t, "Must be number"); //todo add file
+    }
+  }
+
+  @Override
+  public LiteralSyntaxLeaf visitLesserEqualThan(LesserEqualThanOperationSyntaxBranch branch) throws CompilationTimeException {
+    printer.print("handling 'Lesser Equal than' (<=) operation");
+    final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
+    final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
+    int answer;
+    if (isNumber(left) && isNumber(right)) {
+      if (Integer.parseInt(left.getValue()) <= Integer.parseInt(right.getValue())) {
+        answer = 1;
+      } else {
+        answer = 0;
+      }
+      return getLiteralSyntaxLeaf(Integer.toString(answer), TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
+    } else {
+      final Token t = !isNumber(left) ?
+              left.getToken() : right.getToken();
+      throw interpreterError("TODO ADD FILE", t, "Must be number"); //todo add file
+    }
+  }
+
+  @Override
+  public LiteralSyntaxLeaf visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch) throws CompilationTimeException {
+    printer.print("handling 'Greater Equal than' (<=) operation");
+    final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
+    final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
+    int answer;
+    if (isNumber(left) && isNumber(right)) {
+      if (Integer.parseInt(left.getValue()) >= Integer.parseInt(right.getValue())) {
+        answer = 1;
+      } else {
+        answer = 0;
+      }
+      return getLiteralSyntaxLeaf(Integer.toString(answer), TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
+    } else {
+      final Token t = !isNumber(left) ?
+              left.getToken() : right.getToken();
+      throw interpreterError("TODO ADD FILE", t, "Must be number"); //todo add file
+    }
+  }
+
+  @Override
+  public IfOperationSyntaxBranch visitIf(IfOperationSyntaxBranch branch) throws CompilationTimeException {
+//    boolean b = branch.getCondition();
+//    if (b) {
+//      for (AbstractSyntaxTree tree : branch.get_if()) {
+//        visit(tree);
+//      }
+//    } else {
+//      for (AbstractSyntaxTree tree : branch.get_else()) {
+//        visit(tree);
+//      }
+//    }
+    return branch;
+  }
+
+  @Override
+  public AbstractSyntaxTree visitConst(ConstSyntaxLeaf constSyntaxLeaf) {
+    return constSyntaxLeaf;
+  }
+
   private LiteralSyntaxLeaf getLiteralSyntaxLeaf(String value, TokenIdentifier token) {
     final LiteralSyntaxLeaf literalSyntaxLeaf = new LiteralSyntaxLeaf();
     literalSyntaxLeaf.setToken(

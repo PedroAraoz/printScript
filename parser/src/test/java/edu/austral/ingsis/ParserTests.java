@@ -355,7 +355,7 @@ public class ParserTests {
     list.add(new Token(TokenIdentifier.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
     list.add(new Token(TokenIdentifier.BOOLEAN_TYPE_TOKEN, 0, 0, 0, "boolean"));
     list.add(new Token(TokenIdentifier.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    list.add(new Token(TokenIdentifier.TRUE_TOKEN, 0, 0, 0, "true"));
+    list.add(new Token(TokenIdentifier.BOOLEAN_LITERAL_TOKEN, 0, 0, 0, "true"));
     list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
     final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
     System.out.println("ASD");
@@ -371,7 +371,7 @@ public class ParserTests {
     list.add(new Token(TokenIdentifier.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
     list.add(new Token(TokenIdentifier.BOOLEAN_TYPE_TOKEN, 0, 0, 0, "boolean"));
     list.add(new Token(TokenIdentifier.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    list.add(new Token(TokenIdentifier.TRUE_TOKEN, 0, 0, 0, "true"));
+    list.add(new Token(TokenIdentifier.BOOLEAN_LITERAL_TOKEN, 0, 0, 0, "true"));
     list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
     final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
     System.out.println("ASD");

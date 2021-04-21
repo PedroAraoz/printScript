@@ -32,15 +32,15 @@ public interface InterpreterVisitor {
 
     BooleanTypeSyntaxLeaf visitBooleanType(BooleanTypeSyntaxLeaf leaf);
 
-    GreaterThanOperationSyntaxBranch visitGreaterThan(GreaterThanOperationSyntaxBranch branch);
+    LiteralSyntaxLeaf visitGreaterThan(GreaterThanOperationSyntaxBranch branch) throws CompilationTimeException;
 
-    LesserThanOperationSyntaxBranch visitLesserThan(LesserThanOperationSyntaxBranch branch);
+    LiteralSyntaxLeaf visitLesserThan(LesserThanOperationSyntaxBranch branch) throws CompilationTimeException;
 
-    LesserEqualThanOperationSyntaxBranch visitLesserEqualThan(LesserEqualThanOperationSyntaxBranch branch);
+    LiteralSyntaxLeaf visitLesserEqualThan(LesserEqualThanOperationSyntaxBranch branch) throws CompilationTimeException;
 
-    GreaterEqualThanOperationSyntaxBranch visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch);
+    LiteralSyntaxLeaf visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch) throws CompilationTimeException;
 
-    IfOperationSyntaxBranch visitIf(IfOperationSyntaxBranch branch);
+    IfOperationSyntaxBranch visitIf(IfOperationSyntaxBranch branch) throws CompilationTimeException;
 
   AbstractSyntaxTree visitConst(ConstSyntaxLeaf constSyntaxLeaf);
 }

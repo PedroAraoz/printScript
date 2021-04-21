@@ -18,8 +18,6 @@ public enum TokenName {
   LEFT_PARENTHESIS,
   RIGHT_PARENTHESIS,
   BOOLEAN_TYPE,
-  TRUE,
-  FALSE,
   CONST,
   IF,
   ELSE,
@@ -29,5 +27,6 @@ public enum TokenName {
   LESSER,
   GREATER_EQUAL,
   LESSER_EQUAL,
+  BOOLEAN_LITERAL,
   WIP_TOKEN
 }

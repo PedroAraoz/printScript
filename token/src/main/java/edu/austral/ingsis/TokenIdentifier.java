@@ -69,14 +69,6 @@ public class TokenIdentifier {
             new TokenIdentifier(TokenName.RIGHT_PARENTHESIS, Pattern.compile("\\)"));
     public static TokenIdentifier WIP_TOKEN =
             new TokenIdentifier(TokenName.WIP_TOKEN, Pattern.compile(".*"));
-    public static TokenIdentifier TRUE_TOKEN =
-            new TokenIdentifier(
-                    TokenName.TRUE,
-                    Pattern.compile("true"));
-    public static TokenIdentifier FALSE_TOKEN =
-            new TokenIdentifier(
-                    TokenName.FALSE,
-                    Pattern.compile("false"));
     public static TokenIdentifier CONST_TOKEN =
             new TokenIdentifier(TokenName.CONST, Pattern.compile("const"));
     public static TokenIdentifier IF_TOKEN =
@@ -97,6 +89,10 @@ public class TokenIdentifier {
             new TokenIdentifier(TokenName.LESSER_EQUAL, Pattern.compile("<="));
     public static TokenIdentifier BOOLEAN_TYPE_TOKEN =
             new TokenIdentifier(TokenName.BOOLEAN_TYPE, Pattern.compile("boolean"));
+    public static TokenIdentifier BOOLEAN_LITERAL_TOKEN =
+            new TokenIdentifier(
+                    TokenName.BOOLEAN_LITERAL,
+                    Pattern.compile("true|false"));
 
     public static List<TokenIdentifier> getAllTokens(String version) {
         List<TokenIdentifier> tokenIdentifiers = new ArrayList<>();
@@ -118,8 +114,6 @@ public class TokenIdentifier {
         tokenIdentifiers.add(RIGHT_PARENTHESIS_TOKEN);
         if (version.equals("1.1")) {
             tokenIdentifiers.add(BOOLEAN_TYPE_TOKEN);
-            tokenIdentifiers.add(TRUE_TOKEN);
-            tokenIdentifiers.add(FALSE_TOKEN);
             tokenIdentifiers.add(CONST_TOKEN);
             tokenIdentifiers.add(IF_TOKEN);
             tokenIdentifiers.add(ELSE_TOKEN);
@@ -129,6 +123,7 @@ public class TokenIdentifier {
             tokenIdentifiers.add(GREATER_EQUALS_TOKEN);
             tokenIdentifiers.add(LESSER_TOKEN);
             tokenIdentifiers.add(LESSER_EQUALS_TOKEN);
+            tokenIdentifiers.add(BOOLEAN_LITERAL_TOKEN);
         }
         return tokenIdentifiers;
     }
