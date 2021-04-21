@@ -10,6 +10,7 @@ dependencies {
     implementation project(':token')
     implementation project(':abstractSyntaxTree')
     implementation project(':visitor')
+    implementation project(':lexer')
 }
 
 group = 'edu.austral.ingsis'
