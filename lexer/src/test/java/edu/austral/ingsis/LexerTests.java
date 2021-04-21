@@ -156,10 +156,19 @@ public class LexerTests {
   }
   
   @Test
-  public void asdasdasdasd() {
+  public void ifInOnePointZero() {
     LexerImpl lexer = new LexerImpl();
-    lexer.analyseLexically(Collections.singletonList("1+2;"));
-    final List<Token> all = lexer.getAll();
-    System.out.println("asd");
+    lexer.analyseLexically(Collections.singletonList("if"));
+    final Token token = lexer.getNextToken().get();
+    Assert.assertEquals(TokenName.VARIABLE,  token.getName());
+  }
+  
+  @Test
+  public void ifInOnePointOne() {
+    LexerImpl lexer = new LexerImpl();
+    lexer.setVersion("1.1");
+    lexer.analyseLexically(Collections.singletonList("if"));
+    final Token token = lexer.getNextToken().get();
+    Assert.assertEquals(TokenName.IF,  token.getName());
   }
 }

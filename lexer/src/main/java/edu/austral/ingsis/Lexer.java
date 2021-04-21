@@ -8,4 +8,5 @@ public interface Lexer {
   Optional<Token> getNextToken();
   boolean hasNext();
   List<Token> getAll();
+  void setVersion(String version);
 }

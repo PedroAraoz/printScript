@@ -9,19 +9,24 @@ import java.util.stream.Collectors;
 
 public class LexerImpl implements Lexer {
   
-  List<Token> tokens = new ArrayList<>();
+  private List<Token> tokens = new ArrayList<>();
+  private String version = "1.0";
+  
+  public void setVersion(String version) {
+    this.version = version;
+  }
   
   @Override
   public void analyseLexically(List<String> code) {
     List<Token> tokens = new ArrayList<>();
-    List<TokenIdentifier> one = TokenIdentifier.getPriorityOneTokens();
-    List<TokenIdentifier> all = TokenIdentifier.getAllTokens();
+    List<TokenIdentifier> one = TokenIdentifier.getPriorityOneTokens(version);
+    List<TokenIdentifier> all = TokenIdentifier.getAllTokens(version);
     // PART 1 we split based on the no-space tokens (priorityOne)
     for (int i = 0; i < code.size(); i++)
       tokens.add(stringToEmptyToken(code.get(i), i, 0, 0));
     for (TokenIdentifier ti : one)
       tokens = findAndSplit(tokens, ti);
-      
+    
     
     // then we remove unnecessary spaces that might be there.
     doubleTrim(tokens);
@@ -119,6 +124,7 @@ public class LexerImpl implements Lexer {
       }
     }
   }
+  
   private List<Token> filterEmptyWIPToken(List<Token> tokens) {
     return tokens.stream().filter(e -> !e.getValue().equals("")).collect(Collectors.toList());
   }
