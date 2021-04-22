@@ -45,18 +45,28 @@ public class LexerImpl implements Lexer {
     for (int i = 0; i < tokens.size(); i++) {
       final Token t = tokens.get(i);
       final String value = t.getValue();
-      final Pattern pattern = addLookaheadandLookbehind(ti.getRegex());
-      final String[] split = pattern.split(value);
-      int startpos = 0;
-      for (String s : split) {
-        int endpos = startpos + s.length() - 1;
-        final Token token = stringToEmptyToken(s, t.getLine(),
-                t.getStartPos() + startpos, t.getEndPos() + endpos);
-        startpos = endpos + 1;
-        list.add(token);
+      if (!specificCase(ti, value)) {
+        final Pattern pattern = addLookaheadandLookbehind(ti.getRegex());
+        final String[] split = pattern.split(value);
+        int startpos = 0;
+        for (String s : split) {
+          int endpos = startpos + s.length() - 1;
+          final Token token = stringToEmptyToken(s, t.getLine(),
+                  t.getStartPos() + startpos, t.getEndPos() + endpos);
+          startpos = endpos + 1;
+          list.add(token);
+        }
+      } else {
+        list.add(t);
       }
     }
     return list;
+  }
+  
+  private boolean specificCase(TokenIdentifier ti, String value) {
+    return ((ti.getName().equals(TokenName.VALUE_ASSIGNATION) ||
+            ti.getName().equals(TokenName.GREATER) || ti.getName().equals(TokenName.LESSER))
+            && (value.contains("<=") || value.contains(">=")));
   }
   
   public Pattern addLookaheadandLookbehind(Pattern p) {
@@ -134,7 +144,7 @@ public class LexerImpl implements Lexer {
   public Token stringToEmptyToken(String string, int line, int s, int e) {
     return new Token(TokenIdentifier.WIP_TOKEN, line, s, e, string);
   }
-
+  
   @Override
   public Optional<Token> getNextToken() {
     try {
@@ -143,7 +153,7 @@ public class LexerImpl implements Lexer {
       return Optional.empty();
     }
   }
-
+  
   @Override
   public Optional<Token> peek() {
     if (tokens.isEmpty()) {

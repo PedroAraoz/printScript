@@ -104,6 +104,16 @@ public class TokenIdentifier {
   
   public static List<TokenIdentifier> getPriorityOneTokens(String version) {
     List<TokenIdentifier> tokens = new ArrayList<>();
+    if (version.equals("1.1")) {
+      tokens.add(IF_TOKEN);
+      tokens.add(ELSE_TOKEN);
+      tokens.add(LEFT_BRACKET_TOKEN);
+      tokens.add(RIGHT_BRACKET_TOKEN);
+      tokens.add(GREATER_EQUALS_TOKEN);
+      tokens.add(LESSER_EQUALS_TOKEN);
+      tokens.add(GREATER_TOKEN);
+      tokens.add(LESSER_TOKEN);
+    }
     tokens.add(TYPE_ASSIGNATION_TOKEN);
     tokens.add(SEMICOLON_TOKEN);
     tokens.add(VALUE_ASSIGNATION_TOKEN);
@@ -114,16 +124,6 @@ public class TokenIdentifier {
     tokens.add(PRINTLN_TOKEN);
     tokens.add(LEFT_PARENTHESIS_TOKEN);
     tokens.add(RIGHT_PARENTHESIS_TOKEN);
-    if (version.equals("1.1")) {
-      tokens.add(IF_TOKEN);
-      tokens.add(ELSE_TOKEN);
-      tokens.add(LEFT_BRACKET_TOKEN);
-      tokens.add(RIGHT_BRACKET_TOKEN);
-      tokens.add(GREATER_TOKEN);
-      tokens.add(LESSER_TOKEN);
-      tokens.add(GREATER_EQUALS_TOKEN);
-      tokens.add(LESSER_EQUALS_TOKEN);
-    }
     return tokens;
   }
   
