@@ -231,16 +231,18 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public IfOperationSyntaxBranch visitIf(IfOperationSyntaxBranch branch) throws CompilationTimeException {
-//    boolean b = branch.getCondition();
-//    if (b) {
-//      for (AbstractSyntaxTree tree : branch.get_if()) {
-//        visit(tree);
-//      }
-//    } else {
-//      for (AbstractSyntaxTree tree : branch.get_else()) {
-//        visit(tree);
-//      }
-//    }
+    VariableSyntaxLeaf leaf = branch.getCondition();
+    final LiteralSyntaxLeaf condition = (LiteralSyntaxLeaf) visit(leaf); // TODO no tengo idea como funca esto pero en los otros esta hecho igual. Asumo que te pasa la variable a Literal??
+    boolean b = condition.getValue().equals("true"); // I assume que esto deberia funcionar. Chequear si se escribia asi o en mayuscula
+    if (b) {
+      for (AbstractSyntaxTree tree : branch.get_if()) {
+        visit(tree);
+      }
+    } else {
+      for (AbstractSyntaxTree tree : branch.get_else()) {
+        visit(tree);
+      }
+    }
     return branch;
   }
 
