@@ -1,6 +1,7 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -110,6 +111,7 @@ public class ParserSegmenterTests {
   @Test
   public void emptyIfStatementShouldBeReturnedCorrectly() throws CompilationTimeException {
     final Lexer lexer = new LexerImpl();
+    lexer.setVersion("1.1");
 
     final List<String> statement = new ArrayList<>();
     statement.add("if (x) {}");
@@ -134,6 +136,8 @@ public class ParserSegmenterTests {
     final List<String> statement = new ArrayList<>();
     statement.add("if (x) {x = 3;}");
 
+    lexer.setVersion("1.1");
+
     lexer.analyseLexically(statement);
 
     final ParserSegmenter parserSegmenter = new ParserSegmenter(lexer);
@@ -157,6 +161,8 @@ public class ParserSegmenterTests {
 
     final List<String> statement = new ArrayList<>();
     statement.add("if (x) {x = 3; y = 4;}");
+
+    lexer.setVersion("1.1");
 
     lexer.analyseLexically(statement);
 
@@ -186,6 +192,8 @@ public class ParserSegmenterTests {
     final List<String> statement = new ArrayList<>();
     statement.add("if (x) {} else {}");
 
+    lexer.setVersion("1.1");
+
     lexer.analyseLexically(statement);
 
     final ParserSegmenter parserSegmenter = new ParserSegmenter(lexer);
@@ -207,29 +215,31 @@ public class ParserSegmenterTests {
     final Lexer lexer = new LexerImpl();
 
     final List<String> statement = new ArrayList<>();
-    statement.add("if (x) {} else {}");
+    statement.add("if (x) {x = 3;} else {x = 3;}");
+
+    lexer.setVersion("1.1");
 
     lexer.analyseLexically(statement);
 
     final ParserSegmenter parserSegmenter = new ParserSegmenter(lexer);
 
     List<Token> tokens1 = parserSegmenter.getNext();
-    assert tokens1.get(0).getTokenIdentifier().equals(TokenIdentifier.IF_TOKEN);
-    assert tokens1.get(1).getTokenIdentifier().equals(TokenIdentifier.LEFT_PARENTHESIS_TOKEN);
-    assert tokens1.get(2).getTokenIdentifier().equals(TokenIdentifier.VARIABLE_TOKEN);
-    assert tokens1.get(3).getTokenIdentifier().equals(TokenIdentifier.RIGHT_PARENTHESIS_TOKEN);
-    assert tokens1.get(4).getTokenIdentifier().equals(TokenIdentifier.LEFT_BRACKET_TOKEN);
-    assert tokens1.get(5).getTokenIdentifier().equals(TokenIdentifier.VARIABLE_TOKEN);
-    assert tokens1.get(6).getTokenIdentifier().equals(TokenIdentifier.VALUE_ASSIGNATION_TOKEN);
-    assert tokens1.get(7).getTokenIdentifier().equals(TokenIdentifier.NUMBER_LITERAL_TOKEN);
-    assert tokens1.get(8).getTokenIdentifier().equals(TokenIdentifier.SEMICOLON_TOKEN);
-    assert tokens1.get(9).getTokenIdentifier().equals(TokenIdentifier.RIGHT_BRACKET_TOKEN);
-    assert tokens1.get(10).getTokenIdentifier().equals(TokenIdentifier.ELSE_TOKEN);
-    assert tokens1.get(11).getTokenIdentifier().equals(TokenIdentifier.LEFT_BRACKET_TOKEN);
-    assert tokens1.get(12).getTokenIdentifier().equals(TokenIdentifier.VARIABLE_TOKEN);
-    assert tokens1.get(13).getTokenIdentifier().equals(TokenIdentifier.VALUE_ASSIGNATION_TOKEN);
-    assert tokens1.get(14).getTokenIdentifier().equals(TokenIdentifier.NUMBER_LITERAL_TOKEN);
-    assert tokens1.get(15).getTokenIdentifier().equals(TokenIdentifier.SEMICOLON_TOKEN);
-    assert tokens1.get(16).getTokenIdentifier().equals(TokenIdentifier.RIGHT_BRACKET_TOKEN);
+    Assert.assertEquals(tokens1.get(0).getTokenIdentifier(), (TokenIdentifier.IF_TOKEN));
+    Assert.assertEquals(tokens1.get(1).getTokenIdentifier(), (TokenIdentifier.LEFT_PARENTHESIS_TOKEN));
+    Assert.assertEquals(tokens1.get(2).getTokenIdentifier(), (TokenIdentifier.VARIABLE_TOKEN));
+    Assert.assertEquals(tokens1.get(3).getTokenIdentifier(), (TokenIdentifier.RIGHT_PARENTHESIS_TOKEN));
+    Assert.assertEquals(tokens1.get(4).getTokenIdentifier(), (TokenIdentifier.LEFT_BRACKET_TOKEN));
+    Assert.assertEquals(tokens1.get(5).getTokenIdentifier(), (TokenIdentifier.VARIABLE_TOKEN));
+    Assert.assertEquals(tokens1.get(6).getTokenIdentifier(), (TokenIdentifier.VALUE_ASSIGNATION_TOKEN));
+    Assert.assertEquals(tokens1.get(7).getTokenIdentifier(), (TokenIdentifier.NUMBER_LITERAL_TOKEN));
+    Assert.assertEquals(tokens1.get(8).getTokenIdentifier(), (TokenIdentifier.SEMICOLON_TOKEN));
+    Assert.assertEquals(tokens1.get(9).getTokenIdentifier(), (TokenIdentifier.RIGHT_BRACKET_TOKEN));
+    Assert.assertEquals(tokens1.get(10).getTokenIdentifier(), (TokenIdentifier.ELSE_TOKEN));
+    Assert.assertEquals(tokens1.get(11).getTokenIdentifier(), (TokenIdentifier.LEFT_BRACKET_TOKEN));
+    Assert.assertEquals(tokens1.get(12).getTokenIdentifier(), (TokenIdentifier.VARIABLE_TOKEN));
+    Assert.assertEquals(tokens1.get(13).getTokenIdentifier(), (TokenIdentifier.VALUE_ASSIGNATION_TOKEN));
+    Assert.assertEquals(tokens1.get(14).getTokenIdentifier(), (TokenIdentifier.NUMBER_LITERAL_TOKEN));
+    Assert.assertEquals(tokens1.get(15).getTokenIdentifier(), (TokenIdentifier.SEMICOLON_TOKEN));
+    Assert.assertEquals(tokens1.get(16).getTokenIdentifier(), (TokenIdentifier.RIGHT_BRACKET_TOKEN));
   }
 }
