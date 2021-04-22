@@ -1,6 +1,7 @@
 package edu.austral.ingsis;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -97,7 +98,7 @@ public class TokenIdentifier {
   public static List<TokenIdentifier> getAllTokens(String version) {
     List<TokenIdentifier> tokenIdentifiers = new ArrayList<>();
     tokenIdentifiers.addAll(getPriorityOneTokens(version));
-    tokenIdentifiers.addAll(getPriorityTwoTokens(version));
+    tokenIdentifiers.addAll(getPriorityThreeTokens(version));
     return tokenIdentifiers;
   }
   
@@ -126,14 +127,18 @@ public class TokenIdentifier {
     return tokens;
   }
   
-  public static List<TokenIdentifier> getPriorityTwoTokens(String version) {
+  
+  public static List<TokenIdentifier> getPriorityTwoTokens() {
+    return Collections.singletonList(STRING_LITERAL_TOKEN);
+  }
+  
+  public static List<TokenIdentifier> getPriorityThreeTokens(String version) {
     List<TokenIdentifier> tokens = new ArrayList<>();
     if (version.equals("1.1")) {
       tokens.add(CONST_TOKEN);
       tokens.add(BOOLEAN_TYPE_TOKEN);
       tokens.add(BOOLEAN_LITERAL_TOKEN);
     }
-    tokens.add(STRING_LITERAL_TOKEN);
     tokens.add(NUMBER_LITERAL_TOKEN);
     tokens.add(LET_TOKEN);
     tokens.add(NUMBER_TYPE_TOKEN);

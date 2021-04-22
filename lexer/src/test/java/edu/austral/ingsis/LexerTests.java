@@ -171,4 +171,13 @@ public class LexerTests {
     final Token token = lexer.getNextToken().get();
     Assert.assertEquals(TokenName.IF,  token.getName());
   }
+  
+  @Test
+  public void testSpaceInString() {
+    LexerImpl lexer = new LexerImpl();
+    lexer.analyseLexically(Collections.singletonList("'hola amigo'"));
+    final List<Token> all = lexer.getAll();
+    Assert.assertEquals(1, all.size());
+    Assert.assertEquals(TokenName.STRING_LITERAL, all.get(0).getName());
+  }
 }
