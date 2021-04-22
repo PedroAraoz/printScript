@@ -20,6 +20,7 @@ public class LexerImpl implements Lexer {
   public void analyseLexically(List<String> code) {
     List<Token> tokens = new ArrayList<>();
     List<TokenIdentifier> one = TokenIdentifier.getPriorityOneTokens(version);
+    List<TokenIdentifier> two = TokenIdentifier.getPriorityTwoTokens();
     List<TokenIdentifier> all = TokenIdentifier.getAllTokens(version);
     // PART 1 we split based on the no-space tokens (priorityOne)
     for (int i = 0; i < code.size(); i++)
@@ -30,6 +31,7 @@ public class LexerImpl implements Lexer {
     
     // then we remove unnecessary spaces that might be there.
     doubleTrim(tokens);
+    findAndReplace(tokens, two);
     tokens = removeSpacesInWIPToken(tokens);
     tokens = filterEmptyWIPToken(tokens);
     // then we find and replace the tokens in an important order.
