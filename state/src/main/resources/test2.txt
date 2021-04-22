@@ -1,4 +1,4 @@
-let str: string = "hola amigo";
+let str: string = "holaamigo";
 
 let x: number = 1 + 2 + 3 * 6;
 
@@ -7,6 +7,6 @@ let final: string
 str + x
 ;
 
-printLn("PRINTLN ANDAAA");
+printLn("PRINTLNANDAAA");
 
 printLn("PRI" + "NTLN" + str);

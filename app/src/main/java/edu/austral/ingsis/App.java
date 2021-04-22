@@ -4,7 +4,7 @@ import edu.austral.ingsis.exception.CompilationTimeException;
 import java.io.FileNotFoundException;
 
 public class App {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws CompilationTimeException {
     CLI cli = new CLI(new CLIPrinter());
     try {
       cli.run();
