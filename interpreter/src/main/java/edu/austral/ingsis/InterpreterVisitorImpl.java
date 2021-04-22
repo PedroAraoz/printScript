@@ -24,7 +24,6 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     VariableSyntaxLeaf variableSyntaxLeaf = (VariableSyntaxLeaf) visit(branch.left);
     LiteralSyntaxLeaf literalSyntaxLeaf = (LiteralSyntaxLeaf) visit(branch.right);
 
-    if (variableSyntaxLeaf.isConst()) throw new CompilationTimeException("Cannot assign value to variable " + variableSyntaxLeaf.getValue() + " in line " + variableSyntaxLeaf.getToken().getLine() + " in column " + variableSyntaxLeaf.getToken().getStartPos());
     variableRegister.assignValueToVariable(variableSyntaxLeaf.getToken(), literalSyntaxLeaf.getToken());
     return null; //todo esto esta raro
   }
@@ -32,12 +31,16 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   @Override
   public VariableSyntaxLeaf visitTypeAssingation(TypeAssignationSyntaxBranch branch) {
     printer.print("handling type assignation");
-    String variableName = branch.left.getToken().getValue();
+
+    VariableSyntaxLeaf variableSyntaxLeaf = (VariableSyntaxLeaf) branch.left;
+
+    String variableName = variableSyntaxLeaf.getToken().getValue();
+    boolean isConst = variableSyntaxLeaf.isConst();
     TokenIdentifier type = branch.right.getToken().getTokenIdentifier();
     
-    variableRegister.addNewVariable(variableName, type);
+    variableRegister.addNewVariable(variableName, type, isConst);
     
-    return (VariableSyntaxLeaf) branch.left;
+    return variableSyntaxLeaf;
   }
   
   @Override

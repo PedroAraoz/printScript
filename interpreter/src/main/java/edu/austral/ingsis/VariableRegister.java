@@ -18,11 +18,12 @@ public class VariableRegister {
 //        variables.add(newVariable);
 //    }
   
-  public void addNewVariable(String variableName, TokenIdentifier type) {
+  public void addNewVariable(String variableName, TokenIdentifier type, boolean isConst) {
     VariableInfo variableInfo = new VariableInfo();
     
     variableInfo.setVariableName(variableName);
     variableInfo.setType(type);
+    variableInfo.setCon(isConst);
     
     // TODO check si ya existe
     variables.add(variableInfo);
@@ -36,8 +37,11 @@ public class VariableRegister {
     for (VariableInfo vi : variables) {
       if (vi.getVariableName().equals(variable.getValue())) {
         if (sameType(vi.getType(), (value.getTokenIdentifier()))) {
+          // check for const
+          if (!vi.isConst() || vi.getValue().equals(""))
           // everything ok
           vi.setValue(value.getValue());
+          else throw new CompilationTimeException("Cannot assign value to variable " + variable.getValue() + " in line " + variable.getLine() + " in column " + variable.getStartPos());
           return;
         } else {
           // var.type != value.type osea estan haciendo x: string = 123;

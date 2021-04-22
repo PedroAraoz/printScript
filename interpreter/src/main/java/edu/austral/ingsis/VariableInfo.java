@@ -5,6 +5,7 @@ public class VariableInfo {
     private String variableName;
     private TokenIdentifier type;
     private String value = "";
+    private boolean con = false;
 
     public String getVariableName() {
         return variableName;
@@ -28,5 +29,13 @@ public class VariableInfo {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public void setCon(boolean con) {
+        this.con = con;
+    }
+
+    public boolean isConst() {
+        return con;
     }
 }
