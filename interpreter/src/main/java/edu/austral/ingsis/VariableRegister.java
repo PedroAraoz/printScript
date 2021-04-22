@@ -55,6 +55,8 @@ public class VariableRegister {
   
   private boolean sameType(TokenIdentifier a, TokenIdentifier b) {
     return a.equals(b) ||
+    (a.equals(TokenIdentifier.BOOLEAN_LITERAL_TOKEN) && b.equals(TokenIdentifier.BOOLEAN_TYPE_TOKEN)) ||
+    (a.equals(TokenIdentifier.BOOLEAN_TYPE_TOKEN) && b.equals(TokenIdentifier.BOOLEAN_LITERAL_TOKEN)) ||
     (a.equals(TokenIdentifier.STRING_LITERAL_TOKEN) && b.equals(TokenIdentifier.STRING_TYPE_TOKEN)) ||
     (b.equals(TokenIdentifier.STRING_LITERAL_TOKEN) && a.equals(TokenIdentifier.STRING_TYPE_TOKEN)) ||
     (a.equals(TokenIdentifier.NUMBER_LITERAL_TOKEN) && b.equals(TokenIdentifier.NUMBER_TYPE_TOKEN)) ||

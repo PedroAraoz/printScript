@@ -23,7 +23,8 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     printer.print("handling value assignation");
     VariableSyntaxLeaf variableSyntaxLeaf = (VariableSyntaxLeaf) visit(branch.left);
     LiteralSyntaxLeaf literalSyntaxLeaf = (LiteralSyntaxLeaf) visit(branch.right);
-    
+
+    if (variableSyntaxLeaf.isConst()) throw new CompilationTimeException("Cannot assign value to variable " + variableSyntaxLeaf.getValue() + " in line " + variableSyntaxLeaf.getToken().getLine() + " in column " + variableSyntaxLeaf.getToken().getStartPos());
     variableRegister.assignValueToVariable(variableSyntaxLeaf.getToken(), literalSyntaxLeaf.getToken());
     return null; //todo esto esta raro
   }
@@ -232,8 +233,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   @Override
   public IfOperationSyntaxBranch visitIf(IfOperationSyntaxBranch branch) throws CompilationTimeException {
     VariableSyntaxLeaf leaf = branch.getCondition();
-    final LiteralSyntaxLeaf condition = (LiteralSyntaxLeaf) visit(leaf); // TODO no tengo idea como funca esto pero en los otros esta hecho igual. Asumo que te pasa la variable a Literal??
-    boolean b = condition.getValue().equals("true"); // I assume que esto deberia funcionar. Chequear si se escribia asi o en mayuscula
+    boolean b = getBooleanFromVariable(leaf);
     if (b) {
       for (AbstractSyntaxTree tree : branch.get_if()) {
         visit(tree);
@@ -244,6 +244,18 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
       }
     }
     return branch;
+  }
+
+  // TODO Chequear si esto esta bien hecho o si ya hay algo mas lindo
+  private boolean getBooleanFromVariable(VariableSyntaxLeaf leaf) throws CompilationTimeException {
+    if (variableRegister.contains(leaf.getValue())) {
+      VariableInfo variableInfo = variableRegister.get(leaf.getValue()).get();
+      if (variableInfo.getValue().isEmpty())
+        throw new CompilationTimeException("Variable not initialized in line " + leaf.getToken().getLine() + " in column " + leaf.getToken().getStartPos());
+      return variableInfo.getValue().equals("true");
+    } else {
+      throw new CompilationTimeException("Undeclared variable in line " + leaf.getToken().getLine() + " in column " + leaf.getToken().getStartPos());
+    }
   }
 
   @Override

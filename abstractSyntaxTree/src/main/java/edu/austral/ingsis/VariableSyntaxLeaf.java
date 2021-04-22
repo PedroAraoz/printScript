@@ -129,4 +129,8 @@ public class VariableSyntaxLeaf extends AbstractSyntaxLeaf {
     this.con = true;
     return this;
   }
+
+  public boolean isConst() {
+    return con;
+  }
 }
