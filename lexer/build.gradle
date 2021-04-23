@@ -2,6 +2,7 @@ plugins {
     id 'java-library'
     id 'my-library.java-common-conventions'
     id 'jacoco'
+    id "maven-publish"
 }
 
 apply plugin: 'checkstyle'
@@ -23,7 +24,7 @@ test {
 }
 
 group = 'edu.austral.ingsis'
-version = '1.0.1'
+version = '1.1.1'
 
 test {
     finalizedBy(jacocoTestReport)
@@ -51,4 +52,22 @@ tasks.build.dependsOn(check)
 checkstyle {
     toolVersion = '6.16.1'
     config = rootProject.resources.text.fromFile('etc/checkstyle/rules.xml')
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/pedroaraoz/printScript")
+            credentials {
+                username = project.findProperty("gpr.user") ?: "pedroaraoz"
+                password = project.findProperty("gpr.key") ?: ${System.getenv("TOKEN")}
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
 }
