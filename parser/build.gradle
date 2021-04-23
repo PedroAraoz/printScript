@@ -9,7 +9,6 @@ apply plugin: 'checkstyle'
 dependencies {
     implementation project(':token')
     implementation project(':abstractSyntaxTree')
-    implementation project(':visitor')
     implementation project(':lexer')
 }
 
