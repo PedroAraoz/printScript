@@ -24,20 +24,25 @@ public class CLI {
     state.setContext(this);
   }
   
+  public void run(String message) throws FileNotFoundException, CompilationTimeException {
+    final String[] args = message.split(" ");
+    if (args.length < 3) throw new RuntimeException("Three arguments are needed"); //todo implement mejor
+    state.run(args);
+  }
+  
   public void run() throws FileNotFoundException, CompilationTimeException {
     final Scanner scanner = new Scanner(System.in);
     String message = "";
     String welcomeMessage = "please type\n" +
             "<mode> <filePath> <versionNumber>";
     printer.print(welcomeMessage);
+    message = scanner.nextLine().trim().toLowerCase();
     while (!message.equals("exit")) {
       printer.print(">");
-//      message = scanner.nextLine().trim().toLowerCase();
-      message = "execute state/src/main/resources/test3.txt 1.1";
       final String[] args = message.split(" ");
-      if (args.length < 3) throw new RuntimeException("Three arguments are needed"); //todo implement mejor
+      if (args.length < 3) throw new RuntimeException("Three arguments are needed");
       state.run(args);
-      message = "exit";
+      message = scanner.nextLine().trim().toLowerCase();
     }
   }
 }
