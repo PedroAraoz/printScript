@@ -44,11 +44,19 @@ public class StateExecuter implements State {
     printer.print("Starting...");
     final List<String> lines = new ArrayList<>();
     while (file.hasNext()) lines.add(file.next());
+    printer.print("Lexing....");
     lexer.analyseLexically(lines);
+    printer.print("Parsing....");
     final List<AbstractSyntaxTree> abstractSyntaxTrees = parser.analyseSintactically(lexer);
-    for (AbstractSyntaxTree ast : abstractSyntaxTrees)
+    final int total = abstractSyntaxTrees.size() - 1;
+    int counter = 0;
+    for (AbstractSyntaxTree ast : abstractSyntaxTrees){
+      printer.print(counter + "/" + total);
       interpreter.visit(ast);
+      counter++;
+    }
     ((InterpreterVisitorImpl) interpreter).debug();
+    printer.print("JOB DONE!");
   }
   
   private boolean checkMode(String mode) {
