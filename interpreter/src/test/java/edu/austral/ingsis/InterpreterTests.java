@@ -431,9 +431,9 @@ public class InterpreterTests {
     lexer.setVersion("1.1");
 
     List<String> statements = new ArrayList<>();
-    statements.add("let pi: number;");
-    statements.add("pi = 3.14;");
-    statements.add("printLn(pi / 2);");
+    statements.add("let a: number;");
+    statements.add("a = 3.5;");
+    statements.add("printLn(a * 2);");
 
     lexer.analyseLexically(statements);
 
@@ -467,6 +467,29 @@ public class InterpreterTests {
     for (AbstractSyntaxTree ast : abstractSyntaxTrees) {
       i.visit(ast);
       i.debug();
+    }
+  }
+
+  @Test
+  public void ifStatement() throws CompilationTimeException {
+    Lexer lexer = new LexerImpl();
+    lexer.setVersion("1.1");
+
+    List<String> statements = new ArrayList<>();
+    statements.add("const booleanResult: boolean = 5 > 3;");
+    statements.add("if(booleanResult) {printLn(\"if statement working correctly\");}");
+    statements.add("printLn(\"outside of conditional\");");
+
+    lexer.analyseLexically(statements);
+
+    Parser parser = new ParserImpl();
+
+    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
+
+    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
+
+    for (AbstractSyntaxTree tree : trees) {
+      interpreter.visit(tree);
     }
   }
 }

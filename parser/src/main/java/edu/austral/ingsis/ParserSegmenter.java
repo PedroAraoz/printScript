@@ -70,14 +70,11 @@ public class ParserSegmenter {
     consumeUntil(statement, ifToken, TokenIdentifier.RIGHT_BRACKET_TOKEN, "If statement does not close brackets in line ");
 
     Optional<Token> t = lexer.peek();
-    if (t.isEmpty())
-      next = statement;
-    else if (t.get().getTokenIdentifier().equals(TokenIdentifier.ELSE_TOKEN)) {
+    if (t.isPresent() && t.get().getTokenIdentifier().equals(TokenIdentifier.ELSE_TOKEN)) {
       consumeUntil(statement, t.get(), TokenIdentifier.LEFT_BRACKET_TOKEN, "Else statement does not open brackets in line ");
       consumeUntil(statement, t.get(), TokenIdentifier.RIGHT_BRACKET_TOKEN, "Else statement does not close brackets in line ");
-      next = statement;
     }
-
+    next = statement;
   }
 
   private void consumeUntil(List<Token> statement, Token ifToken, TokenIdentifier identifier, String noNextTokenErrorMessage) throws CompilationTimeException {

@@ -31,7 +31,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public AbstractSyntaxTree visitValueAssignation(ValueAssignationSyntaxBranch branch) throws CompilationTimeException {
-    output("handling 'Lesser Equal than' (<=) operation");
+    output("Handling value assignation");
     VariableSyntaxLeaf variableSyntaxLeaf = (VariableSyntaxLeaf) visit(branch.left);
     LiteralSyntaxLeaf literalSyntaxLeaf = (LiteralSyntaxLeaf) visit(branch.right);
 
@@ -157,7 +157,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   public PrintLnSyntaxLeaf visitPrintLn(PrintLnSyntaxLeaf leaf) throws CompilationTimeException {
     AbstractSyntaxTree expression = leaf.getExpression();
     LiteralSyntaxLeaf result = smartCastToVariable(visit(expression));
-    output(result.getValue());
+    printer.print(result.getValue());
     return leaf;
   }
 
@@ -183,14 +183,14 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     output("handling 'Greater than' (>) operation");
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
-    int answer;
+    String answer;
     if (isNumber(left) && isNumber(right)) {
       if (Double.parseDouble(left.getValue()) > Double.parseDouble(right.getValue())) {
-        answer = 1;
+        answer = "true";
       } else {
-        answer = 0;
+        answer = "false";
       }
-      return getLiteralSyntaxLeaf(Integer.toString(answer), TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
+      return getLiteralSyntaxLeaf(answer, TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
     } else {
       final Token t = !isNumber(left) ?
               left.getToken() : right.getToken();
@@ -203,14 +203,14 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     output("handling 'Lesser than' (<) operation");
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
-    int answer;
+    String answer;
     if (isNumber(left) && isNumber(right)) {
       if (Double.parseDouble(left.getValue()) < Double.parseDouble(right.getValue())) {
-        answer = 1;
+        answer = "true";
       } else {
-        answer = 0;
+        answer = "false";
       }
-      return getLiteralSyntaxLeaf(Integer.toString(answer), TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
+      return getLiteralSyntaxLeaf(answer, TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
     } else {
       final Token t = !isNumber(left) ?
               left.getToken() : right.getToken();
@@ -223,14 +223,14 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     output("handling 'Lesser Equal than' (<=) operation");
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
-    int answer;
+    String answer;
     if (isNumber(left) && isNumber(right)) {
       if (Double.parseDouble(left.getValue()) <= Double.parseDouble(right.getValue())) {
-        answer = 1;
+        answer = "true";
       } else {
-        answer = 0;
+        answer = "false";
       }
-      return getLiteralSyntaxLeaf(Integer.toString(answer), TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
+      return getLiteralSyntaxLeaf(answer, TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
     } else {
       final Token t = !isNumber(left) ?
               left.getToken() : right.getToken();
@@ -243,14 +243,14 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     output("handling 'Greater Equal than' (<=) operation");
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
-    int answer;
+    String answer;
     if (isNumber(left) && isNumber(right)) {
       if (Double.parseDouble(left.getValue()) >= Double.parseDouble(right.getValue())) {
-        answer = 1;
+        answer = "true";
       } else {
-        answer = 0;
+        answer = "false";
       }
-      return getLiteralSyntaxLeaf(Integer.toString(answer), TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
+      return getLiteralSyntaxLeaf(answer, TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
     } else {
       final Token t = !isNumber(left) ?
               left.getToken() : right.getToken();

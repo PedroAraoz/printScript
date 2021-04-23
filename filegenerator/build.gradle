@@ -21,7 +21,7 @@ test {
     maxHeapSize = '1G'
 }
 group = 'edu.austral.ingsis'
-version = '1.1.3'
+version = '1.1.4'
 
 test {
     finalizedBy(jacocoTestReport)
