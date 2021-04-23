@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class LexerTests {
-  // todo saque el checkeo de posiciones en todos los tests. tenemos que hacer 1 de eso.
+
   @Test
   public void DeclarationAsignationOperationTest() {
     final List<String> codeLineList = new ArrayList<>();
