@@ -9,7 +9,7 @@ apply plugin: 'checkstyle'
 
 dependencies {
     implementation project(':token')
-    implementation project(':abstractSyntaxTree')
+    implementation project(':abstractsyntaxtree')
     implementation project(':lexer')
 }
 
@@ -52,7 +52,7 @@ publishing {
             url = uri("https://maven.pkg.github.com/pedroaraoz/printScript")
             credentials {
                 username = project.findProperty("gpr.user") ?: "pedroaraoz"
-                password = project.findProperty("gpr.key") ?: ${System.getenv("TOKEN")}
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
             }
         }
     }

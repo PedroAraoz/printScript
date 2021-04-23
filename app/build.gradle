@@ -12,12 +12,12 @@ version = '1.0.1'
 
 dependencies {
     implementation project(':parser')
-    implementation project(':fileGenerator')
+    implementation project(':filegenerator')
     implementation project(':token')
     implementation project(':lexer')
     implementation project(':state')
     implementation project(':printer')
-    implementation project(':abstractSyntaxTree')
+    implementation project(':abstractsyntaxtree')
     implementation project(':interpreter')
 }
 

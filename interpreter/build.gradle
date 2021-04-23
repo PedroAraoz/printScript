@@ -8,13 +8,13 @@ plugins {
 apply plugin: 'checkstyle'
 
 dependencies {
-    implementation project(':abstractSyntaxTree')
+    implementation project(':abstractsyntaxtree')
     implementation project(':parser')
     implementation project(':token')
     implementation project(':printer')
     implementation 'junit:junit:4.12'
     testCompileOnly project(':lexer')
-    testCompileOnly project(':fileGenerator')
+    testCompileOnly project(':filegenerator')
 }
 
 group = 'edu.austral.ingsis'
@@ -55,7 +55,7 @@ publishing {
             url = uri("https://maven.pkg.github.com/pedroaraoz/printScript")
             credentials {
                 username = project.findProperty("gpr.user") ?: "pedroaraoz"
-                password = project.findProperty("gpr.key") ?: ${System.getenv("TOKEN")}
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
             }
         }
     }
