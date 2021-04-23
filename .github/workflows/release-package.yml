@@ -24,7 +24,7 @@ jobs:
 
       - name: Google Java Format
         run: ./gradlew goJF
-        
+
       - name: Static Code Analysis
         run: ./gradlew check
 
@@ -33,3 +33,43 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build
+
+      - name: Publish abstractSyntaxTree
+        run: ./gradlew :abstractSyntaxTree:publish
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Publish fileGenerator
+        run: ./gradlew :fileGenerator:publish
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Publish interpreter
+        run: ./gradlew :interpreter:publish
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Publish lexer
+        run: ./gradlew :lexer:publish
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Publish parser
+        run: ./gradlew :parser:publish
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Publish printer
+        run: ./gradlew :printer:publish
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Publish state
+        run: ./gradlew :state:publish
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Publish token
+        run: ./gradlew :token:publish
+        env:
+          TOKEN: ${{ secrets.TOKEN }}

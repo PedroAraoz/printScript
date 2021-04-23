@@ -10,12 +10,10 @@ dependencies {
     implementation project(':abstractSyntaxTree')
     implementation project(':parser')
     implementation project(':token')
-    implementation project(':visitor')
     implementation project(':printer')
     implementation 'junit:junit:4.12'
-//    todo mirar como mover esto solo para los tests
-    implementation project(':lexer')
-    implementation project(':fileGenerator')
+    testCompileOnly project(':lexer')
+    testCompileOnly project(':fileGenerator')
 }
 
 group = 'edu.austral.ingsis'
