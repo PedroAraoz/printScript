@@ -452,7 +452,7 @@ public class InterpreterTests {
   }
 
   @Test
-  public void asdasdasdasdasdasdasdASDS() throws FileNotFoundException, CompilationTimeException {
+  public void testMyCodetxt() throws FileNotFoundException, CompilationTimeException {
     final NormalFileGenerator normalFileGenerator = new NormalFileGenerator();
     final File open = normalFileGenerator.open("src/test/resources/myCode.txt");
     List<String> strings = new ArrayList<>();
