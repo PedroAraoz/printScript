@@ -1,11 +1,14 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
+import org.junit.Assert;
 import org.junit.Test;
+import org.junit.rules.ErrorCollector;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class InterpreterTests {
   
@@ -471,14 +474,14 @@ public class InterpreterTests {
   }
 
   @Test
-  public void ifStatement() throws CompilationTimeException {
+  public void ifStatementWithGreaterAndPrint() throws CompilationTimeException {
     Lexer lexer = new LexerImpl();
     lexer.setVersion("1.1");
 
     List<String> statements = new ArrayList<>();
-    statements.add("const booleanResult: boolean = 5 > 3;");
-    statements.add("if(booleanResult) {println(\"if statement working correctly\");}");
-    statements.add("println(\"outside of conditional\");");
+    statements.add("const x: boolean = 2 > 1;");
+    statements.add("if(x) {println(\"Yeaaaaaah\");}");
+    statements.add("println(\"my job here is done\");");
 
     lexer.analyseLexically(statements);
 
@@ -491,5 +494,50 @@ public class InterpreterTests {
     for (AbstractSyntaxTree tree : trees) {
       interpreter.visit(tree);
     }
+  }
+
+  @Test
+  public void interpreterTestsFromFile() throws FileNotFoundException, CompilationTimeException {
+    List<String> directories = new ArrayList<>();
+    directories.add("test01");
+    directories.add("test02");
+
+    for (String directory : directories) {
+      test(directory);
+    }
+  }
+
+  public void test(String directory) throws FileNotFoundException, CompilationTimeException {
+    String testDirectory = "src/test/resources/interpreter-tests/" + directory + "/";
+    List<String> statements = readLines(testDirectory + "input.txt");
+    List<String> expectedOutput = readLines(testDirectory + "output.txt");
+
+    PrintCollector printCollector = new PrintCollector();
+
+    Lexer lexer = new LexerImpl();
+
+    lexer.analyseLexically(statements);
+
+    Parser parser = new ParserImpl();
+
+    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
+
+    InterpreterVisitor interpreter = new InterpreterVisitorImpl(printCollector);
+
+    for (AbstractSyntaxTree tree : trees) {
+      interpreter.visit(tree);
+    }
+
+    Assert.assertEquals(expectedOutput, printCollector.getStatements());
+  }
+
+  private List<String> readLines(String file) throws FileNotFoundException {
+    Scanner s = new Scanner(new java.io.File(file));
+    ArrayList<String> list = new ArrayList<>();
+    while (s.hasNextLine()){
+      list.add(s.nextLine());
+    }
+    s.close();
+    return list;
   }
 }
