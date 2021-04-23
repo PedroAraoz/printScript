@@ -1,7 +1,9 @@
-import edu.austral.ingsis.*;
+package edu.austral.ingsis;
+
 import edu.austral.ingsis.exception.CompilationTimeException;
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -354,6 +356,28 @@ public class InterpreterTests {
     
     for (AbstractSyntaxTree tree : trees) {
       interpreter.visit(tree);
+    }
+  }
+  
+  @Test
+  public void asdasdasdasdasdasdasdASDS() throws FileNotFoundException, CompilationTimeException {
+    final NormalFileGenerator normalFileGenerator = new NormalFileGenerator();
+    final File open = normalFileGenerator.open("src/test/resources/myCode.txt");
+    List<String> strings = new ArrayList<>();
+    while (open.hasNext()) strings.add(open.next());
+    LexerImpl lexer = new LexerImpl();
+    lexer.setVersion("1.1");
+    lexer.analyseLexically(strings);
+    ParserImpl parser = new ParserImpl();
+    final List<Token> all = lexer.getAll();
+
+
+    System.out.println("asd");
+    final List<AbstractSyntaxTree> abstractSyntaxTrees = parser.analyseSintactically(lexer);
+    InterpreterVisitorImpl i = new InterpreterVisitorImpl(new CLIPrinter());
+    for (AbstractSyntaxTree ast : abstractSyntaxTrees) {
+      i.visit(ast);
+      i.debug();
     }
   }
 }

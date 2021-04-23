@@ -31,6 +31,7 @@ public class LexerImpl implements Lexer {
     
     // then we remove unnecessary spaces that might be there.
     doubleTrim(tokens);
+    tokens = fixString(tokens);
     findAndReplace(tokens, two);
     tokens = removeSpacesInWIPToken(tokens);
     tokens = filterEmptyWIPToken(tokens);
@@ -38,6 +39,41 @@ public class LexerImpl implements Lexer {
     findAndReplace(tokens, all);
     removeQuotationMarkers(tokens);
     this.tokens = tokens;
+  }
+  
+  private List<Token> fixString(List<Token> tokens) {
+    final List<Token> answer = new ArrayList<>();
+    String acc = "";
+    boolean unClosed = false;
+    int startPos = 0;
+    for (int i = 0; i < tokens.size(); i++) {
+      final Token token = tokens.get(i);
+      if (containsQuations(token.getValue())) {
+        if (!unClosed) {
+          unClosed = true;
+          acc = token.getValue();
+          startPos = token.getStartPos();
+        } else {
+          unClosed = false;
+          acc += " " + token.getValue();
+          acc.replace("  ", " ");
+          answer.add(stringToEmptyToken(acc, token.getLine(), startPos, startPos + acc.length()));
+        }
+      } else if (unClosed) {
+        acc += " " + token.getValue();
+      } else {
+        answer.add(token);
+      }
+    }
+    return answer;
+  }
+  
+  private boolean containsQuations(String value) {
+    final int length = value.length();
+    final String replace1 = value.replace("\"", "");
+    final String replace2 = value.replace("'", "");
+    return length - replace1.length() == 1 ||
+            length - replace2.length() == 1;
   }
   
   public List<Token> findAndSplit(List<Token> tokens, TokenIdentifier ti) {
