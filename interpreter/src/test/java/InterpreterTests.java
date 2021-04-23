@@ -378,4 +378,71 @@ public class InterpreterTests {
       interpreter.visit(tree);
     }
   }
+
+  @Test
+  public void testPrintLnWithNumbers() throws CompilationTimeException {
+    Lexer lexer = new LexerImpl();
+    lexer.setVersion("1.1");
+
+    List<String> statements = new ArrayList<>();
+    statements.add("printLn(1);");
+
+    lexer.analyseLexically(statements);
+
+    Parser parser = new ParserImpl();
+
+    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
+
+    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
+
+    for (AbstractSyntaxTree tree : trees) {
+      interpreter.visit(tree);
+    }
+  }
+
+  @Test
+  public void testLeftVariableInOperation() throws CompilationTimeException {
+    Lexer lexer = new LexerImpl();
+    lexer.setVersion("1.1");
+
+    List<String> statements = new ArrayList<>();
+    statements.add("let three: number = 3;");
+    statements.add("let two: number;");
+    statements.add("two = three + 1;");
+
+    lexer.analyseLexically(statements);
+
+    Parser parser = new ParserImpl();
+
+    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
+
+    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
+
+    for (AbstractSyntaxTree tree : trees) {
+      interpreter.visit(tree);
+    }
+  }
+
+  @Test
+  public void printDivOfDouble() throws CompilationTimeException {
+    Lexer lexer = new LexerImpl();
+    lexer.setVersion("1.1");
+
+    List<String> statements = new ArrayList<>();
+    statements.add("let pi: number;");
+    statements.add("pi = 3.14;");
+    statements.add("printLn(pi / 2);");
+
+    lexer.analyseLexically(statements);
+
+    Parser parser = new ParserImpl();
+
+    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
+
+    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
+
+    for (AbstractSyntaxTree tree : trees) {
+      interpreter.visit(tree);
+    }
+  }
 }

@@ -86,8 +86,8 @@ public class MultDivOperationSyntaxBranch extends AbstractSyntaxBranch {
   }
 
   @Override
-  public AbstractSyntaxTree addRightParenthesisSyntaxLeaf(RightParenthesisSyntaxLeaf leaf) {
-    return null;
+  public AbstractSyntaxTree addRightParenthesisSyntaxLeaf(RightParenthesisSyntaxLeaf leaf) throws CompilationTimeException {
+    return leaf.addMultDivOperationSyntaxTree(this);
   }
 
   @Override

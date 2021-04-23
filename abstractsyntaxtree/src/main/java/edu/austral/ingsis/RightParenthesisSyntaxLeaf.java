@@ -29,7 +29,8 @@ public class RightParenthesisSyntaxLeaf extends AbstractSyntaxLeaf {
 
     @Override
     public AbstractSyntaxTree addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) throws CompilationTimeException {
-        return null;
+        resultingExpression = resultingExpression.add(branch);
+        return this;
     }
 
     @Override
