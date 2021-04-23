@@ -474,13 +474,13 @@ public class InterpreterTests {
   }
 
   @Test
-  public void ifStatementWithGreaterAndPrint() throws CompilationTimeException {
+  public void ifStatementWithAllOperationsAndPrint() throws CompilationTimeException {
     Lexer lexer = new LexerImpl();
     lexer.setVersion("1.1");
 
     List<String> statements = new ArrayList<>();
     statements.add("const x: boolean = 2 > 1;");
-    statements.add("if(x) {println(\"Yeaaaaaah\");}");
+    statements.add("if(x) {println(\"Yeaaaaaah\");println(1+1);println(1*1);println(1-1);println(1/1);} else {}");
     statements.add("println(\"my job here is done\");");
 
     lexer.analyseLexically(statements);
@@ -496,18 +496,92 @@ public class InterpreterTests {
     }
   }
 
+  @Test(expected = CompilationTimeException.class)
+  public void numberToBooleanAssignmentShouldFail() throws CompilationTimeException {
+    Lexer lexer = new LexerImpl();
+    lexer.setVersion("1.1");
+
+    List<String> statements = new ArrayList<>();
+    statements.add("const x: boolean = 3;");
+
+    lexer.analyseLexically(statements);
+
+    Parser parser = new ParserImpl();
+
+    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
+
+    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
+
+    for (AbstractSyntaxTree tree : trees) {
+      interpreter.visit(tree);
+    }
+  }
+
   @Test
-  public void interpreterTestsFromFile() throws FileNotFoundException, CompilationTimeException {
+  public void stringConcat() throws CompilationTimeException {
+    Lexer lexer = new LexerImpl();
+    lexer.setVersion("1.1");
+
+    List<String> statements = new ArrayList<>();
+    statements.add("const x: string = \"hello there\" + \"general kenobi\";");
+
+    lexer.analyseLexically(statements);
+
+    Parser parser = new ParserImpl();
+
+    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
+
+    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
+
+    for (AbstractSyntaxTree tree : trees) {
+      interpreter.visit(tree);
+    }
+  }
+
+  @Test(expected = CompilationTimeException.class)
+  public void wrongTypeStringNumberConcat() throws CompilationTimeException {
+    Lexer lexer = new LexerImpl();
+    lexer.setVersion("1.1");
+
+    List<String> statements = new ArrayList<>();
+    statements.add("const x: string = true - 3;");
+
+    lexer.analyseLexically(statements);
+
+    Parser parser = new ParserImpl();
+
+    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
+
+    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
+
+    for (AbstractSyntaxTree tree : trees) {
+      interpreter.visit(tree);
+    }
+  }
+
+  @Test
+  public void interpreterTestsFromFileOutputFalse() throws FileNotFoundException, CompilationTimeException {
     List<String> directories = new ArrayList<>();
     directories.add("test01");
     directories.add("test02");
 
     for (String directory : directories) {
-      test(directory);
+      test(directory, false);
     }
   }
 
-  public void test(String directory) throws FileNotFoundException, CompilationTimeException {
+  @Test
+  public void interpreterTestsFromFileOutputTrue() throws FileNotFoundException, CompilationTimeException {
+    List<String> directories = new ArrayList<>();
+    directories.add("test03");
+    directories.add("test04");
+
+    for (String directory : directories) {
+      test(directory, true);
+    }
+  }
+
+  public void test(String directory, boolean output) throws FileNotFoundException, CompilationTimeException {
     String testDirectory = "src/test/resources/interpreter-tests/" + directory + "/";
     List<String> statements = readLines(testDirectory + "input.txt");
     List<String> expectedOutput = readLines(testDirectory + "output.txt");
@@ -523,6 +597,8 @@ public class InterpreterTests {
     List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
 
     InterpreterVisitor interpreter = new InterpreterVisitorImpl(printCollector);
+
+    if (output) interpreter.enablePrintProgress();
 
     for (AbstractSyntaxTree tree : trees) {
       interpreter.visit(tree);

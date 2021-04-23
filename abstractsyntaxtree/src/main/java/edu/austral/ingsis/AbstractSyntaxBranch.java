@@ -8,10 +8,7 @@ public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
   protected Token token;
   protected AbstractSyntaxTree right = new EmptySyntaxLeaf();
 
-  public String getValue() {
-    return token.getValue();
-  }
-  
+  @Override
   public void setToken(Token token) {
     this.token = token;
   }
@@ -25,10 +22,7 @@ public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
     return token;
   }
 
-  public AbstractSyntaxTree getRight() {
-    return right;
-  }
-
+  @Override
   public boolean isEmpty() {
     return false;
   }

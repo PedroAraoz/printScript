@@ -36,7 +36,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     LiteralSyntaxLeaf literalSyntaxLeaf = (LiteralSyntaxLeaf) visit(branch.right);
 
     variableRegister.assignValueToVariable(variableSyntaxLeaf.getToken(), literalSyntaxLeaf.getToken());
-    return null; //todo esto esta raro
+    return branch;
   }
 
   private void output(String message) {
@@ -46,7 +46,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public VariableSyntaxLeaf visitTypeAssingation(TypeAssignationSyntaxBranch branch) {
-    output("handling type assignation");
+    output("Handling type assignation");
 
     VariableSyntaxLeaf variableSyntaxLeaf = (VariableSyntaxLeaf) branch.left;
 
@@ -61,7 +61,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public LiteralSyntaxLeaf visitSumSub(SumSubOperationSyntaxBranch branch) throws CompilationTimeException {
-    output("handling sum/sub operation");
+    output("Handling sum/sub operation");
     final AbstractSyntaxTree l = visit(branch.left);
     final AbstractSyntaxTree r = visit(branch.right);
     final LiteralSyntaxLeaf left = smartCastToVariable(l);
@@ -84,7 +84,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
       return getLiteralSyntaxLeaf(answer, TokenIdentifier.STRING_LITERAL_TOKEN);
     } else {
       Token t = isString(left) ? left.getToken() : right.getToken();
-      throw interpreterError("TODO FILE", t, "You can't subtract with a string");
+      throw interpreterError("TODO FILE", t, "You can't substract with a string");
     }
 
   }
@@ -106,7 +106,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public LiteralSyntaxLeaf visitMultDiv(MultDivOperationSyntaxBranch branch) throws CompilationTimeException {
-    output("handling mult/div operation");
+    output("Handling mult/div operation");
 
     final LiteralSyntaxLeaf left = smartCastToVariable(visit(branch.left));
     final LiteralSyntaxLeaf right = smartCastToVariable(visit(branch.right));
@@ -180,7 +180,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public LiteralSyntaxLeaf visitGreaterThan(GreaterThanOperationSyntaxBranch branch) throws CompilationTimeException {
-    output("handling 'Greater than' (>) operation");
+    output("Handling 'Greater than' (>) operation");
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
     String answer;
@@ -200,7 +200,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public LiteralSyntaxLeaf visitLesserThan(LesserThanOperationSyntaxBranch branch) throws CompilationTimeException {
-    output("handling 'Lesser than' (<) operation");
+    output("Handling 'Lesser than' (<) operation");
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
     String answer;
@@ -220,7 +220,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public LiteralSyntaxLeaf visitLesserEqualThan(LesserEqualThanOperationSyntaxBranch branch) throws CompilationTimeException {
-    output("handling 'Lesser Equal than' (<=) operation");
+    output("Handling 'Lesser Equal than' (<=) operation");
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
     String answer;
@@ -240,7 +240,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public LiteralSyntaxLeaf visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch) throws CompilationTimeException {
-    output("handling 'Greater Equal than' (<=) operation");
+    output("Handling 'Greater Equal than' (<=) operation");
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
     String answer;

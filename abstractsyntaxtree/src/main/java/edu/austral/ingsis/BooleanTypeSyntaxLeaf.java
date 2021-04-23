@@ -100,7 +100,7 @@ public class BooleanTypeSyntaxLeaf extends AbstractSyntaxLeaf {
 
   @Override
   public AbstractSyntaxTree addConstSyntaxLeaf(ConstSyntaxLeaf leaf) throws CompilationTimeException {
-    return null;
+    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
   }
 
   @Override

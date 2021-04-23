@@ -1,0 +1,15 @@
+Handling value assignation
+Handling type assignation
+Handling sum/sub operation
+Handling value assignation
+Handling sum/sub operation
+Handling value assignation
+Handling mult/div operation
+Handling value assignation
+Handling mult/div operation
+Handling value assignation
+Handling type assignation
+2.0
+0
+Handling mult/div operation
+1.0

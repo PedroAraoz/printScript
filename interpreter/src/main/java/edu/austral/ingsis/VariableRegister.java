@@ -13,10 +13,6 @@ public class VariableRegister {
   public boolean contains(String variableName) {
     return variables.stream().anyMatch(v -> v.getVariableName().equals(variableName));
   }
-
-//    public void addNewVariable(VariableInfo newVariable) {
-//        variables.add(newVariable);
-//    }
   
   public void addNewVariable(String variableName, TokenIdentifier type, boolean isConst) {
     VariableInfo variableInfo = new VariableInfo();
@@ -24,8 +20,7 @@ public class VariableRegister {
     variableInfo.setVariableName(variableName);
     variableInfo.setType(type);
     variableInfo.setCon(isConst);
-    
-    // TODO check si ya existe
+
     variables.add(variableInfo);
   }
   

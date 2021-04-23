@@ -119,7 +119,7 @@ public class GreaterThanOperationSyntaxBranch extends AbstractSyntaxBranch {
 
   @Override
   public AbstractSyntaxTree addConstSyntaxLeaf(ConstSyntaxLeaf leaf) throws CompilationTimeException {
-    return null;
+    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
   }
 
   @Override

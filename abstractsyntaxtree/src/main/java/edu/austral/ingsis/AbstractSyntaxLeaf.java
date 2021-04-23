@@ -3,11 +3,12 @@ package edu.austral.ingsis;
 public abstract class AbstractSyntaxLeaf implements AbstractSyntaxTree {
 
   protected Token token;
-  
+
   public String getValue() {
     return token.getValue();
   }
-  
+
+  @Override
   public void setToken(Token token) {
     this.token = token;
   }
@@ -17,6 +18,7 @@ public abstract class AbstractSyntaxLeaf implements AbstractSyntaxTree {
     return token;
   }
 
+  @Override
   public boolean isEmpty() {
     return false;
   }
