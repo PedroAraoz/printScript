@@ -73,12 +73,12 @@ public class LesserThanOperationSyntaxBranch extends AbstractSyntaxBranch {
   }
 
   @Override
-  public AbstractSyntaxTree addLeftParenthesisSyntaxLeaf(LeftParenthesisSyntaxLeaf leaf) {
+  public AbstractSyntaxTree addLeftParenthesisSyntaxLeaf(LeftParenthesisSyntaxLeaf leaf) throws CompilationTimeException {
     return leaf.addLesserThanOperationSyntaxBranch(this);
   }
 
   @Override
-  public AbstractSyntaxTree addRightParenthesisSyntaxLeaf(RightParenthesisSyntaxLeaf leaf) {
+  public AbstractSyntaxTree addRightParenthesisSyntaxLeaf(RightParenthesisSyntaxLeaf leaf) throws CompilationTimeException {
     return leaf.addLesserThanOperationSyntaxBranch(this);
   }
 
