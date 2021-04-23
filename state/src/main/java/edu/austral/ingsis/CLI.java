@@ -33,10 +33,11 @@ public class CLI {
     while (!message.equals("exit")) {
       printer.print(">");
 //      message = scanner.nextLine().trim().toLowerCase();
-      message = "execute state/src/main/resources/test2.txt";
+      message = "execute state/src/main/resources/test3.txt 1.1";
       final String[] args = message.split(" ");
       if (args.length < 3) throw new RuntimeException("Three arguments are needed"); //todo implement mejor
       state.run(args);
+      message = "exit";
     }
   }
 }

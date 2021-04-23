@@ -3,6 +3,8 @@ package edu.austral.ingsis;
 import edu.austral.ingsis.exception.CompilationTimeException;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StateValidator implements State {
   
@@ -31,20 +33,17 @@ public class StateValidator implements State {
   }
   
   private void analyzeSintactically(String[] args) throws FileNotFoundException, CompilationTimeException {
-    // todo aca tambien con el error handler
-    // todo mirar que el parser no printea.
     if (!checkMode(args[0])) return;
     final File file = fileGenerator.open(args[1]);
     printer.print("Starting...");
-//    final int totalLines = file.getLines();
-//    int currentLine = 0;
-//    lexer.setVersion(args[2]);
-//    while (file.hasNext()) {
-//      printer.print(currentLine + "/" + totalLines);
-//      final List<Token> tokenWrappers = lexer.analyseLexically(file.next().get());
-//      parser.analyseSintactically(tokenWrappers);
-//      currentLine++;
-//    }
+    final List<String> lines = new ArrayList<>();
+    while (file.hasNext()) lines.add(file.next());
+    lexer.setVersion(args[2]);
+    printer.print("Lexing...");
+    lexer.analyseLexically(lines);
+    printer.print("Parsing...");
+    parser.analyseSintactically(lexer);
+    printer.print("JOB DONE!");
   }
   
   private boolean checkMode(String mode) {
