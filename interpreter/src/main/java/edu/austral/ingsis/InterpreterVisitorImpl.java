@@ -8,9 +8,20 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   private final VariableRegister variableRegister = new VariableRegister();
   private final Printer printer;
+  private boolean printEnabled;
 
   public InterpreterVisitorImpl(Printer printer) {
     this.printer = printer;
+  }
+
+  @Override
+  public void enablePrintProgress() {
+    printEnabled = true;
+  }
+
+  @Override
+  public void disablePrintProgress() {
+    printEnabled = false;
   }
 
   @Override
@@ -20,7 +31,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public AbstractSyntaxTree visitValueAssignation(ValueAssignationSyntaxBranch branch) throws CompilationTimeException {
-    printer.print("handling value assignation");
+    output("handling 'Lesser Equal than' (<=) operation");
     VariableSyntaxLeaf variableSyntaxLeaf = (VariableSyntaxLeaf) visit(branch.left);
     LiteralSyntaxLeaf literalSyntaxLeaf = (LiteralSyntaxLeaf) visit(branch.right);
 
@@ -28,9 +39,14 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     return null; //todo esto esta raro
   }
 
+  private void output(String message) {
+    if (printEnabled)
+      printer.print(message);
+  }
+
   @Override
   public VariableSyntaxLeaf visitTypeAssingation(TypeAssignationSyntaxBranch branch) {
-    printer.print("handling type assignation");
+    output("handling type assignation");
 
     VariableSyntaxLeaf variableSyntaxLeaf = (VariableSyntaxLeaf) branch.left;
 
@@ -45,7 +61,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public LiteralSyntaxLeaf visitSumSub(SumSubOperationSyntaxBranch branch) throws CompilationTimeException {
-    printer.print("handling sum/sub operation");
+    output("handling sum/sub operation");
     final AbstractSyntaxTree l = visit(branch.left);
     final AbstractSyntaxTree r = visit(branch.right);
     final LiteralSyntaxLeaf left = smartCastToVariable(l);
@@ -90,7 +106,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public LiteralSyntaxLeaf visitMultDiv(MultDivOperationSyntaxBranch branch) throws CompilationTimeException {
-    printer.print("handling mult/div operation");
+    output("handling mult/div operation");
 
     final LiteralSyntaxLeaf left = smartCastToVariable(visit(branch.left));
     final LiteralSyntaxLeaf right = smartCastToVariable(visit(branch.right));
@@ -141,7 +157,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   public PrintLnSyntaxLeaf visitPrintLn(PrintLnSyntaxLeaf leaf) throws CompilationTimeException {
     AbstractSyntaxTree expression = leaf.getExpression();
     LiteralSyntaxLeaf result = smartCastToVariable(visit(expression));
-    printer.print(result.getValue());
+    output(result.getValue());
     return leaf;
   }
 
@@ -164,7 +180,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public LiteralSyntaxLeaf visitGreaterThan(GreaterThanOperationSyntaxBranch branch) throws CompilationTimeException {
-    printer.print("handling 'Greater than' (>) operation");
+    output("handling 'Greater than' (>) operation");
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
     int answer;
@@ -184,7 +200,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public LiteralSyntaxLeaf visitLesserThan(LesserThanOperationSyntaxBranch branch) throws CompilationTimeException {
-    printer.print("handling 'Lesser than' (<) operation");
+    output("handling 'Lesser than' (<) operation");
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
     int answer;
@@ -204,7 +220,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public LiteralSyntaxLeaf visitLesserEqualThan(LesserEqualThanOperationSyntaxBranch branch) throws CompilationTimeException {
-    printer.print("handling 'Lesser Equal than' (<=) operation");
+    output("handling 'Lesser Equal than' (<=) operation");
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
     int answer;
@@ -224,7 +240,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   @Override
   public LiteralSyntaxLeaf visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch) throws CompilationTimeException {
-    printer.print("handling 'Greater Equal than' (<=) operation");
+    output("handling 'Greater Equal than' (<=) operation");
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
     int answer;
@@ -258,7 +274,6 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     return branch;
   }
 
-  // TODO Chequear si esto esta bien hecho o si ya hay algo mas lindo
   private boolean getBooleanFromVariable(VariableSyntaxLeaf leaf) throws CompilationTimeException {
     if (variableRegister.contains(leaf.getValue())) {
       VariableInfo variableInfo = variableRegister.get(leaf.getValue()).get();
@@ -308,7 +323,6 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
 
   public void debug() {
-    System.out.println("debugging");
+    //System.out.println("debugging");
   }
 }
-//todo checkear que no puedas guardar un string en un int

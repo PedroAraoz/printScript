@@ -10,7 +10,6 @@ public class CLI {
   private final Printer printer;
   
   public CLI(Printer printer) {
-    //todo probablemente cambiar esto
     this.printer = printer;
     Lexer lexer = new LexerImpl();
     Parser parser = new ParserImpl();
@@ -23,26 +22,32 @@ public class CLI {
     this.state = state;
     state.setContext(this);
   }
-  
+
+  // This method is for the raw CLI
   public void run(String message) throws FileNotFoundException, CompilationTimeException {
     final String[] args = message.split(" ");
-    if (args.length < 3) throw new RuntimeException("Three arguments are needed"); //todo implement mejor
-    state.run(args);
+    run(args);
   }
-  
+
+  // This method is for the interactive CLI.
   public void run() throws FileNotFoundException, CompilationTimeException {
     final Scanner scanner = new Scanner(System.in);
     String message = "";
     String welcomeMessage = "please type\n" +
-            "<mode> <filePath> <versionNumber>";
+            "<mode> <filePath> <versionNumber> output-enabled=<true/false>";
     printer.print(welcomeMessage);
     message = scanner.nextLine().trim().toLowerCase();
     while (!message.equals("exit")) {
       printer.print(">");
       final String[] args = message.split(" ");
-      if (args.length < 3) throw new RuntimeException("Three arguments are needed");
+      if (args.length < 4) throw new RuntimeException("Four arguments are needed");
       state.run(args);
       message = scanner.nextLine().trim().toLowerCase();
     }
+  }
+
+  public void run(String[] args) throws FileNotFoundException, CompilationTimeException {
+    if (args.length < 4) throw new RuntimeException("Four arguments are needed");
+    state.run(args);
   }
 }

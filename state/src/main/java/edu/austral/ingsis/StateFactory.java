@@ -14,7 +14,7 @@ public class StateFactory {
     switch (name) {
       case "execute": return execute;
       case "validate": return validate;
-      default: throw new RuntimeException("Command invalid something"); //todo implement correctly
+      default: throw new RuntimeException("Invalid command. Can only run in 'execute' or 'validate' modes");
     }
   }
   

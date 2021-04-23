@@ -4,43 +4,47 @@ import edu.austral.ingsis.exception.CompilationTimeException;
 
 public interface InterpreterVisitor {
 
-    AbstractSyntaxTree visit(AbstractSyntaxTree abstractSyntaxTree) throws CompilationTimeException;
-    
-    AbstractSyntaxTree visitValueAssignation(ValueAssignationSyntaxBranch branch) throws CompilationTimeException;
+  AbstractSyntaxTree visit(AbstractSyntaxTree abstractSyntaxTree) throws CompilationTimeException;
 
-    VariableSyntaxLeaf visitTypeAssingation(TypeAssignationSyntaxBranch branch);
-    
-    LiteralSyntaxLeaf visitSumSub(SumSubOperationSyntaxBranch branch) throws CompilationTimeException;
+  AbstractSyntaxTree visitValueAssignation(ValueAssignationSyntaxBranch branch) throws CompilationTimeException;
 
-    LiteralSyntaxLeaf visitMultDiv(MultDivOperationSyntaxBranch branch) throws CompilationTimeException;
-    
-    NumberTypeSyntaxLeaf visitNumberType(NumberTypeSyntaxLeaf leaf);
-    
-    StringTypeSyntaxLeaf visitStringType(StringTypeSyntaxLeaf leaf);
-    
-    VariableSyntaxLeaf visitVariable(VariableSyntaxLeaf leaf);
-    
-    LiteralSyntaxLeaf visitLiteral(LiteralSyntaxLeaf leaf);
-    
-    EmptySyntaxLeaf visitEmpty(EmptySyntaxLeaf leaf);
+  VariableSyntaxLeaf visitTypeAssingation(TypeAssignationSyntaxBranch branch);
 
-    PrintLnSyntaxLeaf visitPrintLn(PrintLnSyntaxLeaf leaf) throws CompilationTimeException;
+  LiteralSyntaxLeaf visitSumSub(SumSubOperationSyntaxBranch branch) throws CompilationTimeException;
 
-    LeftParenthesisSyntaxLeaf visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf);
+  LiteralSyntaxLeaf visitMultDiv(MultDivOperationSyntaxBranch branch) throws CompilationTimeException;
 
-    RightParenthesisSyntaxLeaf visitRightParenthesis(RightParenthesisSyntaxLeaf leaf);
+  NumberTypeSyntaxLeaf visitNumberType(NumberTypeSyntaxLeaf leaf);
 
-    BooleanTypeSyntaxLeaf visitBooleanType(BooleanTypeSyntaxLeaf leaf);
+  StringTypeSyntaxLeaf visitStringType(StringTypeSyntaxLeaf leaf);
 
-    LiteralSyntaxLeaf visitGreaterThan(GreaterThanOperationSyntaxBranch branch) throws CompilationTimeException;
+  VariableSyntaxLeaf visitVariable(VariableSyntaxLeaf leaf);
 
-    LiteralSyntaxLeaf visitLesserThan(LesserThanOperationSyntaxBranch branch) throws CompilationTimeException;
+  LiteralSyntaxLeaf visitLiteral(LiteralSyntaxLeaf leaf);
 
-    LiteralSyntaxLeaf visitLesserEqualThan(LesserEqualThanOperationSyntaxBranch branch) throws CompilationTimeException;
+  EmptySyntaxLeaf visitEmpty(EmptySyntaxLeaf leaf);
 
-    LiteralSyntaxLeaf visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch) throws CompilationTimeException;
+  PrintLnSyntaxLeaf visitPrintLn(PrintLnSyntaxLeaf leaf) throws CompilationTimeException;
 
-    IfOperationSyntaxBranch visitIf(IfOperationSyntaxBranch branch) throws CompilationTimeException;
+  LeftParenthesisSyntaxLeaf visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf);
+
+  RightParenthesisSyntaxLeaf visitRightParenthesis(RightParenthesisSyntaxLeaf leaf);
+
+  BooleanTypeSyntaxLeaf visitBooleanType(BooleanTypeSyntaxLeaf leaf);
+
+  LiteralSyntaxLeaf visitGreaterThan(GreaterThanOperationSyntaxBranch branch) throws CompilationTimeException;
+
+  LiteralSyntaxLeaf visitLesserThan(LesserThanOperationSyntaxBranch branch) throws CompilationTimeException;
+
+  LiteralSyntaxLeaf visitLesserEqualThan(LesserEqualThanOperationSyntaxBranch branch) throws CompilationTimeException;
+
+  LiteralSyntaxLeaf visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch) throws CompilationTimeException;
+
+  IfOperationSyntaxBranch visitIf(IfOperationSyntaxBranch branch) throws CompilationTimeException;
 
   AbstractSyntaxTree visitConst(ConstSyntaxLeaf constSyntaxLeaf);
+
+  void enablePrintProgress();
+
+  void disablePrintProgress();
 }

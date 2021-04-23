@@ -7,13 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StateValidator implements State {
-  
+
   private CLI cli;
   private final Lexer lexer;
   private final Parser parser;
   private final FileGenerator fileGenerator;
   private final StateFactory stateFactory;
   private final Printer printer;
+  private boolean outputEnabled;
+
   public StateValidator(Lexer lexer, Parser parser, FileGenerator fileGenerator, StateFactory stateFactory, Printer printer) {
     this.lexer = lexer;
     this.parser = parser;
@@ -21,33 +23,45 @@ public class StateValidator implements State {
     this.stateFactory = stateFactory;
     this.printer = printer;
   }
-  
+
   @Override
   public void setContext(CLI cli) {
     this.cli = cli;
   }
-  
+
   @Override
   public void run(String[] args) throws FileNotFoundException, CompilationTimeException {
     analyzeSintactically(args);
   }
-  
+
   private void analyzeSintactically(String[] args) throws FileNotFoundException, CompilationTimeException {
+    toggleOutput(args[3]);
     if (!checkMode(args[0])) return;
     final File file = fileGenerator.open(args[1]);
-    printer.print("Starting...");
+    output("Starting...");
     final List<String> lines = new ArrayList<>();
     while (file.hasNext()) lines.add(file.next());
     lexer.setVersion(args[2]);
-    printer.print("Lexing...");
+    output("Lexing...");
     lexer.analyseLexically(lines);
-    printer.print("Parsing...");
+    output("Parsing...");
     parser.analyseSintactically(lexer);
-    printer.print("JOB DONE!");
+    output("JOB DONE!");
   }
-  
+
+  private void output(String message) {
+    if (outputEnabled)
+      printer.print(message);
+  }
+
+  private void toggleOutput(String arg) {
+    if (arg.equals("output-enabled=true")) outputEnabled = true;
+    else if (arg.equals("output-enabled=false")) outputEnabled = false;
+    else throw new RuntimeException("output-enabled was not set correctly");
+  }
+
   private boolean checkMode(String mode) {
-    if (mode.equals("syntax")) return true;
+    if (mode.equals("validate")) return true;
     cli.changeState(stateFactory.get(mode));
     return false;
   }
