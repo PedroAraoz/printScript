@@ -356,4 +356,26 @@ public class InterpreterTests {
       interpreter.visit(tree);
     }
   }
+
+  @Test(expected = CompilationTimeException.class)
+  public void ifStatementWithNumber() throws CompilationTimeException {
+    Lexer lexer = new LexerImpl();
+    lexer.setVersion("1.1");
+
+    List<String> statements = new ArrayList<>();
+    statements.add("let x: number = 21;");
+    statements.add("if (x) {}");
+
+    lexer.analyseLexically(statements);
+
+    Parser parser = new ParserImpl();
+
+    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
+
+    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
+
+    for (AbstractSyntaxTree tree : trees) {
+      interpreter.visit(tree);
+    }
+  }
 }

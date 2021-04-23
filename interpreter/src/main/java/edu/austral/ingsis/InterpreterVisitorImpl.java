@@ -255,6 +255,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
       VariableInfo variableInfo = variableRegister.get(leaf.getValue()).get();
       if (variableInfo.getValue().isEmpty())
         throw new CompilationTimeException("Variable not initialized in line " + leaf.getToken().getLine() + " in column " + leaf.getToken().getStartPos());
+      if (!variableInfo.getType().equals(TokenIdentifier.BOOLEAN_TYPE_TOKEN)) throw new CompilationTimeException("If condition can only accept boolean variables. Line " + leaf.getToken().getLine() + ", column " + leaf.getToken().getStartPos());
       return variableInfo.getValue().equals("true");
     } else {
       throw new CompilationTimeException("Undeclared variable in line " + leaf.getToken().getLine() + " in column " + leaf.getToken().getStartPos());
