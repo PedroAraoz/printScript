@@ -1,19 +1,12 @@
 package edu.austral.ingsis;
 
-import java.util.ArrayList;
-import java.util.List;
+public class EmptyValidatorVisitor implements Visitor {
 
-public class GetAllVariablesVisitor implements Visitor {
-
-    List<Token> variables = new ArrayList<>();
-
-    public List<Token> getAllVariables() {
-        return variables;
-    }
+    private boolean foundEmpty = false;
 
     @Override
     public void visit(AbstractSyntaxTree abstractSyntaxTree) {
-
+        abstractSyntaxTree.accept(this);
     }
 
     @Override
@@ -48,7 +41,7 @@ public class GetAllVariablesVisitor implements Visitor {
 
     @Override
     public void visitVariable(VariableSyntaxLeaf leaf) {
-        variables.add(leaf.getToken());
+
     }
 
     @Override
@@ -58,7 +51,7 @@ public class GetAllVariablesVisitor implements Visitor {
 
     @Override
     public void visitEmpty(EmptySyntaxLeaf leaf) {
-
+        foundEmpty = true;
     }
 
     @Override
@@ -74,5 +67,9 @@ public class GetAllVariablesVisitor implements Visitor {
     @Override
     public void visitRightParenthesis(RightParenthesisSyntaxLeaf leaf) {
 
+    }
+
+    public boolean foundEmpty() {
+        return foundEmpty;
     }
 }
