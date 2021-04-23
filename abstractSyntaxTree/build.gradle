@@ -50,7 +50,7 @@ publishing {
             url = uri("https://maven.pkg.github.com/pedroaraoz/printScript")
             credentials {
                 username = project.findProperty("gpr.user") ?: "pedroaraoz"
-                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+                password = project.findProperty("gpr.key") ?: ${System.getenv("TOKEN")}
             }
         }
     }
