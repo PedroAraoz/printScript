@@ -133,11 +133,11 @@ public class LexerTests {
   }
   
   @Test
-  public void printLnTest() {
+  public void printlnTest() {
     List<String> codeLineList = new ArrayList<>();
-    codeLineList.add("printLn('hola');");
+    codeLineList.add("println('hola');");
     final List<Token> expected = new ArrayList<>();
-    expected.add(new Token(TokenIdentifier.PRINTLN_TOKEN, 0, 0, 0, "printLn"));
+    expected.add(new Token(TokenIdentifier.PRINTLN_TOKEN, 0, 0, 0, "println"));
     expected.add(new Token(TokenIdentifier.LEFT_PARENTHESIS_TOKEN, 0, 0, 0, "("));
     expected.add(new Token(TokenIdentifier.STRING_LITERAL_TOKEN, 0, 0, 0, "hola"));
     expected.add(new Token(TokenIdentifier.RIGHT_PARENTHESIS_TOKEN, 0, 0, 0, ")"));

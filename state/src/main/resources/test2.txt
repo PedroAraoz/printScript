@@ -7,6 +7,6 @@ let final: string
 str + x
 ;
 
-printLn("PRINTLN ANDAAA");
+println("PRINTLN ANDAAA");
 
-printLn("PRI" + "NTLN" + str);
+println("PRI" + "NTLN" + str);

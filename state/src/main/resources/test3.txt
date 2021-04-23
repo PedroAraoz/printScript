@@ -14,4 +14,4 @@ if (b) {
     p = "ERROR";
 }
 
-printLn(p);
+println(p);

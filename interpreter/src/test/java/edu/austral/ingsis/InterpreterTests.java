@@ -387,7 +387,7 @@ public class InterpreterTests {
     lexer.setVersion("1.1");
 
     List<String> statements = new ArrayList<>();
-    statements.add("printLn(1);");
+    statements.add("println(1);");
 
     lexer.analyseLexically(statements);
 
@@ -433,7 +433,7 @@ public class InterpreterTests {
     List<String> statements = new ArrayList<>();
     statements.add("let a: number;");
     statements.add("a = 3.5;");
-    statements.add("printLn(a * 2);");
+    statements.add("println(a * 2);");
 
     lexer.analyseLexically(statements);
 
@@ -477,8 +477,8 @@ public class InterpreterTests {
 
     List<String> statements = new ArrayList<>();
     statements.add("const booleanResult: boolean = 5 > 3;");
-    statements.add("if(booleanResult) {printLn(\"if statement working correctly\");}");
-    statements.add("printLn(\"outside of conditional\");");
+    statements.add("if(booleanResult) {println(\"if statement working correctly\");}");
+    statements.add("println(\"outside of conditional\");");
 
     lexer.analyseLexically(statements);
 

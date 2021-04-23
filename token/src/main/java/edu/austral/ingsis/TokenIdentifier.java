@@ -63,7 +63,7 @@ public class TokenIdentifier {
   public static TokenIdentifier VARIABLE_TOKEN =
           new TokenIdentifier(TokenName.VARIABLE, Pattern.compile(".*"));
   public static TokenIdentifier PRINTLN_TOKEN =
-          new TokenIdentifier(TokenName.PRINT, Pattern.compile("printLn"));
+          new TokenIdentifier(TokenName.PRINT, Pattern.compile("println"));
   public static TokenIdentifier LEFT_PARENTHESIS_TOKEN =
           new TokenIdentifier(TokenName.LEFT_PARENTHESIS, Pattern.compile("\\("));
   public static TokenIdentifier RIGHT_PARENTHESIS_TOKEN =

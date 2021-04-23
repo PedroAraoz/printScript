@@ -1,1 +1,1 @@
-printLn("this should fail, invalid argument in if statement");
+println("this should fail, invalid argument in if statement");
