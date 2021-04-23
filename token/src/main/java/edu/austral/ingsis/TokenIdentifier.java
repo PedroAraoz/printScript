@@ -59,7 +59,7 @@ public class TokenIdentifier {
   public static TokenIdentifier STRING_LITERAL_TOKEN =
           new TokenIdentifier(
                   TokenName.STRING_LITERAL,
-                  Pattern.compile("('[a-zA-Z ]+')|(\"[a-zA-Z ]+\")"));
+                  Pattern.compile("('(.)*')|(\"(.)*\")"));
   public static TokenIdentifier VARIABLE_TOKEN =
           new TokenIdentifier(TokenName.VARIABLE, Pattern.compile(".*"));
   public static TokenIdentifier PRINTLN_TOKEN =
