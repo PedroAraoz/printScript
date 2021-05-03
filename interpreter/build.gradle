@@ -14,7 +14,7 @@ dependencies {
     implementation project(':printer')
     implementation 'junit:junit:4.12'
     testCompileOnly project(':lexer')
-    testCompileOnly project(':filegenerator')
+    testCompile project(':state')
     testCompile project(':abstractsyntaxtree')
 }
 

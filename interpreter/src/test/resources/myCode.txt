@@ -1,1 +1,5 @@
-println("this should fail, invalid argument in if statement");
+const booleanResult: boolean = 5 > 3;
+if(booleanResult) {
+    println("if statement working correctly");
+}
+println("outside of conditional");

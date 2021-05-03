@@ -1,4 +1,4 @@
-package edu.austral.ingsis;
+package edu.austral.ingsis.fileGenerator;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;

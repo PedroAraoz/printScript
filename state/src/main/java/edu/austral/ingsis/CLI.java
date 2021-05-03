@@ -1,6 +1,8 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
+import edu.austral.ingsis.fileGenerator.FileGenerator;
+import edu.austral.ingsis.fileGenerator.NormalFileGenerator;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
