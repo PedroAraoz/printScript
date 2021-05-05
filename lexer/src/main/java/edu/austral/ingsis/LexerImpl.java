@@ -12,6 +12,7 @@ public class LexerImpl implements Lexer {
   private List<Token> tokens = new ArrayList<>();
   private String version = "1.0";
 
+  @Override
   public void setVersion(String version) {
     this.version = version;
   }
@@ -63,7 +64,7 @@ public class LexerImpl implements Lexer {
     int startPos = 0;
     for (int i = 0; i < tokens.size(); i++) {
       final Token token = tokens.get(i);
-      if (containsQuations(token.getValue())) {
+      if (containsQuotations(token.getValue())) {
         if (!unClosed) {
           unClosed = true;
           acc = token.getValue();
@@ -83,7 +84,7 @@ public class LexerImpl implements Lexer {
     return answer;
   }
 
-  private boolean containsQuations(String value) {
+  private boolean containsQuotations(String value) {
     final int length = value.length();
     final String replace1 = value.replace("\"", "");
     final String replace2 = value.replace("'", "");
