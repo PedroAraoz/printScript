@@ -38,17 +38,7 @@ jacocoTestReport {
         html.destination(file("${buildDir}/jacocoReport"))
     }
 }
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            limit {
-                minimum = 0.8
-            }
-        }
-    }
-}
 
-check.dependsOn jacocoTestCoverageVerification
 tasks.build.dependsOn(check)
 
 task ourGoogleJavaFormat {

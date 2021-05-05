@@ -54,6 +54,7 @@ task applicationCodeCoverageReport(type:JacocoReport) {
 task ourGoogleJavaFormat {
     googleJavaFormat
 }
+
 tasks.build.dependsOn(check)
 
 check.dependsOn ourGoogleJavaFormat

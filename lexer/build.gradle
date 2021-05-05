@@ -47,6 +47,7 @@ jacocoTestCoverageVerification {
 }
 
 check.dependsOn jacocoTestCoverageVerification
+
 tasks.build.dependsOn(check)
 
 task ourGoogleJavaFormat {

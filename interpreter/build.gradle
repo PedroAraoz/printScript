@@ -32,6 +32,7 @@ jacocoTestReport {
         html.destination(file("${buildDir}/jacocoReport"))
     }
 }
+
 jacocoTestCoverageVerification {
     violationRules {
         rule {
@@ -42,12 +43,14 @@ jacocoTestCoverageVerification {
     }
 }
 
-check.dependsOn jacocoTestCoverageVerification
 tasks.build.dependsOn(check)
+
+check.dependsOn jacocoTestCoverageVerification
 
 task ourGoogleJavaFormat {
     googleJavaFormat
 }
+
 check.dependsOn ourGoogleJavaFormat
 
 checkstyle {
