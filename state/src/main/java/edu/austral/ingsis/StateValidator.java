@@ -3,7 +3,6 @@ package edu.austral.ingsis;
 import edu.austral.ingsis.exception.CompilationTimeException;
 import edu.austral.ingsis.fileGenerator.File;
 import edu.austral.ingsis.fileGenerator.FileGenerator;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,12 @@ public class StateValidator implements State {
   private final Printer printer;
   private boolean outputEnabled;
 
-  public StateValidator(Lexer lexer, Parser parser, FileGenerator fileGenerator, StateFactory stateFactory, Printer printer) {
+  public StateValidator(
+      Lexer lexer,
+      Parser parser,
+      FileGenerator fileGenerator,
+      StateFactory stateFactory,
+      Printer printer) {
     this.lexer = lexer;
     this.parser = parser;
     this.fileGenerator = fileGenerator;
@@ -36,7 +40,8 @@ public class StateValidator implements State {
     analyzeSintactically(args);
   }
 
-  private void analyzeSintactically(String[] args) throws FileNotFoundException, CompilationTimeException {
+  private void analyzeSintactically(String[] args)
+      throws FileNotFoundException, CompilationTimeException {
     toggleOutput(args[3]);
     if (!checkMode(args[0])) return;
     final File file = fileGenerator.open(args[1]);
@@ -52,8 +57,7 @@ public class StateValidator implements State {
   }
 
   private void output(String message) {
-    if (outputEnabled)
-      printer.print(message);
+    if (outputEnabled) printer.print(message);
   }
 
   private void toggleOutput(String arg) {

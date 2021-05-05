@@ -1,7 +1,6 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
-
 import java.util.List;
 import java.util.Stack;
 
@@ -21,8 +20,10 @@ public class ASTFactory {
     return getAbstractSyntaxTreeFromStack(abstractSyntaxTreeStack);
   }
 
-  public AbstractSyntaxTree getAbstractSyntaxTreeFromStack(Stack<AbstractSyntaxTree> abstractSyntaxTreeStack) throws CompilationTimeException {
-    // Then we fold the node list unto itself to validate the structure (order of the tokenIdentifiers)
+  public AbstractSyntaxTree getAbstractSyntaxTreeFromStack(
+      Stack<AbstractSyntaxTree> abstractSyntaxTreeStack) throws CompilationTimeException {
+    // Then we fold the node list unto itself to validate the structure (order of the
+    // tokenIdentifiers)
 
     while (abstractSyntaxTreeStack.size() > 1) {
       AbstractSyntaxTree one = abstractSyntaxTreeStack.pop();
@@ -35,7 +36,8 @@ public class ASTFactory {
     final EmptyValidatorVisitor visitor = new EmptyValidatorVisitor();
     abstractSyntaxTreeStack.peek().accept(visitor);
     if (visitor.foundEmpty()) {
-      throw new CompilationTimeException("Syntax Error in line " + abstractSyntaxTreeStack.peek().getToken().getLine());
+      throw new CompilationTimeException(
+          "Syntax Error in line " + abstractSyntaxTreeStack.peek().getToken().getLine());
     }
 
     return abstractSyntaxTreeStack.pop();

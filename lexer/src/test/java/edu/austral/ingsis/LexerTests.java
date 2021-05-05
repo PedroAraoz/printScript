@@ -1,13 +1,12 @@
 package edu.austral.ingsis;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class LexerTests {
 
@@ -15,17 +14,17 @@ public class LexerTests {
   public void DeclarationAsignationOperationTest() throws FileNotFoundException {
     test("test01");
   }
-  
+
   @Test
   public void NumberLiteralTest() throws FileNotFoundException {
     test("test02");
   }
-  
+
   @Test
   public void StringDoubleQuoteLiteralTest() throws FileNotFoundException {
     test("test03");
   }
-  
+
   @Test
   public void StringSimpleQuoteLiteralTest() {
     List<String> codeLineList = new ArrayList<>();
@@ -49,7 +48,7 @@ public class LexerTests {
       Assert.assertEquals(e.getValue(), a.getValue());
     }
   }
-  
+
   @Test
   public void parenthesisTest() {
     List<String> codeLineList = new ArrayList<>();
@@ -74,7 +73,7 @@ public class LexerTests {
       Assert.assertEquals(e.getValue(), a.getValue());
     }
   }
-  
+
   @Test
   public void printlnTest() {
     List<String> codeLineList = new ArrayList<>();
@@ -97,24 +96,24 @@ public class LexerTests {
       Assert.assertEquals(e.getValue(), a.getValue());
     }
   }
-  
+
   @Test
   public void ifInOnePointZero() {
     LexerImpl lexer = new LexerImpl();
     lexer.analyseLexically(Collections.singletonList("if"));
     final Token token = lexer.getNextToken().get();
-    Assert.assertEquals(TokenName.VARIABLE,  token.getName());
+    Assert.assertEquals(TokenName.VARIABLE, token.getName());
   }
-  
+
   @Test
   public void ifInOnePointOne() {
     LexerImpl lexer = new LexerImpl();
     lexer.setVersion("1.1");
     lexer.analyseLexically(Collections.singletonList("if"));
     final Token token = lexer.getNextToken().get();
-    Assert.assertEquals(TokenName.IF,  token.getName());
+    Assert.assertEquals(TokenName.IF, token.getName());
   }
-  
+
   @Test
   public void testSpaceInString() {
     LexerImpl lexer = new LexerImpl();
@@ -123,25 +122,26 @@ public class LexerTests {
     Assert.assertEquals(1, all.size());
     Assert.assertEquals(TokenName.STRING_LITERAL, all.get(0).getName());
   }
-  
+
   public void test(String directory) throws FileNotFoundException {
     String testDirectory = "src/test/resources/lexer-tests/" + directory + "/";
     List<String> statements = readLines(testDirectory + "input.txt");
     List<String> values = readLines(testDirectory + "tokenValues.txt");
     List<String> ti = readLines(testDirectory + "tokenIdentifiers.txt");
     List<String> lines = readLines(testDirectory + "tokenLines.txt");
-    
+
     Lexer lexer = new LexerImpl();
-    
+
     lexer.analyseLexically(statements);
     final List<Token> all = lexer.getAll();
-  
+
     for (int i = 0; i < values.size(); i++) {
       Assert.assertEquals(values.get(i), all.get(i).getValue());
       Assert.assertEquals(ti.get(i), all.get(i).getTokenIdentifier().toString());
       Assert.assertEquals(lines.get(i), Integer.toString(all.get(i).getLine()));
     }
   }
+
   private List<String> readLines(String file) throws FileNotFoundException {
     Scanner s = new Scanner(new java.io.File(file));
     ArrayList<String> list = new ArrayList<>();

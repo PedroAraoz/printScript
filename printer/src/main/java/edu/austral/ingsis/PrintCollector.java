@@ -11,12 +11,10 @@ public class PrintCollector implements Printer {
   public void print(String message) {
     statements.add(message);
   }
-  
+
   @Override
-  public void setIntegerMode() {
-  
-  }
-  
+  public void setIntegerMode() {}
+
   public List<String> getStatements() {
     return statements;
   }

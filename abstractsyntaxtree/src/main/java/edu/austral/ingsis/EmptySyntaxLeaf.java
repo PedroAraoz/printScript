@@ -74,22 +74,26 @@ public class EmptySyntaxLeaf extends AbstractSyntaxLeaf {
   }
 
   @Override
-  public AbstractSyntaxTree addGreaterThanOperationSyntaxBranch(GreaterThanOperationSyntaxBranch branch) {
+  public AbstractSyntaxTree addGreaterThanOperationSyntaxBranch(
+      GreaterThanOperationSyntaxBranch branch) {
     return branch;
   }
 
   @Override
-  public AbstractSyntaxTree addLesserThanOperationSyntaxBranch(LesserThanOperationSyntaxBranch branch) {
+  public AbstractSyntaxTree addLesserThanOperationSyntaxBranch(
+      LesserThanOperationSyntaxBranch branch) {
     return branch;
   }
 
   @Override
-  public AbstractSyntaxTree addLesserEqualThanOperationSyntaxBranch(LesserEqualThanOperationSyntaxBranch branch) {
+  public AbstractSyntaxTree addLesserEqualThanOperationSyntaxBranch(
+      LesserEqualThanOperationSyntaxBranch branch) {
     return branch;
   }
 
   @Override
-  public AbstractSyntaxTree addGreaterEqualThanOperationSyntaxBranch(GreaterEqualThanOperationSyntaxBranch branch) {
+  public AbstractSyntaxTree addGreaterEqualThanOperationSyntaxBranch(
+      GreaterEqualThanOperationSyntaxBranch branch) {
     return branch;
   }
 
@@ -109,7 +113,8 @@ public class EmptySyntaxLeaf extends AbstractSyntaxLeaf {
   }
 
   @Override
-  public AbstractSyntaxTree addConstSyntaxLeaf(ConstSyntaxLeaf leaf) throws CompilationTimeException {
+  public AbstractSyntaxTree addConstSyntaxLeaf(ConstSyntaxLeaf leaf)
+      throws CompilationTimeException {
     return null;
   }
 

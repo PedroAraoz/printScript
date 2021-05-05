@@ -3,21 +3,21 @@ package edu.austral.ingsis;
 import edu.austral.ingsis.exception.CompilationTimeException;
 import edu.austral.ingsis.fileGenerator.FileGenerator;
 import edu.austral.ingsis.fileGenerator.NormalFileGenerator;
-
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class CLI {
   private State state;
   private final Printer printer;
-  
+
   public CLI(Printer printer) {
     this.printer = printer;
     Lexer lexer = new LexerImpl();
     Parser parser = new ParserImpl();
     final InterpreterVisitorImpl interpreter = new InterpreterVisitorImpl(printer);
     FileGenerator fileGenerator = new NormalFileGenerator();
-    final StateFactory stateFactory = new StateFactory(this, lexer, parser, interpreter, fileGenerator, printer);
+    final StateFactory stateFactory =
+        new StateFactory(this, lexer, parser, interpreter, fileGenerator, printer);
   }
 
   public void changeState(State state) {
@@ -35,8 +35,8 @@ public class CLI {
   public void run() throws FileNotFoundException, CompilationTimeException {
     final Scanner scanner = new Scanner(System.in);
     String message = "";
-    String welcomeMessage = "please type\n" +
-            "<mode> <filePath> <versionNumber> output-enabled=<true/false>";
+    String welcomeMessage =
+        "please type\n" + "<mode> <filePath> <versionNumber> output-enabled=<true/false>";
     printer.print(welcomeMessage);
     message = scanner.nextLine().trim().toLowerCase();
     while (!message.equals("exit")) {

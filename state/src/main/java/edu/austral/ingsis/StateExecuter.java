@@ -3,7 +3,6 @@ package edu.austral.ingsis;
 import edu.austral.ingsis.exception.CompilationTimeException;
 import edu.austral.ingsis.fileGenerator.File;
 import edu.austral.ingsis.fileGenerator.FileGenerator;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,13 @@ public class StateExecuter implements State {
   private final Printer printer;
   private boolean outputEnabled;
 
-  public StateExecuter(Lexer lexer, Parser parser, InterpreterVisitor interpreter, FileGenerator fileGenerator, StateFactory stateFactory, Printer printer) {
+  public StateExecuter(
+      Lexer lexer,
+      Parser parser,
+      InterpreterVisitor interpreter,
+      FileGenerator fileGenerator,
+      StateFactory stateFactory,
+      Printer printer) {
     this.lexer = lexer;
     this.parser = parser;
     this.interpreter = interpreter;
@@ -75,8 +80,7 @@ public class StateExecuter implements State {
   }
 
   private void output(String message) {
-    if (outputEnabled)
-      printer.print(message);
+    if (outputEnabled) printer.print(message);
   }
 
   private boolean checkMode(String mode) {

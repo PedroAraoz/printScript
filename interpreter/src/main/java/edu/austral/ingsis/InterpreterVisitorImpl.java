@@ -1,7 +1,6 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
-
 import java.util.Optional;
 
 public class InterpreterVisitorImpl implements InterpreterVisitor {
@@ -25,23 +24,25 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   }
 
   @Override
-  public AbstractSyntaxTree visit(AbstractSyntaxTree abstractSyntaxTree) throws CompilationTimeException {
+  public AbstractSyntaxTree visit(AbstractSyntaxTree abstractSyntaxTree)
+      throws CompilationTimeException {
     return abstractSyntaxTree.accept2(this);
   }
 
   @Override
-  public AbstractSyntaxTree visitValueAssignation(ValueAssignationSyntaxBranch branch) throws CompilationTimeException {
+  public AbstractSyntaxTree visitValueAssignation(ValueAssignationSyntaxBranch branch)
+      throws CompilationTimeException {
     output("Handling value assignation");
     VariableSyntaxLeaf variableSyntaxLeaf = (VariableSyntaxLeaf) visit(branch.left);
     LiteralSyntaxLeaf literalSyntaxLeaf = (LiteralSyntaxLeaf) visit(branch.right);
 
-    variableRegister.assignValueToVariable(variableSyntaxLeaf.getToken(), literalSyntaxLeaf.getToken());
+    variableRegister.assignValueToVariable(
+        variableSyntaxLeaf.getToken(), literalSyntaxLeaf.getToken());
     return branch;
   }
 
   private void output(String message) {
-    if (printEnabled)
-      printer.print(message);
+    if (printEnabled) printer.print(message);
   }
 
   @Override
@@ -60,7 +61,8 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   }
 
   @Override
-  public LiteralSyntaxLeaf visitSumSub(SumSubOperationSyntaxBranch branch) throws CompilationTimeException {
+  public LiteralSyntaxLeaf visitSumSub(SumSubOperationSyntaxBranch branch)
+      throws CompilationTimeException {
     output("Handling sum/sub operation");
     final AbstractSyntaxTree l = visit(branch.left);
     final AbstractSyntaxTree r = visit(branch.right);
@@ -73,23 +75,23 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     }
 
     if (isNumber(left) && isNumber(right)) {
-      //only case when Literal will come out as number
+      // only case when Literal will come out as number
       final double doubleAnswer =
-              Double.parseDouble(left.getValue()) + sumsub * Double.parseDouble(right.getValue());
+          Double.parseDouble(left.getValue()) + sumsub * Double.parseDouble(right.getValue());
       final String answer = Double.toString(doubleAnswer);
       return getLiteralSyntaxLeaf(answer, TokenIdentifier.NUMBER_LITERAL_TOKEN);
     } else if (sumsub == 1) {
-      //We can add them normally
+      // We can add them normally
       final String answer = left.getValue() + right.getValue();
       return getLiteralSyntaxLeaf(answer, TokenIdentifier.STRING_LITERAL_TOKEN);
     } else {
       Token t = isString(left) ? left.getToken() : right.getToken();
       throw interpreterError("TODO FILE", t, "You can't substract with a string");
     }
-
   }
 
-  private LiteralSyntaxLeaf smartCastToVariable(AbstractSyntaxTree ast) throws CompilationTimeException {
+  private LiteralSyntaxLeaf smartCastToVariable(AbstractSyntaxTree ast)
+      throws CompilationTimeException {
     if (ast.getToken().getTokenIdentifier().equals(TokenIdentifier.VARIABLE_TOKEN)) {
       final Optional<VariableInfo> optional = variableRegister.get(ast.getToken().getValue());
       if (optional.isPresent()) {
@@ -97,7 +99,8 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
         return getLiteralSyntaxLeaf(vi.getValue(), vi.getType());
       } else {
 
-        throw interpreterError("TODO ADD FILE", ast.getToken(), "Variable was not initialized"); //todo add file
+        throw interpreterError(
+            "TODO ADD FILE", ast.getToken(), "Variable was not initialized"); // todo add file
       }
     } else {
       return (LiteralSyntaxLeaf) ast;
@@ -105,7 +108,8 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   }
 
   @Override
-  public LiteralSyntaxLeaf visitMultDiv(MultDivOperationSyntaxBranch branch) throws CompilationTimeException {
+  public LiteralSyntaxLeaf visitMultDiv(MultDivOperationSyntaxBranch branch)
+      throws CompilationTimeException {
     output("Handling mult/div operation");
 
     final LiteralSyntaxLeaf left = smartCastToVariable(visit(branch.left));
@@ -113,18 +117,15 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     double answer;
     if (isNumber(left) && isNumber(right)) {
       if (branch.getToken().getTokenIdentifier().equals(TokenIdentifier.MULT_OPERATION_TOKEN)) {
-        answer = Double.parseDouble(left.getValue()) *
-                Double.parseDouble(right.getValue());
+        answer = Double.parseDouble(left.getValue()) * Double.parseDouble(right.getValue());
       } else {
-        //si es div
-        answer = Double.parseDouble(left.getValue()) /
-                Double.parseDouble(right.getValue());
+        // si es div
+        answer = Double.parseDouble(left.getValue()) / Double.parseDouble(right.getValue());
       }
       return getLiteralSyntaxLeaf(Double.toString(answer), TokenIdentifier.NUMBER_LITERAL_TOKEN);
     } else {
-      final Token t = !isNumber(left) ?
-              left.getToken() : right.getToken();
-      throw interpreterError("TODO ADD FILE", t, "Must be number"); //todo add file
+      final Token t = !isNumber(left) ? left.getToken() : right.getToken();
+      throw interpreterError("TODO ADD FILE", t, "Must be number"); // todo add file
     }
   }
 
@@ -179,7 +180,8 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
   }
 
   @Override
-  public LiteralSyntaxLeaf visitGreaterThan(GreaterThanOperationSyntaxBranch branch) throws CompilationTimeException {
+  public LiteralSyntaxLeaf visitGreaterThan(GreaterThanOperationSyntaxBranch branch)
+      throws CompilationTimeException {
     output("Handling 'Greater than' (>) operation");
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
@@ -192,14 +194,14 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
       }
       return getLiteralSyntaxLeaf(answer, TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
     } else {
-      final Token t = !isNumber(left) ?
-              left.getToken() : right.getToken();
-      throw interpreterError("TODO ADD FILE", t, "Must be number"); //todo add file
+      final Token t = !isNumber(left) ? left.getToken() : right.getToken();
+      throw interpreterError("TODO ADD FILE", t, "Must be number"); // todo add file
     }
   }
 
   @Override
-  public LiteralSyntaxLeaf visitLesserThan(LesserThanOperationSyntaxBranch branch) throws CompilationTimeException {
+  public LiteralSyntaxLeaf visitLesserThan(LesserThanOperationSyntaxBranch branch)
+      throws CompilationTimeException {
     output("Handling 'Lesser than' (<) operation");
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
@@ -212,14 +214,14 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
       }
       return getLiteralSyntaxLeaf(answer, TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
     } else {
-      final Token t = !isNumber(left) ?
-              left.getToken() : right.getToken();
-      throw interpreterError("TODO ADD FILE", t, "Must be number"); //todo add file
+      final Token t = !isNumber(left) ? left.getToken() : right.getToken();
+      throw interpreterError("TODO ADD FILE", t, "Must be number"); // todo add file
     }
   }
 
   @Override
-  public LiteralSyntaxLeaf visitLesserEqualThan(LesserEqualThanOperationSyntaxBranch branch) throws CompilationTimeException {
+  public LiteralSyntaxLeaf visitLesserEqualThan(LesserEqualThanOperationSyntaxBranch branch)
+      throws CompilationTimeException {
     output("Handling 'Lesser Equal than' (<=) operation");
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
@@ -232,14 +234,14 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
       }
       return getLiteralSyntaxLeaf(answer, TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
     } else {
-      final Token t = !isNumber(left) ?
-              left.getToken() : right.getToken();
-      throw interpreterError("TODO ADD FILE", t, "Must be number"); //todo add file
+      final Token t = !isNumber(left) ? left.getToken() : right.getToken();
+      throw interpreterError("TODO ADD FILE", t, "Must be number"); // todo add file
     }
   }
 
   @Override
-  public LiteralSyntaxLeaf visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch) throws CompilationTimeException {
+  public LiteralSyntaxLeaf visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch)
+      throws CompilationTimeException {
     output("Handling 'Greater Equal than' (<=) operation");
     final LiteralSyntaxLeaf left = (LiteralSyntaxLeaf) visit(branch.left);
     final LiteralSyntaxLeaf right = (LiteralSyntaxLeaf) visit(branch.right);
@@ -252,14 +254,14 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
       }
       return getLiteralSyntaxLeaf(answer, TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
     } else {
-      final Token t = !isNumber(left) ?
-              left.getToken() : right.getToken();
-      throw interpreterError("TODO ADD FILE", t, "Must be number"); //todo add file
+      final Token t = !isNumber(left) ? left.getToken() : right.getToken();
+      throw interpreterError("TODO ADD FILE", t, "Must be number"); // todo add file
     }
   }
 
   @Override
-  public IfOperationSyntaxBranch visitIf(IfOperationSyntaxBranch branch) throws CompilationTimeException {
+  public IfOperationSyntaxBranch visitIf(IfOperationSyntaxBranch branch)
+      throws CompilationTimeException {
     VariableSyntaxLeaf leaf = branch.getCondition();
     boolean b = getBooleanFromVariable(leaf);
     if (b) {
@@ -278,12 +280,24 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     if (variableRegister.contains(leaf.getValue())) {
       VariableInfo variableInfo = variableRegister.get(leaf.getValue()).get();
       if (variableInfo.getValue().isEmpty())
-        throw new CompilationTimeException("Variable not initialized in line " + leaf.getToken().getLine() + " in column " + leaf.getToken().getStartPos());
+        throw new CompilationTimeException(
+            "Variable not initialized in line "
+                + leaf.getToken().getLine()
+                + " in column "
+                + leaf.getToken().getStartPos());
       if (!variableInfo.getType().equals(TokenIdentifier.BOOLEAN_TYPE_TOKEN))
-        throw new CompilationTimeException("If condition can only accept boolean variables. Line " + leaf.getToken().getLine() + ", column " + leaf.getToken().getStartPos());
+        throw new CompilationTimeException(
+            "If condition can only accept boolean variables. Line "
+                + leaf.getToken().getLine()
+                + ", column "
+                + leaf.getToken().getStartPos());
       return variableInfo.getValue().equals("true");
     } else {
-      throw new CompilationTimeException("Undeclared variable in line " + leaf.getToken().getLine() + " in column " + leaf.getToken().getStartPos());
+      throw new CompilationTimeException(
+          "Undeclared variable in line "
+              + leaf.getToken().getLine()
+              + " in column "
+              + leaf.getToken().getStartPos());
     }
   }
 
@@ -294,15 +308,13 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   private LiteralSyntaxLeaf getLiteralSyntaxLeaf(String value, TokenIdentifier token) {
     final LiteralSyntaxLeaf literalSyntaxLeaf = new LiteralSyntaxLeaf();
-    literalSyntaxLeaf.setToken(
-            new Token(token,
-                    -1, -1, -1,
-                    value));
+    literalSyntaxLeaf.setToken(new Token(token, -1, -1, -1, value));
     return literalSyntaxLeaf;
   }
 
   private boolean isNumber(LiteralSyntaxLeaf b) {
-    return b.getToken().getTokenIdentifier().getName().equals(TokenName.NUMBER_LITERAL) || b.getToken().getTokenIdentifier().getName().equals(TokenName.NUMBER_TYPE);
+    return b.getToken().getTokenIdentifier().getName().equals(TokenName.NUMBER_LITERAL)
+        || b.getToken().getTokenIdentifier().getName().equals(TokenName.NUMBER_TYPE);
   }
 
   private boolean isString(LiteralSyntaxLeaf b) {
@@ -313,16 +325,26 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     return interpreterError(file, token.getLine(), token.getStartPos(), token.getEndPos(), message);
   }
 
-  private CompilationTimeException interpreterError(String file, int line, int from, int to, String text) {
-    final String message = "On File: " + file + "\n" +
-            "line: " + line + "\n" +
-            "from: " + from + " to: " + to + "\n" +
-            "message: " + text;
+  private CompilationTimeException interpreterError(
+      String file, int line, int from, int to, String text) {
+    final String message =
+        "On File: "
+            + file
+            + "\n"
+            + "line: "
+            + line
+            + "\n"
+            + "from: "
+            + from
+            + " to: "
+            + to
+            + "\n"
+            + "message: "
+            + text;
     return new CompilationTimeException(message);
   }
 
-
   public void debug() {
-    //System.out.println("debugging");
+    // System.out.println("debugging");
   }
 }

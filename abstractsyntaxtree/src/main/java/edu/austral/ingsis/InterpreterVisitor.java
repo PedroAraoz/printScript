@@ -6,13 +6,15 @@ public interface InterpreterVisitor {
 
   AbstractSyntaxTree visit(AbstractSyntaxTree abstractSyntaxTree) throws CompilationTimeException;
 
-  AbstractSyntaxTree visitValueAssignation(ValueAssignationSyntaxBranch branch) throws CompilationTimeException;
+  AbstractSyntaxTree visitValueAssignation(ValueAssignationSyntaxBranch branch)
+      throws CompilationTimeException;
 
   VariableSyntaxLeaf visitTypeAssingation(TypeAssignationSyntaxBranch branch);
 
   LiteralSyntaxLeaf visitSumSub(SumSubOperationSyntaxBranch branch) throws CompilationTimeException;
 
-  LiteralSyntaxLeaf visitMultDiv(MultDivOperationSyntaxBranch branch) throws CompilationTimeException;
+  LiteralSyntaxLeaf visitMultDiv(MultDivOperationSyntaxBranch branch)
+      throws CompilationTimeException;
 
   NumberTypeSyntaxLeaf visitNumberType(NumberTypeSyntaxLeaf leaf);
 
@@ -32,13 +34,17 @@ public interface InterpreterVisitor {
 
   BooleanTypeSyntaxLeaf visitBooleanType(BooleanTypeSyntaxLeaf leaf);
 
-  LiteralSyntaxLeaf visitGreaterThan(GreaterThanOperationSyntaxBranch branch) throws CompilationTimeException;
+  LiteralSyntaxLeaf visitGreaterThan(GreaterThanOperationSyntaxBranch branch)
+      throws CompilationTimeException;
 
-  LiteralSyntaxLeaf visitLesserThan(LesserThanOperationSyntaxBranch branch) throws CompilationTimeException;
+  LiteralSyntaxLeaf visitLesserThan(LesserThanOperationSyntaxBranch branch)
+      throws CompilationTimeException;
 
-  LiteralSyntaxLeaf visitLesserEqualThan(LesserEqualThanOperationSyntaxBranch branch) throws CompilationTimeException;
+  LiteralSyntaxLeaf visitLesserEqualThan(LesserEqualThanOperationSyntaxBranch branch)
+      throws CompilationTimeException;
 
-  LiteralSyntaxLeaf visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch) throws CompilationTimeException;
+  LiteralSyntaxLeaf visitGreaterEqualThan(GreaterEqualThanOperationSyntaxBranch branch)
+      throws CompilationTimeException;
 
   IfOperationSyntaxBranch visitIf(IfOperationSyntaxBranch branch) throws CompilationTimeException;
 

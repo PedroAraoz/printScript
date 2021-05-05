@@ -12,45 +12,69 @@ public class RightParenthesisSyntaxLeaf extends AbstractSyntaxLeaf {
   }
 
   @Override
-  public AbstractSyntaxTree addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+  public AbstractSyntaxTree addValueAsignationSyntaxTree(ValueAssignationSyntaxBranch branch)
+      throws CompilationTimeException {
+    throw new CompilationTimeException(
+        "Parser Exception when building AST in line "
+            + this.token.getLine()
+            + " column "
+            + this.token.getStartPos());
   }
 
   @Override
-  public AbstractSyntaxTree addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+  public AbstractSyntaxTree addTypeAsignationSyntaxTree(TypeAssignationSyntaxBranch branch)
+      throws CompilationTimeException {
+    throw new CompilationTimeException(
+        "Parser Exception when building AST in line "
+            + this.token.getLine()
+            + " column "
+            + this.token.getStartPos());
   }
 
   @Override
-  public AbstractSyntaxTree addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch) throws CompilationTimeException {
+  public AbstractSyntaxTree addSumSubOperationSyntaxTree(SumSubOperationSyntaxBranch branch)
+      throws CompilationTimeException {
     resultingExpression = resultingExpression.add(branch);
     return this;
   }
 
   @Override
-  public AbstractSyntaxTree addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch) throws CompilationTimeException {
+  public AbstractSyntaxTree addMultDivOperationSyntaxTree(MultDivOperationSyntaxBranch branch)
+      throws CompilationTimeException {
     resultingExpression = resultingExpression.add(branch);
     return this;
   }
 
   @Override
-  public AbstractSyntaxTree addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+  public AbstractSyntaxTree addNumberTypeSyntaxLeaf(NumberTypeSyntaxLeaf leaf)
+      throws CompilationTimeException {
+    throw new CompilationTimeException(
+        "Parser Exception when building AST in line "
+            + this.token.getLine()
+            + " column "
+            + this.token.getStartPos());
   }
 
   @Override
-  public AbstractSyntaxTree addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+  public AbstractSyntaxTree addStringTypeSyntaxLeaf(StringTypeSyntaxLeaf leaf)
+      throws CompilationTimeException {
+    throw new CompilationTimeException(
+        "Parser Exception when building AST in line "
+            + this.token.getLine()
+            + " column "
+            + this.token.getStartPos());
   }
 
   @Override
-  public AbstractSyntaxTree addVariableSyntaxLeaf(VariableSyntaxLeaf leaf) throws CompilationTimeException {
+  public AbstractSyntaxTree addVariableSyntaxLeaf(VariableSyntaxLeaf leaf)
+      throws CompilationTimeException {
     resultingExpression = resultingExpression.add(leaf);
     return this;
   }
 
   @Override
-  public AbstractSyntaxTree addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf) throws CompilationTimeException {
+  public AbstractSyntaxTree addLiteralSyntaxLeaf(LiteralSyntaxLeaf leaf)
+      throws CompilationTimeException {
     resultingExpression = resultingExpression.add(leaf);
     return this;
   }
@@ -61,8 +85,13 @@ public class RightParenthesisSyntaxLeaf extends AbstractSyntaxLeaf {
   }
 
   @Override
-  public AbstractSyntaxTree addPrintLnSyntaxLeaf(PrintLnSyntaxLeaf leaf) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+  public AbstractSyntaxTree addPrintLnSyntaxLeaf(PrintLnSyntaxLeaf leaf)
+      throws CompilationTimeException {
+    throw new CompilationTimeException(
+        "Parser Exception when building AST in line "
+            + this.token.getLine()
+            + " column "
+            + this.token.getStartPos());
   }
 
   @Override
@@ -71,43 +100,83 @@ public class RightParenthesisSyntaxLeaf extends AbstractSyntaxLeaf {
   }
 
   @Override
-  public AbstractSyntaxTree addRightParenthesisSyntaxLeaf(RightParenthesisSyntaxLeaf leaf) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+  public AbstractSyntaxTree addRightParenthesisSyntaxLeaf(RightParenthesisSyntaxLeaf leaf)
+      throws CompilationTimeException {
+    throw new CompilationTimeException(
+        "Parser Exception when building AST in line "
+            + this.token.getLine()
+            + " column "
+            + this.token.getStartPos());
   }
 
   @Override
-  public AbstractSyntaxTree addBooleanTypeSyntaxLeaf(BooleanTypeSyntaxLeaf leaf) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+  public AbstractSyntaxTree addBooleanTypeSyntaxLeaf(BooleanTypeSyntaxLeaf leaf)
+      throws CompilationTimeException {
+    throw new CompilationTimeException(
+        "Parser Exception when building AST in line "
+            + this.token.getLine()
+            + " column "
+            + this.token.getStartPos());
   }
 
   @Override
-  public AbstractSyntaxTree addGreaterThanOperationSyntaxBranch(GreaterThanOperationSyntaxBranch branch) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+  public AbstractSyntaxTree addGreaterThanOperationSyntaxBranch(
+      GreaterThanOperationSyntaxBranch branch) throws CompilationTimeException {
+    throw new CompilationTimeException(
+        "Parser Exception when building AST in line "
+            + this.token.getLine()
+            + " column "
+            + this.token.getStartPos());
   }
 
   @Override
-  public AbstractSyntaxTree addLesserThanOperationSyntaxBranch(LesserThanOperationSyntaxBranch branch) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+  public AbstractSyntaxTree addLesserThanOperationSyntaxBranch(
+      LesserThanOperationSyntaxBranch branch) throws CompilationTimeException {
+    throw new CompilationTimeException(
+        "Parser Exception when building AST in line "
+            + this.token.getLine()
+            + " column "
+            + this.token.getStartPos());
   }
 
   @Override
-  public AbstractSyntaxTree addLesserEqualThanOperationSyntaxBranch(LesserEqualThanOperationSyntaxBranch branch) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+  public AbstractSyntaxTree addLesserEqualThanOperationSyntaxBranch(
+      LesserEqualThanOperationSyntaxBranch branch) throws CompilationTimeException {
+    throw new CompilationTimeException(
+        "Parser Exception when building AST in line "
+            + this.token.getLine()
+            + " column "
+            + this.token.getStartPos());
   }
 
   @Override
-  public AbstractSyntaxTree addGreaterEqualThanOperationSyntaxBranch(GreaterEqualThanOperationSyntaxBranch branch) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+  public AbstractSyntaxTree addGreaterEqualThanOperationSyntaxBranch(
+      GreaterEqualThanOperationSyntaxBranch branch) throws CompilationTimeException {
+    throw new CompilationTimeException(
+        "Parser Exception when building AST in line "
+            + this.token.getLine()
+            + " column "
+            + this.token.getStartPos());
   }
 
   @Override
-  public AbstractSyntaxTree addIfOperationSyntaxBranch(IfOperationSyntaxBranch branch) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+  public AbstractSyntaxTree addIfOperationSyntaxBranch(IfOperationSyntaxBranch branch)
+      throws CompilationTimeException {
+    throw new CompilationTimeException(
+        "Parser Exception when building AST in line "
+            + this.token.getLine()
+            + " column "
+            + this.token.getStartPos());
   }
 
   @Override
-  public AbstractSyntaxTree addConstSyntaxLeaf(ConstSyntaxLeaf leaf) throws CompilationTimeException {
-    throw new CompilationTimeException("Parser Exception when building AST in line " + this.token.getLine() + " column " + this.token.getStartPos());
+  public AbstractSyntaxTree addConstSyntaxLeaf(ConstSyntaxLeaf leaf)
+      throws CompilationTimeException {
+    throw new CompilationTimeException(
+        "Parser Exception when building AST in line "
+            + this.token.getLine()
+            + " column "
+            + this.token.getStartPos());
   }
 
   @Override

@@ -1,24 +1,23 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class ParserSegmenterTests {
 
   /*
-  * TODO Ale
-  * Parser segmenter should start empty
-  * parser segmenter of empty lexer should be emtpy
-  * parser segmenter of one statement should return it
-  * parser segmenter of many statements should return them
-  * incomplete statement should throw error
-  * VERSION 1.1:
-  * parser segmenter of If should return if () {}
-  * parser segmenter of IF Else should return if () {} else {}
+   * TODO Ale
+   * Parser segmenter should start empty
+   * parser segmenter of empty lexer should be emtpy
+   * parser segmenter of one statement should return it
+   * parser segmenter of many statements should return them
+   * incomplete statement should throw error
+   * VERSION 1.1:
+   * parser segmenter of If should return if () {}
+   * parser segmenter of IF Else should return if () {} else {}
    * parser segmenter of if with one statement should return statement inside
    * if with many statements should return them inside
    * else with statements should return them inside
@@ -26,7 +25,7 @@ public class ParserSegmenterTests {
    * when there are more statements should return hasNext true
    * incomplete if should throw error
    * incomplete if else should throw error
-  */
+   */
 
   @Test
   public void shouldStartEmpty() throws CompilationTimeException {
@@ -225,21 +224,28 @@ public class ParserSegmenterTests {
 
     List<Token> tokens1 = parserSegmenter.getNext();
     Assert.assertEquals(tokens1.get(0).getTokenIdentifier(), (TokenIdentifier.IF_TOKEN));
-    Assert.assertEquals(tokens1.get(1).getTokenIdentifier(), (TokenIdentifier.LEFT_PARENTHESIS_TOKEN));
+    Assert.assertEquals(
+        tokens1.get(1).getTokenIdentifier(), (TokenIdentifier.LEFT_PARENTHESIS_TOKEN));
     Assert.assertEquals(tokens1.get(2).getTokenIdentifier(), (TokenIdentifier.VARIABLE_TOKEN));
-    Assert.assertEquals(tokens1.get(3).getTokenIdentifier(), (TokenIdentifier.RIGHT_PARENTHESIS_TOKEN));
+    Assert.assertEquals(
+        tokens1.get(3).getTokenIdentifier(), (TokenIdentifier.RIGHT_PARENTHESIS_TOKEN));
     Assert.assertEquals(tokens1.get(4).getTokenIdentifier(), (TokenIdentifier.LEFT_BRACKET_TOKEN));
     Assert.assertEquals(tokens1.get(5).getTokenIdentifier(), (TokenIdentifier.VARIABLE_TOKEN));
-    Assert.assertEquals(tokens1.get(6).getTokenIdentifier(), (TokenIdentifier.VALUE_ASSIGNATION_TOKEN));
-    Assert.assertEquals(tokens1.get(7).getTokenIdentifier(), (TokenIdentifier.NUMBER_LITERAL_TOKEN));
+    Assert.assertEquals(
+        tokens1.get(6).getTokenIdentifier(), (TokenIdentifier.VALUE_ASSIGNATION_TOKEN));
+    Assert.assertEquals(
+        tokens1.get(7).getTokenIdentifier(), (TokenIdentifier.NUMBER_LITERAL_TOKEN));
     Assert.assertEquals(tokens1.get(8).getTokenIdentifier(), (TokenIdentifier.SEMICOLON_TOKEN));
     Assert.assertEquals(tokens1.get(9).getTokenIdentifier(), (TokenIdentifier.RIGHT_BRACKET_TOKEN));
     Assert.assertEquals(tokens1.get(10).getTokenIdentifier(), (TokenIdentifier.ELSE_TOKEN));
     Assert.assertEquals(tokens1.get(11).getTokenIdentifier(), (TokenIdentifier.LEFT_BRACKET_TOKEN));
     Assert.assertEquals(tokens1.get(12).getTokenIdentifier(), (TokenIdentifier.VARIABLE_TOKEN));
-    Assert.assertEquals(tokens1.get(13).getTokenIdentifier(), (TokenIdentifier.VALUE_ASSIGNATION_TOKEN));
-    Assert.assertEquals(tokens1.get(14).getTokenIdentifier(), (TokenIdentifier.NUMBER_LITERAL_TOKEN));
+    Assert.assertEquals(
+        tokens1.get(13).getTokenIdentifier(), (TokenIdentifier.VALUE_ASSIGNATION_TOKEN));
+    Assert.assertEquals(
+        tokens1.get(14).getTokenIdentifier(), (TokenIdentifier.NUMBER_LITERAL_TOKEN));
     Assert.assertEquals(tokens1.get(15).getTokenIdentifier(), (TokenIdentifier.SEMICOLON_TOKEN));
-    Assert.assertEquals(tokens1.get(16).getTokenIdentifier(), (TokenIdentifier.RIGHT_BRACKET_TOKEN));
+    Assert.assertEquals(
+        tokens1.get(16).getTokenIdentifier(), (TokenIdentifier.RIGHT_BRACKET_TOKEN));
   }
 }

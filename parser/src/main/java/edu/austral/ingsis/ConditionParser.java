@@ -1,25 +1,25 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class ConditionParser {
 
-  final private ASTFactory astFactory;
-  final private TokenToASTConverter tokenToASTConverter = new TokenToASTConverter();
+  private final ASTFactory astFactory;
+  private final TokenToASTConverter tokenToASTConverter = new TokenToASTConverter();
 
   public ConditionParser(ASTFactory astFactory) {
     this.astFactory = astFactory;
   }
 
-  public AbstractSyntaxTree analyseSintactically(List<Token> tokenList) throws CompilationTimeException {
+  public AbstractSyntaxTree analyseSintactically(List<Token> tokenList)
+      throws CompilationTimeException {
     for (Token token : tokenList) {
       if (token.getTokenIdentifier().equals(TokenIdentifier.ELSE_TOKEN)) {
         List<Token> ifList = tokenList.subList(0, tokenList.indexOf(token));
-        List<Token> elseList = tokenList.subList(tokenList.indexOf(token)+1, tokenList.size());
+        List<Token> elseList = tokenList.subList(tokenList.indexOf(token) + 1, tokenList.size());
         IfOperationSyntaxBranch ifAST = (IfOperationSyntaxBranch) parseIf(ifList);
         List<AbstractSyntaxTree> elseASTs = parseElse(elseList);
         ifAST.addElseStatements(elseASTs);
@@ -56,7 +56,8 @@ public class ConditionParser {
     return ifTree;
   }
 
-  private List<AbstractSyntaxTree> getAbstractSyntaxTrees(List<List<Token>> sentences) throws CompilationTimeException {
+  private List<AbstractSyntaxTree> getAbstractSyntaxTrees(List<List<Token>> sentences)
+      throws CompilationTimeException {
     List<AbstractSyntaxTree> ifTrees = new ArrayList<>();
     if (!sentences.isEmpty()) {
       for (List<Token> sentence : sentences) {
@@ -71,13 +72,15 @@ public class ConditionParser {
     Iterator<Token> iterator = body.iterator();
     while (iterator.hasNext()) {
       List<Token> sentence = new ArrayList<>();
-      destructureUnless(sentence, iterator, TokenIdentifier.SEMICOLON_TOKEN, TokenIdentifier.RIGHT_BRACKET_TOKEN);
+      destructureUnless(
+          sentence, iterator, TokenIdentifier.SEMICOLON_TOKEN, TokenIdentifier.RIGHT_BRACKET_TOKEN);
       if (!sentence.isEmpty()) sentences.add(sentence);
     }
     return sentences;
   }
 
-  private void destructureBefore(List<Token> accumulator, Iterator<Token> iterator, TokenIdentifier tokenIdentifier) {
+  private void destructureBefore(
+      List<Token> accumulator, Iterator<Token> iterator, TokenIdentifier tokenIdentifier) {
     while (iterator.hasNext()) {
       Token token = iterator.next();
       accumulator.add(token);
@@ -87,7 +90,8 @@ public class ConditionParser {
     }
   }
 
-  private void destructureAfter(List<Token> accumulator, Iterator<Token> iterator, TokenIdentifier tokenIdentifier) {
+  private void destructureAfter(
+      List<Token> accumulator, Iterator<Token> iterator, TokenIdentifier tokenIdentifier) {
     while (iterator.hasNext()) {
       Token token = iterator.next();
       if (token.getTokenIdentifier().equals(tokenIdentifier)) {
@@ -97,7 +101,11 @@ public class ConditionParser {
     }
   }
 
-  private void destructureUnless(List<Token> accumulator, Iterator<Token> iterator, TokenIdentifier tokenIdentifier, TokenIdentifier unless) {
+  private void destructureUnless(
+      List<Token> accumulator,
+      Iterator<Token> iterator,
+      TokenIdentifier tokenIdentifier,
+      TokenIdentifier unless) {
     while (iterator.hasNext()) {
       Token token = iterator.next();
       if (token.getTokenIdentifier().equals(unless)) {
