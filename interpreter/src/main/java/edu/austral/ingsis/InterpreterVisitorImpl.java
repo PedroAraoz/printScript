@@ -36,6 +36,9 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     VariableSyntaxLeaf variableSyntaxLeaf = (VariableSyntaxLeaf) visit(branch.left);
     LiteralSyntaxLeaf literalSyntaxLeaf = (LiteralSyntaxLeaf) visit(branch.right);
 
+    if (true)
+      System.out.println("test");
+
     variableRegister.assignValueToVariable(
         variableSyntaxLeaf.getToken(), literalSyntaxLeaf.getToken());
     return branch;
