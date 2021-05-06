@@ -1,0 +1,7 @@
+if (x) {
+let x: number;
+x = 1;
+} else {
+let x: number;
+x = 1;
+}
