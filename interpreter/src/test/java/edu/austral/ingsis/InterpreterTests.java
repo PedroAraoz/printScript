@@ -1,12 +1,13 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
-import edu.austral.ingsis.fileGenerator.File;
-import edu.austral.ingsis.fileGenerator.NormalFileGenerator;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import edu.austral.ingsis.fileGenerator.File;
+import edu.austral.ingsis.fileGenerator.NormalFileGenerator;
 import org.junit.Assert;
 import org.junit.Test;
 
