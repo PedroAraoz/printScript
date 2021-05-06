@@ -38,9 +38,6 @@ public class StateExecuter implements State {
   }
   
   private void execute(String[] args) throws FileNotFoundException, CompilationTimeException {
-    // todo capaz a este nivel conviene tener un error handler o algo. tipo
-    // que le pasas los errores y ese se comunica con el cli/print y los escupe
-    // en vez de tener ese throws Error feo
     if (!checkMode(args[0])) return;
     final File file = fileGenerator.open(args[1]);
     printer.print("Starting...");

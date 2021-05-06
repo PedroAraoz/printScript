@@ -13,7 +13,7 @@ dependencies {
 }
 
 group = 'edu.austral.ingsis'
-version = '1.0.1'
+version = '1.0.2'
 
 test {
     finalizedBy(jacocoTestReport)

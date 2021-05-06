@@ -12,7 +12,6 @@ public class CLI {
   private final Printer printer;
   
   public CLI(Printer printer) {
-    //todo probablemente cambiar esto
     this.printer = printer;
     Lexer lexer = new LexerImpl();
     Parser parser = new ParserImpl();
@@ -34,12 +33,10 @@ public class CLI {
     printer.print(welcomeMessage);
     while (!message.equals("exit")) {
       printer.print(">");
-//      message = scanner.nextLine().trim().toLowerCase();
-      message = "execute state/src/main/resources/test2.txt";
+      message = scanner.nextLine().trim().toLowerCase();
       final String[] args = message.split(" ");
       if (args.length < 2) throw new RuntimeException("Two arguments are needed"); //todo implement mejor
       state.run(args);
-      message = "exit";
     }
   }
 }
