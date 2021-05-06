@@ -32,7 +32,24 @@ public class LexerImpl implements Lexer {
     // then we find and replace the tokens in an important order.
     findAndReplace(tokens, all);
     removeQuotationMarkers(tokens);
+    finalTrim(tokens);
     this.tokens = tokens;
+  }
+  
+  // removes whitespace before string.
+  private void finalTrim(List<Token> tokens) {
+    for (int i = 0; i < tokens.size(); i ++) {
+      Token t = tokens.get(i);
+      if (t.getTokenIdentifier().equals(TokenIdentifier.STRING_LITERAL_TOKEN)) {
+        String value = t.getValue();
+        int originalSize = value.length();
+        value = value.trim();
+        int delta = originalSize - value.length();
+        final Token token = new Token(t.getTokenIdentifier(), t.getLine(), t.getStartPos() + delta,
+                t.getEndPos(), value);
+        tokens.set(i, token);
+      }
+    }
   }
   
   public List<Token> findAndSplit(List<Token> tokens, TokenIdentifier ti) {
