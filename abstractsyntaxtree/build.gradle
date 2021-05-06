@@ -7,19 +7,11 @@ plugins {
 
 apply plugin: 'checkstyle'
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
+    implementation project(':token')
     implementation 'junit:junit:4.12'
 }
 
-test {
-    useJUnit()
-
-    maxHeapSize = '1G'
-}
 group = 'edu.austral.ingsis'
 version = '1.0.1'
 
@@ -58,7 +50,7 @@ publishing {
             url = uri("https://maven.pkg.github.com/pedroaraoz/printScript")
             credentials {
                 username = project.findProperty("gpr.user") ?: "pedroaraoz"
-                password = project.findProperty("gpr.key") ?: ${System.getenv("TOKEN")}
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
             }
         }
     }

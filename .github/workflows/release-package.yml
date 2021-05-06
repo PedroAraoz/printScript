@@ -34,13 +34,13 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Publish abstractSyntaxTree
-        run: ./gradlew :abstractSyntaxTree:publish
+      - name: Publish abstractsyntaxtree
+        run: ./gradlew :abstractsyntaxtree:publish
         env:
           TOKEN: ${{ secrets.TOKEN }}
 
-      - name: Publish fileGenerator
-        run: ./gradlew :fileGenerator:publish
+      - name: Publish filegenerator
+        run: ./gradlew :filegenerator:publish
         env:
           TOKEN: ${{ secrets.TOKEN }}
 
