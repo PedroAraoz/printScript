@@ -1,0 +1,4 @@
+let three: number = 3;
+let two: number;
+two = three + 1;
+println(two);

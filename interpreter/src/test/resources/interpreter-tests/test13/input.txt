@@ -1,0 +1,3 @@
+const x: boolean = false;
+x = true;
+println(x);

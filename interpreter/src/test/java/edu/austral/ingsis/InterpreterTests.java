@@ -13,12 +13,6 @@ import org.junit.Test;
 public class InterpreterTests {
 
   @Test
-  public void createInterpreter() {
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-    assert interpreter != null;
-  }
-
-  @Test
   public void interpretBooleanDeclarationStatement() throws CompilationTimeException {
     InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
 
@@ -32,531 +26,6 @@ public class InterpreterTests {
     abstractSyntaxTree = abstractSyntaxTree.add(second);
 
     interpreter.visit(abstractSyntaxTree);
-  }
-
-  @Test
-  public void interpretTrueGreaterThan() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("let x: boolean;");
-    statements.add("x = 2 > 1;");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test
-  public void interpretFalseGreaterThan() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("let x: boolean;");
-    statements.add("x = 1 > 2;");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test(expected = CompilationTimeException.class)
-  public void interpretWrongBooleanAssignation() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("let x: boolean;");
-    statements.add("x = 2;");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test(expected = CompilationTimeException.class)
-  public void interpretWrongGreaterThanAssignation() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("let x: number;");
-    statements.add("x = 2 > 1;");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test
-  public void interpretLesserThanAssignation() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("let x: boolean;");
-    statements.add("x = 2 < 1;");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test
-  public void interpretLesserEqualsThanAssignation() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("let x: boolean;");
-    statements.add("x = 2 <= 1;");
-
-    lexer.analyseLexically(statements);
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test
-  public void interpretGreaterEqualsThanAssignation() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("let x: boolean;");
-    statements.add("x = 2 >= 1;");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test
-  public void interpretEmptyIf() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("let x: boolean = true;");
-    statements.add("if (x) {}");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test
-  public void interpretTrueEmptyIfElse() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("let x: boolean = true;");
-    statements.add("if (x) {} else {}");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test
-  public void interpretFalseEmptyIfElse() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("let x: boolean = true;");
-    statements.add("if (x) {} else {}");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test
-  public void interpretTrueIfElseOneStatement() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("let x: boolean = true;");
-    statements.add("if (x) {x = false;} else {}");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test
-  public void interpretFalseIfElseOneStatement() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("let x: boolean = false;");
-    statements.add("if (x) {} else {x = false;}");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test
-  public void interpretTrueIfElseMultipleStatements() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("let x: boolean = false;");
-    statements.add("if (x) {x = false;y: number = 1;y = 3;} else {x = false;}");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test
-  public void interpretConst() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("const x: boolean = false;");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test(expected = CompilationTimeException.class)
-  public void interpretConstReasignationShouldFail() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("const x: boolean = false;");
-    statements.add("x = true;");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test(expected = CompilationTimeException.class)
-  public void ifStatementWithNumber() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("let x: number = 21;");
-    statements.add("if (x) {}");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test
-  public void testPrintLnWithNumbers() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("println(1);");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test
-  public void testLeftVariableInOperation() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("let three: number = 3;");
-    statements.add("let two: number;");
-    statements.add("two = three + 1;");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test
-  public void printDivOfDouble() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("let a: number;");
-    statements.add("a = 3.5;");
-    statements.add("println(a * 2);");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test
-  public void testMyCodetxt() throws FileNotFoundException, CompilationTimeException {
-    final NormalFileGenerator normalFileGenerator = new NormalFileGenerator();
-    final File open = normalFileGenerator.open("src/test/resources/myCode.txt");
-    List<String> strings = new ArrayList<>();
-    while (open.hasNext()) strings.add(open.next());
-    LexerImpl lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-    lexer.analyseLexically(strings);
-    ParserImpl parser = new ParserImpl();
-    final List<Token> all = lexer.getAll();
-
-    System.out.println("asd");
-    final List<AbstractSyntaxTree> abstractSyntaxTrees = parser.analyseSintactically(lexer);
-    InterpreterVisitorImpl i = new InterpreterVisitorImpl(new CLIPrinter());
-    for (AbstractSyntaxTree ast : abstractSyntaxTrees) {
-      i.visit(ast);
-      i.debug();
-    }
-  }
-
-  @Test
-  public void ifStatementWithAllOperationsAndPrint() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("const x: boolean = 2 > 1;");
-    statements.add(
-        "if(x) {println(\"Yeaaaaaah\");println(1+1);println(1*1);println(1-1);println(1/1);} else {}");
-    statements.add("println(\"my job here is done\");");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test(expected = CompilationTimeException.class)
-  public void numberToBooleanAssignmentShouldFail() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("const x: boolean = 3;");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test
-  public void stringConcat() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("const x: string = \"hello there\" + \"general kenobi\";");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
-  }
-
-  @Test(expected = CompilationTimeException.class)
-  public void wrongTypeStringNumberConcat() throws CompilationTimeException {
-    Lexer lexer = new LexerImpl();
-    lexer.setVersion("1.1");
-
-    List<String> statements = new ArrayList<>();
-    statements.add("const x: string = true - 3;");
-
-    lexer.analyseLexically(statements);
-
-    Parser parser = new ParserImpl();
-
-    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
-
-    InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
-
-    for (AbstractSyntaxTree tree : trees) {
-      interpreter.visit(tree);
-    }
   }
 
   @Test
@@ -583,7 +52,87 @@ public class InterpreterTests {
     }
   }
 
+  @Test
+  public void testIfandElse() throws FileNotFoundException, CompilationTimeException {
+    test("test05", "1.1", false);
+  }
+
+  @Test(expected = CompilationTimeException.class)
+  public void interpretWrongGreaterThanAssignation()
+      throws CompilationTimeException, FileNotFoundException {
+    test("test06", "1.1", false);
+  }
+
+  @Test(expected = CompilationTimeException.class)
+  public void wrongTypeStringNumberConcat() throws CompilationTimeException, FileNotFoundException {
+    test("test07", "1.1", false);
+  }
+
+  @Test
+  public void stringConcat() throws CompilationTimeException, FileNotFoundException {
+    test("test08", "1.1", false);
+  }
+
+  @Test
+  public void interpretComparisons() throws CompilationTimeException, FileNotFoundException {
+    test("test09", "1.1", false);
+  }
+
+  @Test
+  public void interpretFalseIf() throws CompilationTimeException, FileNotFoundException {
+    test("test10", "1.1", false);
+  }
+
+  @Test(expected = CompilationTimeException.class)
+  public void interpretWrongBooleanAssignation()
+      throws CompilationTimeException, FileNotFoundException {
+    test("test11", "1.1", false);
+  }
+
+  @Test
+  public void interpretConst() throws CompilationTimeException, FileNotFoundException {
+    test("test12", "1.1", false);
+  }
+
+  @Test(expected = CompilationTimeException.class)
+  public void interpretConstReasignationShouldFail()
+      throws CompilationTimeException, FileNotFoundException {
+    test("test13", "1.1", false);
+  }
+
+  @Test(expected = CompilationTimeException.class)
+  public void ifStatementWithNumber() throws CompilationTimeException, FileNotFoundException {
+    test("test14", "1.1", false);
+  }
+
+  @Test
+  public void testLeftVariableInOperation() throws CompilationTimeException, FileNotFoundException {
+    test("test15", "1.1", false);
+  }
+
+  @Test
+  public void printDivOfDouble() throws CompilationTimeException, FileNotFoundException {
+    test("test16", "1.1", false);
+  }
+
+  @Test
+  public void ifStatementWithAllOperationsAndPrint()
+      throws CompilationTimeException, FileNotFoundException {
+    test("test17", "1.1", false);
+  }
+
+  @Test(expected = CompilationTimeException.class)
+  public void numberToBooleanAssignmentShouldFail()
+      throws CompilationTimeException, FileNotFoundException {
+    test("test18", "1.1", false);
+  }
+
   public void test(String directory, boolean output)
+      throws FileNotFoundException, CompilationTimeException {
+    test(directory, "1.0", output);
+  }
+
+  public void test(String directory, String version, boolean output)
       throws FileNotFoundException, CompilationTimeException {
     String testDirectory = "src/test/resources/interpreter-tests/" + directory + "/";
     List<String> statements = readLines(testDirectory + "input.txt");
@@ -592,7 +141,7 @@ public class InterpreterTests {
     PrintCollector printCollector = new PrintCollector();
 
     Lexer lexer = new LexerImpl();
-
+    lexer.setVersion(version);
     lexer.analyseLexically(statements);
 
     Parser parser = new ParserImpl();

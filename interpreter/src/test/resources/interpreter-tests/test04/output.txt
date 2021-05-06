@@ -1,0 +1,6 @@
+Handling value assignation
+Handling type assignation
+Handling value assignation
+Handling type assignation
+Handling sum/sub operation
+123cm

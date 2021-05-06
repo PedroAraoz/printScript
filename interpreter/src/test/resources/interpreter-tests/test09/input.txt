@@ -1,0 +1,21 @@
+let x: boolean;
+x = 2 > 1;
+println(x);
+
+x = 1 > 2;
+println(x);
+
+x = 2 < 1;
+println(x);
+
+x = 1 < 2;
+println(x);
+
+x = 2 <= 1;
+println(x);
+
+x = 2 <= 2;
+println(x);
+
+x = 2 >= 2;
+println(x);

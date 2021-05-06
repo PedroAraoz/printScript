@@ -1,0 +1,2 @@
+let x: boolean;
+x = 2;
