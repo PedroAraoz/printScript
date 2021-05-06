@@ -3,12 +3,10 @@ name: Java CI
 on:
   pull_request:
     branches:
-      - master
-      - version_1.1
+      - main
   push:
     branches:
-      - master
-      - version_1.1
+      - main
 
 jobs:
   build:
@@ -33,3 +31,49 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: Releasing
+          draft: false
+          prerelease: false
+
+      - name: Publish abstractsyntaxtree
+        run: ./gradlew :abstractsyntaxtree:publish
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Publish interpreter
+        run: ./gradlew :interpreter:publish
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Publish lexer
+        run: ./gradlew :lexer:publish
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Publish parser
+        run: ./gradlew :parser:publish
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Publish printer
+        run: ./gradlew :printer:publish
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Publish state
+        run: ./gradlew :state:publish
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+
+      - name: Publish token
+        run: ./gradlew :token:publish
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
