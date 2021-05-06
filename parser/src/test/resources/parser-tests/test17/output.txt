@@ -1,1 +1,1 @@
-|PRINT:println
+|PRINT:println|SUM:+

@@ -1,12 +1,10 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -128,12 +126,14 @@ public class ParserTests {
   }
 
   @Test
-  public void testIfElseWithTwoSentencesEach() throws CompilationTimeException, FileNotFoundException {
+  public void testIfElseWithTwoSentencesEach()
+      throws CompilationTimeException, FileNotFoundException {
     test("test24", "1.1");
   }
 
   @Test(expected = CompilationTimeException.class)
-  public void testIfElseWithWrongSentenceInBoth() throws CompilationTimeException, FileNotFoundException {
+  public void testIfElseWithWrongSentenceInBoth()
+      throws CompilationTimeException, FileNotFoundException {
     test("test25", "1.1");
   }
 
@@ -147,7 +147,7 @@ public class ParserTests {
   }
 
   public void test(String directory, String version)
-          throws FileNotFoundException, CompilationTimeException {
+      throws FileNotFoundException, CompilationTimeException {
     String testDirectory = "src/test/resources/parser-tests/" + directory + "/";
     List<String> statements = readLines(testDirectory + "input.txt");
     List<String> outputs = readLines(testDirectory + "output.txt");
@@ -163,7 +163,7 @@ public class ParserTests {
     for (int i = 0, treesSize = trees.size(); i < treesSize; i++) {
       ASTSerializer astSerializer = new ASTSerializer();
       astSerializer.visit(trees.get(i));
-//      System.out.println(astSerializer.getString());
+//            System.out.println(astSerializer.getString());
       Assert.assertEquals(outputs.get(i), astSerializer.getString());
     }
   }

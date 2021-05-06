@@ -103,6 +103,11 @@ public class ASTSerializer implements Visitor {
         .append(leaf.getToken().getName())
         .append(":")
         .append(leaf.getToken().getValue());
+    bobTheBuilder
+            .append("|")
+            .append(leaf.getExpression().getToken().getName())
+            .append(":")
+            .append(leaf.getExpression().getToken().getValue());
   }
 
   @Override
@@ -112,6 +117,11 @@ public class ASTSerializer implements Visitor {
         .append(leaf.getToken().getName())
         .append(":")
         .append(leaf.getToken().getValue());
+    bobTheBuilder
+            .append("|")
+            .append(leaf.getResultingExpression().getToken().getName())
+            .append(":")
+            .append(leaf.getResultingExpression().getToken().getValue());
   }
 
   @Override
@@ -175,6 +185,20 @@ public class ASTSerializer implements Visitor {
         .append(branch.getToken().getName())
         .append(":")
         .append(branch.getToken().getValue());
+    for (AbstractSyntaxTree abstractSyntaxTree : branch.get_if()) {
+      bobTheBuilder
+              .append("|")
+              .append(abstractSyntaxTree.getToken().getName())
+              .append(":")
+              .append(abstractSyntaxTree.getToken().getValue());
+    }
+    for (AbstractSyntaxTree abstractSyntaxTree : branch.get_else()) {
+      bobTheBuilder
+              .append("|")
+              .append(abstractSyntaxTree.getToken().getName())
+              .append(":")
+              .append(abstractSyntaxTree.getToken().getValue());
+    }
   }
 
   @Override
