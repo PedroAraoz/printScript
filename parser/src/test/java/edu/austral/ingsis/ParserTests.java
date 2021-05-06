@@ -1,15 +1,20 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
+import org.junit.Assert;
 import org.junit.Test;
 
 public class ParserTests {
 
   @Test
-  public void testDeclaAsignMult() throws CompilationTimeException {
-
+  public void testDeclaAsignMult() throws CompilationTimeException, FileNotFoundException {
+    test("test01");
     final Parser parser = new ParserImpl();
     final List<Token> list = new ArrayList<>();
     list.add(new Token(TokenIdentifier.LET_TOKEN, 0, 0, 0, "let"));
@@ -641,165 +646,43 @@ public class ParserTests {
     System.out.println("ASD");
   }
 
-  //  @Test(expected = CompilationTimeException.class)
-  //  public void validationVariablesShouldNotBeInitializedTwice() throws CompilationTimeException {
-  //
-  //    final VariableRegister variableRegister = new VariableRegister();
-  //    final Parser parser = new ParserImpl();
-  //
-  //    final VariableInfo var1 = new VariableInfo();
-  //    var1.setVariableName("x");
-  //    var1.setValue("0");
-  //    var1.setType(Token.NUMBER_TYPE_TOKEN);
-  //
-  //    variableRegister.addNewVariable(var1);
-  //
-  //    final AbstractSyntaxTree tree = new TypeAssignationSyntaxBranch();
-  //    tree.setTokenWrapper(new TokenWrapper(Token.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
-  //
-  //    final NumberTypeSyntaxLeaf numberTypeSyntaxLeaf = new NumberTypeSyntaxLeaf();
-  //    numberTypeSyntaxLeaf.setTokenWrapper(new TokenWrapper(Token.NUMBER_TYPE_TOKEN, 0, 0, 0,
-  // "number"));
-  //    tree.addNumberTypeSyntaxLeaf(numberTypeSyntaxLeaf);
-  //
-  //    final VariableSyntaxLeaf variableSyntaxLeaf = new VariableSyntaxLeaf();
-  //    variableSyntaxLeaf.setTokenWrapper(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
-  //    tree.addVariableSyntaxLeaf(variableSyntaxLeaf);
-  //
-  //    parser.analyseSemantically(tree);
-  //  }
-  //
-  //  @Test(expected = CompilationTimeException.class)
-  //  public void validationAssignmentsShouldNotBeMadeToAnUnexistingVariable() throws
-  // CompilationTimeException {
-  //
-  //    final VariableRegister variableRegister = new VariableRegister();
-  //    final Parser parser = new ParserImpl();
-  //
-  //    final AbstractSyntaxTree tree = new ValueAssignationSyntaxBranch();
-  //    tree.setTokenWrapper(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-  //
-  //    final VariableSyntaxLeaf variableSyntaxLeaf = new VariableSyntaxLeaf();
-  //    variableSyntaxLeaf.setTokenWrapper(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
-  //    tree.addVariableSyntaxLeaf(variableSyntaxLeaf);
-  //
-  //    final LiteralSyntaxLeaf literalSyntaxLeaf = new LiteralSyntaxLeaf();
-  //    literalSyntaxLeaf.setTokenWrapper(new TokenWrapper(Token.NUMBER_LITERAL_TOKEN, 0, 0, 0,
-  // "1"));
-  //    tree.addLiteralSyntaxLeaf(literalSyntaxLeaf);
-  //
-  //    parser.analyseSemantically(tree);
-  //  }
-  //
-  //  @Test(expected = CompilationTimeException.class)
-  //  public void validationAssignmentValuesMatchTheDeclaredVariableTheyAreAssignedTo() throws
-  // CompilationTimeException {
-  //
-  //    final VariableRegister variableRegister = new VariableRegister();
-  //    final Parser parser = new ParserImpl();
-  //
-  //    final List<TokenWrapper> list = new ArrayList<>();
-  //    list.add(new TokenWrapper(Token.LET_TOKEN, 0, 0, 0, "let"));
-  //    list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
-  //    list.add(new TokenWrapper(Token.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
-  //    list.add(new TokenWrapper(Token.NUMBER_TYPE_TOKEN, 0, 0, 0, "number"));
-  //    list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-  //    list.add(new TokenWrapper(Token.STRING_LITERAL_TOKEN, 0, 0, 0, "HOLA"));
-  //    list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-  //    final AbstractSyntaxTree tree = parser.analyseSintactically(list);
-  //
-  //    parser.analyseSemantically(tree);
-  //  }
-  //
-  //  @Test(expected = CompilationTimeException.class)
-  //  public void validationAssignmentValuesMatchTheUndeclaredVariableTheyAreAssignedTo() throws
-  // CompilationTimeException {
-  //
-  //    final VariableRegister variableRegister = new VariableRegister();
-  //    final Parser parser = new ParserImpl();
-  //
-  //    final VariableInfo var1 = new VariableInfo();
-  //    var1.setVariableName("x");
-  //    var1.setValue("0");
-  //    var1.setType(Token.NUMBER_TYPE_TOKEN);
-  //
-  //    variableRegister.addNewVariable(var1);
-  //
-  //    final List<TokenWrapper> list = new ArrayList<>();
-  //    list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
-  //    list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-  //    list.add(new TokenWrapper(Token.STRING_LITERAL_TOKEN, 0, 0, 0, "HOLA"));
-  //    list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-  //    final AbstractSyntaxTree tree = parser.analyseSintactically(list);
-  //
-  //    parser.analyseSemantically(tree);
-  //  }
-  //
-  //  @Test(expected = CompilationTimeException.class)
-  //  public void validationAssignmentValuesTypesShouldMatchAmongThemselves() throws
-  // CompilationTimeException {
-  //
-  //    final VariableRegister variableRegister = new VariableRegister();
-  //    final Parser parser = new ParserImpl();
-  //
-  //    final VariableInfo var1 = new VariableInfo();
-  //    var1.setVariableName("x");
-  //    var1.setValue("0");
-  //    var1.setType(Token.NUMBER_TYPE_TOKEN);
-  //
-  //    variableRegister.addNewVariable(var1);
-  //
-  //    final List<TokenWrapper> list = new ArrayList<>();
-  //    list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
-  //    list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-  //    list.add(new TokenWrapper(Token.STRING_LITERAL_TOKEN, 0, 0, 0, "HOLA"));
-  //    list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-  //    list.add(new TokenWrapper(Token.NUMBER_LITERAL_TOKEN, 0, 0, 0, "2"));
-  //    list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-  //    final AbstractSyntaxTree tree = parser.analyseSintactically(list);
-  //
-  //    parser.analyseSemantically(tree);
-  //  }
-  //
-  //  @Test(expected = CompilationTimeException.class)
-  //  public void validationDeclarationAssignmentValuesTypesShouldMatchAmongThemselves() throws
-  // CompilationTimeException {
-  //
-  //    final VariableRegister variableRegister = new VariableRegister();
-  //    final Parser parser = new ParserImpl();
-  //
-  //    final List<TokenWrapper> list = new ArrayList<>();
-  //    list.add(new TokenWrapper(Token.LET_TOKEN, 0, 0, 0, "let"));
-  //    list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
-  //    list.add(new TokenWrapper(Token.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
-  //    list.add(new TokenWrapper(Token.NUMBER_TYPE_TOKEN, 0, 0, 0, "number"));
-  //    list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-  //    list.add(new TokenWrapper(Token.STRING_LITERAL_TOKEN, 0, 0, 0, "HOLA"));
-  //    list.add(new TokenWrapper(Token.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-  //    list.add(new TokenWrapper(Token.NUMBER_LITERAL_TOKEN, 0, 0, 0, "2"));
-  //    list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-  //    final AbstractSyntaxTree tree = parser.analyseSintactically(list);
-  //
-  //    parser.analyseSemantically(tree);
-  //  }
-  //
-  //  @Test(expected = CompilationTimeException.class)
-  //  public void validationCorrectDeclarationAssignmentValuesTypesShouldPassValidationTest() throws
-  // CompilationTimeException {
-  //
-  //    final VariableRegister variableRegister = new VariableRegister();
-  //    final Parser parser = new ParserImpl();
-  //
-  //    final List<TokenWrapper> list = new ArrayList<>();
-  //    list.add(new TokenWrapper(Token.LET_TOKEN, 0, 0, 0, "let"));
-  //    list.add(new TokenWrapper(Token.VARIABLE_TOKEN, 0, 0, 0, "x"));
-  //    list.add(new TokenWrapper(Token.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
-  //    list.add(new TokenWrapper(Token.NUMBER_TYPE_TOKEN, 0, 0, 0, "number"));
-  //    list.add(new TokenWrapper(Token.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-  //    list.add(new TokenWrapper(Token.STRING_LITERAL_TOKEN, 0, 0, 0, "1"));
-  //    list.add(new TokenWrapper(Token.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-  //    final AbstractSyntaxTree tree = parser.analyseSintactically(list);
-  //
-  //    parser.analyseSemantically(tree);
-  //  }
+  @Test
+  public void testtest() throws FileNotFoundException, CompilationTimeException {
+    test("testtest");
+  }
+
+  public void test(String directory) throws FileNotFoundException, CompilationTimeException {
+    test(directory, "1.0");
+  }
+
+  public void test(String directory, String version) throws FileNotFoundException, CompilationTimeException {
+    String testDirectory = "src/test/resources/parser-tests/" + directory + "/";
+    List<String> statements = readLines(testDirectory + "input.txt");
+    List<String> outputs = readLines(testDirectory + "output.txt");
+
+    Lexer lexer = new LexerImpl();
+    lexer.setVersion(version);
+    lexer.analyseLexically(statements);
+
+    Parser parser = new ParserImpl();
+
+    List<AbstractSyntaxTree> trees = parser.analyseSintactically(lexer);
+
+    for (int i = 0, treesSize = trees.size(); i < treesSize; i++) {
+      ASTSerializer astSerializer = new ASTSerializer();
+      astSerializer.visit(trees.get(i));
+      System.out.println(astSerializer.getString());
+//      Assert.assertEquals(outputs.get(i), astSerializer.getString());
+    }
+  }
+
+  private List<String> readLines(String file) throws FileNotFoundException {
+    Scanner s = new Scanner(new java.io.File(file));
+    ArrayList<String> list = new ArrayList<>();
+    while (s.hasNextLine()) {
+      list.add(s.nextLine());
+    }
+    s.close();
+    return list;
+  }
 }
