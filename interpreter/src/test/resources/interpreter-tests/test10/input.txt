@@ -1,0 +1,8 @@
+let x: boolean = false;
+if (x) {
+    println("this should not print!");
+} else {
+    println("x is:" + x);
+    x = true;
+    println("x is not:" + x);
+}

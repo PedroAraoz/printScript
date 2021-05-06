@@ -1,0 +1,7 @@
+let x: number = 1.1;
+let b: boolean = 1.1 > 1;
+if (b) {
+  println("1.1 is larger than 1");
+} else {
+  println("whoops! It seems that 1.1 is not bigger than 1?");
+}
