@@ -1,0 +1,7 @@
+let a: number = 1 + 1;
+a = 1 - 1;
+a = 1 * 1;
+a = 4/2;
+let b: number = 0;
+println(a);
+println(b);

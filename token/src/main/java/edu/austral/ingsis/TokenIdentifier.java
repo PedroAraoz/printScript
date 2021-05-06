@@ -53,17 +53,13 @@ public class TokenIdentifier {
   public static TokenIdentifier STRING_TYPE_TOKEN =
           new TokenIdentifier(TokenName.STRING_TYPE, Pattern.compile("string"));
   public static TokenIdentifier NUMBER_LITERAL_TOKEN =
-          new TokenIdentifier(
-                  TokenName.NUMBER_LITERAL,
-                  Pattern.compile("([0-9]+.[0-9]+)|[0-9]+"));
+          new TokenIdentifier(TokenName.NUMBER_LITERAL, Pattern.compile("([0-9]+.[0-9]+)|[0-9]+"));
   public static TokenIdentifier STRING_LITERAL_TOKEN =
-          new TokenIdentifier(
-                  TokenName.STRING_LITERAL,
-                  Pattern.compile("('[a-zA-Z ]+')|(\"[a-zA-Z ]+\")"));
+          new TokenIdentifier(TokenName.STRING_LITERAL, Pattern.compile("('(.)*')|(\"(.)*\")"));
   public static TokenIdentifier VARIABLE_TOKEN =
           new TokenIdentifier(TokenName.VARIABLE, Pattern.compile(".*"));
   public static TokenIdentifier PRINTLN_TOKEN =
-          new TokenIdentifier(TokenName.PRINT, Pattern.compile("printLn"));
+          new TokenIdentifier(TokenName.PRINT, Pattern.compile("println"));
   public static TokenIdentifier LEFT_PARENTHESIS_TOKEN =
           new TokenIdentifier(TokenName.LEFT_PARENTHESIS, Pattern.compile("\\("));
   public static TokenIdentifier RIGHT_PARENTHESIS_TOKEN =

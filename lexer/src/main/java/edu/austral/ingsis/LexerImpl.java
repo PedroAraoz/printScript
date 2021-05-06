@@ -22,10 +22,11 @@ public class LexerImpl implements Lexer {
       tokens.add(stringToEmptyToken(code.get(i), i, 0, 0));
     for (TokenIdentifier ti : one)
       tokens = findAndSplit(tokens, ti);
-      
+    
     
     // then we remove unnecessary spaces that might be there.
     doubleTrim(tokens);
+    tokens = fixString(tokens);
     findAndReplace(tokens, two);
     tokens = removeSpacesInWIPToken(tokens);
     tokens = filterEmptyWIPToken(tokens);
@@ -38,18 +39,53 @@ public class LexerImpl implements Lexer {
   
   // removes whitespace before string.
   private void finalTrim(List<Token> tokens) {
-    for (int i = 0; i < tokens.size(); i ++) {
+    for (int i = 0; i < tokens.size(); i++) {
       Token t = tokens.get(i);
       if (t.getTokenIdentifier().equals(TokenIdentifier.STRING_LITERAL_TOKEN)) {
         String value = t.getValue();
         int originalSize = value.length();
         value = value.trim();
         int delta = originalSize - value.length();
-        final Token token = new Token(t.getTokenIdentifier(), t.getLine(), t.getStartPos() + delta,
-                t.getEndPos(), value);
+        final Token token =
+                new Token(
+                        t.getTokenIdentifier(), t.getLine(), t.getStartPos() + delta, t.getEndPos(), value);
         tokens.set(i, token);
       }
     }
+  }
+  
+  private List<Token> fixString(List<Token> tokens) {
+    final List<Token> answer = new ArrayList<>();
+    String acc = "";
+    boolean unClosed = false;
+    int startPos = 0;
+    for (int i = 0; i < tokens.size(); i++) {
+      final Token token = tokens.get(i);
+      if (containsQuotations(token.getValue())) {
+        if (!unClosed) {
+          unClosed = true;
+          acc = token.getValue();
+          startPos = token.getStartPos();
+        } else {
+          unClosed = false;
+          acc += " " + token.getValue();
+          acc = acc.replace("  ", " ").trim();
+          answer.add(stringToEmptyToken(acc, token.getLine(), startPos, startPos + acc.length()));
+        }
+      } else if (unClosed) {
+        acc += " " + token.getValue().trim();
+      } else {
+        answer.add(token);
+      }
+    }
+    return answer;
+  }
+  
+  private boolean containsQuotations(String value) {
+    final int length = value.length();
+    final String replace1 = value.replace("\"", "");
+    final String replace2 = value.replace("'", "");
+    return length - replace1.length() == 1 || length - replace2.length() == 1;
   }
   
   public List<Token> findAndSplit(List<Token> tokens, TokenIdentifier ti) {
@@ -62,8 +98,9 @@ public class LexerImpl implements Lexer {
       int startpos = 0;
       for (String s : split) {
         int endpos = startpos + s.length() - 1;
-        final Token token = stringToEmptyToken(s, t.getLine(),
-                t.getStartPos() + startpos, t.getEndPos() + endpos);
+        final Token token =
+                stringToEmptyToken(
+                        s, t.getLine(), t.getStartPos() + startpos, t.getEndPos() + endpos);
         startpos = endpos + 1;
         list.add(token);
       }
@@ -102,8 +139,9 @@ public class LexerImpl implements Lexer {
         String reverseTrimmed = reversed.trim();
         int deltaEnd = reverseTrimmed.length() - originalReversedSize;
         final String finalString = new StringBuilder(reverseTrimmed).reverse().toString();
-        Token token = stringToEmptyToken(finalString, t.getLine(),
-                t.getStartPos() + deltaStart, t.getEndPos() - deltaEnd);
+        Token token =
+                stringToEmptyToken(
+                        finalString, t.getLine(), t.getStartPos() + deltaStart, t.getEndPos() - deltaEnd);
         tokens.set(i, token);
       }
     }
@@ -118,8 +156,7 @@ public class LexerImpl implements Lexer {
         int endPos;
         for (String s : strings) {
           endPos = startPos + s.length();
-          answer.add(stringToEmptyToken(
-                  s, t.getLine(), startPos, endPos));
+          answer.add(stringToEmptyToken(s, t.getLine(), startPos, endPos));
           startPos = endPos + 1;
         }
       } else {
@@ -138,6 +175,7 @@ public class LexerImpl implements Lexer {
       }
     }
   }
+  
   private List<Token> filterEmptyWIPToken(List<Token> tokens) {
     return tokens.stream().filter(e -> !e.getValue().equals("")).collect(Collectors.toList());
   }
@@ -145,7 +183,7 @@ public class LexerImpl implements Lexer {
   public Token stringToEmptyToken(String string, int line, int s, int e) {
     return new Token(TokenIdentifier.WIP_TOKEN, line, s, e, string);
   }
-
+  
   @Override
   public Optional<Token> getNextToken() {
     try {
@@ -154,7 +192,7 @@ public class LexerImpl implements Lexer {
       return Optional.empty();
     }
   }
-
+  
   @Override
   public Optional<Token> peek() {
     if (tokens.isEmpty()) {

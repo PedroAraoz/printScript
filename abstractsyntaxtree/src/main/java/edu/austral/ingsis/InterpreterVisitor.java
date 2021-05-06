@@ -29,4 +29,8 @@ public interface InterpreterVisitor {
     LeftParenthesisSyntaxLeaf visitLeftParenthesis(LeftParenthesisSyntaxLeaf leaf);
 
     RightParenthesisSyntaxLeaf visitRightParenthesis(RightParenthesisSyntaxLeaf leaf);
+    
+    void enablePrintProgress();
+    
+    void disablePrintProgress();
 }

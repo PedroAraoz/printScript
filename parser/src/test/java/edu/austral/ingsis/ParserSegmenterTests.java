@@ -1,23 +1,23 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
-import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class ParserSegmenterTests {
 
   /*
-  * TODO Ale
-  * Parser segmenter should start empty
-  * parser segmenter of empty lexer should be emtpy
-  * parser segmenter of one statement should return it
-  * parser segmenter of many statements should return them
-  * incomplete statement should throw error
-  * VERSION 1.1:
-  * parser segmenter of If should return if () {}
-  * parser segmenter of IF Else should return if () {} else {}
+   * TODO Ale
+   * Parser segmenter should start empty
+   * parser segmenter of empty lexer should be emtpy
+   * parser segmenter of one statement should return it
+   * parser segmenter of many statements should return them
+   * incomplete statement should throw error
+   * VERSION 1.1:
+   * parser segmenter of If should return if () {}
+   * parser segmenter of IF Else should return if () {} else {}
    * parser segmenter of if with one statement should return statement inside
    * if with many statements should return them inside
    * else with statements should return them inside
@@ -25,7 +25,7 @@ public class ParserSegmenterTests {
    * when there are more statements should return hasNext true
    * incomplete if should throw error
    * incomplete if else should throw error
-  */
+   */
 
   @Test
   public void shouldStartEmpty() throws CompilationTimeException {

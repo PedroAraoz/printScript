@@ -1,3 +1,0 @@
-let s: string;
-let x: number = 1 + 1;
-s = x + "hola";
