@@ -27,7 +27,7 @@ public class InterpreterTests {
   public void interpreterTestsFromFileOutputTrue()
           throws FileNotFoundException, CompilationTimeException {
     List<String> directories = new ArrayList<>();
-//    directories.add("test03");
+    directories.add("test03");
     directories.add("test04");
     
     for (String directory : directories) {

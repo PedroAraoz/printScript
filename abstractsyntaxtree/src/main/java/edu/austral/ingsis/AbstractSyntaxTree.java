@@ -32,7 +32,7 @@ public interface AbstractSyntaxTree extends Visitable, InterpreterVisitable {
 
   AbstractSyntaxTree addLeftParenthesisSyntaxLeaf(LeftParenthesisSyntaxLeaf leaf);
 
-  AbstractSyntaxTree addRightParenthesisSyntaxLeaf(RightParenthesisSyntaxLeaf leaf);
+  AbstractSyntaxTree addRightParenthesisSyntaxLeaf(RightParenthesisSyntaxLeaf leaf) throws CompilationTimeException;
 
   boolean isEmpty();
 }
