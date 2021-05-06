@@ -12,7 +12,6 @@ version = '1.0.1'
 
 dependencies {
     implementation project(':parser')
-    implementation project(':filegenerator')
     implementation project(':token')
     implementation project(':lexer')
     implementation project(':state')

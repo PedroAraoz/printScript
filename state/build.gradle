@@ -15,7 +15,6 @@ dependencies {
     implementation project(':parser')
     implementation project(':token')
     implementation project(':abstractsyntaxtree')
-    implementation project(':filegenerator')
     implementation project(':interpreter')
     implementation project(':printer')
     implementation 'junit:junit:4.12'

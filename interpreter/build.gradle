@@ -15,7 +15,6 @@ dependencies {
     implementation 'junit:junit:4.12'
 
     testCompileOnly project(':lexer')
-    testCompileOnly project(':filegenerator')
 }
 
 group = 'edu.austral.ingsis'

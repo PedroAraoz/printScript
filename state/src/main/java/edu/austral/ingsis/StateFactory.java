@@ -1,5 +1,7 @@
 package edu.austral.ingsis;
 
+import edu.austral.ingsis.fileGenerator.FileGenerator;
+
 public class StateFactory {
   
   private final State execute, validate;
