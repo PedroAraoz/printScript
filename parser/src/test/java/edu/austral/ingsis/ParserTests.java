@@ -163,7 +163,7 @@ public class ParserTests {
     for (int i = 0, treesSize = trees.size(); i < treesSize; i++) {
       ASTSerializer astSerializer = new ASTSerializer();
       astSerializer.visit(trees.get(i));
-//            System.out.println(astSerializer.getString());
+      //            System.out.println(astSerializer.getString());
       Assert.assertEquals(outputs.get(i), astSerializer.getString());
     }
   }
