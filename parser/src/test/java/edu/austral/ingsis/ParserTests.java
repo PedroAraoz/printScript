@@ -12,327 +12,86 @@ public class ParserTests {
   @Test
   public void testDeclaAsignMult() throws CompilationTimeException, FileNotFoundException {
     test("test01");
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.LET_TOKEN, 0, 0, 0, "let"));
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
-    list.add(new Token(TokenIdentifier.NUMBER_TYPE_TOKEN, 0, 0, 0, "number"));
-    list.add(new Token(TokenIdentifier.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "11"));
-    list.add(new Token(TokenIdentifier.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "11"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    System.out.println("ASD");
   }
 
   @Test
-  public void TwoOperationsSum() throws CompilationTimeException {
-
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.LET_TOKEN, 0, 0, 0, "let"));
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
-    list.add(new Token(TokenIdentifier.NUMBER_TYPE_TOKEN, 0, 0, 0, "number"));
-    list.add(new Token(TokenIdentifier.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "11"));
-    list.add(new Token(TokenIdentifier.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "12"));
-    list.add(new Token(TokenIdentifier.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "13"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    System.out.println("ASD");
+  public void TwoOperationsSum() throws CompilationTimeException, FileNotFoundException {
+    test("test02");
   }
 
   @Test
-  public void testDeclaAsignSum() throws CompilationTimeException {
-
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.LET_TOKEN, 0, 0, 0, "let"));
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
-    list.add(new Token(TokenIdentifier.NUMBER_TYPE_TOKEN, 0, 0, 0, "number"));
-    list.add(new Token(TokenIdentifier.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "11"));
-    list.add(new Token(TokenIdentifier.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "11"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    System.out.println("ASD");
+  public void testDeclaString() throws CompilationTimeException, FileNotFoundException {
+    test("test03");
   }
 
   @Test
-  public void testDeclaString() throws CompilationTimeException {
-
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.LET_TOKEN, 0, 0, 0, "let"));
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
-    list.add(new Token(TokenIdentifier.STRING_TYPE_TOKEN, 0, 0, 0, "string"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    System.out.println("ASD");
+  public void testDeclaAsignString() throws CompilationTimeException, FileNotFoundException {
+    test("test04");
   }
 
   @Test
-  public void testDeclaAsignString() throws CompilationTimeException {
-
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.LET_TOKEN, 0, 0, 0, "let"));
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
-    list.add(new Token(TokenIdentifier.STRING_TYPE_TOKEN, 0, 0, 0, "string"));
-    list.add(new Token(TokenIdentifier.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    list.add(new Token(TokenIdentifier.STRING_LITERAL_TOKEN, 0, 0, 0, "hola"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    System.out.println("ASD");
+  public void asigVarMult() throws CompilationTimeException, FileNotFoundException {
+    test("test05");
   }
 
   @Test
-  public void asigVarMult() throws CompilationTimeException {
+  public void SumMult() throws CompilationTimeException, FileNotFoundException {
+    test("test06");
+  }
 
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "11"));
-    list.add(new Token(TokenIdentifier.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "12"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    System.out.println("ASD");
+  @Test(expected = CompilationTimeException.class)
+  public void emptyWithSum() throws FileNotFoundException, CompilationTimeException {
+    test("test07");
+  }
+
+  @Test(expected = CompilationTimeException.class)
+  public void emptyWithMult() throws FileNotFoundException, CompilationTimeException {
+    test("test08");
+  }
+
+  @Test(expected = CompilationTimeException.class)
+  public void emptyWithValueAsign() throws FileNotFoundException, CompilationTimeException {
+    test("test09");
+  }
+
+  @Test(expected = CompilationTimeException.class)
+  public void emptyWithTypeAsign() throws FileNotFoundException, CompilationTimeException {
+    test("test10");
   }
 
   @Test
-  public void SumMult() throws CompilationTimeException {
-
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "1"));
-    list.add(new Token(TokenIdentifier.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "2"));
-    list.add(new Token(TokenIdentifier.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "3"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    System.out.println("ASD");
+  public void multipleOperationsSum() throws CompilationTimeException, FileNotFoundException {
+    test("test11");
   }
 
   @Test
-  public void emptyWithSum() {
-
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.SUM_OPERATION_TOKEN, 22, 0, 0, "+"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 22, 0, 0, "12"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 22, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree;
-    try {
-      abstractSyntaxTree = parser.analyseSintactically(list);
-    } catch (CompilationTimeException e) {
-      System.out.println(e.getMessage());
-      assert true;
-    }
+  public void multipleOperationsMult() throws CompilationTimeException, FileNotFoundException {
+    test("test12");
   }
 
   @Test
-  public void emptyWithMult() {
-
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.MULT_OPERATION_TOKEN, 22, 0, 0, "*"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 22, 0, 0, "12"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 22, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree;
-    try {
-      abstractSyntaxTree = parser.analyseSintactically(list);
-    } catch (CompilationTimeException e) {
-      assert true;
-    }
-    System.out.println("ASD");
+  public void sumWithVariables() throws CompilationTimeException, FileNotFoundException {
+    test("test13");
   }
 
   @Test
-  public void emptyWithValueAsign() {
-
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "12"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree;
-    try {
-      abstractSyntaxTree = parser.analyseSintactically(list);
-    } catch (CompilationTimeException e) {
-      assert true;
-    }
-    System.out.println("ASD");
+  public void multWithVariables() throws CompilationTimeException, FileNotFoundException {
+    test("test14");
   }
 
   @Test
-  public void emptyWithTypeAsign() {
-
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
-    list.add(new Token(TokenIdentifier.STRING_TYPE_TOKEN, 0, 0, 0, "string"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree;
-    try {
-      abstractSyntaxTree = parser.analyseSintactically(list);
-    } catch (CompilationTimeException e) {
-      assert true;
-    }
-    System.out.println("ASD");
+  public void multSumMix() throws CompilationTimeException, FileNotFoundException {
+    test("test15");
   }
 
   @Test
-  public void multipleOperationsSum() throws CompilationTimeException {
-
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.LET_TOKEN, 0, 0, 0, "let"));
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
-    list.add(new Token(TokenIdentifier.NUMBER_TYPE_TOKEN, 0, 0, 0, "number"));
-    list.add(new Token(TokenIdentifier.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "11"));
-    list.add(new Token(TokenIdentifier.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "12"));
-    list.add(new Token(TokenIdentifier.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "13"));
-    list.add(new Token(TokenIdentifier.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "14"));
-    list.add(new Token(TokenIdentifier.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "15"));
-    list.add(new Token(TokenIdentifier.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "16"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    System.out.println("ASD");
+  public void testParenthesis() throws CompilationTimeException, FileNotFoundException {
+    test("test16");
   }
 
   @Test
-  public void multipleOperationsMult() throws CompilationTimeException {
-
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.LET_TOKEN, 0, 0, 0, "let"));
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
-    list.add(new Token(TokenIdentifier.NUMBER_TYPE_TOKEN, 0, 0, 0, "number"));
-    list.add(new Token(TokenIdentifier.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "11"));
-    list.add(new Token(TokenIdentifier.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "12"));
-    list.add(new Token(TokenIdentifier.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "13"));
-    list.add(new Token(TokenIdentifier.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "14"));
-    list.add(new Token(TokenIdentifier.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "15"));
-    list.add(new Token(TokenIdentifier.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "16"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    System.out.println("ASD");
-  }
-
-  @Test
-  public void sumWithVariables() throws CompilationTimeException {
-
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "11"));
-    list.add(new Token(TokenIdentifier.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    System.out.println("ASD");
-  }
-
-  @Test
-  public void multWithVariables() throws CompilationTimeException {
-
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "11"));
-    list.add(new Token(TokenIdentifier.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    System.out.println("ASD");
-  }
-
-  @Test
-  public void multSumMix() throws CompilationTimeException {
-
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "1"));
-    list.add(new Token(TokenIdentifier.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "y"));
-    list.add(new Token(TokenIdentifier.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "2"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    System.out.println("ASD");
-  }
-
-  @Test
-  public void sumMultMix() throws CompilationTimeException {
-
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.VALUE_ASSIGNATION_TOKEN, 0, 0, 0, "="));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "1"));
-    list.add(new Token(TokenIdentifier.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.MULT_OPERATION_TOKEN, 0, 0, 0, "*"));
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "y"));
-    list.add(new Token(TokenIdentifier.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "2"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    System.out.println("ASD");
-  }
-
-  @Test
-  public void testParenthesis() throws CompilationTimeException {
-
-    final Parser parser = new ParserImpl();
-    final List<Token> list = new ArrayList<>();
-    list.add(new Token(TokenIdentifier.LEFT_PARENTHESIS_TOKEN, 0, 0, 0, "("));
-    list.add(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
-    list.add(new Token(TokenIdentifier.SUM_OPERATION_TOKEN, 0, 0, 0, "+"));
-    list.add(new Token(TokenIdentifier.NUMBER_LITERAL_TOKEN, 0, 0, 0, "1"));
-    list.add(new Token(TokenIdentifier.RIGHT_PARENTHESIS_TOKEN, 0, 0, 0, ")"));
-    list.add(new Token(TokenIdentifier.SEMICOLON_TOKEN, 0, 0, 0, ";"));
-    final AbstractSyntaxTree abstractSyntaxTree = parser.analyseSintactically(list);
-    System.out.println("ASD");
-  }
-
-  @Test
-  public void testPrintLn() throws CompilationTimeException {
-
+  public void testPrintLn() throws CompilationTimeException, FileNotFoundException {
+    test("test17");
     final Parser parser = new ParserImpl();
     final List<Token> list = new ArrayList<>();
     list.add(new Token(TokenIdentifier.PRINTLN_TOKEN, 0, 0, 0, "PrintLn"));
