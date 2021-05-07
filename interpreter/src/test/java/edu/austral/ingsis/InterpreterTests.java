@@ -1,8 +1,6 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
-import edu.austral.ingsis.fileGenerator.File;
-import edu.austral.ingsis.fileGenerator.NormalFileGenerator;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -125,6 +123,18 @@ public class InterpreterTests {
   public void numberToBooleanAssignmentShouldFail()
       throws CompilationTimeException, FileNotFoundException {
     test("test18", "1.1", false);
+  }
+
+  @Test
+  public void testStringWithAWordFromAPriorityOneTokenWithSpace()
+      throws CompilationTimeException, FileNotFoundException {
+    test("test19", "1.1", false);
+  }
+
+  @Test
+  public void testStringWithAWordFromAPriorityOneTokenWithoutSpace()
+      throws CompilationTimeException, FileNotFoundException {
+    test("test20", "1.1", false);
   }
 
   public void test(String directory, boolean output)

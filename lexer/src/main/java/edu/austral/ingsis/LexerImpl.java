@@ -29,41 +29,23 @@ public class LexerImpl implements Lexer {
 
     // then we remove unnecessary spaces that might be there.
     doubleTrim(tokens);
-    tokens = fixString(tokens);
+    tokens = fixString(tokens, code);
     findAndReplace(tokens, two);
     tokens = removeSpacesInWIPToken(tokens);
     tokens = filterEmptyWIPToken(tokens);
     // then we find and replace the tokens in an important order.
     findAndReplace(tokens, all);
     removeQuotationMarkers(tokens);
-    finalTrim(tokens);
     this.tokens = tokens;
   }
 
-  // removes whitespace before string.
-  private void finalTrim(List<Token> tokens) {
-    for (int i = 0; i < tokens.size(); i++) {
-      Token t = tokens.get(i);
-      if (t.getTokenIdentifier().equals(TokenIdentifier.STRING_LITERAL_TOKEN)) {
-        String value = t.getValue();
-        int originalSize = value.length();
-        value = value.trim();
-        int delta = originalSize - value.length();
-        final Token token =
-            new Token(
-                t.getTokenIdentifier(), t.getLine(), t.getStartPos() + delta, t.getEndPos(), value);
-        tokens.set(i, token);
-      }
-    }
-  }
-
-  private List<Token> fixString(List<Token> tokens) {
+  private List<Token> fixString(List<Token> tokens, List<String> code) {
     final List<Token> answer = new ArrayList<>();
     String acc = "";
     boolean unClosed = false;
     int startPos = 0;
     for (int i = 0; i < tokens.size(); i++) {
-      final Token token = tokens.get(i);
+      Token token = tokens.get(i);
       if (containsQuotations(token.getValue())) {
         if (!unClosed) {
           unClosed = true;
@@ -71,17 +53,39 @@ public class LexerImpl implements Lexer {
           startPos = token.getStartPos();
         } else {
           unClosed = false;
-          acc += " " + token.getValue();
-          acc = acc.replace("  ", " ").trim();
+          acc += token.getValue();
+          //          acc = acc.replace("  ", " ").trim();
           answer.add(stringToEmptyToken(acc, token.getLine(), startPos, startPos + acc.length()));
         }
       } else if (unClosed) {
-        acc += " " + token.getValue().trim();
+        token = fixKeywords(token, code);
+        acc += token.getValue();
       } else {
         answer.add(token);
       }
     }
     return answer;
+  }
+
+  private Token fixKeywords(Token token, List<String> code) {
+    String value = token.getValue();
+    int endPos = token.getEndPos();
+    List<TokenIdentifier> one = TokenIdentifier.getPriorityOneTokens(version);
+    for (TokenIdentifier ti : one) {
+      if (ti.verify(value)) {
+        final List<String> l = Arrays.asList(code.get(token.getLine()).split(value));
+        for (int i = 0; i < l.size() - 1; i++) {
+          String s = l.get(i);
+          if (s.contains("\"") || s.contains("\'")) {
+            value += (l.get(i + 1).charAt(0) == ' ') ? " " : "";
+          }
+        }
+        endPos++;
+        break;
+      }
+    }
+    return new Token(
+        token.getTokenIdentifier(), token.getLine(), token.getStartPos(), endPos, value);
   }
 
   private boolean containsQuotations(String value) {

@@ -55,13 +55,28 @@ public class LexerTests {
   }
 
   @Test
-  public void testSpaceBeforeCharacters_ShouldBeRemoved() throws FileNotFoundException {
+  public void testSpaceBeforeCharacters_ShouldNotBeRemoved() throws FileNotFoundException {
     test("test10");
   }
 
   @Test
   public void testMultipleLines() throws FileNotFoundException {
     test("test11");
+  }
+
+  @Test
+  public void testStringAdditionWithSpace() throws FileNotFoundException {
+    test("test12");
+  }
+
+  @Test
+  public void testPriorityOneTokenWordInStringWithSpace() throws FileNotFoundException {
+    test("test13");
+  }
+
+  @Test
+  public void testPriorityOneTokenWordInStringWithoutSpace() throws FileNotFoundException {
+    test("test14");
   }
 
   public void test(String directory) throws FileNotFoundException {

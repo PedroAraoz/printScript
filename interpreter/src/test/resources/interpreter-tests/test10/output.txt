@@ -1,2 +1,2 @@
-x is :false
-x is not :true
+x is:false
+x is not:true
