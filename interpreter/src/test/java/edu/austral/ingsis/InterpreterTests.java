@@ -35,6 +35,18 @@ public class InterpreterTests {
     }
   }
   
+  @Test
+  public void testStringWithAWordFromAPriorityOneTokenWithSpace()
+          throws CompilationTimeException, FileNotFoundException {
+    test("test05", false);
+  }
+  
+  @Test
+  public void testStringWithAWordFromAPriorityOneTokenWithoutSpace()
+          throws CompilationTimeException, FileNotFoundException {
+    test("test06", false);
+  }
+  
   public void test(String directory, boolean output)
           throws FileNotFoundException, CompilationTimeException {
     String testDirectory = "src/test/resources/interpreter-tests/" + directory + "/";
