@@ -37,7 +37,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v_1.1.7
+          tag_name: v1.1.7
           release_name: printScript-v1.1.7
           body: Releasing
           draft: false
