@@ -1,7 +1,6 @@
 package edu.austral.ingsis;
 
 import edu.austral.ingsis.exception.CompilationTimeException;
-
 import java.util.List;
 import java.util.Stack;
 
@@ -18,7 +17,8 @@ public class ASTFactory {
       abstractSyntaxTreeStack.add(tokenToASTConverter.convert(t));
     }
 
-    // Then we fold the node list unto itself to validate the structure (order of the tokenIdentifiers)
+    // Then we fold the node list unto itself to validate the structure (order of the
+    // tokenIdentifiers)
 
     while (abstractSyntaxTreeStack.size() > 1) {
       AbstractSyntaxTree one = abstractSyntaxTreeStack.pop();

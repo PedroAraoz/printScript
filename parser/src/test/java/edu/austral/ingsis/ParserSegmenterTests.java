@@ -3,7 +3,6 @@ package edu.austral.ingsis;
 import edu.austral.ingsis.exception.CompilationTimeException;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.Assert;
 import org.junit.Test;
 
 public class ParserSegmenterTests {

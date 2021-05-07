@@ -100,8 +100,7 @@ public class ParserTests {
     test("testtest");
   }
 
-  public void test(String directory)
-      throws FileNotFoundException, CompilationTimeException {
+  public void test(String directory) throws FileNotFoundException, CompilationTimeException {
     String testDirectory = "src/test/resources/parser-tests/" + directory + "/";
     List<String> statements = readLines(testDirectory + "input.txt");
     List<String> outputs = readLines(testDirectory + "output.txt");

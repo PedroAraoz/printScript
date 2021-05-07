@@ -1,7 +1,5 @@
 package edu.austral.ingsis;
 
-import edu.austral.ingsis.exception.CompilationTimeException;
-
 public class ASTSerializer implements Visitor {
 
   private StringBuilder bobTheBuilder = new StringBuilder();

@@ -11,7 +11,7 @@ public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
   public String getValue() {
     return token.getValue();
   }
-  
+
   public void setToken(Token token) {
     this.token = token;
   }

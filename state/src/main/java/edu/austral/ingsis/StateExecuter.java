@@ -3,13 +3,12 @@ package edu.austral.ingsis;
 import edu.austral.ingsis.exception.CompilationTimeException;
 import edu.austral.ingsis.fileGenerator.File;
 import edu.austral.ingsis.fileGenerator.FileGenerator;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StateExecuter implements State {
-  
+
   private CLI cli;
   private final Lexer lexer;
   private final Parser parser;
@@ -17,8 +16,14 @@ public class StateExecuter implements State {
   private final FileGenerator fileGenerator;
   private final StateFactory stateFactory;
   private final Printer printer;
-  
-  public StateExecuter(Lexer lexer, Parser parser, InterpreterVisitor interpreter, FileGenerator fileGenerator, StateFactory stateFactory, Printer printer) {
+
+  public StateExecuter(
+      Lexer lexer,
+      Parser parser,
+      InterpreterVisitor interpreter,
+      FileGenerator fileGenerator,
+      StateFactory stateFactory,
+      Printer printer) {
     this.lexer = lexer;
     this.parser = parser;
     this.interpreter = interpreter;
@@ -26,17 +31,17 @@ public class StateExecuter implements State {
     this.stateFactory = stateFactory;
     this.printer = printer;
   }
-  
+
   @Override
   public void setContext(CLI cli) {
     this.cli = cli;
   }
-  
+
   @Override
   public void run(String[] args) throws FileNotFoundException, CompilationTimeException {
     execute(args);
   }
-  
+
   private void execute(String[] args) throws FileNotFoundException, CompilationTimeException {
     if (!checkMode(args[0])) return;
     final File file = fileGenerator.open(args[1]);
@@ -49,7 +54,7 @@ public class StateExecuter implements State {
     final List<AbstractSyntaxTree> abstractSyntaxTrees = parser.analyseSintactically(lexer);
     final int total = abstractSyntaxTrees.size() - 1;
     int counter = 0;
-    for (AbstractSyntaxTree ast : abstractSyntaxTrees){
+    for (AbstractSyntaxTree ast : abstractSyntaxTrees) {
       printer.print(counter + "/" + total);
       interpreter.visit(ast);
       counter++;
@@ -57,7 +62,7 @@ public class StateExecuter implements State {
     ((InterpreterVisitorImpl) interpreter).debug();
     printer.print("JOB DONE!");
   }
-  
+
   private boolean checkMode(String mode) {
     if (mode.equals("execute")) return true;
     cli.changeState(stateFactory.get(mode));
