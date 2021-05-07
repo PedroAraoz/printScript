@@ -14,12 +14,12 @@ public class ConditionParser {
     this.astFactory = astFactory;
   }
 
-  public AbstractSyntaxTree analyseSintactically(List<Token> tokenList)
+  public AbstractSyntaxTree analyseSintactically(List<OurToken> tokenList)
       throws CompilationTimeException {
-    for (Token token : tokenList) {
+    for (OurToken token : tokenList) {
       if (token.getTokenIdentifier().equals(TokenIdentifier.ELSE_TOKEN)) {
-        List<Token> ifList = tokenList.subList(0, tokenList.indexOf(token));
-        List<Token> elseList = tokenList.subList(tokenList.indexOf(token) + 1, tokenList.size());
+        List<OurToken> ifList = tokenList.subList(0, tokenList.indexOf(token));
+        List<OurToken> elseList = tokenList.subList(tokenList.indexOf(token) + 1, tokenList.size());
         IfOperationSyntaxBranch ifAST = (IfOperationSyntaxBranch) parseIf(ifList);
         List<AbstractSyntaxTree> elseASTs = parseElse(elseList);
         ifAST.addElseStatements(elseASTs);
@@ -29,22 +29,23 @@ public class ConditionParser {
     return parseIf(tokenList);
   }
 
-  private List<AbstractSyntaxTree> parseElse(List<Token> elseList) throws CompilationTimeException {
+  private List<AbstractSyntaxTree> parseElse(List<OurToken> elseList)
+      throws CompilationTimeException {
     elseList.remove(elseList.get(0));
-    List<List<Token>> sentences = getSentences(elseList);
+    List<List<OurToken>> sentences = getSentences(elseList);
     return getAbstractSyntaxTrees(sentences);
   }
 
-  private AbstractSyntaxTree parseIf(List<Token> tokenList) throws CompilationTimeException {
-    Token _if = tokenList.get(0);
-    Token conditionToken = tokenList.get(2);
-    List<Token> header = new ArrayList<>();
-    List<Token> body = new ArrayList<>();
-    Iterator<Token> iterator = tokenList.iterator();
+  private AbstractSyntaxTree parseIf(List<OurToken> tokenList) throws CompilationTimeException {
+    OurToken _if = tokenList.get(0);
+    OurToken conditionToken = tokenList.get(2);
+    List<OurToken> header = new ArrayList<>();
+    List<OurToken> body = new ArrayList<>();
+    Iterator<OurToken> iterator = tokenList.iterator();
     destructureAfter(header, iterator, TokenIdentifier.LEFT_BRACKET_TOKEN);
     destructureBefore(body, iterator, TokenIdentifier.RIGHT_BRACKET_TOKEN);
 
-    List<List<Token>> sentences = getSentences(body);
+    List<List<OurToken>> sentences = getSentences(body);
 
     IfOperationSyntaxBranch ifTree = (IfOperationSyntaxBranch) tokenToASTConverter.convert(_if);
     VariableSyntaxLeaf condition = (VariableSyntaxLeaf) tokenToASTConverter.convert(conditionToken);
@@ -56,22 +57,22 @@ public class ConditionParser {
     return ifTree;
   }
 
-  private List<AbstractSyntaxTree> getAbstractSyntaxTrees(List<List<Token>> sentences)
+  private List<AbstractSyntaxTree> getAbstractSyntaxTrees(List<List<OurToken>> sentences)
       throws CompilationTimeException {
     List<AbstractSyntaxTree> ifTrees = new ArrayList<>();
     if (!sentences.isEmpty()) {
-      for (List<Token> sentence : sentences) {
+      for (List<OurToken> sentence : sentences) {
         ifTrees.add(astFactory.build(sentence));
       }
     }
     return ifTrees;
   }
 
-  private List<List<Token>> getSentences(List<Token> body) {
-    List<List<Token>> sentences = new ArrayList<>();
-    Iterator<Token> iterator = body.iterator();
+  private List<List<OurToken>> getSentences(List<OurToken> body) {
+    List<List<OurToken>> sentences = new ArrayList<>();
+    Iterator<OurToken> iterator = body.iterator();
     while (iterator.hasNext()) {
-      List<Token> sentence = new ArrayList<>();
+      List<OurToken> sentence = new ArrayList<>();
       destructureUnless(
           sentence, iterator, TokenIdentifier.SEMICOLON_TOKEN, TokenIdentifier.RIGHT_BRACKET_TOKEN);
       if (!sentence.isEmpty()) sentences.add(sentence);
@@ -80,9 +81,9 @@ public class ConditionParser {
   }
 
   private void destructureBefore(
-      List<Token> accumulator, Iterator<Token> iterator, TokenIdentifier tokenIdentifier) {
+      List<OurToken> accumulator, Iterator<OurToken> iterator, TokenIdentifier tokenIdentifier) {
     while (iterator.hasNext()) {
-      Token token = iterator.next();
+      OurToken token = iterator.next();
       accumulator.add(token);
       if (token.getTokenIdentifier().equals(tokenIdentifier)) {
         break;
@@ -91,9 +92,9 @@ public class ConditionParser {
   }
 
   private void destructureAfter(
-      List<Token> accumulator, Iterator<Token> iterator, TokenIdentifier tokenIdentifier) {
+      List<OurToken> accumulator, Iterator<OurToken> iterator, TokenIdentifier tokenIdentifier) {
     while (iterator.hasNext()) {
-      Token token = iterator.next();
+      OurToken token = iterator.next();
       if (token.getTokenIdentifier().equals(tokenIdentifier)) {
         break;
       }
@@ -102,12 +103,12 @@ public class ConditionParser {
   }
 
   private void destructureUnless(
-      List<Token> accumulator,
-      Iterator<Token> iterator,
+      List<OurToken> accumulator,
+      Iterator<OurToken> iterator,
       TokenIdentifier tokenIdentifier,
       TokenIdentifier unless) {
     while (iterator.hasNext()) {
-      Token token = iterator.next();
+      OurToken token = iterator.next();
       if (token.getTokenIdentifier().equals(unless)) {
         break;
       }

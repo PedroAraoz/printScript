@@ -27,7 +27,8 @@ public class VariableRegister {
     return variables.stream().filter(v -> v.getVariableName().equals(variable)).findFirst();
   }
 
-  public void assignValueToVariable(Token variable, Token value) throws CompilationTimeException {
+  public void assignValueToVariable(OurToken variable, OurToken value)
+      throws CompilationTimeException {
     for (VariableInfo vi : variables) {
       if (vi.getVariableName().equals(variable.getValue())) {
         if (sameType(vi.getType(), (value.getTokenIdentifier()))) {

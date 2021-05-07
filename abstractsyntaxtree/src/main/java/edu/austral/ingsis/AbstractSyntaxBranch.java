@@ -5,11 +5,11 @@ import edu.austral.ingsis.exception.CompilationTimeException;
 public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
 
   protected AbstractSyntaxTree left = new EmptySyntaxLeaf();
-  protected Token token;
+  protected OurToken token;
   protected AbstractSyntaxTree right = new EmptySyntaxLeaf();
 
   @Override
-  public void setToken(Token token) {
+  public void setToken(OurToken token) {
     this.token = token;
   }
 
@@ -18,7 +18,7 @@ public abstract class AbstractSyntaxBranch implements AbstractSyntaxTree {
   }
 
   @Override
-  public Token getToken() {
+  public OurToken getToken() {
     return token;
   }
 

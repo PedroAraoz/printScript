@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface Parser {
 
-  AbstractSyntaxTree analyseSintactically(List<Token> tokenList) throws CompilationTimeException;
+  AbstractSyntaxTree analyseSintactically(List<OurToken> tokenList) throws CompilationTimeException;
 
   List<AbstractSyntaxTree> analyseSintactically(OurLexer lexer) throws CompilationTimeException;
 }

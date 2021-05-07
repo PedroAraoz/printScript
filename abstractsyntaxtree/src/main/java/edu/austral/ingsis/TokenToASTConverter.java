@@ -37,7 +37,7 @@ public class TokenToASTConverter {
     this.map.put(TokenIdentifier.BOOLEAN_LITERAL_TOKEN, new LiteralCommand());
   }
 
-  public AbstractSyntaxTree convert(Token token) {
+  public AbstractSyntaxTree convert(OurToken token) {
     final AbstractSyntaxTree tree = map.get(token.getTokenIdentifier()).build();
     tree.setToken(token);
     return tree;

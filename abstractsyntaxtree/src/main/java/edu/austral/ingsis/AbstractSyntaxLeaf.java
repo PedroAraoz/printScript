@@ -2,19 +2,19 @@ package edu.austral.ingsis;
 
 public abstract class AbstractSyntaxLeaf implements AbstractSyntaxTree {
 
-  protected Token token;
+  protected OurToken token;
 
   public String getValue() {
     return token.getValue();
   }
 
   @Override
-  public void setToken(Token token) {
+  public void setToken(OurToken token) {
     this.token = token;
   }
 
   @Override
-  public Token getToken() {
+  public OurToken getToken() {
     return token;
   }
 

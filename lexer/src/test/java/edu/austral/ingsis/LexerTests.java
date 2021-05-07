@@ -93,7 +93,7 @@ public class LexerTests {
     OurLexer lexer = new LexerImpl();
     lexer.setVersion(version);
     lexer.analyseLexically(statements);
-    final List<Token> all = lexer.getAll();
+    final List<OurToken> all = lexer.getAll();
 
     for (int i = 0; i < values.size(); i++) {
       Assert.assertEquals(values.get(i), all.get(i).getValue());

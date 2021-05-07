@@ -52,7 +52,7 @@ public class ParserSegmenterTests {
 
     final ParserSegmenter parserSegmenter = new ParserSegmenter(lexer);
 
-    List<Token> tokens = parserSegmenter.getNext();
+    List<OurToken> tokens = parserSegmenter.getNext();
 
     assert !tokens.isEmpty();
     System.out.println("ASD");
@@ -70,8 +70,8 @@ public class ParserSegmenterTests {
 
     final ParserSegmenter parserSegmenter = new ParserSegmenter(lexer);
 
-    List<Token> tokens1 = parserSegmenter.getNext();
-    List<Token> tokens2 = parserSegmenter.getNext();
+    List<OurToken> tokens1 = parserSegmenter.getNext();
+    List<OurToken> tokens2 = parserSegmenter.getNext();
 
     assert !tokens1.isEmpty();
     assert !tokens2.isEmpty();
@@ -89,7 +89,7 @@ public class ParserSegmenterTests {
 
     final ParserSegmenter parserSegmenter = new ParserSegmenter(lexer);
 
-    List<Token> tokens1 = parserSegmenter.getNext();
+    List<OurToken> tokens1 = parserSegmenter.getNext();
   }
 
   @Test
@@ -103,7 +103,7 @@ public class ParserSegmenterTests {
 
     final ParserSegmenter parserSegmenter = new ParserSegmenter(lexer);
 
-    List<Token> tokens1 = parserSegmenter.getNext();
+    List<OurToken> tokens1 = parserSegmenter.getNext();
     assert tokens1.get(0).getTokenIdentifier().equals(TokenIdentifier.SEMICOLON_TOKEN);
   }
 
@@ -119,7 +119,7 @@ public class ParserSegmenterTests {
 
     final ParserSegmenter parserSegmenter = new ParserSegmenter(lexer);
 
-    List<Token> tokens1 = parserSegmenter.getNext();
+    List<OurToken> tokens1 = parserSegmenter.getNext();
     assert tokens1.get(0).getTokenIdentifier().equals(TokenIdentifier.IF_TOKEN);
     assert tokens1.get(1).getTokenIdentifier().equals(TokenIdentifier.LEFT_PARENTHESIS_TOKEN);
     assert tokens1.get(2).getTokenIdentifier().equals(TokenIdentifier.VARIABLE_TOKEN);
@@ -141,7 +141,7 @@ public class ParserSegmenterTests {
 
     final ParserSegmenter parserSegmenter = new ParserSegmenter(lexer);
 
-    List<Token> tokens1 = parserSegmenter.getNext();
+    List<OurToken> tokens1 = parserSegmenter.getNext();
     assert tokens1.get(0).getTokenIdentifier().equals(TokenIdentifier.IF_TOKEN);
     assert tokens1.get(1).getTokenIdentifier().equals(TokenIdentifier.LEFT_PARENTHESIS_TOKEN);
     assert tokens1.get(2).getTokenIdentifier().equals(TokenIdentifier.VARIABLE_TOKEN);
@@ -167,7 +167,7 @@ public class ParserSegmenterTests {
 
     final ParserSegmenter parserSegmenter = new ParserSegmenter(lexer);
 
-    List<Token> tokens1 = parserSegmenter.getNext();
+    List<OurToken> tokens1 = parserSegmenter.getNext();
     assert tokens1.get(0).getTokenIdentifier().equals(TokenIdentifier.IF_TOKEN);
     assert tokens1.get(1).getTokenIdentifier().equals(TokenIdentifier.LEFT_PARENTHESIS_TOKEN);
     assert tokens1.get(2).getTokenIdentifier().equals(TokenIdentifier.VARIABLE_TOKEN);
@@ -197,7 +197,7 @@ public class ParserSegmenterTests {
 
     final ParserSegmenter parserSegmenter = new ParserSegmenter(lexer);
 
-    List<Token> tokens1 = parserSegmenter.getNext();
+    List<OurToken> tokens1 = parserSegmenter.getNext();
     assert tokens1.get(0).getTokenIdentifier().equals(TokenIdentifier.IF_TOKEN);
     assert tokens1.get(1).getTokenIdentifier().equals(TokenIdentifier.LEFT_PARENTHESIS_TOKEN);
     assert tokens1.get(2).getTokenIdentifier().equals(TokenIdentifier.VARIABLE_TOKEN);
@@ -222,7 +222,7 @@ public class ParserSegmenterTests {
 
     final ParserSegmenter parserSegmenter = new ParserSegmenter(lexer);
 
-    List<Token> tokens1 = parserSegmenter.getNext();
+    List<OurToken> tokens1 = parserSegmenter.getNext();
     Assert.assertEquals(tokens1.get(0).getTokenIdentifier(), (TokenIdentifier.IF_TOKEN));
     Assert.assertEquals(
         tokens1.get(1).getTokenIdentifier(), (TokenIdentifier.LEFT_PARENTHESIS_TOKEN));

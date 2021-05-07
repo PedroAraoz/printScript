@@ -6,13 +6,13 @@ import java.util.Optional;
 public interface OurLexer {
   void analyseLexically(List<String> string);
 
-  Optional<Token> getNextToken();
+  Optional<OurToken> getNextToken();
 
   boolean hasNext();
 
-  List<Token> getAll();
+  List<OurToken> getAll();
 
   void setVersion(String version);
 
-  Optional<Token> peek();
+  Optional<OurToken> peek();
 }

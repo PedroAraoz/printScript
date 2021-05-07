@@ -6,14 +6,14 @@ import java.util.Stack;
 
 public class ASTFactory {
 
-  public AbstractSyntaxTree build(List<Token> tokenList) throws CompilationTimeException {
+  public AbstractSyntaxTree build(List<OurToken> tokenList) throws CompilationTimeException {
 
     final Stack<AbstractSyntaxTree> abstractSyntaxTreeStack = new Stack<>();
     final TokenToASTConverter tokenToASTConverter = new TokenToASTConverter();
 
     // First we convert all of the tokenIdentifiers insto AST nodes
 
-    for (Token t : tokenList) {
+    for (OurToken t : tokenList) {
       abstractSyntaxTreeStack.add(tokenToASTConverter.convert(t));
     }
 

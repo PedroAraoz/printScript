@@ -55,7 +55,7 @@ public class TokenIdentifierTests {
     final int startPos = 0;
     final int endPos = 3;
     final String value = "asd";
-    final Token t = new Token(variableTokenIdentifier, line, startPos, endPos, value);
+    final OurToken t = new OurToken(variableTokenIdentifier, line, startPos, endPos, value);
     Assert.assertEquals(variableTokenIdentifier, t.getTokenIdentifier());
     Assert.assertEquals(variableTokenIdentifier.getName(), t.getName());
     Assert.assertEquals(variableTokenIdentifier.toString(), t.toString());
@@ -71,9 +71,9 @@ public class TokenIdentifierTests {
     final TokenIdentifier t1 = TokenIdentifier.NUMBER_LITERAL_TOKEN;
     final TokenIdentifier t2 = TokenIdentifier.SEMICOLON_TOKEN;
     final TokenIdentifier t3 = TokenIdentifier.LET_TOKEN;
-    final Token tw1 = new Token(t1, 0, 0, 0, "");
-    final Token tw2 = new Token(t2, 0, 0, 0, "");
-    final Token tw3 = new Token(t3, 0, 0, 0, "");
+    final OurToken tw1 = new OurToken(t1, 0, 0, 0, "");
+    final OurToken tw2 = new OurToken(t2, 0, 0, 0, "");
+    final OurToken tw3 = new OurToken(t3, 0, 0, 0, "");
     final String s1 = "123.123";
     final String s2 = ";";
     final String s3 = "let";
@@ -88,9 +88,9 @@ public class TokenIdentifierTests {
     final TokenIdentifier t1 = TokenIdentifier.STRING_TYPE_TOKEN;
     final TokenIdentifier t2 = TokenIdentifier.LET_TOKEN;
     final TokenIdentifier t3 = TokenIdentifier.DIV_OPERATION_TOKEN;
-    final Token tw1 = new Token(t1, 0, 0, 0, "");
-    final Token tw2 = new Token(t1, 0, 0, 0, "");
-    final Token tw3 = new Token(t1, 0, 0, 0, "");
+    final OurToken tw1 = new OurToken(t1, 0, 0, 0, "");
+    final OurToken tw2 = new OurToken(t1, 0, 0, 0, "");
+    final OurToken tw3 = new OurToken(t1, 0, 0, 0, "");
     final String s1 = "/";
     final String s2 = ";";
     final String s3 = "let";

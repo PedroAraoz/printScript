@@ -8,7 +8,7 @@ import java.util.Optional;
 public class ParserSegmenter {
 
   private OurLexer lexer;
-  private List<Token> next;
+  private List<OurToken> next;
   private boolean hasNext = true;
 
   public ParserSegmenter(OurLexer lexer) throws CompilationTimeException {
@@ -20,10 +20,10 @@ public class ParserSegmenter {
     return hasNext;
   }
 
-  public List<Token> getNext() throws CompilationTimeException {
+  public List<OurToken> getNext() throws CompilationTimeException {
     if (hasNext) {
 
-      List<Token> toReturn = new ArrayList<>(next);
+      List<OurToken> toReturn = new ArrayList<>(next);
 
       internalGetNext();
 
@@ -35,7 +35,7 @@ public class ParserSegmenter {
   }
 
   private void internalGetNext() throws CompilationTimeException {
-    List<Token> statement = new ArrayList<>();
+    List<OurToken> statement = new ArrayList<>();
 
     // In the case lexer is empty
     if (!lexer.hasNext()) {
@@ -50,9 +50,9 @@ public class ParserSegmenter {
     }
   }
 
-  private void segmentIf(List<Token> statement) throws CompilationTimeException {
+  private void segmentIf(List<OurToken> statement) throws CompilationTimeException {
     // Ya detectamos el if asi que lo agregamos directamente
-    Token ifToken = lexer.getNextToken().get();
+    OurToken ifToken = lexer.getNextToken().get();
     statement.add(ifToken);
 
     // Consumimos la primera parte del If que siempre debe ser igual
@@ -88,7 +88,7 @@ public class ParserSegmenter {
         TokenIdentifier.RIGHT_BRACKET_TOKEN,
         "If statement does not close brackets in line ");
 
-    Optional<Token> t = lexer.peek();
+    Optional<OurToken> t = lexer.peek();
     if (t.isPresent() && t.get().getTokenIdentifier().equals(TokenIdentifier.ELSE_TOKEN)) {
       consumeUntil(
           statement,
@@ -105,13 +105,13 @@ public class ParserSegmenter {
   }
 
   private void consumeUntil(
-      List<Token> statement,
-      Token ifToken,
+      List<OurToken> statement,
+      OurToken ifToken,
       TokenIdentifier identifier,
       String noNextTokenErrorMessage)
       throws CompilationTimeException {
     while (lexer.hasNext()) {
-      Token t = lexer.getNextToken().get();
+      OurToken t = lexer.getNextToken().get();
       statement.add(t);
       if (t.getTokenIdentifier().equals(identifier)) return;
     }
@@ -120,14 +120,14 @@ public class ParserSegmenter {
   }
 
   private void consume(
-      List<Token> statement,
-      Token token,
+      List<OurToken> statement,
+      OurToken token,
       TokenIdentifier identifier,
       String unexpectedTokenErrorMessage,
       String noNextTokenErrorMessage)
       throws CompilationTimeException {
     if (lexer.hasNext()) {
-      Token nextToken = lexer.getNextToken().get();
+      OurToken nextToken = lexer.getNextToken().get();
       if (!nextToken.getTokenIdentifier().equals(identifier)) {
         throw new CompilationTimeException(
             unexpectedTokenErrorMessage
@@ -143,9 +143,9 @@ public class ParserSegmenter {
     }
   }
 
-  private void segmentStatement(List<Token> statement) throws CompilationTimeException {
+  private void segmentStatement(List<OurToken> statement) throws CompilationTimeException {
     while (lexer.hasNext()) {
-      Token one = lexer.getNextToken().get();
+      OurToken one = lexer.getNextToken().get();
       statement.add(one);
       if (one.getTokenIdentifier().equals(TokenIdentifier.SEMICOLON_TOKEN)) {
         next = statement;

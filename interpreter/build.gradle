@@ -27,6 +27,8 @@ dependencies {
     implementation project(':printer')
     implementation 'junit:junit:4.12'
     implementation 'edu.austral.ingsis:lexing:1.6.0'
+    implementation 'edu.austral.ingsis:tokening:1.6.0'
+    implementation 'edu.austral.ingsis:utils:1.6.0'
     implementation project(':lexer')
     testCompile project(':state')
     testCompile project(':abstractsyntaxtree')

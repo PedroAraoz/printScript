@@ -2,14 +2,15 @@ package edu.austral.ingsis;
 
 import java.util.regex.Pattern;
 
-public class Token {
+public class OurToken {
   private final TokenIdentifier tokenIdentifier;
   private final int line;
   private int startPos;
   private int endPos;
   private String value;
 
-  public Token(TokenIdentifier tokenIdentifier, int line, int startPos, int endPos, String value) {
+  public OurToken(
+      TokenIdentifier tokenIdentifier, int line, int startPos, int endPos, String value) {
     this.tokenIdentifier = tokenIdentifier;
     this.line = line;
     this.startPos = startPos;

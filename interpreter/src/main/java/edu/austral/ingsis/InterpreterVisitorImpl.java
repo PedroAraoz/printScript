@@ -85,7 +85,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
       final String answer = left.getValue() + right.getValue();
       return getLiteralSyntaxLeaf(answer, TokenIdentifier.STRING_LITERAL_TOKEN);
     } else {
-      Token t = isString(left) ? left.getToken() : right.getToken();
+      OurToken t = isString(left) ? left.getToken() : right.getToken();
       throw interpreterError("TODO FILE", t, "You can't substract with a string");
     }
   }
@@ -124,7 +124,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
       }
       return getLiteralSyntaxLeaf(Double.toString(answer), TokenIdentifier.NUMBER_LITERAL_TOKEN);
     } else {
-      final Token t = !isNumber(left) ? left.getToken() : right.getToken();
+      final OurToken t = !isNumber(left) ? left.getToken() : right.getToken();
       throw interpreterError("TODO ADD FILE", t, "Must be number"); // todo add file
     }
   }
@@ -194,7 +194,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
       }
       return getLiteralSyntaxLeaf(answer, TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
     } else {
-      final Token t = !isNumber(left) ? left.getToken() : right.getToken();
+      final OurToken t = !isNumber(left) ? left.getToken() : right.getToken();
       throw interpreterError("TODO ADD FILE", t, "Must be number"); // todo add file
     }
   }
@@ -214,7 +214,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
       }
       return getLiteralSyntaxLeaf(answer, TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
     } else {
-      final Token t = !isNumber(left) ? left.getToken() : right.getToken();
+      final OurToken t = !isNumber(left) ? left.getToken() : right.getToken();
       throw interpreterError("TODO ADD FILE", t, "Must be number"); // todo add file
     }
   }
@@ -234,7 +234,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
       }
       return getLiteralSyntaxLeaf(answer, TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
     } else {
-      final Token t = !isNumber(left) ? left.getToken() : right.getToken();
+      final OurToken t = !isNumber(left) ? left.getToken() : right.getToken();
       throw interpreterError("TODO ADD FILE", t, "Must be number"); // todo add file
     }
   }
@@ -254,7 +254,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
       }
       return getLiteralSyntaxLeaf(answer, TokenIdentifier.BOOLEAN_LITERAL_TOKEN);
     } else {
-      final Token t = !isNumber(left) ? left.getToken() : right.getToken();
+      final OurToken t = !isNumber(left) ? left.getToken() : right.getToken();
       throw interpreterError("TODO ADD FILE", t, "Must be number"); // todo add file
     }
   }
@@ -308,7 +308,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
 
   private LiteralSyntaxLeaf getLiteralSyntaxLeaf(String value, TokenIdentifier token) {
     final LiteralSyntaxLeaf literalSyntaxLeaf = new LiteralSyntaxLeaf();
-    literalSyntaxLeaf.setToken(new Token(token, -1, -1, -1, value));
+    literalSyntaxLeaf.setToken(new OurToken(token, -1, -1, -1, value));
     return literalSyntaxLeaf;
   }
 
@@ -321,7 +321,7 @@ public class InterpreterVisitorImpl implements InterpreterVisitor {
     return b.token.getTokenIdentifier().getName().equals(TokenName.STRING_LITERAL);
   }
 
-  private CompilationTimeException interpreterError(String file, Token token, String message) {
+  private CompilationTimeException interpreterError(String file, OurToken token, String message) {
     return interpreterError(file, token.getLine(), token.getStartPos(), token.getEndPos(), message);
   }
 

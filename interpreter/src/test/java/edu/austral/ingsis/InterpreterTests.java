@@ -3,6 +3,7 @@ package edu.austral.ingsis;
 import edu.austral.ingsis.exception.CompilationTimeException;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import org.junit.Assert;
@@ -15,12 +16,12 @@ public class InterpreterTests {
     InterpreterVisitor interpreter = new InterpreterVisitorImpl(new CLIPrinter());
 
     AbstractSyntaxTree abstractSyntaxTree = new VariableSyntaxLeaf();
-    abstractSyntaxTree.setToken(new Token(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
+    abstractSyntaxTree.setToken(new OurToken(TokenIdentifier.VARIABLE_TOKEN, 0, 0, 0, "x"));
     AbstractSyntaxTree second = new TypeAssignationSyntaxBranch();
-    second.setToken(new Token(TokenIdentifier.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
+    second.setToken(new OurToken(TokenIdentifier.TYPE_ASSIGNATION_TOKEN, 0, 0, 0, ":"));
     abstractSyntaxTree = abstractSyntaxTree.add(second);
     second = new BooleanTypeSyntaxLeaf();
-    second.setToken(new Token(TokenIdentifier.BOOLEAN_TYPE_TOKEN, 0, 0, 0, "boolean"));
+    second.setToken(new OurToken(TokenIdentifier.BOOLEAN_TYPE_TOKEN, 0, 0, 0, "boolean"));
     abstractSyntaxTree = abstractSyntaxTree.add(second);
 
     interpreter.visit(abstractSyntaxTree);
@@ -150,9 +151,9 @@ public class InterpreterTests {
 
     PrintCollector printCollector = new PrintCollector();
 
-    OurLexer lexer = new LexerImpl();
+    OurLexer lexer = new LexerAdapter();
     lexer.setVersion(version);
-    lexer.analyseLexically(statements);
+    lexer.analyseLexically(Collections.singletonList(testDirectory + "input.txt"));
 
     Parser parser = new ParserImpl();
 
@@ -178,10 +179,9 @@ public class InterpreterTests {
     s.close();
     return list;
   }
-  
+
   @Test
-  public void asdadasd() {
-  
+  public void testAdapter() throws FileNotFoundException, CompilationTimeException {
+    test("test21", false);
   }
-  
 }
