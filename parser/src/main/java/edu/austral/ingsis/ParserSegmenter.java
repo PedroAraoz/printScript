@@ -7,11 +7,11 @@ import java.util.Optional;
 
 public class ParserSegmenter {
 
-  private Lexer lexer;
+  private OurLexer lexer;
   private List<Token> next;
   private boolean hasNext = true;
 
-  public ParserSegmenter(Lexer lexer) throws CompilationTimeException {
+  public ParserSegmenter(OurLexer lexer) throws CompilationTimeException {
     this.lexer = lexer;
     internalGetNext();
   }

@@ -25,7 +25,7 @@ public class ParserImpl implements Parser {
   }
 
   @Override
-  public List<AbstractSyntaxTree> analyseSintactically(Lexer lexer)
+  public List<AbstractSyntaxTree> analyseSintactically(OurLexer lexer)
       throws CompilationTimeException {
     this.parserSegmenter = new ParserSegmenter(lexer);
     final List<AbstractSyntaxTree> abstractSyntaxTrees = new ArrayList<>();

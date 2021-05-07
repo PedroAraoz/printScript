@@ -10,7 +10,7 @@ import java.util.List;
 public class StateExecuter implements State {
 
   private CLI cli;
-  private final Lexer lexer;
+  private final OurLexer lexer;
   private final Parser parser;
   private final InterpreterVisitor interpreter;
   private final FileGenerator fileGenerator;
@@ -19,7 +19,7 @@ public class StateExecuter implements State {
   private boolean outputEnabled;
 
   public StateExecuter(
-      Lexer lexer,
+      OurLexer lexer,
       Parser parser,
       InterpreterVisitor interpreter,
       FileGenerator fileGenerator,

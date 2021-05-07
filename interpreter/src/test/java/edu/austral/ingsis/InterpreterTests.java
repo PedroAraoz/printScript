@@ -150,7 +150,7 @@ public class InterpreterTests {
 
     PrintCollector printCollector = new PrintCollector();
 
-    Lexer lexer = new LexerImpl();
+    OurLexer lexer = new LexerImpl();
     lexer.setVersion(version);
     lexer.analyseLexically(statements);
 
@@ -178,4 +178,10 @@ public class InterpreterTests {
     s.close();
     return list;
   }
+  
+  @Test
+  public void asdadasd() {
+  
+  }
+  
 }

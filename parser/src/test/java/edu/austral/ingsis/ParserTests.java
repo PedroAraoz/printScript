@@ -152,7 +152,7 @@ public class ParserTests {
     List<String> statements = readLines(testDirectory + "input.txt");
     List<String> outputs = readLines(testDirectory + "output.txt");
 
-    Lexer lexer = new LexerImpl();
+    OurLexer lexer = new LexerImpl();
     lexer.setVersion(version);
     lexer.analyseLexically(statements);
 

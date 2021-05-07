@@ -10,7 +10,7 @@ import java.util.List;
 public class StateValidator implements State {
 
   private CLI cli;
-  private final Lexer lexer;
+  private final OurLexer lexer;
   private final Parser parser;
   private final FileGenerator fileGenerator;
   private final StateFactory stateFactory;
@@ -18,7 +18,7 @@ public class StateValidator implements State {
   private boolean outputEnabled;
 
   public StateValidator(
-      Lexer lexer,
+      OurLexer lexer,
       Parser parser,
       FileGenerator fileGenerator,
       StateFactory stateFactory,

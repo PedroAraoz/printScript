@@ -7,5 +7,5 @@ public interface Parser {
 
   AbstractSyntaxTree analyseSintactically(List<Token> tokenList) throws CompilationTimeException;
 
-  List<AbstractSyntaxTree> analyseSintactically(Lexer lexer) throws CompilationTimeException;
+  List<AbstractSyntaxTree> analyseSintactically(OurLexer lexer) throws CompilationTimeException;
 }

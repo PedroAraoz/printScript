@@ -8,13 +8,26 @@ plugins {
 
 apply plugin: 'checkstyle'
 
+repositories {
+    mavenCentral()
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/rocioferreiro/printscript_IngSist")
+        credentials {
+            username = project.findProperty("gpr.user") ?: "pedroaraoz"
+            password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+        }
+    }
+}
+
 dependencies {
     implementation project(':abstractsyntaxtree')
     implementation project(':parser')
     implementation project(':token')
     implementation project(':printer')
     implementation 'junit:junit:4.12'
-    testCompileOnly project(':lexer')
+    implementation 'edu.austral.ingsis:lexing:1.6.0'
+    implementation project(':lexer')
     testCompile project(':state')
     testCompile project(':abstractsyntaxtree')
 }

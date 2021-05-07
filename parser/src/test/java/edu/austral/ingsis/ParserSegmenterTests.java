@@ -35,7 +35,7 @@ public class ParserSegmenterTests {
 
   @Test
   public void ofEmptyLexerShouldBeEmpty() throws CompilationTimeException {
-    final Lexer lexer = new LexerImpl();
+    final OurLexer lexer = new LexerImpl();
     final ParserSegmenter parserSegmenter = new ParserSegmenter(lexer);
 
     assert parserSegmenter.getNext().isEmpty();
@@ -43,7 +43,7 @@ public class ParserSegmenterTests {
 
   @Test
   public void oneStatementLexerShouldReturnOneStatement() throws CompilationTimeException {
-    final Lexer lexer = new LexerImpl();
+    final OurLexer lexer = new LexerImpl();
 
     final List<String> statement = new ArrayList<>();
     statement.add("x = 3;");
@@ -60,7 +60,7 @@ public class ParserSegmenterTests {
 
   @Test
   public void twoStatementsLexerShouldReturnTwoStatements() throws CompilationTimeException {
-    final Lexer lexer = new LexerImpl();
+    final OurLexer lexer = new LexerImpl();
 
     final List<String> statement = new ArrayList<>();
     statement.add("x = 3;");
@@ -80,7 +80,7 @@ public class ParserSegmenterTests {
 
   @Test(expected = CompilationTimeException.class)
   public void malformedStatementsLexerShouldThrowError() throws CompilationTimeException {
-    final Lexer lexer = new LexerImpl();
+    final OurLexer lexer = new LexerImpl();
 
     final List<String> statement = new ArrayList<>();
     statement.add("x = 3");
@@ -94,7 +94,7 @@ public class ParserSegmenterTests {
 
   @Test
   public void onlySemicolonShouldBeReturned() throws CompilationTimeException {
-    final Lexer lexer = new LexerImpl();
+    final OurLexer lexer = new LexerImpl();
 
     final List<String> statement = new ArrayList<>();
     statement.add(";");
@@ -109,7 +109,7 @@ public class ParserSegmenterTests {
 
   @Test
   public void emptyIfStatementShouldBeReturnedCorrectly() throws CompilationTimeException {
-    final Lexer lexer = new LexerImpl();
+    final OurLexer lexer = new LexerImpl();
     lexer.setVersion("1.1");
 
     final List<String> statement = new ArrayList<>();
@@ -130,7 +130,7 @@ public class ParserSegmenterTests {
 
   @Test
   public void ifWithOneStatementShouldBeReturnedCorrectly() throws CompilationTimeException {
-    final Lexer lexer = new LexerImpl();
+    final OurLexer lexer = new LexerImpl();
 
     final List<String> statement = new ArrayList<>();
     statement.add("if (x) {x = 3;}");
@@ -156,7 +156,7 @@ public class ParserSegmenterTests {
 
   @Test
   public void ifWithTwoStatementsShouldBeReturnedCorrectly() throws CompilationTimeException {
-    final Lexer lexer = new LexerImpl();
+    final OurLexer lexer = new LexerImpl();
 
     final List<String> statement = new ArrayList<>();
     statement.add("if (x) {x = 3; y = 4;}");
@@ -186,7 +186,7 @@ public class ParserSegmenterTests {
 
   @Test
   public void emptyIfElseShouldBeReturnedCorrectly() throws CompilationTimeException {
-    final Lexer lexer = new LexerImpl();
+    final OurLexer lexer = new LexerImpl();
 
     final List<String> statement = new ArrayList<>();
     statement.add("if (x) {} else {}");
@@ -211,7 +211,7 @@ public class ParserSegmenterTests {
 
   @Test
   public void IfElseWithStatementsShouldBeReturnedCorrectly() throws CompilationTimeException {
-    final Lexer lexer = new LexerImpl();
+    final OurLexer lexer = new LexerImpl();
 
     final List<String> statement = new ArrayList<>();
     statement.add("if (x) {x = 3;} else {x = 3;}");

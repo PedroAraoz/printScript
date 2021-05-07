@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class LexerImpl implements Lexer {
+public class LexerImpl implements OurLexer {
 
   private List<Token> tokens = new ArrayList<>();
   private String version = "1.0";

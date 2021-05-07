@@ -8,7 +8,7 @@ public class StateFactory {
 
   public StateFactory(
       CLI cli,
-      Lexer lexer,
+      OurLexer lexer,
       Parser parser,
       InterpreterVisitor interpreter,
       FileGenerator fileGenerator,

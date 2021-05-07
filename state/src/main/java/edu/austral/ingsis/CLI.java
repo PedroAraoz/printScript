@@ -12,7 +12,7 @@ public class CLI {
 
   public CLI(Printer printer) {
     this.printer = printer;
-    Lexer lexer = new LexerImpl();
+    OurLexer lexer = new LexerImpl();
     Parser parser = new ParserImpl();
     final InterpreterVisitorImpl interpreter = new InterpreterVisitorImpl(printer);
     FileGenerator fileGenerator = new NormalFileGenerator();

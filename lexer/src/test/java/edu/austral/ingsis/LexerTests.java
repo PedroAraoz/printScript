@@ -90,7 +90,7 @@ public class LexerTests {
     List<String> ti = readLines(testDirectory + "tokenIdentifiers.txt");
     List<String> lines = readLines(testDirectory + "tokenLines.txt");
 
-    Lexer lexer = new LexerImpl();
+    OurLexer lexer = new LexerImpl();
     lexer.setVersion(version);
     lexer.analyseLexically(statements);
     final List<Token> all = lexer.getAll();
