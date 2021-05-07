@@ -1,0 +1,3 @@
+let x: string = "1";
+let y: string = "2";
+println(x-y);

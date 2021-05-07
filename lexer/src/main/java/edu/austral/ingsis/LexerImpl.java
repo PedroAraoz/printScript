@@ -73,7 +73,7 @@ public class LexerImpl implements Lexer {
           answer.add(stringToEmptyToken(acc, token.getLine(), startPos, startPos + acc.length()));
         }
       } else if (unClosed) {
-        token = fixKeywords(token, code);
+        token =   fixKeywords(token, code);
         acc += token.getValue();
       } else {
         answer.add(token);

@@ -47,6 +47,11 @@ public class InterpreterTests {
     test("test06", false);
   }
   
+  @Test(expected = CompilationTimeException.class)
+  public void testSubtractString() throws FileNotFoundException, CompilationTimeException {
+    test("test07", false);
+  }
+  
   public void test(String directory, boolean output)
           throws FileNotFoundException, CompilationTimeException {
     String testDirectory = "src/test/resources/interpreter-tests/" + directory + "/";

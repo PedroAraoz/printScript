@@ -65,6 +65,16 @@ public class LexerTests {
     test("test12");
   }
   
+  @Test
+  public void testPriorityOneTokenWordInStringWithSpace() throws FileNotFoundException {
+    test("test13");
+  }
+  
+  @Test
+  public void testPriorityOneTokenWordInStringWithoutSpace() throws FileNotFoundException {
+    test("test14");
+  }
+  
   public void test(String directory) throws FileNotFoundException {
     String testDirectory = "src/test/resources/lexer-tests/" + directory + "/";
     List<String> statements = readLines(testDirectory + "input.txt");
