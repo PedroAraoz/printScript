@@ -1,0 +1,2 @@
+ifstatement working correctly
+outside of conditional

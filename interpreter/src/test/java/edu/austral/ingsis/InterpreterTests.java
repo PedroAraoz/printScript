@@ -125,6 +125,18 @@ public class InterpreterTests {
     test("test18", "1.1", false);
   }
 
+  @Test
+  public void testStringWithAWordFromAPriorityOneTokenWithSpace()
+      throws CompilationTimeException, FileNotFoundException {
+    test("test19", "1.1", false);
+  }
+
+  @Test
+  public void testStringWithAWordFromAPriorityOneTokenWithoutSpace()
+      throws CompilationTimeException, FileNotFoundException {
+    test("test20", "1.1", false);
+  }
+
   public void test(String directory, boolean output)
       throws FileNotFoundException, CompilationTimeException {
     test(directory, "1.0", output);

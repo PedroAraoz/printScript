@@ -1,0 +1,14 @@
+let
+x
+:
+string
+=
+hello
+;
+println
+(
+x
++
+ world
+)
+;
