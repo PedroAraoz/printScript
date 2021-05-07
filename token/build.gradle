@@ -37,7 +37,7 @@ task ourGoogleJavaFormat {
 check.dependsOn ourGoogleJavaFormat
 
 group = 'edu.austral.ingsis'
-version = '1.0.3'
+version = '1.0.4'
 
 checkstyle {
     toolVersion = '6.16.1'

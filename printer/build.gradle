@@ -9,7 +9,7 @@ plugins {
 apply plugin: 'checkstyle'
 
 group = 'edu.austral.ingsis'
-version = '1.0.3'
+version = '1.0.4'
 
 test {
     finalizedBy(jacocoTestReport)
