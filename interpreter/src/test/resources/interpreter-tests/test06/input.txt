@@ -1,0 +1,2 @@
+let a: string = "this:works";
+println(a);
