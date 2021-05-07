@@ -12,20 +12,16 @@ public class LexerAdapter implements OurLexer {
   private List<Token> result = new ArrayList<>();
   private List<OurToken> ourTokens = new ArrayList<>();
 
-  private Iterator<OurToken> iterator;
-
   @Override
   public void analyseLexically(List<String> string) {
     final String path = string.get(0);
     File file = new File(path);
-    TokenCleanUp.activateTokens();
     result = lexer.scan(file);
 
     TokenMapper tokenMapper = new TokenMapper();
     for (Token token : result) {
       ourTokens.add(tokenMapper.convert(token));
     }
-    iterator = ourTokens.iterator();
   }
 
   @Override
@@ -57,5 +53,8 @@ public class LexerAdapter implements OurLexer {
   }
 
   @Override
-  public void setVersion(String version) {}
+  public void setVersion(String version) {
+    if (version.equals("1.1"))
+      TokenCleanUp.activateTokens();
+  }
 }

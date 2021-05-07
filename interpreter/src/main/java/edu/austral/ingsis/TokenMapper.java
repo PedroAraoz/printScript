@@ -1,6 +1,5 @@
 package edu.austral.ingsis;
 
-import edu.austral.ingsis.ASTCommand.*;
 import java.util.HashMap;
 
 public class TokenMapper {
